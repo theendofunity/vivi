@@ -7,14 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83914B6072D7D2FED30ED495 /* Pods_Vivi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D9089F03D5FDB8614EC5901 /* Pods_Vivi.framework */; };
 		D8262F72281F2ADB00FA3E76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F71281F2ADB00FA3E76 /* AppDelegate.swift */; };
 		D8262F74281F2ADB00FA3E76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F73281F2ADB00FA3E76 /* SceneDelegate.swift */; };
 		D8262F7B281F2ADB00FA3E76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8262F7A281F2ADB00FA3E76 /* Assets.xcassets */; };
 		D8262F7E281F2ADB00FA3E76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8262F7C281F2ADB00FA3E76 /* LaunchScreen.storyboard */; };
 		D8262F86281F2B7F00FA3E76 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F85281F2B7F00FA3E76 /* MainTabBarController.swift */; };
+		D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F8A281F2C7A00FA3E76 /* UIColor + Extensions.swift */; };
+		D8262F8F281F2D6200FA3E76 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F8E281F2D6200FA3E76 /* PortfolioViewController.swift */; };
+		D8262F93281F2D8400FA3E76 /* PortfolioPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F92281F2D8400FA3E76 /* PortfolioPresenter.swift */; };
+		D8262F9B281F309900FA3E76 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F9A281F309900FA3E76 /* ChatViewController.swift */; };
+		D8262F9D281F30A400FA3E76 /* ChatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F9C281F30A400FA3E76 /* ChatPresenter.swift */; };
+		D8262F9F281F30C200FA3E76 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F9E281F30C200FA3E76 /* ProfileViewController.swift */; };
+		D8262FA1281F30CD00FA3E76 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FA0281F30CD00FA3E76 /* ProfilePresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		65AD19DA22EFCB7EA22119D4 /* Pods-Vivi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vivi.debug.xcconfig"; path = "Target Support Files/Pods-Vivi/Pods-Vivi.debug.xcconfig"; sourceTree = "<group>"; };
+		7D9089F03D5FDB8614EC5901 /* Pods_Vivi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vivi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B48690AF950970DA87A9FD8B /* Pods-Vivi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vivi.release.xcconfig"; path = "Target Support Files/Pods-Vivi/Pods-Vivi.release.xcconfig"; sourceTree = "<group>"; };
 		D8262F6E281F2ADB00FA3E76 /* Vivi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vivi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8262F71281F2ADB00FA3E76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8262F73281F2ADB00FA3E76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -22,6 +33,13 @@
 		D8262F7D281F2ADB00FA3E76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8262F7F281F2ADB00FA3E76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8262F85281F2B7F00FA3E76 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		D8262F8A281F2C7A00FA3E76 /* UIColor + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extensions.swift"; sourceTree = "<group>"; };
+		D8262F8E281F2D6200FA3E76 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
+		D8262F92281F2D8400FA3E76 /* PortfolioPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioPresenter.swift; sourceTree = "<group>"; };
+		D8262F9A281F309900FA3E76 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		D8262F9C281F30A400FA3E76 /* ChatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPresenter.swift; sourceTree = "<group>"; };
+		D8262F9E281F30C200FA3E76 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D8262FA0281F30CD00FA3E76 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +47,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83914B6072D7D2FED30ED495 /* Pods_Vivi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8EE9DA79F1C12F6E1BE594F8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				65AD19DA22EFCB7EA22119D4 /* Pods-Vivi.debug.xcconfig */,
+				B48690AF950970DA87A9FD8B /* Pods-Vivi.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9EA4A1325C3470933DD1FB25 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D9089F03D5FDB8614EC5901 /* Pods_Vivi.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D8262F65281F2ADB00FA3E76 = {
 			isa = PBXGroup;
 			children = (
 				D8262F70281F2ADB00FA3E76 /* Vivi */,
 				D8262F6F281F2ADB00FA3E76 /* Products */,
+				8EE9DA79F1C12F6E1BE594F8 /* Pods */,
+				9EA4A1325C3470933DD1FB25 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,12 +94,123 @@
 			children = (
 				D8262F71281F2ADB00FA3E76 /* AppDelegate.swift */,
 				D8262F73281F2ADB00FA3E76 /* SceneDelegate.swift */,
-				D8262F85281F2B7F00FA3E76 /* MainTabBarController.swift */,
+				D8262F87281F2C1300FA3E76 /* UserInterface */,
+				D8262F88281F2C5700FA3E76 /* Extensions */,
 				D8262F7A281F2ADB00FA3E76 /* Assets.xcassets */,
 				D8262F7C281F2ADB00FA3E76 /* LaunchScreen.storyboard */,
 				D8262F7F281F2ADB00FA3E76 /* Info.plist */,
 			);
 			path = Vivi;
+			sourceTree = "<group>";
+		};
+		D8262F87281F2C1300FA3E76 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				D8262F8D281F2D4000FA3E76 /* Portfolio */,
+				D8262F94281F303C00FA3E76 /* Chat */,
+				D8262F95281F304200FA3E76 /* Profile */,
+				D8262F8C281F2D2C00FA3E76 /* MainTabBar */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		D8262F88281F2C5700FA3E76 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D8262F89281F2C6500FA3E76 /* UIKit */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D8262F89281F2C6500FA3E76 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				D8262F8A281F2C7A00FA3E76 /* UIColor + Extensions.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		D8262F8C281F2D2C00FA3E76 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				D8262F85281F2B7F00FA3E76 /* MainTabBarController.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		D8262F8D281F2D4000FA3E76 /* Portfolio */ = {
+			isa = PBXGroup;
+			children = (
+				D8262F91281F2D6E00FA3E76 /* Presenter */,
+				D8262F90281F2D6600FA3E76 /* View */,
+			);
+			path = Portfolio;
+			sourceTree = "<group>";
+		};
+		D8262F90281F2D6600FA3E76 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D8262F8E281F2D6200FA3E76 /* PortfolioViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D8262F91281F2D6E00FA3E76 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				D8262F92281F2D8400FA3E76 /* PortfolioPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		D8262F94281F303C00FA3E76 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				D8262F98281F308400FA3E76 /* View */,
+				D8262F99281F308400FA3E76 /* Presenter */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		D8262F95281F304200FA3E76 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				D8262F96281F306600FA3E76 /* View */,
+				D8262F97281F306D00FA3E76 /* Presenter */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		D8262F96281F306600FA3E76 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D8262F9E281F30C200FA3E76 /* ProfileViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D8262F97281F306D00FA3E76 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				D8262FA0281F30CD00FA3E76 /* ProfilePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		D8262F98281F308400FA3E76 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D8262F9A281F309900FA3E76 /* ChatViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D8262F99281F308400FA3E76 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				D8262F9C281F30A400FA3E76 /* ChatPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +220,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D8262F82281F2ADB00FA3E76 /* Build configuration list for PBXNativeTarget "Vivi" */;
 			buildPhases = (
+				8E1C7C4A8CC0C58B109E4FD8 /* [CP] Check Pods Manifest.lock */,
 				D8262F6A281F2ADB00FA3E76 /* Sources */,
 				D8262F6B281F2ADB00FA3E76 /* Frameworks */,
 				D8262F6C281F2ADB00FA3E76 /* Resources */,
+				33AF4BB4ABB14AD50223198D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,13 +280,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		33AF4BB4ABB14AD50223198D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Vivi/Pods-Vivi-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Vivi/Pods-Vivi-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Vivi/Pods-Vivi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8E1C7C4A8CC0C58B109E4FD8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Vivi-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D8262F6A281F2ADB00FA3E76 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D8262F72281F2ADB00FA3E76 /* AppDelegate.swift in Sources */,
+				D8262F93281F2D8400FA3E76 /* PortfolioPresenter.swift in Sources */,
+				D8262F8F281F2D6200FA3E76 /* PortfolioViewController.swift in Sources */,
+				D8262F9B281F309900FA3E76 /* ChatViewController.swift in Sources */,
+				D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */,
 				D8262F74281F2ADB00FA3E76 /* SceneDelegate.swift in Sources */,
+				D8262F9F281F30C200FA3E76 /* ProfileViewController.swift in Sources */,
+				D8262F9D281F30A400FA3E76 /* ChatPresenter.swift in Sources */,
+				D8262FA1281F30CD00FA3E76 /* ProfilePresenter.swift in Sources */,
 				D8262F86281F2B7F00FA3E76 /* MainTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,7 +404,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -258,7 +458,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -270,6 +470,7 @@
 		};
 		D8262F83281F2ADB00FA3E76 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65AD19DA22EFCB7EA22119D4 /* Pods-Vivi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -298,6 +499,7 @@
 		};
 		D8262F84281F2ADB00FA3E76 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B48690AF950970DA87A9FD8B /* Pods-Vivi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
