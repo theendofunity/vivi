@@ -20,6 +20,7 @@
 		D8262F9D281F30A400FA3E76 /* ChatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F9C281F30A400FA3E76 /* ChatPresenter.swift */; };
 		D8262F9F281F30C200FA3E76 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F9E281F30C200FA3E76 /* ProfileViewController.swift */; };
 		D8262FA1281F30CD00FA3E76 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FA0281F30CD00FA3E76 /* ProfilePresenter.swift */; };
+		D8262FA32820176900FA3E76 /* UIFont + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FA22820176900FA3E76 /* UIFont + Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		D8262F9C281F30A400FA3E76 /* ChatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPresenter.swift; sourceTree = "<group>"; };
 		D8262F9E281F30C200FA3E76 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D8262FA0281F30CD00FA3E76 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		D8262FA22820176900FA3E76 /* UIFont + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				D8262F8A281F2C7A00FA3E76 /* UIColor + Extensions.swift */,
+				D8262FA22820176900FA3E76 /* UIFont + Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				D8262F8F281F2D6200FA3E76 /* PortfolioViewController.swift in Sources */,
 				D8262F9B281F309900FA3E76 /* ChatViewController.swift in Sources */,
 				D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */,
+				D8262FA32820176900FA3E76 /* UIFont + Extensions.swift in Sources */,
 				D8262F74281F2ADB00FA3E76 /* SceneDelegate.swift in Sources */,
 				D8262F9F281F30C200FA3E76 /* ProfileViewController.swift in Sources */,
 				D8262F9D281F30A400FA3E76 /* ChatPresenter.swift in Sources */,
