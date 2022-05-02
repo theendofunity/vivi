@@ -29,27 +29,31 @@ extension UIColor {
 //MARK: - Main colors
 
 extension UIColor {
-    var denim: UIColor? {
+    static var denim: UIColor? {
         return UIColor(hex: 0x172038)
     }
     
-    var viviRose: UIColor? {
+    static var viviRose: UIColor? {
         return UIColor(hex: 0xDCAAAA)
     }
     
-    var viviRose50: UIColor? {
+    static var viviRose50: UIColor? {
         return viviRose?.withAlphaComponent(0.5)
     }
     
-    var viviRose70: UIColor? {
+    static var viviRose70: UIColor? {
         return viviRose?.withAlphaComponent(0.7)
     }
     
-    var background: UIColor? {
+    static var background: UIColor? {
         return UIColor(hex: 0xF5ECEC)
     }
     
-    var viviGreen: UIColor? {
+    static var viviGreen: UIColor? {
         return UIColor(hex: 0x4A7574)
+    }
+    
+    static var tabbarRose: UIColor? {
+        return UIColor(hex: 0x9B6D6E)
     }
 }

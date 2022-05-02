@@ -12,6 +12,13 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = .background
+        tabBar.tintColor = .tabbarRose
+        tabBar.unselectedItemTintColor = .denim
+        setupViewControllers()
+    }
+    
+    func setupViewControllers() {
         let portfolioViewController = PortfolioViewController()
         let portfolioPresenter = PortfolioPresenter()
         portfolioViewController.presenter = portfolioPresenter
@@ -36,13 +43,11 @@ class MainTabBarController: UITabBarController {
             createNavigationController(rootViewController: profileViewController, title: "Профиль", image: profileImage)
         ]
     }
-    
 
     func createNavigationController(rootViewController: UIViewController, title: String, image: UIImage?) -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: rootViewController)
         navigationController.tabBarItem.title = title
         navigationController.tabBarItem.image = image
-        
         return navigationController
     }
 }

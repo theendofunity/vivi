@@ -21,6 +21,10 @@
 		D8262F9F281F30C200FA3E76 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F9E281F30C200FA3E76 /* ProfileViewController.swift */; };
 		D8262FA1281F30CD00FA3E76 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FA0281F30CD00FA3E76 /* ProfilePresenter.swift */; };
 		D8262FA32820176900FA3E76 /* UIFont + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FA22820176900FA3E76 /* UIFont + Extensions.swift */; };
+		D8262FA528201AE200FA3E76 /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FA428201AE200FA3E76 /* UIViewController + Extensions.swift */; };
+		D8262FA828201F2A00FA3E76 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FA728201F2A00FA3E76 /* R.generated.swift */; };
+		D8262FAC28202B9300FA3E76 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FAB28202B9300FA3E76 /* LaunchViewController.swift */; };
+		D8262FAE28202D1D00FA3E76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8262FAD28202D1D00FA3E76 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		D8262F9E281F30C200FA3E76 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D8262FA0281F30CD00FA3E76 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		D8262FA22820176900FA3E76 /* UIFont + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extensions.swift"; sourceTree = "<group>"; };
+		D8262FA428201AE200FA3E76 /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
+		D8262FA728201F2A00FA3E76 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		D8262FAB28202B9300FA3E76 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		D8262FAD28202D1D00FA3E76 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +107,9 @@
 				D8262F87281F2C1300FA3E76 /* UserInterface */,
 				D8262F88281F2C5700FA3E76 /* Extensions */,
 				D8262F7A281F2ADB00FA3E76 /* Assets.xcassets */,
-				D8262F7C281F2ADB00FA3E76 /* LaunchScreen.storyboard */,
+				D8262FA728201F2A00FA3E76 /* R.generated.swift */,
 				D8262F7F281F2ADB00FA3E76 /* Info.plist */,
+				D8262FAD28202D1D00FA3E76 /* LaunchScreen.storyboard */,
 			);
 			path = Vivi;
 			sourceTree = "<group>";
@@ -108,6 +117,7 @@
 		D8262F87281F2C1300FA3E76 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				D8262FA928202B7B00FA3E76 /* Launch */,
 				D8262F8D281F2D4000FA3E76 /* Portfolio */,
 				D8262F94281F303C00FA3E76 /* Chat */,
 				D8262F95281F304200FA3E76 /* Profile */,
@@ -129,6 +139,7 @@
 			children = (
 				D8262F8A281F2C7A00FA3E76 /* UIColor + Extensions.swift */,
 				D8262FA22820176900FA3E76 /* UIFont + Extensions.swift */,
+				D8262FA428201AE200FA3E76 /* UIViewController + Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -216,6 +227,22 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		D8262FA928202B7B00FA3E76 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				D8262FAA28202B8600FA3E76 /* View */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		D8262FAA28202B8600FA3E76 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D8262FAB28202B9300FA3E76 /* LaunchViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -224,6 +251,7 @@
 			buildConfigurationList = D8262F82281F2ADB00FA3E76 /* Build configuration list for PBXNativeTarget "Vivi" */;
 			buildPhases = (
 				8E1C7C4A8CC0C58B109E4FD8 /* [CP] Check Pods Manifest.lock */,
+				D8262FA628201DFD00FA3E76 /* Run Script */,
 				D8262F6A281F2ADB00FA3E76 /* Sources */,
 				D8262F6B281F2ADB00FA3E76 /* Frameworks */,
 				D8262F6C281F2ADB00FA3E76 /* Resources */,
@@ -276,8 +304,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8262F7E281F2ADB00FA3E76 /* LaunchScreen.storyboard in Resources */,
 				D8262F7B281F2ADB00FA3E76 /* Assets.xcassets in Resources */,
+				D8262FAE28202D1D00FA3E76 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +351,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D8262FA628201DFD00FA3E76 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -335,11 +383,14 @@
 				D8262F8F281F2D6200FA3E76 /* PortfolioViewController.swift in Sources */,
 				D8262F9B281F309900FA3E76 /* ChatViewController.swift in Sources */,
 				D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */,
+				D8262FAC28202B9300FA3E76 /* LaunchViewController.swift in Sources */,
 				D8262FA32820176900FA3E76 /* UIFont + Extensions.swift in Sources */,
+				D8262FA828201F2A00FA3E76 /* R.generated.swift in Sources */,
 				D8262F74281F2ADB00FA3E76 /* SceneDelegate.swift in Sources */,
 				D8262F9F281F30C200FA3E76 /* ProfileViewController.swift in Sources */,
 				D8262F9D281F30A400FA3E76 /* ChatPresenter.swift in Sources */,
 				D8262FA1281F30CD00FA3E76 /* ProfilePresenter.swift in Sources */,
+				D8262FA528201AE200FA3E76 /* UIViewController + Extensions.swift in Sources */,
 				D8262F86281F2B7F00FA3E76 /* MainTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

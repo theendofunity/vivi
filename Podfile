@@ -8,5 +8,6 @@ target 'Vivi' do
   # Pods for Vivi
 
 pod "EasyPeasy"
+pod 'R.swift'
 
 end
