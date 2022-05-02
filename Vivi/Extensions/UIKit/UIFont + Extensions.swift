@@ -8,15 +8,19 @@
 import UIKit
 
 extension UIFont {
-    var titleFont: UIFont? {
+    static var titleFont: UIFont? {
         return UIFont.systemFont(ofSize: 24)
     }
     
-    var subtitleFont: UIFont? {
+    static var subtitleFont: UIFont? {
         return UIFont.systemFont(ofSize: 24)
     }
     
-    var mainFont: UIFont? {
+    static var mainFont: UIFont? {
+        return UIFont.systemFont(ofSize: 22)
+    }
+    
+    static var smallTextFont: UIFont? {
         return UIFont.systemFont(ofSize: 22)
     }
 }

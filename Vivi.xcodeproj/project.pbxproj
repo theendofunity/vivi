@@ -28,6 +28,9 @@
 		D8262FB328202E8200FA3E76 /* ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FB228202E8200FA3E76 /* ReusableCell.swift */; };
 		D8262FB528202F3900FA3E76 /* UICollectionView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FB428202F3900FA3E76 /* UICollectionView + Extensions.swift */; };
 		D8262FB82820316900FA3E76 /* PortfolioExampleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FB72820316900FA3E76 /* PortfolioExampleCell.swift */; };
+		D8262FBA28203A6000FA3E76 /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FB928203A6000FA3E76 /* ServicesView.swift */; };
+		D8262FBC28203C5C00FA3E76 /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FBB28203C5C00FA3E76 /* ServiceCell.swift */; };
+		D8262FBE282040A000FA3E76 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FBD282040A000FA3E76 /* UIView + Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,9 @@
 		D8262FB228202E8200FA3E76 /* ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCell.swift; sourceTree = "<group>"; };
 		D8262FB428202F3900FA3E76 /* UICollectionView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView + Extensions.swift"; sourceTree = "<group>"; };
 		D8262FB72820316900FA3E76 /* PortfolioExampleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioExampleCell.swift; sourceTree = "<group>"; };
+		D8262FB928203A6000FA3E76 /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
+		D8262FBB28203C5C00FA3E76 /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
+		D8262FBD282040A000FA3E76 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +154,7 @@
 				D8262FA22820176900FA3E76 /* UIFont + Extensions.swift */,
 				D8262FA428201AE200FA3E76 /* UIViewController + Extensions.swift */,
 				D8262FB428202F3900FA3E76 /* UICollectionView + Extensions.swift */,
+				D8262FBD282040A000FA3E76 /* UIView + Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -175,6 +182,7 @@
 				D8262FB62820314900FA3E76 /* Cell */,
 				D8262F8E281F2D6200FA3E76 /* PortfolioViewController.swift */,
 				D8262FAF28202E1D00FA3E76 /* PortfolioExampleView.swift */,
+				D8262FB928203A6000FA3E76 /* ServicesView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -265,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				D8262FB72820316900FA3E76 /* PortfolioExampleCell.swift */,
+				D8262FBB28203C5C00FA3E76 /* ServiceCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -411,15 +420,18 @@
 				D8262F9B281F309900FA3E76 /* ChatViewController.swift in Sources */,
 				D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */,
 				D8262FAC28202B9300FA3E76 /* LaunchViewController.swift in Sources */,
+				D8262FBE282040A000FA3E76 /* UIView + Extensions.swift in Sources */,
 				D8262FA32820176900FA3E76 /* UIFont + Extensions.swift in Sources */,
 				D8262FA828201F2A00FA3E76 /* R.generated.swift in Sources */,
 				D8262FB028202E1D00FA3E76 /* PortfolioExampleView.swift in Sources */,
+				D8262FBA28203A6000FA3E76 /* ServicesView.swift in Sources */,
 				D8262F74281F2ADB00FA3E76 /* SceneDelegate.swift in Sources */,
 				D8262F9F281F30C200FA3E76 /* ProfileViewController.swift in Sources */,
 				D8262F9D281F30A400FA3E76 /* ChatPresenter.swift in Sources */,
 				D8262FB82820316900FA3E76 /* PortfolioExampleCell.swift in Sources */,
 				D8262FA1281F30CD00FA3E76 /* ProfilePresenter.swift in Sources */,
 				D8262FA528201AE200FA3E76 /* UIViewController + Extensions.swift in Sources */,
+				D8262FBC28203C5C00FA3E76 /* ServiceCell.swift in Sources */,
 				D8262F86281F2B7F00FA3E76 /* MainTabBarController.swift in Sources */,
 				D8262FB528202F3900FA3E76 /* UICollectionView + Extensions.swift in Sources */,
 			);

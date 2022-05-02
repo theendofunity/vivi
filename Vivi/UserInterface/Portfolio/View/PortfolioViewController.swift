@@ -21,6 +21,11 @@ class PortfolioViewController: UIViewController {
         return view
     }()
     
+    private lazy var serviceView: ServicesView = {
+        let view = ServicesView()
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +37,7 @@ class PortfolioViewController: UIViewController {
     func setupView() {
         view.addSubview(scrollView)
         scrollView.addSubview(exampleView)
+        scrollView.addSubview(serviceView)
     }
     
     func setupConstraints() {
@@ -47,6 +53,15 @@ class PortfolioViewController: UIViewController {
             Leading(),
             Trailing(),
             Height(395),
+            Width(UIScreen.main.bounds.width)
+        )
+        
+        serviceView.easy.layout(
+            Top(24).to(exampleView, .bottom),
+            Leading(16),
+            Trailing(16),
+            Bottom(),
+            Height(300),
             Width(UIScreen.main.bounds.width)
         )
     }
