@@ -65,8 +65,7 @@ class PortfolioViewController: UIViewController {
             Leading(16),
             Trailing(16),
             Bottom(),
-            Height(300),
-            Width(UIScreen.main.bounds.width)
+            Height(300)
         )
     }
 }
