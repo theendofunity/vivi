@@ -24,6 +24,7 @@ class PortfolioViewController: UIViewController {
     
     private lazy var serviceView: ServicesView = {
         let view = ServicesView()
+        view.delegate = self
         return view
     }()
     
@@ -71,6 +72,10 @@ class PortfolioViewController: UIViewController {
 }
 
 extension PortfolioViewController: PortfolioViewType {
+    func navigationController() -> UINavigationController? {
+        return self.navigationController
+    }
+    
     func setServices(services: [ServiceType]) {
         serviceView.configure(services: services)
     }

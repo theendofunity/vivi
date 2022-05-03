@@ -32,6 +32,10 @@
 		D8262FBC28203C5C00FA3E76 /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FBB28203C5C00FA3E76 /* ServiceCell.swift */; };
 		D8262FBE282040A000FA3E76 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FBD282040A000FA3E76 /* UIView + Extensions.swift */; };
 		D86A79DC2821130900F45D76 /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79DB2821130900F45D76 /* ServiceType.swift */; };
+		D86A79DE28211A3100F45D76 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79DD28211A3100F45D76 /* MainButton.swift */; };
+		D86A79E028211A6600F45D76 /* ServiceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79DF28211A6600F45D76 /* ServiceDetailsViewController.swift */; };
+		D86A79E228212AA300F45D76 /* UIImageView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79E128212AA300F45D76 /* UIImageView + Extensions.swift */; };
+		D86A79E428212EEE00F45D76 /* UIImage + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79E328212EEE00F45D76 /* UIImage + Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +68,10 @@
 		D8262FBB28203C5C00FA3E76 /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 		D8262FBD282040A000FA3E76 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		D86A79DB2821130900F45D76 /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
+		D86A79DD28211A3100F45D76 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
+		D86A79DF28211A6600F45D76 /* ServiceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailsViewController.swift; sourceTree = "<group>"; };
+		D86A79E128212AA300F45D76 /* UIImageView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extensions.swift"; sourceTree = "<group>"; };
+		D86A79E328212EEE00F45D76 /* UIImage + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,10 +141,10 @@
 			children = (
 				D8262FB128202E5700FA3E76 /* View */,
 				D8262FA928202B7B00FA3E76 /* Launch */,
+				D8262F8C281F2D2C00FA3E76 /* MainTabBar */,
 				D8262F8D281F2D4000FA3E76 /* Portfolio */,
 				D8262F94281F303C00FA3E76 /* Chat */,
 				D8262F95281F304200FA3E76 /* Profile */,
-				D8262F8C281F2D2C00FA3E76 /* MainTabBar */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -157,6 +165,8 @@
 				D8262FA428201AE200FA3E76 /* UIViewController + Extensions.swift */,
 				D8262FB428202F3900FA3E76 /* UICollectionView + Extensions.swift */,
 				D8262FBD282040A000FA3E76 /* UIView + Extensions.swift */,
+				D86A79E128212AA300F45D76 /* UIImageView + Extensions.swift */,
+				D86A79E328212EEE00F45D76 /* UIImage + Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -266,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				D8262FB228202E8200FA3E76 /* ReusableCell.swift */,
+				D86A79DD28211A3100F45D76 /* MainButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -284,6 +295,7 @@
 				D8262FB928203A6000FA3E76 /* ServicesView.swift */,
 				D86A79D72821127F00F45D76 /* Cell */,
 				D86A79DB2821130900F45D76 /* ServiceType.swift */,
+				D86A79DF28211A6600F45D76 /* ServiceDetailsViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -460,6 +472,7 @@
 				D8262F93281F2D8400FA3E76 /* PortfolioPresenter.swift in Sources */,
 				D8262FB328202E8200FA3E76 /* ReusableCell.swift in Sources */,
 				D8262F8F281F2D6200FA3E76 /* PortfolioViewController.swift in Sources */,
+				D86A79DE28211A3100F45D76 /* MainButton.swift in Sources */,
 				D8262F9B281F309900FA3E76 /* ChatViewController.swift in Sources */,
 				D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */,
 				D8262FAC28202B9300FA3E76 /* LaunchViewController.swift in Sources */,
@@ -474,10 +487,13 @@
 				D8262F9D281F30A400FA3E76 /* ChatPresenter.swift in Sources */,
 				D8262FB82820316900FA3E76 /* PortfolioExampleCell.swift in Sources */,
 				D8262FA1281F30CD00FA3E76 /* ProfilePresenter.swift in Sources */,
+				D86A79E428212EEE00F45D76 /* UIImage + Extensions.swift in Sources */,
 				D8262FA528201AE200FA3E76 /* UIViewController + Extensions.swift in Sources */,
 				D8262FBC28203C5C00FA3E76 /* ServiceCell.swift in Sources */,
+				D86A79E228212AA300F45D76 /* UIImageView + Extensions.swift in Sources */,
 				D8262F86281F2B7F00FA3E76 /* MainTabBarController.swift in Sources */,
 				D8262FB528202F3900FA3E76 /* UICollectionView + Extensions.swift in Sources */,
+				D86A79E028211A6600F45D76 /* ServiceDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,26 +6,26 @@
 //
 
 import Foundation
+import UIKit
 
 protocol PortfolioViewType: AnyObject {
     func setServices(services: [ServiceType])
+    func navigationController() -> UINavigationController?
 }
 
 class PortfolioPresenter {
     weak var view: PortfolioViewType?
-    
-    private var services: [ServiceType] = []
-    
+        
     func viewDidLoad() {
         configureServices()
     }
     
     func configureServices() {
-        services = ServiceType.allCases
-        view?.setServices(services: services)
+        view?.setServices(services: ServiceType.allCases)
     }
     
     func serviceDidSelect(service: ServiceType) {
-        
+        let serviceDetails = ServiceDetailsViewController(serviceType: service)
+        view?.navigationController()?.present(serviceDetails, animated: true)
     }
 }
