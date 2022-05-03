@@ -21,14 +21,14 @@ extension UIViewController {
     
     func navigationBarBase() {
         let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .viviRose70
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = .viviRose50
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.tintColor = .denim
+        navigationController?.navigationBar.tintColor = .denim 
         navigationItem.backButtonTitle = ""
-        
+
     }
     
     func alertError(error: Error) {
