@@ -9,7 +9,8 @@ import UIKit
 import EasyPeasy
 
 class PortfolioExampleView: UIView {
-
+    var examples: [ExamplesViewModel] = []
+    
     private lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width
@@ -59,17 +60,25 @@ class PortfolioExampleView: UIView {
             CenterX()
         )
     }
-
-
+    
+    func configure(examples: [ExamplesViewModel]) {
+        self.examples = examples
+        pageControl.numberOfPages = examples.count
+        collectionView.reloadData()
+    }
 }
 
 extension PortfolioExampleView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        return examples.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PortfolioExampleCell.reuseId, for: indexPath) as? PortfolioExampleCell else { return UICollectionViewCell() }
+        
+        let viewModel = examples[indexPath.item]
+        cell.configure(viewModel: viewModel)
+        
         return cell
     }
     

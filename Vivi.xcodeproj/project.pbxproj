@@ -36,6 +36,9 @@
 		D86A79E028211A6600F45D76 /* ServiceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79DF28211A6600F45D76 /* ServiceDetailsViewController.swift */; };
 		D86A79E228212AA300F45D76 /* UIImageView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79E128212AA300F45D76 /* UIImageView + Extensions.swift */; };
 		D86A79E428212EEE00F45D76 /* UIImage + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79E328212EEE00F45D76 /* UIImage + Extensions.swift */; };
+		D86A79E6282154EA00F45D76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D86A79E5282154EA00F45D76 /* GoogleService-Info.plist */; };
+		D86A79E92821598A00F45D76 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79E82821598A00F45D76 /* StorageService.swift */; };
+		D86A79EB28215EF800F45D76 /* ExamplesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79EA28215EF800F45D76 /* ExamplesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +75,9 @@
 		D86A79DF28211A6600F45D76 /* ServiceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailsViewController.swift; sourceTree = "<group>"; };
 		D86A79E128212AA300F45D76 /* UIImageView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extensions.swift"; sourceTree = "<group>"; };
 		D86A79E328212EEE00F45D76 /* UIImage + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extensions.swift"; sourceTree = "<group>"; };
+		D86A79E5282154EA00F45D76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D86A79E82821598A00F45D76 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		D86A79EA28215EF800F45D76 /* ExamplesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,10 +132,12 @@
 			children = (
 				D8262F71281F2ADB00FA3E76 /* AppDelegate.swift */,
 				D8262F73281F2ADB00FA3E76 /* SceneDelegate.swift */,
+				D86A79E72821596A00F45D76 /* Services */,
 				D8262F87281F2C1300FA3E76 /* UserInterface */,
 				D8262F88281F2C5700FA3E76 /* Extensions */,
 				D8262F7A281F2ADB00FA3E76 /* Assets.xcassets */,
 				D8262FA728201F2A00FA3E76 /* R.generated.swift */,
+				D86A79E5282154EA00F45D76 /* GoogleService-Info.plist */,
 				D8262F7F281F2ADB00FA3E76 /* Info.plist */,
 				D8262FAD28202D1D00FA3E76 /* LaunchScreen.storyboard */,
 			);
@@ -321,6 +329,7 @@
 			children = (
 				D8262FAF28202E1D00FA3E76 /* PortfolioExampleView.swift */,
 				D86A79DA2821129E00F45D76 /* Cell */,
+				D86A79EA28215EF800F45D76 /* ExamplesViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -331,6 +340,14 @@
 				D8262FB72820316900FA3E76 /* PortfolioExampleCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		D86A79E72821596A00F45D76 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D86A79E82821598A00F45D76 /* StorageService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,6 +413,7 @@
 			files = (
 				D8262F7B281F2ADB00FA3E76 /* Assets.xcassets in Resources */,
 				D8262FAE28202D1D00FA3E76 /* LaunchScreen.storyboard in Resources */,
+				D86A79E6282154EA00F45D76 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,12 +487,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8262F72281F2ADB00FA3E76 /* AppDelegate.swift in Sources */,
+				D86A79EB28215EF800F45D76 /* ExamplesViewModel.swift in Sources */,
 				D8262F93281F2D8400FA3E76 /* PortfolioPresenter.swift in Sources */,
 				D8262FB328202E8200FA3E76 /* ReusableCell.swift in Sources */,
 				D8262F8F281F2D6200FA3E76 /* PortfolioViewController.swift in Sources */,
 				D86A79DE28211A3100F45D76 /* MainButton.swift in Sources */,
 				D8262F9B281F309900FA3E76 /* ChatViewController.swift in Sources */,
 				D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */,
+				D86A79E92821598A00F45D76 /* StorageService.swift in Sources */,
 				D8262FAC28202B9300FA3E76 /* LaunchViewController.swift in Sources */,
 				D86A79DC2821130900F45D76 /* ServiceType.swift in Sources */,
 				D8262FBE282040A000FA3E76 /* UIView + Extensions.swift in Sources */,

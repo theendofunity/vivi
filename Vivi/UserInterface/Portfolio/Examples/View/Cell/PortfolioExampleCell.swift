@@ -7,8 +7,11 @@
 
 import UIKit
 import EasyPeasy
+import SDWebImage
 
 class PortfolioExampleCell: ReusableCell {
+    var example: ExamplesViewModel?
+    
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = R.image.launchScreen()
@@ -26,7 +29,6 @@ class PortfolioExampleCell: ReusableCell {
     }
     
     func setupView() {
-        backgroundColor = .red
         addSubview(imageView)
     }
     
@@ -34,7 +36,8 @@ class PortfolioExampleCell: ReusableCell {
         imageView.easy.layout(Edges())
     }
 
-    func configure() {
-        
+    func configure(viewModel: ExamplesViewModel) {
+        self.example = viewModel
+        imageView.sd_setImage(with: viewModel.mainImageUrl)
     }
 }

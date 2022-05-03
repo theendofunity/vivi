@@ -10,4 +10,10 @@ target 'Vivi' do
 pod "EasyPeasy"
 pod 'R.swift'
 
+pod 'Firebase/Auth'
+pod 'Firebase/Storage'
+pod 'Firebase/Firestore'
+
+pod 'SDWebImage'
+
 end

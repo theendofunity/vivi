@@ -23,4 +23,9 @@ extension UIViewController {
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
     }
+    
+    func alertError(error: Error) {
+        let alert = UIAlertController(title: "Ошибка", message: error.localizedDescription, preferredStyle: .alert)
+        present(alert, animated: true)
+    }
 }

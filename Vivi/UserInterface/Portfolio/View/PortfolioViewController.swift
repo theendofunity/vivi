@@ -71,6 +71,14 @@ class PortfolioViewController: UIViewController {
 }
 
 extension PortfolioViewController: PortfolioViewType {
+    func showError(error: Error) {
+        alertError(error: error)
+    }
+    
+    func setExamples(examples: [ExamplesViewModel]) {
+        exampleView.configure(examples: examples)
+    }
+    
     func navigationController() -> UINavigationController? {
         return self.navigationController
     }
