@@ -6,11 +6,34 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ProfileViewType: AnyObject {
-    
+    func navigation() -> UINavigationController?
 }
 
 class ProfilePresenter {
-    var view: ProfileViewType?
+    weak var view: ProfileViewType?
+    
+    func viewDidLoad() {
+        if AuthService.shared.isLogedIn {
+            
+        } else {
+            showAuth()
+        }
+    }
+    
+    func viewDidAppear() {
+        
+    }
+    
+    func showAuth() {
+        let authPresenter = AuthPresenter()
+        let authViewController = AuthViewController()
+        
+        authPresenter.view = authViewController
+        authViewController.presenter = authPresenter
+        authViewController.navigationItem.setHidesBackButton(true, animated: false)
+        view?.navigation()?.pushViewController(authViewController, animated: false)
+    }
 }

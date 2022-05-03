@@ -8,15 +8,24 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-    weak var presenter: ProfilePresenter!
+    var presenter: ProfilePresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationBarWithLogo()
+        
+        presenter.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.viewDidAppear()
     }
 }
 
 extension ProfileViewController: ProfileViewType {
-    
+    func navigation() -> UINavigationController? {
+        return navigationController
+    }
 }
