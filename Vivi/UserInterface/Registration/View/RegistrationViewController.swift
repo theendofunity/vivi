@@ -96,6 +96,8 @@ class RegistrationViewController: UIViewController {
     }
     
     func setupView() {
+        view.backgroundColor = .background
+        
         view.addSubview(scrollView)
         scrollView.addSubview(titleLabel)
         scrollView.addSubview(logoImageView)

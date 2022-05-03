@@ -26,6 +26,9 @@ extension UIViewController {
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.tintColor = .denim
+        navigationItem.backButtonTitle = ""
+        
     }
     
     func alertError(error: Error) {
