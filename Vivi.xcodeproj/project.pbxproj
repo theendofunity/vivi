@@ -31,6 +31,8 @@
 		D8262FBA28203A6000FA3E76 /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FB928203A6000FA3E76 /* ServicesView.swift */; };
 		D8262FBC28203C5C00FA3E76 /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FBB28203C5C00FA3E76 /* ServiceCell.swift */; };
 		D8262FBE282040A000FA3E76 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FBD282040A000FA3E76 /* UIView + Extensions.swift */; };
+		D8418E7C2821A8B300163255 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8418E7B2821A8B300163255 /* RegistrationViewController.swift */; };
+		D8418E7F2821A8C800163255 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8418E7E2821A8C800163255 /* RegistrationPresenter.swift */; };
 		D86A79DC2821130900F45D76 /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79DB2821130900F45D76 /* ServiceType.swift */; };
 		D86A79DE28211A3100F45D76 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79DD28211A3100F45D76 /* MainButton.swift */; };
 		D86A79E028211A6600F45D76 /* ServiceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79DF28211A6600F45D76 /* ServiceDetailsViewController.swift */; };
@@ -76,6 +78,8 @@
 		D8262FB928203A6000FA3E76 /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		D8262FBB28203C5C00FA3E76 /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 		D8262FBD282040A000FA3E76 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
+		D8418E7B2821A8B300163255 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		D8418E7E2821A8C800163255 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		D86A79DB2821130900F45D76 /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		D86A79DD28211A3100F45D76 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		D86A79DF28211A6600F45D76 /* ServiceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailsViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 				D8262F94281F303C00FA3E76 /* Chat */,
 				D8262F95281F304200FA3E76 /* Profile */,
 				D86A79EE282173D000F45D76 /* Auth */,
+				D8418E792821A87500163255 /* Registration */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -303,6 +308,31 @@
 				D86A79F9282180F500F45D76 /* PlainLabel.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		D8418E792821A87500163255 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				D8418E7D2821A8B800163255 /* Presenter */,
+				D8418E7A2821A89A00163255 /* View */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		D8418E7A2821A89A00163255 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D8418E7B2821A8B300163255 /* RegistrationViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D8418E7D2821A8B800163255 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				D8418E7E2821A8C800163255 /* RegistrationPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		D86A79D52821126E00F45D76 /* Services */ = {
@@ -529,9 +559,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D86A79F42821742200F45D76 /* AuthPresenter.swift in Sources */,
+				D8418E7F2821A8C800163255 /* RegistrationPresenter.swift in Sources */,
 				D8262F72281F2ADB00FA3E76 /* AppDelegate.swift in Sources */,
 				D86A79EB28215EF800F45D76 /* ExamplesViewModel.swift in Sources */,
 				D8262F93281F2D8400FA3E76 /* PortfolioPresenter.swift in Sources */,
+				D8418E7C2821A8B300163255 /* RegistrationViewController.swift in Sources */,
 				D8262FB328202E8200FA3E76 /* ReusableCell.swift in Sources */,
 				D8262F8F281F2D6200FA3E76 /* PortfolioViewController.swift in Sources */,
 				D86A79DE28211A3100F45D76 /* MainButton.swift in Sources */,

@@ -50,6 +50,7 @@ class AuthViewController: UIViewController {
     private lazy var registerButton: MainButton = {
         let button = MainButton()
         button.setTitle("Зарегистрироваться", for: .normal)
+        button.addTarget(self, action: #selector(registerButtonDidTouch), for: .touchUpInside)
         return button
     }()
     
@@ -117,8 +118,14 @@ class AuthViewController: UIViewController {
             Leading(24)
         )
     }
+    
+    @objc func registerButtonDidTouch() {
+        presenter.registerButtonDidTouch()
+    }
 }
 
 extension AuthViewController: AuthViewType {
-    
+    func navigation() -> UINavigationController? {
+        return navigationController
+    }
 }
