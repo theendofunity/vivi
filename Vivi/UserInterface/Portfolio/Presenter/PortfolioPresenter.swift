@@ -8,9 +8,24 @@
 import Foundation
 
 protocol PortfolioViewType: AnyObject {
-    
+    func setServices(services: [ServiceType])
 }
 
 class PortfolioPresenter {
-    var view: PortfolioViewType?
+    weak var view: PortfolioViewType?
+    
+    private var services: [ServiceType] = []
+    
+    func viewDidLoad() {
+        configureServices()
+    }
+    
+    func configureServices() {
+        services = ServiceType.allCases
+        view?.setServices(services: services)
+    }
+    
+    func serviceDidSelect(service: ServiceType) {
+        
+    }
 }

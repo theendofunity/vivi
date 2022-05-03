@@ -8,7 +8,15 @@
 import UIKit
 import EasyPeasy
 
+protocol ServiceViewDelegate: AnyObject {
+    func serviceDidSelect(service: ServiceType)
+}
+
 class ServicesView: UIView {
+    weak var delegate: ServiceViewDelegate?
+    
+    private var services: [ServiceType] = []
+    
     lazy var title: UILabel = {
         let label = UILabel()
         label.text = "Услуги"
@@ -65,16 +73,27 @@ class ServicesView: UIView {
             Bottom()
         )
     }
+    
+    func configure(services: [ServiceType]) {
+        self.services = services
+    }
 }
 
 extension ServicesView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return services.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ServiceCell.reuseId, for: indexPath) as? ServiceCell else { return UICollectionViewCell() }
+        cell.configure(service: services[indexPath.item])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ServiceCell,
+        let service = cell.service else { return }
+        delegate?.serviceDidSelect(service: service)
     }
 }
 

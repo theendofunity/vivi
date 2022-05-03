@@ -9,13 +9,15 @@ import UIKit
 import EasyPeasy
 
 class ServiceCell: ReusableCell {
+    var service: ServiceType?
+    
     private lazy var title: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .smallTextFont
-        label.text = "fasfasfasf"
         label.numberOfLines = 0
         label.textAlignment = .center
+        label.lineBreakMode = .byWordWrapping
         return label
     }()
     
@@ -42,5 +44,9 @@ class ServiceCell: ReusableCell {
             Top(8)
         )
     }
-
+    
+    func configure(service: ServiceType) {
+        self.service = service
+        title.text = service.rawValue
+    }
 }

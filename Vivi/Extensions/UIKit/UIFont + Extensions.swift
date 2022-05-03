@@ -21,6 +21,6 @@ extension UIFont {
     }
     
     static var smallTextFont: UIFont? {
-        return UIFont.systemFont(ofSize: 22)
+        return UIFont.systemFont(ofSize: 18)
     }
 }

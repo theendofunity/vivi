@@ -9,10 +9,11 @@ import UIKit
 import EasyPeasy
 
 class PortfolioViewController: UIViewController {
-    weak var presenter: PortfolioPresenter!
+    var presenter: PortfolioPresenter!
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
     
@@ -32,6 +33,8 @@ class PortfolioViewController: UIViewController {
         navigationBarWithLogo()
         setupView()
         setupConstraints()
+        
+        presenter.viewDidLoad()
     }
     
     func setupView() {
@@ -68,5 +71,13 @@ class PortfolioViewController: UIViewController {
 }
 
 extension PortfolioViewController: PortfolioViewType {
-    
+    func setServices(services: [ServiceType]) {
+        serviceView.configure(services: services)
+    }
+}
+
+extension PortfolioViewController: ServiceViewDelegate {
+    func serviceDidSelect(service: ServiceType) {
+        presenter.serviceDidSelect(service: service)
+    }
 }

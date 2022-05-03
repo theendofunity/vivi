@@ -15,12 +15,13 @@ class MainTabBarController: UITabBarController {
         view.backgroundColor = .background
         tabBar.tintColor = .tabbarRose
         tabBar.unselectedItemTintColor = .denim
+        
         setupViewControllers()
     }
     
     func setupViewControllers() {
-        let portfolioViewController = PortfolioViewController()
         let portfolioPresenter = PortfolioPresenter()
+        let portfolioViewController = PortfolioViewController()
         portfolioViewController.presenter = portfolioPresenter
         portfolioPresenter.view = portfolioViewController
         let portfolioImage = UIImage(systemName: "photo.on.rectangle")
