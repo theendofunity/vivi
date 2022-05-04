@@ -56,6 +56,7 @@ class RegistrationViewController: UIViewController {
     private lazy var registerButton: MainButton = {
         let button = MainButton()
         button.setTitle("Зарегистрироваться", for: .normal)
+        button.addTarget(self, action: #selector(registerButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -120,9 +121,32 @@ class RegistrationViewController: UIViewController {
             Bottom(40)
         )
     }
+    
+    @objc func registerButtonPressed() {
+        print(#function)
+        guard let email = getFieldWithType(.email)?.text(),
+              let password = getFieldWithType(.password)?.text()
+        else { return }
+        presenter.registerButtonPressed(email: email, password: password)
+    }
+    
+    func getFieldWithType(_ type: TextFieldType) -> TextFieldWithLabel? {
+        return stackView.arrangedSubviews.first(where: {
+            guard let textField = $0 as? TextFieldWithLabel else { return false }
+            return textField.type == type
+        }) as? TextFieldWithLabel
+    }
 }
 
 extension RegistrationViewController: RegistrationViewType {
+    func showError(error: Error) {
+        alertError(error: error)
+    }
+    
+    func showSuccess() {
+        showAlert(title: "Поздравляем!", message: "Вы успешно зарегистрированы")
+    }
+    
     func setFields(fields: [TextFieldType]) {
         for field in fields {
             let textField = TextFieldWithLabel()

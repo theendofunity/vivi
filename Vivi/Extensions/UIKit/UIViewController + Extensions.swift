@@ -32,7 +32,11 @@ extension UIViewController {
     }
     
     func alertError(error: Error) {
-        let alert = UIAlertController(title: "Ошибка", message: error.localizedDescription, preferredStyle: .alert)
+        showAlert(title: "Ошибка", message: error.localizedDescription)
+    }
+    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         present(alert, animated: true)
     }
     

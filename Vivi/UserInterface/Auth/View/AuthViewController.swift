@@ -52,6 +52,7 @@ class AuthViewController: UIViewController {
     private lazy var signInButton: MainButton = {
         let button = MainButton()
         button.setTitle("Войти", for: .normal)
+        button.addTarget(self, action: #selector(signInButtonDidTouch), for: .touchUpInside)
         return button
     }()
     
@@ -152,10 +153,27 @@ class AuthViewController: UIViewController {
     @objc func registerButtonDidTouch() {
         presenter.registerButtonDidTouch()
     }
+    
+    @objc func signInButtonDidTouch() {
+        guard let email = emailTextField.text(),
+              let password = passwordTextField.text() else {
+            return
+        }
+        
+        presenter.signInButtonDidTouch(email: email, password: password)
+    }
 }
 
 extension AuthViewController: AuthViewType {
     func navigation() -> UINavigationController? {
         return navigationController
+    }
+    
+    func showError(error: Error) {
+        alertError(error: error)
+    }
+    
+    func showSuccess() {
+        showAlert(title: "Поздравляем!", message: "Вы успешно авторизованы")
     }
 }
