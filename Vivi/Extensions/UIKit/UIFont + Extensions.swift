@@ -9,7 +9,7 @@ import UIKit
 
 extension UIFont {
     static var titleFont: UIFont? {
-        return UIFont.systemFont(ofSize: 24)
+        return UIFont.systemFont(ofSize: 32)
     }
     
     static var subtitleFont: UIFont? {

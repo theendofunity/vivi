@@ -8,13 +8,20 @@
 import Foundation
 
 protocol RegistrationViewType: AnyObject {
-    
+    func setFields(fields: [TextFieldType])
 }
 
 class RegistrationPresenter {
     weak var view: RegistrationViewType?
     
     func viewDidLoad() {
-        
+        createFields()
+    }
+    
+    func createFields() {
+        let fields = TextFieldType.allCases.filter {
+            $0 != .unknown
+        }
+        view?.setFields(fields: fields)
     }
 }

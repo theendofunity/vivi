@@ -22,7 +22,7 @@ class MainButton: UIButton {
         layer.shadowRadius = 1
         layer.shadowOpacity = 0.0
         
-        easy.layout(Height(42))
+        easy.layout(Height(50))
     }
     
     required init?(coder: NSCoder) {

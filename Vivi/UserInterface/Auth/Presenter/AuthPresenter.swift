@@ -24,7 +24,7 @@ class AuthPresenter {
         let registrationPresenter = RegistrationPresenter()
         registrationView.presenter = registrationPresenter
         registrationPresenter.view = registrationView
-        
+        registrationView.hidesBottomBarWhenPushed = true
         view?.navigation()?.pushViewController(registrationView, animated: true)
     }
 }

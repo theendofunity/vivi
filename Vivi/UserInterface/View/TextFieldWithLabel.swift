@@ -9,6 +9,8 @@ import UIKit
 import EasyPeasy
 
 class TextFieldWithLabel: UIView {
+    var type: TextFieldType = .unknown
+    
     lazy var label: UILabel = {
         let label = UILabel()
         label.textColor = .denim

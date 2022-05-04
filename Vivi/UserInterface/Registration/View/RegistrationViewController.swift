@@ -11,42 +11,28 @@ import EasyPeasy
 class RegistrationViewController: UIViewController {
     var presenter: RegistrationPresenter!
     
+    private lazy var backgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .viviRose50
+        return view
+    }()
+    
     private lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.showsVerticalScrollIndicator = false
         return scroll
     }()
     
+    private lazy var mainView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .background
+        view.round(40)
+        return view
+    }()
+    
     private lazy var titleLabel: PlainLabel = {
         let label = PlainLabel(text: "Регистрация", fontType: .big)
         return label
-    }()
-    
-    private lazy var logoImageView: UIImageView = {
-        let imageView = UIImageView(image: R.image.logo())
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
-    
-    private lazy var emailTextField: TextFieldWithLabel = {
-        let textField = TextFieldWithLabel()
-        textField.setPlaceholder("Введите email")
-        textField.setLabelText("Email")
-        return textField
-    }()
-    
-    private lazy var passwordTextField: TextFieldWithLabel = {
-        let textField = TextFieldWithLabel()
-        textField.setPlaceholder("Введите пароль")
-        textField.setLabelText("Пароль")
-        return textField
-    }()
-    
-    private lazy var phoneTextField: TextFieldWithLabel = {
-        let textField = TextFieldWithLabel()
-        textField.setPlaceholder("Введите номер телефона")
-        textField.setLabelText("Номер телефона")
-        return textField
     }()
     
     private lazy var termsSwitch: UISwitch = {
@@ -74,13 +60,7 @@ class RegistrationViewController: UIViewController {
     }()
     
     private lazy var stackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [
-            emailTextField,
-            passwordTextField,
-            phoneTextField,
-            termsStack,
-            registerButton
-        ])
+        let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 24
         return stack
@@ -92,43 +72,67 @@ class RegistrationViewController: UIViewController {
         self.setupView()
         self.setupConstraints()
         
+        navigationBarWithLogo()
         presenter.viewDidLoad()
     }
     
     func setupView() {
         view.backgroundColor = .background
+        view.addSubview(backgroundView)
         
-        view.addSubview(scrollView)
-        scrollView.addSubview(titleLabel)
-        scrollView.addSubview(logoImageView)
-        scrollView.addSubview(stackView)
+        backgroundView.addSubview(scrollView)
+        scrollView.addSubview(mainView)
+        mainView.addSubview(titleLabel)
+        mainView.addSubview(stackView)
     }
     
     func setupConstraints() {
-        scrollView.easy.layout(Edges(), Width(UIScreen.main.bounds.width))
-        
-        titleLabel.easy.layout(
-            Top(24).to(view.safeAreaLayoutGuide, .top),
-            CenterX()
+        backgroundView.easy.layout(
+            Edges(),
+            Top().to(view.safeAreaLayoutGuide, .top),
+            Bottom()
         )
         
-        logoImageView.easy.layout(
-            Top(40).to(titleLabel, .bottom),
+        scrollView.easy.layout(
+            Top().to(view.safeAreaLayoutGuide, .top),
+            Leading(),
+            Trailing(),
+            Bottom()
+        )
+        
+        mainView.easy.layout(
+            Top(24),
+            Leading(),
+            Trailing(),
             CenterX(),
-            Width(142),
-            Height(123)
+            Bottom()
+        )
+        
+        titleLabel.easy.layout(
+            Top(24),
+            CenterX()
         )
         
         stackView.easy.layout(
-            Top(24).to(logoImageView, .bottom),
+            Top(24).to(titleLabel, .bottom),
             Leading(24),
             Trailing(24),
-            Bottom(),
-            CenterX()
+            Bottom(40)
         )
     }
 }
 
 extension RegistrationViewController: RegistrationViewType {
-    
+    func setFields(fields: [TextFieldType]) {
+        for field in fields {
+            let textField = TextFieldWithLabel()
+            textField.setPlaceholder(field.placeholder())
+            textField.setLabelText(field.fieldTitle())
+            textField.type = field
+            
+            stackView.addArrangedSubview(textField)
+        }
+        stackView.addArrangedSubview(termsStack)
+        stackView.addArrangedSubview(registerButton)
+    }
 }

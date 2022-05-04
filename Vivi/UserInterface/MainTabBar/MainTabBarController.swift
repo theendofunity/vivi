@@ -14,6 +14,8 @@ class MainTabBarController: UITabBarController {
 
         view.backgroundColor = .background
         tabBar.tintColor = .tabbarRose
+        tabBar.backgroundColor = .background
+        tabBar.barTintColor = .background
         tabBar.unselectedItemTintColor = .denim
         
         setupViewControllers()

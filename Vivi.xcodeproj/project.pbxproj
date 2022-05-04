@@ -33,6 +33,7 @@
 		D8262FBE282040A000FA3E76 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FBD282040A000FA3E76 /* UIView + Extensions.swift */; };
 		D8418E7C2821A8B300163255 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8418E7B2821A8B300163255 /* RegistrationViewController.swift */; };
 		D8418E7F2821A8C800163255 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8418E7E2821A8C800163255 /* RegistrationPresenter.swift */; };
+		D8418E812822EA3A00163255 /* TextFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8418E802822EA3A00163255 /* TextFieldType.swift */; };
 		D86A79DC2821130900F45D76 /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79DB2821130900F45D76 /* ServiceType.swift */; };
 		D86A79DE28211A3100F45D76 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79DD28211A3100F45D76 /* MainButton.swift */; };
 		D86A79E028211A6600F45D76 /* ServiceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79DF28211A6600F45D76 /* ServiceDetailsViewController.swift */; };
@@ -80,6 +81,7 @@
 		D8262FBD282040A000FA3E76 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		D8418E7B2821A8B300163255 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		D8418E7E2821A8C800163255 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
+		D8418E802822EA3A00163255 /* TextFieldType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldType.swift; sourceTree = "<group>"; };
 		D86A79DB2821130900F45D76 /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		D86A79DD28211A3100F45D76 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		D86A79DF28211A6600F45D76 /* ServiceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailsViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +165,8 @@
 		D8262F87281F2C1300FA3E76 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				D8418E862822EE3300163255 /* Models */,
+				D8418E822822EC4400163255 /* Protocols */,
 				D8262FB128202E5700FA3E76 /* View */,
 				D8262FA928202B7B00FA3E76 /* Launch */,
 				D8262F8C281F2D2C00FA3E76 /* MainTabBar */,
@@ -333,6 +337,21 @@
 				D8418E7E2821A8C800163255 /* RegistrationPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		D8418E822822EC4400163255 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		D8418E862822EE3300163255 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D8418E802822EA3A00163255 /* TextFieldType.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		D86A79D52821126E00F45D76 /* Services */ = {
@@ -592,6 +611,7 @@
 				D86A79FA282180F500F45D76 /* PlainLabel.swift in Sources */,
 				D86A79F828217B6F00F45D76 /* TextFieldWithLabel.swift in Sources */,
 				D8262FB528202F3900FA3E76 /* UICollectionView + Extensions.swift in Sources */,
+				D8418E812822EA3A00163255 /* TextFieldType.swift in Sources */,
 				D86A79E028211A6600F45D76 /* ServiceDetailsViewController.swift in Sources */,
 				D86A79F628217A0C00F45D76 /* LineTextField.swift in Sources */,
 			);
