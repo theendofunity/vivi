@@ -51,6 +51,7 @@
 		D8DEC039282AC995000A62B8 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC038282AC995000A62B8 /* FirestoreService.swift */; };
 		D8DEC03B282ACA3F000A62B8 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC03A282ACA3F000A62B8 /* UserModel.swift */; };
 		D8DEC03D282ACEA6000A62B8 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC03C282ACEA6000A62B8 /* UserService.swift */; };
+		D8DEC041282ADEA2000A62B8 /* Completions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC040282ADEA2000A62B8 /* Completions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		D8DEC038282AC995000A62B8 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		D8DEC03A282ACA3F000A62B8 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D8DEC03C282ACEA6000A62B8 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		D8DEC040282ADEA2000A62B8 /* Completions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Completions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 		D8262F87281F2C1300FA3E76 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				D8DEC03E282ADE8D000A62B8 /* Helpers */,
 				D8418E862822EE3300163255 /* Models */,
 				D8418E822822EC4400163255 /* Protocols */,
 				D8262FB128202E5700FA3E76 /* View */,
@@ -450,6 +453,22 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		D8DEC03E282ADE8D000A62B8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D8DEC03F282ADE94000A62B8 /* Completions */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D8DEC03F282ADE94000A62B8 /* Completions */ = {
+			isa = PBXGroup;
+			children = (
+				D8DEC040282ADEA2000A62B8 /* Completions.swift */,
+			);
+			path = Completions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -617,6 +636,7 @@
 				D8262FA528201AE200FA3E76 /* UIViewController + Extensions.swift in Sources */,
 				D8262FBC28203C5C00FA3E76 /* ServiceCell.swift in Sources */,
 				D86A79E228212AA300F45D76 /* UIImageView + Extensions.swift in Sources */,
+				D8DEC041282ADEA2000A62B8 /* Completions.swift in Sources */,
 				D8DEC03B282ACA3F000A62B8 /* UserModel.swift in Sources */,
 				D8262F86281F2B7F00FA3E76 /* MainTabBarController.swift in Sources */,
 				D86A79FA282180F500F45D76 /* PlainLabel.swift in Sources */,

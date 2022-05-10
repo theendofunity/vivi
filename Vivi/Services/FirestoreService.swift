@@ -35,4 +35,23 @@ class FirestoreService {
             completion(.failure(error))
         }
     }
+    
+    func loadUser(userId: String, completion: @escaping UserModelCompletion) {
+        let ref = db.collection(Reference.users.rawValue).document(userId)
+        
+        ref.getDocument { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let snapshot = snapshot,
+            let data = snapshot.data(),
+            let userModel = UserModel(document: data) else {
+                return
+            }
+            
+            completion(.success(userModel))
+        }
+    }
 }

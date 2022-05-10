@@ -32,6 +32,7 @@ class ProfilePresenter {
         let authViewController = AuthViewController()
         
         authPresenter.view = authViewController
+        authPresenter.delegate = self
         authViewController.presenter = authPresenter
         authViewController.navigationItem.setHidesBackButton(true, animated: false)
         view?.navigation()?.pushViewController(authViewController, animated: false)
@@ -39,6 +40,13 @@ class ProfilePresenter {
     
     func logout() {
         AuthService.shared.logout()
+        viewDidLoad()
+    }
+}
+
+extension ProfilePresenter: AuthDelegate {
+    func authSuccess() {
+        view?.navigation()?.popViewController(animated: true)
         viewDidLoad()
     }
 }

@@ -28,7 +28,7 @@ struct UserModel {
     func representation() -> [String : Any] {
         var dict: [String : Any] = [:]
         dict = [
-            "id" : id,
+            "id" : id ?? "",
             "firstName" : firstName,
             "lastName" : lastName,
             "middleName" : middleName ?? "",
@@ -39,5 +39,38 @@ struct UserModel {
         ]
         
         return dict
+    }
+    
+    init(id: String?,
+         firstName: String,
+         lastName: String,
+         middleName: String?,
+         city: String,
+         phone: String) {
+        self.id = id
+        self.firstName = firstName
+        self.lastName = lastName
+        self.phone = phone
+        self.city = city
+        self.middleName = middleName
+    }
+    
+    init?(document: [String : Any]) {
+        guard let id = document["id"] as? String,
+        let firstName = document["firstName"] as? String,
+        let lastName = document["lastName"] as? String,
+        let phone = document["phone"] as? String,
+        let city = document["city"] as? String,
+        let project = document ["project"] as? String,
+        let userType = document["userType"] as? String else { return nil }
+        
+        self.id = id
+        self.firstName = firstName
+        self.lastName = lastName
+        self.phone = phone
+        self.city = city
+        self.project = project
+        self.userType = UserType(rawValue: userType) ?? .user
+        self.middleName = document["middleName"] as? String
     }
 }
