@@ -15,8 +15,11 @@ class AuthService {
     private var auth = Auth.auth()
     
     var isLogedIn: Bool {
-//        auth.currentUser != nil
-        false
+        auth.currentUser != nil
+    }
+    
+    var currentUser: User? {
+        return auth.currentUser
     }
     
     private init() {}
@@ -44,6 +47,14 @@ class AuthService {
             if let result = result {
                 completion(.success(result.user))
             }
+        }
+    }
+    
+    func logout() {
+        do {
+          try auth.signOut()
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
         }
     }
 }

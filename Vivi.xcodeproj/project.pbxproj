@@ -48,6 +48,9 @@
 		D86A79F628217A0C00F45D76 /* LineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79F528217A0C00F45D76 /* LineTextField.swift */; };
 		D86A79F828217B6F00F45D76 /* TextFieldWithLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79F728217B6F00F45D76 /* TextFieldWithLabel.swift */; };
 		D86A79FA282180F500F45D76 /* PlainLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79F9282180F500F45D76 /* PlainLabel.swift */; };
+		D8DEC039282AC995000A62B8 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC038282AC995000A62B8 /* FirestoreService.swift */; };
+		D8DEC03B282ACA3F000A62B8 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC03A282ACA3F000A62B8 /* UserModel.swift */; };
+		D8DEC03D282ACEA6000A62B8 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC03C282ACEA6000A62B8 /* UserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +99,9 @@
 		D86A79F528217A0C00F45D76 /* LineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineTextField.swift; sourceTree = "<group>"; };
 		D86A79F728217B6F00F45D76 /* TextFieldWithLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithLabel.swift; sourceTree = "<group>"; };
 		D86A79F9282180F500F45D76 /* PlainLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainLabel.swift; sourceTree = "<group>"; };
+		D8DEC038282AC995000A62B8 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
+		D8DEC03A282ACA3F000A62B8 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		D8DEC03C282ACEA6000A62B8 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -350,6 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				D8418E802822EA3A00163255 /* TextFieldType.swift */,
+				D8DEC03A282ACA3F000A62B8 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -412,6 +419,8 @@
 			children = (
 				D86A79E82821598A00F45D76 /* StorageService.swift */,
 				D86A79EC2821734000F45D76 /* AuthService.swift */,
+				D8DEC038282AC995000A62B8 /* FirestoreService.swift */,
+				D8DEC03C282ACEA6000A62B8 /* UserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -592,6 +601,7 @@
 				D8262FAC28202B9300FA3E76 /* LaunchViewController.swift in Sources */,
 				D86A79DC2821130900F45D76 /* ServiceType.swift in Sources */,
 				D86A79ED2821734000F45D76 /* AuthService.swift in Sources */,
+				D8DEC039282AC995000A62B8 /* FirestoreService.swift in Sources */,
 				D8262FBE282040A000FA3E76 /* UIView + Extensions.swift in Sources */,
 				D8262FA32820176900FA3E76 /* UIFont + Extensions.swift in Sources */,
 				D8262FA828201F2A00FA3E76 /* R.generated.swift in Sources */,
@@ -607,10 +617,12 @@
 				D8262FA528201AE200FA3E76 /* UIViewController + Extensions.swift in Sources */,
 				D8262FBC28203C5C00FA3E76 /* ServiceCell.swift in Sources */,
 				D86A79E228212AA300F45D76 /* UIImageView + Extensions.swift in Sources */,
+				D8DEC03B282ACA3F000A62B8 /* UserModel.swift in Sources */,
 				D8262F86281F2B7F00FA3E76 /* MainTabBarController.swift in Sources */,
 				D86A79FA282180F500F45D76 /* PlainLabel.swift in Sources */,
 				D86A79F828217B6F00F45D76 /* TextFieldWithLabel.swift in Sources */,
 				D8262FB528202F3900FA3E76 /* UICollectionView + Extensions.swift in Sources */,
+				D8DEC03D282ACEA6000A62B8 /* UserService.swift in Sources */,
 				D8418E812822EA3A00163255 /* TextFieldType.swift in Sources */,
 				D86A79E028211A6600F45D76 /* ServiceDetailsViewController.swift in Sources */,
 				D86A79F628217A0C00F45D76 /* LineTextField.swift in Sources */,

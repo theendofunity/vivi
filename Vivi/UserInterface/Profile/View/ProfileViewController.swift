@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import EasyPeasy
 
 class ProfileViewController: UIViewController {
     var presenter: ProfilePresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBarWithLogo()
+        
+        setupNavigationBar()
         
         presenter.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -21,6 +23,21 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         presenter.viewDidAppear()
+    }
+    
+    func setupNavigationBar() {
+        let logoutButton = UIBarButtonItem(title: "Выйти",
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(logoutPressed))
+        navigationItem.rightBarButtonItem = logoutButton
+        navigationBarWithLogo()
+        navigationItem.titleView?.easy.layout(CenterX())
+
+    }
+
+    @objc func logoutPressed() {
+        presenter.logout()
     }
 }
 

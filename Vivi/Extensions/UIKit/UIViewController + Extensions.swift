@@ -14,7 +14,7 @@ extension UIViewController {
         
         let logo = R.image.logo()
         let imageView = UIImageView(image: logo)
-        imageView.easy.layout(Height(38))
+        imageView.easy.layout(Height(38), CenterX())
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
     }
@@ -35,9 +35,11 @@ extension UIViewController {
         showAlert(title: "Ошибка", message: error.localizedDescription)
     }
     
-    func showAlert(title: String, message: String) {
+    func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        present(alert, animated: true)
+        let okButton = UIAlertAction(title: "OK", style: .cancel)
+        alert.addAction(okButton)
+        present(alert, animated: true, completion: completion)
     }
     
     func hideKeyboardWhenTappedAround() {

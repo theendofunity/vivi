@@ -36,4 +36,9 @@ class ProfilePresenter {
         authViewController.navigationItem.setHidesBackButton(true, animated: false)
         view?.navigation()?.pushViewController(authViewController, animated: false)
     }
+    
+    func logout() {
+        AuthService.shared.logout()
+        viewDidLoad()
+    }
 }

@@ -70,10 +70,10 @@ class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationBarWithLogo()
         self.setupView()
         self.setupConstraints()
         
-        navigationBarWithLogo()
         presenter.viewDidLoad()
     }
     
@@ -123,11 +123,20 @@ class RegistrationViewController: UIViewController {
     }
     
     @objc func registerButtonPressed() {
-        print(#function)
         guard let email = getFieldWithType(.email)?.text(),
-              let password = getFieldWithType(.password)?.text()
+              let password = getFieldWithType(.password)?.text(),
+              let firstName = getFieldWithType(.name)?.text(),
+              let lastName = getFieldWithType(.lastName)?.text(),
+              let city = getFieldWithType(.city)?.text(),
+              let phone = getFieldWithType(.phone)?.text()
         else { return }
-        presenter.registerButtonPressed(email: email, password: password)
+        presenter.registerButtonPressed(email: email,
+                                        password: password,
+                                        firstName: firstName,
+                                        lastName: lastName,
+                                        middleName: getFieldWithType(.middleName)?.text(),
+                                        phone: phone,
+                                        city: city)
     }
     
     func getFieldWithType(_ type: TextFieldType) -> TextFieldWithLabel? {
@@ -144,7 +153,9 @@ extension RegistrationViewController: RegistrationViewType {
     }
     
     func showSuccess() {
-        showAlert(title: "Поздравляем!", message: "Вы успешно зарегистрированы")
+        showAlert(title: "Поздравляем!", message: "Вы успешно зарегистрированы") {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
     
     func setFields(fields: [TextFieldType]) {
