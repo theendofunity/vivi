@@ -17,7 +17,10 @@ class ProfilePresenter {
     
     func viewDidLoad() {
         if AuthService.shared.isLogedIn {
-            
+            guard let _ = UserService.shared.user else {
+                return
+            }
+            loadMenu()
         } else {
             showAuth()
         }
@@ -41,6 +44,10 @@ class ProfilePresenter {
     func logout() {
         AuthService.shared.logout()
         viewDidLoad()
+    }
+    
+    func loadMenu() {
+        
     }
 }
 
