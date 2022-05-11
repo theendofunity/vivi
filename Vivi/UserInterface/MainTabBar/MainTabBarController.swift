@@ -34,10 +34,10 @@ class MainTabBarController: UITabBarController {
         chatPresenter.view = chatViewController
         let chatImage = UIImage(systemName: "message")
         
-        let profileViewController = ProfileViewController()
-        let profilePresenter = ProfilePresenter()
-        profileViewController.presenter = profilePresenter
-        profilePresenter.view = profileViewController
+        let profileViewController = ProfilePagerViewController()
+//        let profilePresenter = ProfilePresenter()
+//        profileViewController.presenter = profilePresenter
+//        profilePresenter.view = profileViewController
         let profileImage = UIImage(systemName: "person")
         
         viewControllers = [

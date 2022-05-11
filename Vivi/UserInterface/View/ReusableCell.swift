@@ -17,4 +17,6 @@ extension ReusableView {
     }
 }
 
+class ReusableSupplementaryView: UICollectionReusableView, ReusableView {}
+
 class ReusableCell: UICollectionViewCell, ReusableView {}

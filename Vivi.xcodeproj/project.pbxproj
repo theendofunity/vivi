@@ -51,6 +51,8 @@
 		D86A79F628217A0C00F45D76 /* LineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79F528217A0C00F45D76 /* LineTextField.swift */; };
 		D86A79F828217B6F00F45D76 /* TextFieldWithLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79F728217B6F00F45D76 /* TextFieldWithLabel.swift */; };
 		D86A79FA282180F500F45D76 /* PlainLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79F9282180F500F45D76 /* PlainLabel.swift */; };
+		D8B27B0E282C285300EDAD23 /* ProfilePagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0D282C285300EDAD23 /* ProfilePagerViewController.swift */; };
+		D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */; };
 		D8DEC039282AC995000A62B8 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC038282AC995000A62B8 /* FirestoreService.swift */; };
 		D8DEC03B282ACA3F000A62B8 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC03A282ACA3F000A62B8 /* UserModel.swift */; };
 		D8DEC03D282ACEA6000A62B8 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC03C282ACEA6000A62B8 /* UserService.swift */; };
@@ -106,6 +108,8 @@
 		D86A79F528217A0C00F45D76 /* LineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineTextField.swift; sourceTree = "<group>"; };
 		D86A79F728217B6F00F45D76 /* TextFieldWithLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithLabel.swift; sourceTree = "<group>"; };
 		D86A79F9282180F500F45D76 /* PlainLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainLabel.swift; sourceTree = "<group>"; };
+		D8B27B0D282C285300EDAD23 /* ProfilePagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePagerViewController.swift; sourceTree = "<group>"; };
+		D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		D8DEC038282AC995000A62B8 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		D8DEC03A282ACA3F000A62B8 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D8DEC03C282ACEA6000A62B8 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -275,6 +279,8 @@
 			children = (
 				D850CFDC282BBB7500C41DE7 /* Cell */,
 				D8262F9E281F30C200FA3E76 /* ProfileViewController.swift */,
+				D8B27B0D282C285300EDAD23 /* ProfilePagerViewController.swift */,
+				D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -631,7 +637,9 @@
 				D8418E7C2821A8B300163255 /* RegistrationViewController.swift in Sources */,
 				D8262FB328202E8200FA3E76 /* ReusableCell.swift in Sources */,
 				D8262F8F281F2D6200FA3E76 /* PortfolioViewController.swift in Sources */,
+				D8B27B0E282C285300EDAD23 /* ProfilePagerViewController.swift in Sources */,
 				D86A79DE28211A3100F45D76 /* MainButton.swift in Sources */,
+				D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */,
 				D8262F9B281F309900FA3E76 /* ChatViewController.swift in Sources */,
 				D850CFDE282BBB9000C41DE7 /* ProfileMenuCell.swift in Sources */,
 				D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */,
