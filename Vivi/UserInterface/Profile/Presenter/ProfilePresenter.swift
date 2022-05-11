@@ -10,13 +10,18 @@ import UIKit
 
 protocol ProfileViewType: AnyObject {
     func navigation() -> UINavigationController?
+    
+    func updateMenu(menuItems: [ProfileMenuType])
+    func updateUserInfo(userName: String, address: String, avatar: URL?)
 }
 
 class ProfilePresenter {
     weak var view: ProfileViewType?
     
+    var userService = UserService.shared
+    
     func viewDidLoad() {
-        if AuthService.shared.isLogedIn {
+        if AuthService.shared.isLoggedIn {
             guard let _ = UserService.shared.user else {
                 return
             }
@@ -47,6 +52,21 @@ class ProfilePresenter {
     }
     
     func loadMenu() {
+        guard let user = userService.user else { return }
+        
+        var menuItems: [ProfileMenuType]
+        
+        if user.userType == .user {
+            menuItems = [.form, .agreement, .examples, .sketches, .visualizations, .project]
+        } else {
+            menuItems = [.allProjects, .users, .main]
+        }
+        
+        view?.updateMenu(menuItems: menuItems)
+        view?.updateUserInfo(userName: user.usernameTitle(), address: user.address ?? "" , avatar: nil)
+    }
+    
+    func itemDidSelect(item: ProfileMenuType) {
         
     }
 }

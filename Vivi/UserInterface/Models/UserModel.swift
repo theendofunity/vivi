@@ -24,6 +24,7 @@ struct UserModel {
     var project: String?
     var target: String?
     var userType: UserType = .user
+    var address: String?
     
     func representation() -> [String : Any] {
         var dict: [String : Any] = [:]
@@ -35,7 +36,8 @@ struct UserModel {
             "phone" : phone,
             "city" : city,
             "project" : project ?? "",
-            "userType" : userType.rawValue
+            "userType" : userType.rawValue,
+            "address" : address ?? ""
         ]
         
         return dict
@@ -72,5 +74,10 @@ struct UserModel {
         self.project = project
         self.userType = UserType(rawValue: userType) ?? .user
         self.middleName = document["middleName"] as? String
+        self.address = document["address"] as? String
+    }
+    
+    func usernameTitle() -> String {
+        return "\(firstName) \(lastName)"
     }
 }

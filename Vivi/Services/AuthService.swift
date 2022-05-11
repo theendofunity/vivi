@@ -14,7 +14,7 @@ class AuthService {
     static var shared = AuthService()
     private var auth = Auth.auth()
     
-    var isLogedIn: Bool {
+    var isLoggedIn: Bool {
         auth.currentUser != nil
     }
     

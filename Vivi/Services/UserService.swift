@@ -9,18 +9,19 @@ import Foundation
 
 class UserService {
     static var shared = UserService()
-    
     var user: UserModel?
-    
+    var authService = AuthService.shared
     private init() {
-        loadUser()
     }
     
     deinit {
         user = nil
     }
     
-    func loadUser() {
-        
-    }
+//    func loadUser() {
+//        guard let userId = AuthService.shared.currentUser?.uid else { return }
+//        FirestoreService.shared.loadUser(userId: userId) { result in
+//            <#code#>
+//        }
+//    }
 }
