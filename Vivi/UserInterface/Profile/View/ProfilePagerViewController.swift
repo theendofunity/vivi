@@ -8,88 +8,80 @@
 import UIKit
 import EasyPeasy
 
-class ProfilePagerViewController: UIPageViewController {
-
-    var orderedViewControllers: [UIViewController] = []
+class ProfilePagerViewController: UIViewController {
+    var presenter: ProfilePagerPresenter!
     
-    init() {
-        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-    }
+    private lazy var scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        return scroll
+    }()
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    private lazy var headerView: ProfileHeaderView = {
+        let header = ProfileHeaderView()
+        return header
+    }()
+    
+    private lazy var segmentedControl: UISegmentedControl = {
+        let control = UISegmentedControl(items: ["Профиль", "Проект"])
+        control.selectedSegmentTintColor = .viviRose50
+        control.selectedSegmentIndex = 0
+        return control
+    }()
+    
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let vc1 = ProfileViewController()
-        let presenter1 = ProfilePresenter()
-        vc1.presenter = presenter1
-        presenter1.view = vc1
-        let vc2 = ProfileViewController()
-        let presenter2 = ProfilePresenter()
-        vc2.presenter = presenter2
-        presenter2.view = vc2
-        orderedViewControllers = [vc1, vc2]
-//        options.tabView.backgroundColor = .viviRose50 ?? .blue
-        setViewControllers([vc1], direction: .forward, animated: true)
-        dataSource = self
-        delegate = self
         
+        
+        setupView()
+        setupConstraints()
         navigationBarWithLogo()
     }
     
+    func setupView() {
+        view.backgroundColor = .background
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        view.addSubview(scrollView)
+        
+        scrollView.addSubview(headerView)
+        scrollView.addSubview(segmentedControl)
+        scrollView.addSubview(containerView)
     }
-    */
-   
+    
+    func setupConstraints() {
+        scrollView.easy.layout(
+            Top().to(view.safeAreaLayoutGuide, .top),
+            Leading(),
+            Trailing(),
+            Bottom().to(view.safeAreaLayoutGuide, .bottom)
+        )
+        
+        headerView.easy.layout(
+            Top(24),
+            CenterX(),
+            Leading(),
+            Trailing()
+        )
+        
+        segmentedControl.easy.layout(
+            Top(24).to(headerView, .bottom),
+            Leading(24),
+            Trailing(24)
+        )
+        
+        containerView.easy.layout(
+            Top(16).to(segmentedControl, .bottom),
+            Leading(),
+            Trailing(),
+            Bottom()
+        )
+    }
 }
 
-extension ProfilePagerViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.firstIndex(of: viewController) else {
-                   return nil
-               }
-               
-               let previousIndex = viewControllerIndex - 1
-               
-               guard previousIndex >= 0 else {
-                   return nil
-               }
-               
-               guard orderedViewControllers.count > previousIndex else {
-                   return nil
-               }
-               
-               return orderedViewControllers[previousIndex]
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.firstIndex(of: viewController)else {
-                    return nil
-                }
-                
-                let nextIndex = viewControllerIndex + 1
-                let orderedViewControllersCount = orderedViewControllers.count
-
-                guard orderedViewControllersCount != nextIndex else {
-                    return nil
-                }
-                
-                guard orderedViewControllersCount > nextIndex else {
-                    return nil
-                }
-                
-                return orderedViewControllers[nextIndex]
-    }
-    
+extension ProfilePagerViewController: ProfilePagerViewType {
     
 }

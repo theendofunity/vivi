@@ -25,7 +25,6 @@ class ProfileViewController: UIViewController {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(cell: ProfileMenuCell.self)
-        collectionView.register(header: ProfileHeaderView.self)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
@@ -109,15 +108,5 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         let item = menuItems[indexPath.item]
         cell.configure(item: item)
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
-                                                                         withReuseIdentifier: ProfileHeaderView.reuseId,
-                                                                         for: indexPath)
-            return header
-        }
-        return UICollectionReusableView()
     }
 }

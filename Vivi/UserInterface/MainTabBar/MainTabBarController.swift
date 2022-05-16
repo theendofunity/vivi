@@ -35,6 +35,9 @@ class MainTabBarController: UITabBarController {
         let chatImage = UIImage(systemName: "message")
         
         let profileViewController = ProfilePagerViewController()
+        let profilePresenter = ProfilePagerPresenter()
+        profileViewController.presenter = profilePresenter
+        profilePresenter.view = profileViewController
 //        let profilePresenter = ProfilePresenter()
 //        profileViewController.presenter = profilePresenter
 //        profilePresenter.view = profileViewController

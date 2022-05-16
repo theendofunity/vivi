@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		83914B6072D7D2FED30ED495 /* Pods_Vivi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D9089F03D5FDB8614EC5901 /* Pods_Vivi.framework */; };
+		D821F8B02832A84D00C43774 /* ProfilePagerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821F8AF2832A84D00C43774 /* ProfilePagerPresenter.swift */; };
 		D8262F72281F2ADB00FA3E76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F71281F2ADB00FA3E76 /* AppDelegate.swift */; };
 		D8262F74281F2ADB00FA3E76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F73281F2ADB00FA3E76 /* SceneDelegate.swift */; };
 		D8262F7B281F2ADB00FA3E76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8262F7A281F2ADB00FA3E76 /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 		65AD19DA22EFCB7EA22119D4 /* Pods-Vivi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vivi.debug.xcconfig"; path = "Target Support Files/Pods-Vivi/Pods-Vivi.debug.xcconfig"; sourceTree = "<group>"; };
 		7D9089F03D5FDB8614EC5901 /* Pods_Vivi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vivi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B48690AF950970DA87A9FD8B /* Pods-Vivi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vivi.release.xcconfig"; path = "Target Support Files/Pods-Vivi/Pods-Vivi.release.xcconfig"; sourceTree = "<group>"; };
+		D821F8AF2832A84D00C43774 /* ProfilePagerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePagerPresenter.swift; sourceTree = "<group>"; };
 		D8262F6E281F2ADB00FA3E76 /* Vivi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vivi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8262F71281F2ADB00FA3E76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8262F73281F2ADB00FA3E76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 			children = (
 				D8262FA0281F30CD00FA3E76 /* ProfilePresenter.swift */,
 				D850CFE1282BCB9300C41DE7 /* ProfileMenuType.swift */,
+				D821F8AF2832A84D00C43774 /* ProfilePagerPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				D8262F8F281F2D6200FA3E76 /* PortfolioViewController.swift in Sources */,
 				D8B27B0E282C285300EDAD23 /* ProfilePagerViewController.swift in Sources */,
 				D86A79DE28211A3100F45D76 /* MainButton.swift in Sources */,
+				D821F8B02832A84D00C43774 /* ProfilePagerPresenter.swift in Sources */,
 				D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */,
 				D8262F9B281F309900FA3E76 /* ChatViewController.swift in Sources */,
 				D850CFDE282BBB9000C41DE7 /* ProfileMenuCell.swift in Sources */,

@@ -26,15 +26,6 @@ class ProfileHeaderView: ReusableSupplementaryView {
         return label
     }()
     
-    lazy var segmentedControl: UISegmentedControl = {
-        let control = UISegmentedControl()
-        control.insertSegment(withTitle: "Профиль", at: 0, animated: false)
-        control.insertSegment(withTitle: "Проект", at: 1, animated: false)
-        control.selectedSegmentTintColor = .viviRose50
-        return control
-
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupView()
@@ -49,15 +40,12 @@ class ProfileHeaderView: ReusableSupplementaryView {
         super.layoutSubviews()
         avatarImageView.round(55)
         avatarImageView.clipsToBounds = true
-        segmentedControl.round(40)
-
     }
     
     func setupView() {
         addSubview(avatarImageView)
         addSubview(userNameLabel)
         addSubview(addressLabel)
-        addSubview(segmentedControl)
     }
     
     func setupConstraints() {
@@ -75,14 +63,7 @@ class ProfileHeaderView: ReusableSupplementaryView {
         
         addressLabel.easy.layout(
             Top(16).to(userNameLabel, .bottom),
-            CenterX()
-        )
-        
-        segmentedControl.easy.layout(
-            Top(16).to(addressLabel, .bottom),
-            Leading(),
-            Trailing(),
-            Height(38),
+            CenterX(),
             Bottom()
         )
     }
