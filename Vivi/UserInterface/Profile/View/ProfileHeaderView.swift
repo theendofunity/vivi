@@ -68,4 +68,8 @@ class ProfileHeaderView: ReusableSupplementaryView {
         )
     }
 
+    func update(user: UserModel) {
+        userNameLabel.text = user.usernameTitle()
+        addressLabel.text = user.address
+    }
 }

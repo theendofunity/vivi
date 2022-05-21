@@ -1,50 +1,58 @@
 //
-//  ProfileViewController.swift
+//  ProfilePagerViewController.swift
 //  Vivi
 //
-//  Created by Дмитрий Дудкин on 02.05.2022.
+//  Created by Дмитрий Дудкин on 12.05.2022.
 //
 
 import UIKit
 import EasyPeasy
+import SwipeMenuViewController
 
 class ProfileViewController: UIViewController {
     var presenter: ProfilePresenter!
-    private var menuItems: [ProfileMenuType] = []
     
-    private let cellHeight: CGFloat = 60
+    private lazy var scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        return scroll
+    }()
     
-    private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        let width = UIScreen.main.bounds.width - 48
-        layout.itemSize = CGSize(width: width, height: cellHeight)
-        layout.minimumLineSpacing = 16
-        layout.headerReferenceSize = CGSize(width: width, height: 250)
-        layout.sectionInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(cell: ProfileMenuCell.self)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = .clear
-        collectionView.showsVerticalScrollIndicator = false
-        return collectionView
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    private lazy var headerView: ProfileHeaderView = {
+        let header = ProfileHeaderView()
+        return header
+    }()
+    
+    private lazy var segmentedControl: UISegmentedControl = {
+        let control = UISegmentedControl(items: ["Профиль", "Проект"])
+        control.selectedSegmentTintColor = .viviRose50
+        control.selectedSegmentIndex = 0
+        return control
+    }()
+    
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    private lazy var menuView: ProfileMenuView = {
+        let view = ProfileMenuView()
+        return view
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         setupView()
         setupConstraints()
+        setupNavigationBar()
         
         presenter.viewDidLoad()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        presenter.viewDidAppear()
-        setupNavigationBar()
     }
     
     func setupNavigationBar() {
@@ -58,55 +66,79 @@ class ProfileViewController: UIViewController {
 
     }
     
-    private func setupView() {
-        view.addSubview(collectionView)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    func setupView() {
+        view.backgroundColor = .background
+
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(headerView)
+        contentView.addSubview(segmentedControl)
+        contentView.addSubview(containerView)
         
+        containerView.addSubview(menuView)
     }
     
-    private func setupConstraints() {
-        collectionView.easy.layout(
-            Top(24).to(view.safeAreaLayoutGuide, .top),
-            Leading(24),
-            Trailing(24),
+    func setupConstraints() {
+        scrollView.easy.layout(
+            Top().to(view.safeAreaLayoutGuide, .top),
+            Leading(),
+            Trailing(),
             Bottom().to(view.safeAreaLayoutGuide, .bottom)
         )
+        
+        contentView.easy.layout(
+            Edges(),
+            Width().like(scrollView, .width),
+            Height(300).like(scrollView, .height)
+        )
+        
+        headerView.easy.layout(
+            Top(24),
+            CenterX(),
+            Leading(),
+            Trailing()
+        )
+        
+        segmentedControl.easy.layout(
+            Top(24).to(headerView, .bottom),
+            Leading(24),
+            Trailing(24)
+        )
+        
+        containerView.easy.layout(
+            Top().to(segmentedControl, .bottom),
+            Leading(),
+            Trailing(),
+            Bottom()
+        )
+        
+        menuView.easy.layout(
+            Top(16),
+            Leading(),
+            Trailing(),
+            Bottom()
+        )
     }
-    
+}
+
+extension ProfileViewController {
     @objc func logoutPressed() {
         presenter.logout()
     }
 }
 
 extension ProfileViewController: ProfileViewType {
-    func updateUserInfo(userName: String, address: String, avatar: URL?) {
-//        userNameLabel.text = userName
-//        addressLabel.text = address
-    }
-    
-    func updateMenu(menuItems: [ProfileMenuType]) {
-        self.menuItems = menuItems
-        collectionView.reloadData()
+    func updateUserInfo(user: UserModel) {
+        headerView.update(user: user)
     }
     
     func navigation() -> UINavigationController? {
         return navigationController
     }
+    
+    func setupMenu(items: [ProfileMenuType]) {
+        menuView.updateMenu(menuItems: items)
+    }
 }
 
-extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        menuItems.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileMenuCell.reuseId, for: indexPath) as? ProfileMenuCell
-        else { return UICollectionViewCell() }
-        let item = menuItems[indexPath.item]
-        cell.configure(item: item)
-        return cell
-    }
-}
+
