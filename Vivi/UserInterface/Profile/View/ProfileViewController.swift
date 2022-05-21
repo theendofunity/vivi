@@ -7,7 +7,6 @@
 
 import UIKit
 import EasyPeasy
-import SwipeMenuViewController
 
 class ProfileViewController: UIViewController {
     var presenter: ProfilePresenter!
