@@ -59,6 +59,8 @@ extension TextFieldsStackView {
     }
     
     func setFields(fields: [TextFieldType]) {
+        clear()
+        
         for field in fields {
             let textField = TextFieldWithLabel()
             textField.setPlaceholder(field.placeholder())
@@ -66,6 +68,13 @@ extension TextFieldsStackView {
             textField.type = field
             
             stackView.addArrangedSubview(textField)
+        }
+    }
+    
+    private func clear() {
+        for view in stackView.arrangedSubviews {
+            stackView.removeArrangedSubview(view)
+            view.removeFromSuperview()
         }
     }
 }

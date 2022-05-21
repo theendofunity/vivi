@@ -14,6 +14,7 @@ class ProfileViewController: UIViewController {
     
     private lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
+        scroll.showsVerticalScrollIndicator = false
         return scroll
     }()
     
@@ -32,11 +33,6 @@ class ProfileViewController: UIViewController {
         control.selectedSegmentTintColor = .viviRose50
         control.addTarget(self, action: #selector(pageDidChanged), for: .valueChanged)
         return control
-    }()
-    
-    private lazy var containerView: UIView = {
-        let view = UIView()
-        return view
     }()
     
     private lazy var menuView: ProfileMenuView = {
@@ -79,10 +75,9 @@ class ProfileViewController: UIViewController {
         scrollView.addSubview(contentView)
         contentView.addSubview(headerView)
         contentView.addSubview(segmentedControl)
-        contentView.addSubview(containerView)
         
-        containerView.addSubview(menuView)
-        containerView.addSubview(personalInfoView)
+        contentView.addSubview(menuView)
+        contentView.addSubview(personalInfoView)
     }
     
     func setupConstraints() {
@@ -96,7 +91,7 @@ class ProfileViewController: UIViewController {
         contentView.easy.layout(
             Edges(),
             Width().like(scrollView, .width),
-            Height().like(scrollView, .height)
+            Height(>=0).like(scrollView, .height)
         )
         
         headerView.easy.layout(
@@ -112,25 +107,18 @@ class ProfileViewController: UIViewController {
             Trailing(24)
         )
         
-        containerView.easy.layout(
-            Top().to(segmentedControl, .bottom),
-            Leading(),
-            Trailing(),
-            Bottom()
-        )
-        
         menuView.easy.layout(
-            Top(16),
+            Top(16).to(segmentedControl, .bottom),
             Leading(),
             Trailing(),
             Bottom()
         )
         
         personalInfoView.easy.layout(
-            Top(16),
+            Top(16).to(segmentedControl, .bottom),
             Leading(),
             Trailing(),
-            Bottom()
+            Bottom(24)
         )
     }
 }
@@ -148,6 +136,8 @@ extension ProfileViewController {
 
 extension ProfileViewController: ProfileViewType {
     func setupPages(pages: [PageType]) {
+        segmentedControl.removeAllSegments()
+        
         pages.forEach {
             segmentedControl.insertSegment(withTitle: $0.rawValue, at: 0, animated: false)
         }

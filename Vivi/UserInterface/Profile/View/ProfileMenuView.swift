@@ -19,7 +19,7 @@ class ProfileMenuView: UIView {
         let width = UIScreen.main.bounds.width - 48
         layout.itemSize = CGSize(width: width, height: cellHeight)
         layout.minimumLineSpacing = 16
-        layout.sectionInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(cell: ProfileMenuCell.self)
@@ -27,6 +27,7 @@ class ProfileMenuView: UIView {
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.isScrollEnabled = false
         return collectionView
     }()
     
