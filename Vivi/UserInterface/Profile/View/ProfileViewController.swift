@@ -28,9 +28,9 @@ class ProfileViewController: UIViewController {
     }()
     
     private lazy var segmentedControl: UISegmentedControl = {
-        let control = UISegmentedControl(items: ["Профиль", "Проект"])
+        let control = UISegmentedControl()
         control.selectedSegmentTintColor = .viviRose50
-        control.selectedSegmentIndex = 0
+        control.addTarget(self, action: #selector(pageDidChanged), for: .valueChanged)
         return control
     }()
     
@@ -41,12 +41,18 @@ class ProfileViewController: UIViewController {
     
     private lazy var menuView: ProfileMenuView = {
         let view = ProfileMenuView()
+        view.isHidden = true
+        return view
+    }()
+    
+    private lazy var personalInfoView: PersonalInfoView = {
+        let view = PersonalInfoView()
+        view.isHidden = true
         return view
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         setupView()
         setupConstraints()
@@ -76,6 +82,7 @@ class ProfileViewController: UIViewController {
         contentView.addSubview(containerView)
         
         containerView.addSubview(menuView)
+        containerView.addSubview(personalInfoView)
     }
     
     func setupConstraints() {
@@ -89,7 +96,7 @@ class ProfileViewController: UIViewController {
         contentView.easy.layout(
             Edges(),
             Width().like(scrollView, .width),
-            Height(300).like(scrollView, .height)
+            Height().like(scrollView, .height)
         )
         
         headerView.easy.layout(
@@ -118,6 +125,13 @@ class ProfileViewController: UIViewController {
             Trailing(),
             Bottom()
         )
+        
+        personalInfoView.easy.layout(
+            Top(16),
+            Leading(),
+            Trailing(),
+            Bottom()
+        )
     }
 }
 
@@ -125,11 +139,38 @@ extension ProfileViewController {
     @objc func logoutPressed() {
         presenter.logout()
     }
+    
+    @objc func pageDidChanged() {
+        let index = segmentedControl.selectedSegmentIndex
+        presenter.pageDidChange(index: index)
+    }
 }
 
 extension ProfileViewController: ProfileViewType {
-    func updateUserInfo(user: UserModel) {
-        headerView.update(user: user)
+    func setupPages(pages: [PageType]) {
+        pages.forEach {
+            segmentedControl.insertSegment(withTitle: $0.rawValue, at: 0, animated: false)
+        }
+        segmentedControl.selectedSegmentIndex = 0
+        pageDidChanged()
+    }
+    
+    func setupPersonalInfo(info: [PersonalInfoViewModel]) {
+        let newInfo = info.map {
+            $0.type
+        }
+        personalInfoView.setupFields(fields: newInfo)
+    }
+    
+    func changePage(to page: PageType) {
+        switch page {
+        case .project:
+            menuView.isHidden = false
+            personalInfoView.isHidden = true
+        case .profile:
+            menuView.isHidden = true
+            personalInfoView.isHidden = false
+        }
     }
     
     func navigation() -> UINavigationController? {
@@ -138,6 +179,10 @@ extension ProfileViewController: ProfileViewType {
     
     func setupMenu(items: [ProfileMenuType]) {
         menuView.updateMenu(menuItems: items)
+    }
+    
+    func updateUserInfo(user: UserModel) {
+        headerView.update(user: user)
     }
 }
 
