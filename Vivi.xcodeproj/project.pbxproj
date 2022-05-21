@@ -51,6 +51,7 @@
 		D86A79F628217A0C00F45D76 /* LineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79F528217A0C00F45D76 /* LineTextField.swift */; };
 		D86A79F828217B6F00F45D76 /* TextFieldWithLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79F728217B6F00F45D76 /* TextFieldWithLabel.swift */; };
 		D86A79FA282180F500F45D76 /* PlainLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79F9282180F500F45D76 /* PlainLabel.swift */; };
+		D86AEE7E2838EC50001BE89F /* TextFieldsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE7D2838EC50001BE89F /* TextFieldsStackView.swift */; };
 		D8B27B0E282C285300EDAD23 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */; };
 		D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */; };
 		D8DEC039282AC995000A62B8 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC038282AC995000A62B8 /* FirestoreService.swift */; };
@@ -108,6 +109,7 @@
 		D86A79F528217A0C00F45D76 /* LineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineTextField.swift; sourceTree = "<group>"; };
 		D86A79F728217B6F00F45D76 /* TextFieldWithLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithLabel.swift; sourceTree = "<group>"; };
 		D86A79F9282180F500F45D76 /* PlainLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainLabel.swift; sourceTree = "<group>"; };
+		D86AEE7D2838EC50001BE89F /* TextFieldsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldsStackView.swift; sourceTree = "<group>"; };
 		D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		D8DEC038282AC995000A62B8 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				D86A79F528217A0C00F45D76 /* LineTextField.swift */,
 				D86A79F728217B6F00F45D76 /* TextFieldWithLabel.swift */,
 				D86A79F9282180F500F45D76 /* PlainLabel.swift */,
+				D86AEE7D2838EC50001BE89F /* TextFieldsStackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 				D8262F72281F2ADB00FA3E76 /* AppDelegate.swift in Sources */,
 				D86A79EB28215EF800F45D76 /* ExamplesViewModel.swift in Sources */,
 				D850CFE0282BC8F500C41DE7 /* ApplicationPresenter.swift in Sources */,
+				D86AEE7E2838EC50001BE89F /* TextFieldsStackView.swift in Sources */,
 				D8262F93281F2D8400FA3E76 /* PortfolioPresenter.swift in Sources */,
 				D821F8B22832BE3D00C43774 /* ProfileMenuView.swift in Sources */,
 				D8418E7C2821A8B300163255 /* RegistrationViewController.swift in Sources */,

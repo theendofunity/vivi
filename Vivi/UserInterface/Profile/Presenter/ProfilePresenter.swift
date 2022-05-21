@@ -51,6 +51,7 @@ class ProfilePresenter {
     
     func logout() {
         AuthService.shared.logout()
+        viewDidLoad()
     }
     
     func showAuth() {

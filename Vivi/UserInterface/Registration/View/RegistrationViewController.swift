@@ -60,11 +60,10 @@ class RegistrationViewController: UIViewController {
         return button
     }()
     
-    private lazy var stackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 24
-        return stack
+    private lazy var textFieldsView: TextFieldsStackView = {
+        let view = TextFieldsStackView()
+        view.delegate = self
+        return view
     }()
     
     override func viewDidLoad() {
@@ -84,7 +83,9 @@ class RegistrationViewController: UIViewController {
         backgroundView.addSubview(scrollView)
         scrollView.addSubview(mainView)
         mainView.addSubview(titleLabel)
-        mainView.addSubview(stackView)
+        mainView.addSubview(textFieldsView)
+        mainView.addSubview(termsStack)
+        mainView.addSubview(registerButton)
     }
     
     func setupConstraints() {
@@ -114,36 +115,46 @@ class RegistrationViewController: UIViewController {
             CenterX()
         )
         
-        stackView.easy.layout(
+        textFieldsView.easy.layout(
             Top(24).to(titleLabel, .bottom),
             Leading(24),
+            Trailing(24)
+        )
+        
+        termsStack.easy.layout(
+            Top(24).to(textFieldsView, .bottom),
+            Leading(24),
+            Trailing(24)
+        )
+        
+        registerButton.easy.layout(
+            Top(24).to(termsStack, .bottom),
+            Leading(24),
             Trailing(24),
-            Bottom(40)
+            Bottom(24)
         )
     }
     
+    func getText(_ type: TextFieldType) -> String? {
+        return textFieldsView.text(for: type)
+    }
+    
     @objc func registerButtonPressed() {
-        guard let email = getFieldWithType(.email)?.text(),
-              let password = getFieldWithType(.password)?.text(),
-              let firstName = getFieldWithType(.name)?.text(),
-              let lastName = getFieldWithType(.lastName)?.text(),
-              let city = getFieldWithType(.city)?.text(),
-              let phone = getFieldWithType(.phone)?.text()
+        guard let email = getText(.email),
+              let password = getText(.password),
+              let firstName = getText(.name),
+              let lastName = getText(.lastName),
+              let city = getText(.city),
+              let phone = getText(.phone)
         else { return }
+        
         presenter.registerButtonPressed(email: email,
                                         password: password,
                                         firstName: firstName,
                                         lastName: lastName,
-                                        middleName: getFieldWithType(.middleName)?.text(),
+                                        middleName: getText(.middleName),
                                         phone: phone,
                                         city: city)
-    }
-    
-    func getFieldWithType(_ type: TextFieldType) -> TextFieldWithLabel? {
-        return stackView.arrangedSubviews.first(where: {
-            guard let textField = $0 as? TextFieldWithLabel else { return false }
-            return textField.type == type
-        }) as? TextFieldWithLabel
     }
 }
 
@@ -159,15 +170,10 @@ extension RegistrationViewController: RegistrationViewType {
     }
     
     func setFields(fields: [TextFieldType]) {
-        for field in fields {
-            let textField = TextFieldWithLabel()
-            textField.setPlaceholder(field.placeholder())
-            textField.setLabelText(field.fieldTitle())
-            textField.type = field
-            
-            stackView.addArrangedSubview(textField)
-        }
-        stackView.addArrangedSubview(termsStack)
-        stackView.addArrangedSubview(registerButton)
+        textFieldsView.setFields(fields: fields)
     }
+}
+
+extension RegistrationViewController: TextFieldsStackViewDelegate {
+    
 }
