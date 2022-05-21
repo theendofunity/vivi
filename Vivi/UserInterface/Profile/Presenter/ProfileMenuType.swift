@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum ProfileMenuType {
+enum ProfileMenuType: CaseIterable {
     case form
     case agreement
     case examples

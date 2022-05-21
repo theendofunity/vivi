@@ -1,31 +1,40 @@
 //
-//  ProfilePresenter.swift
+//  ProfilePagerPresenter.swift
 //  Vivi
 //
-//  Created by Дмитрий Дудкин on 02.05.2022.
+//  Created by Дмитрий Дудкин on 16.05.2022.
 //
 
 import Foundation
 import UIKit
 
+enum PageType: String, CaseIterable {
+    case project = "Проект"
+    case profile = "Профиль"
+}
+
 protocol ProfileViewType: AnyObject {
+    func setupPages(pages: [PageType])
+    func setupMenu(items: [ProfileMenuType])
     func navigation() -> UINavigationController?
-    
-    func updateMenu(menuItems: [ProfileMenuType])
-    func updateUserInfo(userName: String, address: String, avatar: URL?)
+    func updateUserInfo(user: UserModel)
+    func setupPersonalInfo(info: [PersonalInfoViewModel])
+    func changePage(to page: PageType)
 }
 
 class ProfilePresenter {
     weak var view: ProfileViewType?
-    
-    var userService = UserService.shared
+    private var userService = UserService.shared
+    private var pages: [PageType] = []
     
     func viewDidLoad() {
         if AuthService.shared.isLoggedIn {
             guard let _ = UserService.shared.user else {
                 return
             }
-            loadMenu()
+            setupPages()
+            setupMenu()
+            setupPersonalInfo()
         } else {
             showAuth()
         }
@@ -33,6 +42,11 @@ class ProfilePresenter {
     
     func viewDidAppear() {
         
+    }
+    
+    func logout() {
+        AuthService.shared.logout()
+        viewDidLoad()
     }
     
     func showAuth() {
@@ -45,13 +59,12 @@ class ProfilePresenter {
         authViewController.navigationItem.setHidesBackButton(true, animated: false)
         view?.navigation()?.pushViewController(authViewController, animated: false)
     }
-    
-    func logout() {
-        AuthService.shared.logout()
-        viewDidLoad()
-    }
-    
-    func loadMenu() {
+}
+
+//MARK: - Setup initial state
+
+extension ProfilePresenter {
+    func setupMenu() {
         guard let user = userService.user else { return }
         
         var menuItems: [ProfileMenuType]
@@ -62,12 +75,38 @@ class ProfilePresenter {
             menuItems = [.allProjects, .users, .main]
         }
         
-        view?.updateMenu(menuItems: menuItems)
-        view?.updateUserInfo(userName: user.usernameTitle(), address: user.address ?? "" , avatar: nil)
+        view?.setupMenu(items: menuItems)
+        
+        view?.updateUserInfo(user: user)
     }
     
-    func itemDidSelect(item: ProfileMenuType) {
+    func setupPersonalInfo() {
+        guard let user = userService.user else { return }
         
+        var personalInfo: [PersonalInfoViewModel] = []
+        
+        personalInfo = [
+            .init(type: .name, value: user.firstName, canEdit: false),
+            .init(type: .middleName, value: user.middleName ?? "", canEdit: false),
+            .init(type: .lastName, value: user.lastName, canEdit: false),
+            .init(type: .city, value: user.city, canEdit: true)
+        ]
+        
+        view?.setupPersonalInfo(info: personalInfo)
+    }
+    
+    func setupPages() {
+        pages = PageType.allCases
+        view?.setupPages(pages: pages)
+    }
+}
+
+//MARK: - Actions
+
+extension ProfilePresenter {
+    func pageDidChange(index: Int) {
+        let page = pages[index]
+        view?.changePage(to: page)
     }
 }
 
