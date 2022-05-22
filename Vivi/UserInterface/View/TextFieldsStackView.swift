@@ -58,14 +58,16 @@ extension TextFieldsStackView {
         return getFieldWithType(type)?.text()
     }
     
-    func setFields(fields: [TextFieldType]) {
+    func setFields(fields: [TextFieldViewModel]) {
         clear()
         
         for field in fields {
             let textField = TextFieldWithLabel()
-            textField.setPlaceholder(field.placeholder())
-            textField.setLabelText(field.fieldTitle())
-            textField.type = field
+            textField.setPlaceholder(field.type.placeholder())
+            textField.setLabelText(field.type.fieldTitle())
+            textField.type = field.type
+            textField.textField.text = field.value
+            textField.textField.isEnabled = field.canEdit
             
             stackView.addArrangedSubview(textField)
         }

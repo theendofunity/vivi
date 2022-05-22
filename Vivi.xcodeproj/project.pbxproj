@@ -53,7 +53,7 @@
 		D86A79FA282180F500F45D76 /* PlainLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79F9282180F500F45D76 /* PlainLabel.swift */; };
 		D86AEE7E2838EC50001BE89F /* TextFieldsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE7D2838EC50001BE89F /* TextFieldsStackView.swift */; };
 		D86AEE802839393B001BE89F /* PersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE7F2839393B001BE89F /* PersonalInfoView.swift */; };
-		D86AEE8228393B54001BE89F /* PersonalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE8128393B54001BE89F /* PersonalInfoViewModel.swift */; };
+		D86AEE8228393B54001BE89F /* TextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE8128393B54001BE89F /* TextFieldViewModel.swift */; };
 		D8B27B0E282C285300EDAD23 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */; };
 		D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */; };
 		D8DEC039282AC995000A62B8 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC038282AC995000A62B8 /* FirestoreService.swift */; };
@@ -113,7 +113,7 @@
 		D86A79F9282180F500F45D76 /* PlainLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainLabel.swift; sourceTree = "<group>"; };
 		D86AEE7D2838EC50001BE89F /* TextFieldsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldsStackView.swift; sourceTree = "<group>"; };
 		D86AEE7F2839393B001BE89F /* PersonalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoView.swift; sourceTree = "<group>"; };
-		D86AEE8128393B54001BE89F /* PersonalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewModel.swift; sourceTree = "<group>"; };
+		D86AEE8128393B54001BE89F /* TextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldViewModel.swift; sourceTree = "<group>"; };
 		D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		D8DEC038282AC995000A62B8 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
@@ -297,7 +297,6 @@
 			children = (
 				D850CFE1282BCB9300C41DE7 /* ProfileMenuType.swift */,
 				D821F8AF2832A84D00C43774 /* ProfilePresenter.swift */,
-				D86AEE8128393B54001BE89F /* PersonalInfoViewModel.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -382,6 +381,7 @@
 		D8418E862822EE3300163255 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D86AEE8128393B54001BE89F /* TextFieldViewModel.swift */,
 				D8418E802822EA3A00163255 /* TextFieldType.swift */,
 				D8DEC03A282ACA3F000A62B8 /* UserModel.swift */,
 			);
@@ -637,7 +637,7 @@
 				D86AEE7E2838EC50001BE89F /* TextFieldsStackView.swift in Sources */,
 				D8262F93281F2D8400FA3E76 /* PortfolioPresenter.swift in Sources */,
 				D821F8B22832BE3D00C43774 /* ProfileMenuView.swift in Sources */,
-				D86AEE8228393B54001BE89F /* PersonalInfoViewModel.swift in Sources */,
+				D86AEE8228393B54001BE89F /* TextFieldViewModel.swift in Sources */,
 				D8418E7C2821A8B300163255 /* RegistrationViewController.swift in Sources */,
 				D8262FB328202E8200FA3E76 /* ReusableCell.swift in Sources */,
 				D8262F8F281F2D6200FA3E76 /* PortfolioViewController.swift in Sources */,

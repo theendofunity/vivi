@@ -144,11 +144,8 @@ extension ProfileViewController: ProfileViewType {
         pageDidChanged()
     }
     
-    func setupPersonalInfo(info: [PersonalInfoViewModel]) {
-        let newInfo = info.map {
-            $0.type
-        }
-        personalInfoView.setupFields(fields: newInfo)
+    func setupPersonalInfo(info: [TextFieldViewModel]) {
+        personalInfoView.setupFields(fields: info)
     }
     
     func changePage(to page: PageType) {

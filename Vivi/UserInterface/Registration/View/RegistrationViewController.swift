@@ -169,7 +169,7 @@ extension RegistrationViewController: RegistrationViewType {
         }
     }
     
-    func setFields(fields: [TextFieldType]) {
+    func setFields(fields: [TextFieldViewModel]) {
         textFieldsView.setFields(fields: fields)
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RegistrationViewType: AnyObject {
-    func setFields(fields: [TextFieldType])
+    func setFields(fields: [TextFieldViewModel])
     func showError(error: Error)
     func showSuccess()
 }
@@ -22,8 +22,11 @@ class RegistrationPresenter {
     }
     
     func createFields() {
-        let fields = TextFieldType.allCases.filter {
+        let fieldTypes = TextFieldType.allCases.filter {
             $0 != .unknown
+        }
+        let fields = fieldTypes.map {
+            TextFieldViewModel(type: $0, value: "", canEdit: true)
         }
         view?.setFields(fields: fields)
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PersonalInfoViewModel {
+struct TextFieldViewModel {
     var type: TextFieldType
     var value: String
     var canEdit = true

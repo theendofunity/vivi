@@ -56,7 +56,7 @@ class PersonalInfoView: UIView {
         
     }
     
-    func setupFields(fields: [TextFieldType]) {
+    func setupFields(fields: [TextFieldViewModel]) {
         textFieldsView.setFields(fields: fields)
     }
 }

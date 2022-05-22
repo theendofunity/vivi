@@ -18,7 +18,7 @@ protocol ProfileViewType: AnyObject {
     func setupMenu(items: [ProfileMenuType])
     func navigation() -> UINavigationController?
     func updateUserInfo(user: UserModel)
-    func setupPersonalInfo(info: [PersonalInfoViewModel])
+    func setupPersonalInfo(info: [TextFieldViewModel])
     func changePage(to page: PageType)
 }
 
@@ -83,7 +83,7 @@ extension ProfilePresenter {
     func setupPersonalInfo() {
         guard let user = userService.user else { return }
         
-        var personalInfo: [PersonalInfoViewModel] = []
+        var personalInfo: [TextFieldViewModel] = []
         
         personalInfo = [
             .init(type: .name, value: user.firstName, canEdit: false),
