@@ -127,17 +127,33 @@ extension ProfilePresenter {
         switch item {
         case .form:
             showForm()
+        case .agreement:
+            showAgreements()
+        case .project:
+            showProject()
         default:
             break
         }
     }
     
-    func showForm() {
+    func showTextMenu(type: ProfileMenuType) {
         let view = TextMenuViewController()
-        let presenter = TextMenuPresenter(type: .form)
+        let presenter = TextMenuPresenter(type: type)
         view.presenter = presenter
         presenter.view = view
         
         self.view?.navigation()?.pushViewController(view, animated: true)
+    }
+    
+    func showForm() {
+        showTextMenu(type: .form)
+    }
+    
+    func showAgreements() {
+        showTextMenu(type: .agreement)
+    }
+    
+    func showProject() {
+        showTextMenu(type: .project)
     }
 }

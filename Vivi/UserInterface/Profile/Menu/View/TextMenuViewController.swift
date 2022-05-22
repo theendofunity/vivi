@@ -17,6 +17,23 @@ class TextMenuViewController: UIViewController {
         return button
     }()
     
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let width = UIScreen.main.bounds.width - 48
+        layout.itemSize = CGSize(width: width, height: 60)
+        
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.showsVerticalScrollIndicator = false
+        collection.backgroundColor = .clear
+        collection.register(cell: TextMenuCell.self)
+        collection.delegate = self
+        collection.dataSource = self
+        collection.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 50, right: 0)
+        
+        return collection
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,11 +47,18 @@ class TextMenuViewController: UIViewController {
     
     func setupView() {
         view.backgroundColor = .background
-        
+        view.addSubview(collectionView)
         view.addSubview(button)
     }
     
     func setupConstraints() {
+        collectionView.easy.layout(
+            Top().to(view.safeAreaLayoutGuide, .top),
+            Leading(24),
+            Trailing(24),
+            Bottom().to(view.safeAreaLayoutGuide, .bottom)
+        )
+        
         button.easy.layout(
             Bottom(24).to(view.safeAreaLayoutGuide, .bottom),
             Leading(24),
@@ -56,4 +80,18 @@ extension TextMenuViewController: TextMenuViewType {
         button.setTitle(title, for: .normal)
         button.isHidden = isHidden
     }
+}
+
+extension TextMenuViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TextMenuCell.reuseId, for: indexPath) as? TextMenuCell else { return UICollectionViewCell() }
+        
+        return cell
+    }
+    
+    
 }
