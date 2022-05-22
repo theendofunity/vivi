@@ -11,9 +11,9 @@ import EasyPeasy
 class TextMenuViewController: UIViewController {
     var presenter: TextMenuPresenter!
     
-    private lazy var button: MainButton = {
+    private lazy var mainButton: MainButton = {
         let button = MainButton()
-        button.addTarget(button, action: #selector(buttonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -48,7 +48,7 @@ class TextMenuViewController: UIViewController {
     func setupView() {
         view.backgroundColor = .background
         view.addSubview(collectionView)
-        view.addSubview(button)
+        view.addSubview(mainButton)
     }
     
     func setupConstraints() {
@@ -59,7 +59,7 @@ class TextMenuViewController: UIViewController {
             Bottom().to(view.safeAreaLayoutGuide, .bottom)
         )
         
-        button.easy.layout(
+        mainButton.easy.layout(
             Bottom(24).to(view.safeAreaLayoutGuide, .bottom),
             Leading(24),
             Trailing(24)
@@ -77,8 +77,8 @@ extension TextMenuViewController: TextMenuViewType {
     }
     
     func setupButton(title: String, isHidden: Bool) {
-        button.setTitle(title, for: .normal)
-        button.isHidden = isHidden
+        mainButton.setTitle(title, for: .normal)
+        mainButton.isHidden = isHidden
     }
 }
 
