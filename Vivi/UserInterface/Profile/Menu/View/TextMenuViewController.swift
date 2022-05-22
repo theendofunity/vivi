@@ -73,6 +73,10 @@ class TextMenuViewController: UIViewController {
 }
 
 extension TextMenuViewController: TextMenuViewType {
+    func navigation() -> UINavigationController? {
+        return navigationController
+    }
+    
     func setupFiles(files: [String]) {
         self.files = files
         collectionView.reloadData()
@@ -109,6 +113,11 @@ extension TextMenuViewController: UICollectionViewDelegate, UICollectionViewData
         let title = files[indexPath.item]
         cell.configure(title: title)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let file = files[indexPath.item]
+        presenter.fileDidSelect(filename: file)
     }
 }
 

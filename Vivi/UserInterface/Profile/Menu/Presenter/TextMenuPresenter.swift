@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol TextMenuViewType: AnyObject {
     func setupTitle(_ title: String)
@@ -13,6 +14,8 @@ protocol TextMenuViewType: AnyObject {
     func setupFiles(files: [String])
     func showError(error: Error)
     func selectFile()
+    
+    func navigation() -> UINavigationController?
 }
 
 class TextMenuPresenter {
@@ -44,9 +47,40 @@ class TextMenuPresenter {
     func buttonPressed() {
         view?.selectFile()
     }
+    
+    func fileDidSelect(filename: String) {
+        guard let reference = referenceType() else { return }
+        storageService.getDownloadUrl(reference, fileName: filename) { [weak self] result in
+            switch result {
+            case .success(let url):
+                self?.showFile(url: url)
+            case .failure(let error):
+                self?.view?.showError(error: error)
+            }
+        }
+    }
+    
+    func showFile(url: URL) {
+        let view = DocumentsDetailViewController(url: url)
+        self.view?.navigation()?.present(view, animated: true)
+    }
 }
 
 extension TextMenuPresenter {
+    func referenceType() -> StorageService.ReferenceType? {
+        guard let user = UserService.shared.user,
+              let id = user.id else {
+            return nil
+        }
+        
+        switch type {
+        case .agreement:
+            return .agreements(id: id)
+        default:
+            return nil
+        }
+    }
+    
     func loadData() {
         guard let user = UserService.shared.user,
               let id = user.id else {

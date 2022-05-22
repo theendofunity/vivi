@@ -38,7 +38,7 @@ class StorageService {
     
     private init() {}
     
-    func getUrls(_ referenceType: ReferenceType, completion: @escaping UrlCompletion) {
+    func getUrls(_ referenceType: ReferenceType, completion: @escaping UrlsCompletion) {
         let ref = storage.reference(withPath: referenceType.path())
         
         ref.listAll { result, error in
@@ -89,6 +89,22 @@ class StorageService {
             
             guard let _ = metadata else { return }
             completion(.success(Void()))
+        }
+    }
+    
+    func getDownloadUrl(_ referenceType: ReferenceType, fileName: String, completion: @escaping UrlCompletion) {
+        let ref = storage.reference(withPath: referenceType.path()).child(fileName)
+        
+        ref.downloadURL { url, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let url = url else {
+                return
+            }
+            completion(.success(url))
         }
     }
 }
