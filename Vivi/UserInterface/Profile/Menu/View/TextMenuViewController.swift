@@ -96,7 +96,7 @@ extension TextMenuViewController: TextMenuViewType {
     }
     
     func selectFile() {
-        let picker = UIDocumentPickerViewController(documentTypes: ["public.text"], in: .import)
+        let picker = UIDocumentPickerViewController(documentTypes: ["public.text", "public.content"], in: .import)
         picker.delegate = self
         picker.allowsMultipleSelection = false
         present(picker, animated: true)
