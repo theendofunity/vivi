@@ -8,3 +8,7 @@
 import Foundation
 
 typealias UserModelCompletion = (Result<UserModel, Error>) -> Void
+typealias UrlCompletion = (Result<[URL], Error>) -> Void
+typealias VoidCompletion = (Result<Void, Error>) -> Void
+typealias StringsCompletion = (Result<[String], Error>) -> Void
+

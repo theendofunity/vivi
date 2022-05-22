@@ -10,6 +10,7 @@ import EasyPeasy
 
 class TextMenuViewController: UIViewController {
     var presenter: TextMenuPresenter!
+    var files: [String] = []
     
     private lazy var mainButton: MainButton = {
         let button = MainButton()
@@ -72,6 +73,15 @@ class TextMenuViewController: UIViewController {
 }
 
 extension TextMenuViewController: TextMenuViewType {
+    func setupFiles(files: [String]) {
+        self.files = files
+        collectionView.reloadData()
+    }
+    
+    func showError(error: Error) {
+        alertError(error: error)
+    }
+    
     func setupTitle(_ title: String) {
         navigationItem.title = title
     }
@@ -80,18 +90,33 @@ extension TextMenuViewController: TextMenuViewType {
         mainButton.setTitle(title, for: .normal)
         mainButton.isHidden = isHidden
     }
+    
+    func selectFile() {
+        let picker = UIDocumentPickerViewController(documentTypes: ["public.text"], in: .import)
+        picker.delegate = self
+        picker.allowsMultipleSelection = false
+        present(picker, animated: true)
+    }
 }
 
 extension TextMenuViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return files.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TextMenuCell.reuseId, for: indexPath) as? TextMenuCell else { return UICollectionViewCell() }
-        
+        let title = files[indexPath.item]
+        cell.configure(title: title)
         return cell
     }
-    
-    
+}
+
+extension TextMenuViewController: UIDocumentPickerDelegate {
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        guard controller.documentPickerMode == .import,
+              let url = urls.first else { return }
+        
+        presenter.uploadFile(with: url)
+    }
 }

@@ -14,19 +14,6 @@ class TextMenuCell: ReusableCell {
         return label
     }()
     
-    private lazy var subtitleLabel: PlainLabel = {
-        let label = PlainLabel(text: "dsadasdasd", fontType: .small)
-        label.textColor = .denim?.withAlphaComponent(0.6)
-        return label
-    }()
-    
-    private lazy var titlesStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
-        stack.axis = .vertical
-        stack.spacing = 4
-        return stack
-    }()
-    
     private lazy var arrowImageView: UIImageView = {
         let view = UIImageView()
         let image = UIImage(systemName: "chevron.right")?.template()
@@ -47,15 +34,14 @@ class TextMenuCell: ReusableCell {
     
     func setupView() {
         backgroundColor = .background
-        addSubview(titlesStack)
+        addSubview(titleLabel)
         addSubview(arrowImageView)
     }
     
     func setupConstraints() {
-        titlesStack.easy.layout(
+        titleLabel.easy.layout(
             Leading(),
-            Top(8),
-            Bottom(8)
+            CenterY()
         )
         
         arrowImageView.easy.layout(
@@ -64,7 +50,7 @@ class TextMenuCell: ReusableCell {
         )
     }
 
-    func configure() {
-        
+    func configure(title: String) {
+        titleLabel.text = title
     }
 }

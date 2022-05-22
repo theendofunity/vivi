@@ -8,7 +8,6 @@
 import Foundation
 import FirebaseFirestore
 
-typealias VoidCompletion = (Result<Void, Error>) -> Void
 
 class FirestoreService {
     static var shared = FirestoreService()
