@@ -29,12 +29,9 @@ class ProfilePresenter {
     
     func viewDidLoad() {
         if AuthService.shared.isLoggedIn {
-            guard let _ = UserService.shared.user else {
-                return
-            }
-            setupPages()
-            setupMenu()
-            setupPersonalInfo()
+            guard let _ = UserService.shared.user else { return }
+            
+            reload()
         } else {
             showAuth()
         }
@@ -42,6 +39,12 @@ class ProfilePresenter {
     
     func viewDidAppear() {
         
+    }
+    
+    func reload() {
+        setupPages()
+        setupMenu()
+        setupPersonalInfo()
     }
     
     func logout() {
@@ -114,5 +117,27 @@ extension ProfilePresenter: AuthDelegate {
     func authSuccess() {
         view?.navigation()?.popViewController(animated: true)
         viewDidLoad()
+    }
+}
+
+//MARK: - Menu
+
+extension ProfilePresenter {
+    func menuItemDidSelect(item: ProfileMenuType) {
+        switch item {
+        case .form:
+            showForm()
+        default:
+            break
+        }
+    }
+    
+    func showForm() {
+        let view = TextMenuViewController()
+        let presenter = TextMenuPresenter(type: .form)
+        view.presenter = presenter
+        presenter.view = view
+        
+        self.view?.navigation()?.pushViewController(view, animated: true)
     }
 }

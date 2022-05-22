@@ -8,9 +8,14 @@
 import UIKit
 import EasyPeasy
 
+protocol ProfileMenuViewDelegate: AnyObject {
+    func menuItemDidSelect(item: ProfileMenuType)
+}
+
 class ProfileMenuView: UIView {
-    private var menuItems: [ProfileMenuType] = []
+    weak var delegate: ProfileMenuViewDelegate?
     
+    private var menuItems: [ProfileMenuType] = []
     private let cellHeight: CGFloat = 60
     
     private lazy var collectionView: UICollectionView = {
@@ -71,5 +76,12 @@ extension ProfileMenuView: UICollectionViewDelegate, UICollectionViewDataSource 
         let item = menuItems[indexPath.item]
         cell.configure(item: item)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ProfileMenuCell,
+        let item = cell.item else { return }
+        
+        delegate?.menuItemDidSelect(item: item)
     }
 }

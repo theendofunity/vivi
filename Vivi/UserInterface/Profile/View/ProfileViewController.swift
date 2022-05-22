@@ -37,6 +37,7 @@ class ProfileViewController: UIViewController {
     private lazy var menuView: ProfileMenuView = {
         let view = ProfileMenuView()
         view.isHidden = true
+        view.delegate = self
         return view
     }()
     
@@ -169,6 +170,12 @@ extension ProfileViewController: ProfileViewType {
     
     func updateUserInfo(user: UserModel) {
         headerView.update(user: user)
+    }
+}
+
+extension ProfileViewController: ProfileMenuViewDelegate {
+    func menuItemDidSelect(item: ProfileMenuType) {
+        presenter.menuItemDidSelect(item: item)
     }
 }
 

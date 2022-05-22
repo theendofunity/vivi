@@ -54,6 +54,8 @@
 		D86AEE7E2838EC50001BE89F /* TextFieldsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE7D2838EC50001BE89F /* TextFieldsStackView.swift */; };
 		D86AEE802839393B001BE89F /* PersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE7F2839393B001BE89F /* PersonalInfoView.swift */; };
 		D86AEE8228393B54001BE89F /* TextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE8128393B54001BE89F /* TextFieldViewModel.swift */; };
+		D86AEE87283A253A001BE89F /* TextMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE86283A253A001BE89F /* TextMenuViewController.swift */; };
+		D86AEE89283A2544001BE89F /* TextMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE88283A2544001BE89F /* TextMenuPresenter.swift */; };
 		D8B27B0E282C285300EDAD23 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */; };
 		D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */; };
 		D8DEC039282AC995000A62B8 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC038282AC995000A62B8 /* FirestoreService.swift */; };
@@ -114,6 +116,8 @@
 		D86AEE7D2838EC50001BE89F /* TextFieldsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldsStackView.swift; sourceTree = "<group>"; };
 		D86AEE7F2839393B001BE89F /* PersonalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoView.swift; sourceTree = "<group>"; };
 		D86AEE8128393B54001BE89F /* TextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldViewModel.swift; sourceTree = "<group>"; };
+		D86AEE86283A253A001BE89F /* TextMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMenuViewController.swift; sourceTree = "<group>"; };
+		D86AEE88283A2544001BE89F /* TextMenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMenuPresenter.swift; sourceTree = "<group>"; };
 		D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		D8DEC038282AC995000A62B8 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
@@ -274,6 +278,7 @@
 		D8262F95281F304200FA3E76 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				D86AEE83283A237A001BE89F /* Menu */,
 				D8262F96281F306600FA3E76 /* View */,
 				D8262F97281F306D00FA3E76 /* Presenter */,
 			);
@@ -285,7 +290,6 @@
 			children = (
 				D850CFDC282BBB7500C41DE7 /* Cell */,
 				D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */,
-				D821F8B12832BE3D00C43774 /* ProfileMenuView.swift */,
 				D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */,
 				D86AEE7F2839393B001BE89F /* PersonalInfoView.swift */,
 			);
@@ -295,7 +299,6 @@
 		D8262F97281F306D00FA3E76 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				D850CFE1282BCB9300C41DE7 /* ProfileMenuType.swift */,
 				D821F8AF2832A84D00C43774 /* ProfilePresenter.swift */,
 			);
 			path = Presenter;
@@ -485,6 +488,33 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		D86AEE83283A237A001BE89F /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				D86AEE85283A23B4001BE89F /* Presenter */,
+				D86AEE84283A2388001BE89F /* View */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		D86AEE84283A2388001BE89F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D821F8B12832BE3D00C43774 /* ProfileMenuView.swift */,
+				D86AEE86283A253A001BE89F /* TextMenuViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D86AEE85283A23B4001BE89F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				D850CFE1282BCB9300C41DE7 /* ProfileMenuType.swift */,
+				D86AEE88283A2544001BE89F /* TextMenuPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		D8DEC03E282ADE8D000A62B8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -647,12 +677,14 @@
 				D821F8B02832A84D00C43774 /* ProfilePresenter.swift in Sources */,
 				D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */,
 				D8262F9B281F309900FA3E76 /* ChatViewController.swift in Sources */,
+				D86AEE89283A2544001BE89F /* TextMenuPresenter.swift in Sources */,
 				D850CFDE282BBB9000C41DE7 /* ProfileMenuCell.swift in Sources */,
 				D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */,
 				D86A79E92821598A00F45D76 /* StorageService.swift in Sources */,
 				D8262FAC28202B9300FA3E76 /* LaunchViewController.swift in Sources */,
 				D86A79DC2821130900F45D76 /* ServiceType.swift in Sources */,
 				D86A79ED2821734000F45D76 /* AuthService.swift in Sources */,
+				D86AEE87283A253A001BE89F /* TextMenuViewController.swift in Sources */,
 				D8DEC039282AC995000A62B8 /* FirestoreService.swift in Sources */,
 				D8262FBE282040A000FA3E76 /* UIView + Extensions.swift in Sources */,
 				D8262FA32820176900FA3E76 /* UIFont + Extensions.swift in Sources */,
