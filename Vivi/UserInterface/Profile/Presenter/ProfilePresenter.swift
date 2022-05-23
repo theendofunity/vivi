@@ -132,6 +132,8 @@ extension ProfilePresenter {
             showAgreements()
         case .project:
             showProject()
+        case .examples:
+            showExamples()
         default:
             break
         }
@@ -141,6 +143,16 @@ extension ProfilePresenter {
         guard let user = userService.user else { return }
         let view = TextMenuViewController()
         let presenter = TextMenuPresenter(type: type, user: user)
+        view.presenter = presenter
+        presenter.view = view
+        
+        self.view?.navigation()?.pushViewController(view, animated: true)
+    }
+    
+    func showGalleryMenu(type: ProfileMenuType) {
+        guard let user = userService.user else { return }
+        let view = PhotoGalleryViewController()
+        let presenter = PhotoGalleryPresenter(type: type, user: user)
         view.presenter = presenter
         presenter.view = view
         
@@ -157,5 +169,9 @@ extension ProfilePresenter {
     
     func showProject() {
         showTextMenu(type: .project)
+    }
+    
+    func showExamples() {
+        showGalleryMenu(type: .examples)
     }
 }

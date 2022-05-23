@@ -58,6 +58,9 @@
 		D86AEE89283A2544001BE89F /* TextMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE88283A2544001BE89F /* TextMenuPresenter.swift */; };
 		D86AEE8C283A29AF001BE89F /* TextMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE8B283A29AF001BE89F /* TextMenuCell.swift */; };
 		D86AEE8E283AB56C001BE89F /* DocumentsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE8D283AB56C001BE89F /* DocumentsDetailViewController.swift */; };
+		D86AEE90283BF06A001BE89F /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE8F283BF06A001BE89F /* PhotoGalleryViewController.swift */; };
+		D86AEE92283BF07E001BE89F /* PhotoGalleryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE91283BF07E001BE89F /* PhotoGalleryPresenter.swift */; };
+		D86AEE94283BFAA7001BE89F /* PhotoGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE93283BFAA7001BE89F /* PhotoGalleryCell.swift */; };
 		D8B27B0E282C285300EDAD23 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */; };
 		D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */; };
 		D8DEC039282AC995000A62B8 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC038282AC995000A62B8 /* FirestoreService.swift */; };
@@ -122,6 +125,9 @@
 		D86AEE88283A2544001BE89F /* TextMenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMenuPresenter.swift; sourceTree = "<group>"; };
 		D86AEE8B283A29AF001BE89F /* TextMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMenuCell.swift; sourceTree = "<group>"; };
 		D86AEE8D283AB56C001BE89F /* DocumentsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsDetailViewController.swift; sourceTree = "<group>"; };
+		D86AEE8F283BF06A001BE89F /* PhotoGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewController.swift; sourceTree = "<group>"; };
+		D86AEE91283BF07E001BE89F /* PhotoGalleryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryPresenter.swift; sourceTree = "<group>"; };
+		D86AEE93283BFAA7001BE89F /* PhotoGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCell.swift; sourceTree = "<group>"; };
 		D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		D8DEC038282AC995000A62B8 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
@@ -508,6 +514,7 @@
 				D821F8B12832BE3D00C43774 /* ProfileMenuView.swift */,
 				D86AEE86283A253A001BE89F /* TextMenuViewController.swift */,
 				D86AEE8D283AB56C001BE89F /* DocumentsDetailViewController.swift */,
+				D86AEE8F283BF06A001BE89F /* PhotoGalleryViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -517,6 +524,7 @@
 			children = (
 				D850CFE1282BCB9300C41DE7 /* ProfileMenuType.swift */,
 				D86AEE88283A2544001BE89F /* TextMenuPresenter.swift */,
+				D86AEE91283BF07E001BE89F /* PhotoGalleryPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -525,6 +533,7 @@
 			isa = PBXGroup;
 			children = (
 				D86AEE8B283A29AF001BE89F /* TextMenuCell.swift */,
+				D86AEE93283BFAA7001BE89F /* PhotoGalleryCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -708,10 +717,12 @@
 				D8262FBA28203A6000FA3E76 /* ServicesView.swift in Sources */,
 				D8262F74281F2ADB00FA3E76 /* SceneDelegate.swift in Sources */,
 				D8262F9D281F30A400FA3E76 /* ChatPresenter.swift in Sources */,
+				D86AEE94283BFAA7001BE89F /* PhotoGalleryCell.swift in Sources */,
 				D850CFE2282BCB9300C41DE7 /* ProfileMenuType.swift in Sources */,
 				D8262FB82820316900FA3E76 /* PortfolioExampleCell.swift in Sources */,
 				D86A79F22821740C00F45D76 /* AuthViewController.swift in Sources */,
 				D86A79E428212EEE00F45D76 /* UIImage + Extensions.swift in Sources */,
+				D86AEE92283BF07E001BE89F /* PhotoGalleryPresenter.swift in Sources */,
 				D8262FA528201AE200FA3E76 /* UIViewController + Extensions.swift in Sources */,
 				D8262FBC28203C5C00FA3E76 /* ServiceCell.swift in Sources */,
 				D86A79E228212AA300F45D76 /* UIImageView + Extensions.swift in Sources */,
@@ -725,6 +736,7 @@
 				D8DEC03D282ACEA6000A62B8 /* UserService.swift in Sources */,
 				D8418E812822EA3A00163255 /* TextFieldType.swift in Sources */,
 				D86A79E028211A6600F45D76 /* ServiceDetailsViewController.swift in Sources */,
+				D86AEE90283BF06A001BE89F /* PhotoGalleryViewController.swift in Sources */,
 				D86A79F628217A0C00F45D76 /* LineTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
