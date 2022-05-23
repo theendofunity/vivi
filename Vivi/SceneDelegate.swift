@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import SwiftLoader
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -17,6 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         FirebaseApp.configure()
+        
+        setupLoader()
         
         let window = UIWindow(windowScene: windowScene)
         self.window = window
@@ -32,6 +35,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 extension SceneDelegate: ApplicationPresenterDelegate {
     func dataLoaded() {
         window?.rootViewController = MainTabBarController()
+    }
+    
+    func setupLoader() {
+        var config = SwiftLoader.Config()
+        config.backgroundColor = .clear
+        config.spinnerColor = .denim ?? .white
+        SwiftLoader.setConfig(config)
     }
 }
 

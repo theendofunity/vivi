@@ -16,4 +16,6 @@ pod 'Firebase/Firestore'
 
 pod 'SDWebImage'
 
+pod 'SwiftLoader'
+
 end

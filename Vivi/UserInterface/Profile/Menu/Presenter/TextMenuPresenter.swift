@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftLoader
 
 protocol TextMenuViewType: AnyObject {
     func setupTitle(_ title: String)
@@ -90,6 +91,7 @@ extension TextMenuPresenter {
     }
     
     func loadFilesList(type: StorageService.ReferenceType) {
+        SwiftLoader.show(animated: true)
         storageService.getFilesList(type) { [weak self] result in
             guard let self = self else { return }
             
@@ -100,6 +102,8 @@ extension TextMenuPresenter {
             case .failure(let error):
                 self.view?.showError(error: error)
             }
+            
+            SwiftLoader.hide()
         }
     }
     
