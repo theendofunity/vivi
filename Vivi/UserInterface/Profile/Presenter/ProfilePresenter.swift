@@ -25,6 +25,7 @@ protocol ProfileViewType: AnyObject {
 class ProfilePresenter {
     weak var view: ProfileViewType?
     private var userService = UserService.shared
+    
     private var pages: [PageType] = []
     
     func viewDidLoad() {
@@ -137,8 +138,9 @@ extension ProfilePresenter {
     }
     
     func showTextMenu(type: ProfileMenuType) {
+        guard let user = userService.user else { return }
         let view = TextMenuViewController()
-        let presenter = TextMenuPresenter(type: type)
+        let presenter = TextMenuPresenter(type: type, user: user)
         view.presenter = presenter
         presenter.view = view
         
