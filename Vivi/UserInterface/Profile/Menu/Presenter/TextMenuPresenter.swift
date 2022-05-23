@@ -76,23 +76,18 @@ extension TextMenuPresenter {
         switch type {
         case .agreement:
             return .agreements(id: id)
+        case .project:
+            return .project(id: id)
+        case .form:
+            return .forms(id: id)
         default:
             return nil
         }
     }
     
     func loadData() {
-        guard let user = UserService.shared.user,
-              let id = user.id else {
-            return
-        }
-        
-        switch type {
-        case .agreement:
-            loadFilesList(type: .agreements(id: id))
-        default:
-            break
-        }
+        guard let reference = referenceType() else { return }
+        loadFilesList(type: reference)
     }
     
     func loadFilesList(type: StorageService.ReferenceType) {
@@ -110,12 +105,9 @@ extension TextMenuPresenter {
     }
     
     func uploadFile(with url: URL) {
-        guard let user = UserService.shared.user,
-              let id = user.id else {
-            return
-        }
+        guard let reference = referenceType() else { return }
         
-        storageService.uploadFile(.agreements(id: id), fileUrl: url) { [weak self] result in
+        storageService.uploadFile(reference, fileUrl: url) { [weak self] result in
             switch result {
             case .success():
                 self?.loadData()

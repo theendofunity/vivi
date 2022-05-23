@@ -20,6 +20,8 @@ class StorageService {
         case users
         case user(id: String)
         case agreements(id: String)
+        case forms(id: String)
+        case project(id: String)
         
         func path() -> String {
             switch self {
@@ -32,6 +34,12 @@ class StorageService {
             case .agreements(let id):
                 let userPath = ReferenceType.user(id: id).path()
                 return "\(userPath)/Agreements"
+            case .forms(id: let id):
+                let userPath = ReferenceType.user(id: id).path()
+                return "\(userPath)/Forms"
+            case .project(id: let id):
+                let userPath = ReferenceType.user(id: id).path()
+                return "\(userPath)/Project"
             }
         }
     }
