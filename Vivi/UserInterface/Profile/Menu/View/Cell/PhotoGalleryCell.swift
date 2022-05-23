@@ -14,7 +14,7 @@ class PhotoGalleryCell: ReusableCell {
     
     lazy var photoView: UIImageView = {
         let view = UIImageView()
-        view.contentMode = .scaleAspectFill
+//        view.contentMode = .scaleAspectFill
         return view
     }()
     
@@ -33,7 +33,12 @@ class PhotoGalleryCell: ReusableCell {
     }
     
     func setupConstraints() {
-        photoView.easy.layout(Edges())
+        photoView.easy.layout(
+            Top(2),
+            Bottom(2),
+            Leading(2),
+            Trailing(2)
+        )
     }
     
     func configure(with url: URL) {

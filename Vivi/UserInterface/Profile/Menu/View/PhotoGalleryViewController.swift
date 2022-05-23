@@ -54,8 +54,8 @@ class PhotoGalleryViewController: UIViewController {
     func setupConstraints() {
         collectionView.easy.layout(
             Top().to(view.safeAreaLayoutGuide, .top),
-            Leading(24),
-            Trailing(24),
+            Leading(16),
+            Trailing(16),
             Bottom().to(view.safeAreaLayoutGuide, .bottom)
         )
         
@@ -68,21 +68,20 @@ class PhotoGalleryViewController: UIViewController {
     
     
     func createLayout() -> UICollectionViewLayout {
-        let spacing: CGFloat = 16
+        let spacing: CGFloat = 8
         
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3),
                                               heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
+//        item.contentInsets = .init(top: 4, leading: 4, bottom: 4, trailing: 4)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .absolute(60))
+                                               heightDimension: .fractionalHeight(1/3))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                     subitem: item,
-                                                     count: 3)
-        group.interItemSpacing = .fixed(spacing)
+                                                     subitems: [item])
+//        group.interItemSpacing = .fixed(spacing)
         
         let section = NSCollectionLayoutSection(group: group)
-        
+        section.interGroupSpacing = spacing
         let layout = UICollectionViewCompositionalLayout(section: section)
         
         return layout
