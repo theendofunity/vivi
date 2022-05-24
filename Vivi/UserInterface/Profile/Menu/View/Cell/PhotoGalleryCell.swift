@@ -14,7 +14,8 @@ class PhotoGalleryCell: ReusableCell {
     
     lazy var photoView: UIImageView = {
         let view = UIImageView()
-//        view.contentMode = .scaleAspectFill
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         return view
     }()
     

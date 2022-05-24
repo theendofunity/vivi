@@ -70,15 +70,15 @@ class PhotoGalleryViewController: UIViewController {
     func createLayout() -> UICollectionViewLayout {
         let spacing: CGFloat = 8
         
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3),
-                                              heightDimension: .fractionalHeight(1))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalHeight(1/3))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-//        item.contentInsets = .init(top: 4, leading: 4, bottom: 4, trailing: 4)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .fractionalHeight(1/3))
+                                               heightDimension: .fractionalHeight(0.5))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                     subitems: [item])
-//        group.interItemSpacing = .fixed(spacing)
+                                                     subitem: item,
+                                                       count: 3)
+        group.interItemSpacing = .fixed(spacing)
         
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = spacing
