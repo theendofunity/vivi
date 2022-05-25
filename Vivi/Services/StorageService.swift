@@ -68,7 +68,7 @@ class StorageService {
                     }
                     if let url = url {
                         urls.append(url)
-                        completion(.success([url]))
+                        completion(.success([url]))     //TODO: Fix overhead
 
                     }
                 }
@@ -92,7 +92,6 @@ class StorageService {
     func uploadFile(_ referenceType: ReferenceType, fileUrl: URL, completion: @escaping VoidCompletion) {
         guard let fileName = fileUrl.pathComponents.last else { return }
         let ref = storage.reference(withPath: referenceType.path()).child(fileName)
-        
         ref.putFile(from: fileUrl, metadata: nil) { metadata, error in
             if let error = error {
                 completion(.failure(error))
@@ -103,6 +102,7 @@ class StorageService {
             completion(.success(Void()))
         }
     }
+    
     
     func getDownloadUrl(_ referenceType: ReferenceType, fileName: String, completion: @escaping UrlCompletion) {
         let ref = storage.reference(withPath: referenceType.path()).child(fileName)

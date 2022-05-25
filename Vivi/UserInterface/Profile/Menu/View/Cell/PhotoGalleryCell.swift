@@ -16,6 +16,9 @@ class PhotoGalleryCell: ReusableCell {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
+        view.image = UIImage(systemName: "photo.on.rectangle")
+        view.tintColor = .viviRose
+        view.round(4)
         return view
     }()
     
@@ -44,7 +47,8 @@ class PhotoGalleryCell: ReusableCell {
     
     func configure(with url: URL) {
         self.url = url
-        photoView.sd_setImage(with: url)
+        photoView.sd_setImage(with: url,
+                              placeholderImage: UIImage(systemName: "photo.on.rectangle")?.template())
     }
 
 }

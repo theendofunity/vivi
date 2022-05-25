@@ -38,9 +38,6 @@ class MainTabBarController: UITabBarController {
         let profilePresenter = ProfilePresenter()
         profileViewController.presenter = profilePresenter
         profilePresenter.view = profileViewController
-//        let profilePresenter = ProfilePresenter()
-//        profileViewController.presenter = profilePresenter
-//        profilePresenter.view = profileViewController
         let profileImage = UIImage(systemName: "person")
         
         viewControllers = [

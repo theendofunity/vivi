@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol PhotoGalleryViewType: AnyObject {
     func setupTitle(title: String)
@@ -13,6 +14,7 @@ protocol PhotoGalleryViewType: AnyObject {
     func selectPhoto()
     func update(urls: [URL])
     func showError(error: Error)
+    func navigation() -> UINavigationController?
 }
 
 class PhotoGalleryPresenter {
@@ -70,6 +72,23 @@ class PhotoGalleryPresenter {
     }
     
     func uploadPhoto(url: URL) {
-        
+        guard let ref = referenceType() else { return }
+        storageService.uploadFile(ref, fileUrl: url) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success():
+                self.urls.append(url)
+                self.view?.update(urls: self.urls)
+            case .failure(let error):
+                self.view?.showError(error: error)
+            }
+        }
+    }
+    
+    func photoDidSelect(indexPath: IndexPath) {
+        let view = DetailImageViewController()
+        self.view?.navigation()?.present(view, animated: true, completion: {
+            view.update(urls: self.urls, selectedIndex: indexPath)
+        })
     }
 }
