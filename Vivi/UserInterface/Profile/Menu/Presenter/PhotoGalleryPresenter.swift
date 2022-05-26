@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftLoader
 
 protocol PhotoGalleryViewType: AnyObject {
     func setupTitle(title: String)
@@ -44,7 +45,11 @@ class PhotoGalleryPresenter {
     
     func loadData() {
         guard let reference = referenceType() else { return }
+        
+        SwiftLoader.show(animated: true)
+
         storageService.getUrls(reference) { result in
+            SwiftLoader.hide()
             switch result {
                 
             case .success(let urls):
@@ -77,7 +82,11 @@ class PhotoGalleryPresenter {
     
     func uploadPhoto(url: URL) {
         guard let ref = referenceType() else { return }
+        
+        SwiftLoader.show(animated: true)
+
         storageService.uploadFile(ref, fileUrl: url) { [weak self] result in
+            SwiftLoader.hide()
             guard let self = self else { return }
             switch result {
             case .success():
