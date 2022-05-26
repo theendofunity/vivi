@@ -24,9 +24,17 @@ extension UIViewController {
         appearance.configureWithTransparentBackground()
         appearance.backgroundColor = .viviRose50
         
+        let attributes = [
+          NSAttributedString.Key.foregroundColor: UIColor.denim
+        ]
+        
+        appearance.titleTextAttributes = attributes as [NSAttributedString.Key : Any]
+        
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.tintColor = .denim 
+        navigationController?.navigationBar.tintColor = .denim
+        navigationController?.navigationBar.barTintColor = .denim
+
         navigationItem.backButtonTitle = ""
 
     }
