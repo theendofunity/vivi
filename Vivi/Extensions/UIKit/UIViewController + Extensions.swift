@@ -14,9 +14,10 @@ extension UIViewController {
         
         let logo = R.image.logo()
         let imageView = UIImageView(image: logo)
-        imageView.easy.layout(Height(38), CenterX())
-        imageView.contentMode = .scaleAspectFit
-        navigationItem.titleView = imageView
+        let contentView = UIView()
+        navigationItem.titleView = contentView
+        navigationItem.titleView?.addSubview(imageView)
+        imageView.easy.layout(CenterY(), CenterX(), Height(40), Width(55))
     }
     
     func navigationBarBase() {

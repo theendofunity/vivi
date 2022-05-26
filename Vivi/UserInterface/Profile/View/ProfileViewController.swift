@@ -53,9 +53,11 @@ class ProfileViewController: UIViewController {
         setupView()
         setupConstraints()
         setupNavigationBar()
-        
+
         presenter.viewDidLoad()
     }
+    
+  
     
     func setupNavigationBar() {
         let logoutButton = UIBarButtonItem(title: "Выйти",
@@ -64,8 +66,6 @@ class ProfileViewController: UIViewController {
                                            action: #selector(logoutPressed))
         navigationItem.rightBarButtonItem = logoutButton
         navigationBarWithLogo()
-        navigationItem.titleView?.easy.layout(CenterX())
-
     }
     
     func setupView() {
