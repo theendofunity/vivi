@@ -31,6 +31,11 @@ class ProfileViewController: UIViewController {
         let control = UISegmentedControl()
         control.selectedSegmentTintColor = .viviRose50
         control.addTarget(self, action: #selector(pageDidChanged), for: .valueChanged)
+        if let color = UIColor.denim {
+            control.setTitleTextAttributes([.foregroundColor: color], for: .selected)
+            control.setTitleTextAttributes([.foregroundColor: color], for: .normal)
+        }
+
         return control
     }()
     
@@ -56,8 +61,6 @@ class ProfileViewController: UIViewController {
 
         presenter.viewDidLoad()
     }
-    
-  
     
     func setupNavigationBar() {
         let logoutButton = UIBarButtonItem(title: "Выйти",
