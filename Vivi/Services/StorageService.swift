@@ -58,20 +58,26 @@ class StorageService {
                 completion(.failure(error))
                 return
             }
+            let group = DispatchGroup()
+            var urls: [URL] = []
             
             for item in result.items {
-                var urls: [URL] = []
+                group.enter()
                 item.downloadURL { url, error in
                     if let error = error {
                         completion(.failure(error))
+                        group.leave()
                         return
                     }
                     if let url = url {
                         urls.append(url)
-                        completion(.success([url]))     //TODO: Fix overhead
-
+                        group.leave()
                     }
                 }
+            }
+            
+            group.notify(queue: .main) {
+                completion(.success(urls))
             }
         }
     }

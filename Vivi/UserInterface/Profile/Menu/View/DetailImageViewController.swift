@@ -26,7 +26,6 @@ class DetailImageViewController: UIViewController {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.showsVerticalScrollIndicator = false
         collection.backgroundColor = .denim
-//        collection.isPagingEnabled = true
         collection.register(cell: PhotoGalleryCell.self)
         
         return collection
