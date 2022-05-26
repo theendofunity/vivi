@@ -87,6 +87,7 @@ class PhotoGalleryPresenter {
     
     func photoDidSelect(indexPath: IndexPath) {
         let view = DetailImageViewController()
+        view.modalPresentationStyle = .fullScreen
         self.view?.navigation()?.present(view, animated: true, completion: {
             view.update(urls: self.urls, selectedIndex: indexPath)
         })

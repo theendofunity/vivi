@@ -26,8 +26,8 @@ class DetailImageViewController: UIViewController {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.showsVerticalScrollIndicator = false
         collection.backgroundColor = .denim
-        collection.register(cell: PhotoGalleryCell.self)
-        
+        collection.register(cell: ZoomPhotoCell.self)
+        collection.delegate = self
         return collection
     }()
     
@@ -75,7 +75,7 @@ class DetailImageViewController: UIViewController {
     
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<GallerySection, URL>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoGalleryCell.reuseId, for: indexPath) as? PhotoGalleryCell else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ZoomPhotoCell.reuseId, for: indexPath) as? ZoomPhotoCell else { return UICollectionViewCell() }
             cell.configure(with: itemIdentifier)
             return cell
         })
@@ -88,11 +88,16 @@ class DetailImageViewController: UIViewController {
         dataSource?.apply(snapshot)
         self.collectionView.scrollToItem(at: selectedIndex, at: .centeredVertically, animated: false)
         print(#function, selectedIndex)
-        
-        
     }
     
     @objc func closeView() {
         self.dismiss(animated: true)
+    }
+}
+
+extension DetailImageViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ZoomPhotoCell else { return }
+        cell.reset()
     }
 }
