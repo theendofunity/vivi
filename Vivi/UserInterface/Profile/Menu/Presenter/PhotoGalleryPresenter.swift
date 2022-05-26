@@ -66,6 +66,10 @@ class PhotoGalleryPresenter {
         switch type {
         case .examples:
             return .userExamples(id: id)
+        case .sketches:
+            return .sketches(id: id)
+        case .visualizations:
+            return .visualizations(id: id)
         default:
             return nil
         }

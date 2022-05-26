@@ -134,6 +134,10 @@ extension ProfilePresenter {
             showProject()
         case .examples:
             showExamples()
+        case .sketches:
+            showSketches()
+        case .visualizations:
+            showVisualizations()
         default:
             break
         }
@@ -173,5 +177,13 @@ extension ProfilePresenter {
     
     func showExamples() {
         showGalleryMenu(type: .examples)
+    }
+    
+    func showSketches() {
+        showGalleryMenu(type: .sketches)
+    }
+    
+    func showVisualizations() {
+        showGalleryMenu(type: .visualizations)
     }
 }
