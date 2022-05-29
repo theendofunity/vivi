@@ -9,6 +9,8 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
 
+    private var profileConfigurator: ProfileConfigurator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,21 +36,30 @@ class MainTabBarController: UITabBarController {
         chatPresenter.view = chatViewController
         let chatImage = UIImage(systemName: "message")
         
-        let profileViewController = ProfileViewController()
-        let profilePresenter = ProfilePresenter()
-        profileViewController.presenter = profilePresenter
-        profilePresenter.view = profileViewController
+//        let profileViewController = ProfileViewController()
+//        let profilePresenter = ProfilePresenter()
+//        profileViewController.presenter = profilePresenter
+//        profilePresenter.view = profileViewController
         let profileImage = UIImage(systemName: "person")
         
+        let main =  createNavigationController(rootViewController: portfolioViewController, title: "Портфолио", image: portfolioImage)
+        let chat = createNavigationController(rootViewController: chatViewController, title: "Чат", image: chatImage)
+        let profile = createNavigationController(rootViewController: nil, title: "Профиль", image: profileImage)
+
+        profileConfigurator = ProfileConfigurator(navigation: profile)
+    
         viewControllers = [
-            createNavigationController(rootViewController: portfolioViewController, title: "Портфолио", image: portfolioImage),
-            createNavigationController(rootViewController: chatViewController, title: "Чат", image: chatImage),
-            createNavigationController(rootViewController: profileViewController, title: "Профиль", image: profileImage)
+           main,
+           chat,
+           profile
         ]
     }
 
-    func createNavigationController(rootViewController: UIViewController, title: String, image: UIImage?) -> UINavigationController {
-        let navigationController = UINavigationController(rootViewController: rootViewController)
+    func createNavigationController(rootViewController: UIViewController?, title: String, image: UIImage?) -> UINavigationController {
+        let navigationController = UINavigationController()
+        if let rootViewController = rootViewController {
+            navigationController.viewControllers = [rootViewController]
+        }
         navigationController.tabBarItem.title = title
         navigationController.tabBarItem.image = image
         return navigationController

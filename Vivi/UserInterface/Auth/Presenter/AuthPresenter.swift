@@ -53,7 +53,6 @@ class AuthPresenter {
                     switch result {
                     case .success(let user):
                         UserService.shared.user = user
-                        print(user)
                         self?.delegate?.authSuccess()
                     case .failure(let error):
                         self?.view?.showError(error: error)

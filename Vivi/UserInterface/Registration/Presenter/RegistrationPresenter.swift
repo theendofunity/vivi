@@ -89,6 +89,7 @@ class RegistrationPresenter {
             self?.view?.hideAnimation()
             switch result {
             case .success():
+                UserService.shared.user = user
                 self?.view?.showSuccess()
             case .failure(let error):
                 self?.view?.showError(error: error)

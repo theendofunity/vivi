@@ -24,6 +24,7 @@ protocol ProfileViewType: AnyObject {
 
 class ProfilePresenter {
     weak var view: ProfileViewType?
+    weak var navigationDelegate: ProfileNavigationDelegate?
     private var userService = UserService.shared
     
     private var pages: [PageType] = []
@@ -37,13 +38,8 @@ class ProfilePresenter {
     }
     
     func determineState() {
-        if AuthService.shared.isLoggedIn {
-            guard let _ = UserService.shared.user else { return }
-            
-            reload()
-        } else {
-            showAuth()
-        }
+        guard let _ = UserService.shared.user else { return }
+        reload()
     }
     
     func reload() {
@@ -55,18 +51,7 @@ class ProfilePresenter {
     func logout() {
         AuthService.shared.logout()
         userService.user = nil
-        determineState()
-    }
-    
-    func showAuth() {
-        let authPresenter = AuthPresenter()
-        let authViewController = AuthViewController()
-        
-        authPresenter.view = authViewController
-        authPresenter.delegate = self
-        authViewController.presenter = authPresenter
-        authViewController.navigationItem.setHidesBackButton(true, animated: false)
-        view?.navigation()?.pushViewController(authViewController, animated: false)
+        navigationDelegate?.stateChanged()
     }
 }
 
@@ -116,13 +101,6 @@ extension ProfilePresenter {
     func pageDidChange(index: Int) {
         let page = pages[index]
         view?.changePage(to: page)
-    }
-}
-
-extension ProfilePresenter: AuthDelegate {
-    func authSuccess() {
-        view?.navigation()?.popToRootViewController(animated: true)
-        viewDidLoad()
     }
 }
 

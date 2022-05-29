@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ProfileNavigationDelegate: AnyObject {
+    func stateChanged()
+}
+
 class ProfileConfigurator {
     var navigation: UINavigationController
     
@@ -19,6 +23,8 @@ class ProfileConfigurator {
     func determineState() {
         if AuthService.shared.isLoggedIn {
             showProfile()
+        } else {
+            showAuth()
         }
     }
     
@@ -30,7 +36,7 @@ class ProfileConfigurator {
         authPresenter.delegate = self
         authViewController.presenter = authPresenter
         authViewController.navigationItem.setHidesBackButton(true, animated: false)
-        navigation.pushViewController(authViewController, animated: false)
+        navigation.setViewControllers([authViewController], animated: true)
     }
     
     func showProfile() {
@@ -38,20 +44,23 @@ class ProfileConfigurator {
         let profilePresenter = ProfilePresenter()
         profileViewController.presenter = profilePresenter
         profilePresenter.view = profileViewController
+        profilePresenter.navigationDelegate = self
+        navigation.setViewControllers([profileViewController], animated: true)
     }
     
     func showUserBase() {
         
     }
-    
-    func logout() {
-        AuthService.shared.logout()
-        showAuth()
-    }
 }
 
 extension ProfileConfigurator: AuthDelegate {
     func authSuccess() {
+        stateChanged()
+    }
+}
+
+extension ProfileConfigurator: ProfileNavigationDelegate {
+    func stateChanged() {
         determineState()
     }
 }
