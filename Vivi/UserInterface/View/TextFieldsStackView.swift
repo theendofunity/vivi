@@ -9,7 +9,8 @@ import UIKit
 import EasyPeasy
 
 protocol TextFieldsStackViewDelegate: AnyObject {
-    
+    func textFieldBeginEditing(textField: UITextField)
+    func textFieldEndEditing()
 }
 
 class TextFieldsStackView: UIView {
@@ -68,7 +69,7 @@ extension TextFieldsStackView {
             textField.type = field.type
             textField.textField.text = field.value
             textField.textField.isEnabled = field.canEdit
-            
+            textField.textField.delegate = self
             stackView.addArrangedSubview(textField)
         }
     }
@@ -78,5 +79,15 @@ extension TextFieldsStackView {
             stackView.removeArrangedSubview(view)
             view.removeFromSuperview()
         }
+    }
+}
+
+extension TextFieldsStackView: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        delegate?.textFieldBeginEditing(textField: textField)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        delegate?.textFieldEndEditing()
     }
 }

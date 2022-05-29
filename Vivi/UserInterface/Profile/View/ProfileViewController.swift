@@ -58,7 +58,6 @@ class ProfileViewController: UIViewController {
         setupView()
         setupConstraints()
         setupNavigationBar()
-
         presenter.viewDidLoad()
     }
     
@@ -182,5 +181,7 @@ extension ProfileViewController: ProfileMenuViewDelegate {
         presenter.menuItemDidSelect(item: item)
     }
 }
+
+
 
 
