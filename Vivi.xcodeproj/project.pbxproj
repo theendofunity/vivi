@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		83914B6072D7D2FED30ED495 /* Pods_Vivi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D9089F03D5FDB8614EC5901 /* Pods_Vivi.framework */; };
+		D806903428436912007916DF /* ProfileConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806903328436912007916DF /* ProfileConfigurator.swift */; };
 		D821F8B02832A84D00C43774 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821F8AF2832A84D00C43774 /* ProfilePresenter.swift */; };
 		D821F8B22832BE3D00C43774 /* ProfileMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821F8B12832BE3D00C43774 /* ProfileMenuView.swift */; };
 		D8262F72281F2ADB00FA3E76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F71281F2ADB00FA3E76 /* AppDelegate.swift */; };
@@ -75,6 +76,7 @@
 		65AD19DA22EFCB7EA22119D4 /* Pods-Vivi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vivi.debug.xcconfig"; path = "Target Support Files/Pods-Vivi/Pods-Vivi.debug.xcconfig"; sourceTree = "<group>"; };
 		7D9089F03D5FDB8614EC5901 /* Pods_Vivi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vivi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B48690AF950970DA87A9FD8B /* Pods-Vivi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vivi.release.xcconfig"; path = "Target Support Files/Pods-Vivi/Pods-Vivi.release.xcconfig"; sourceTree = "<group>"; };
+		D806903328436912007916DF /* ProfileConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurator.swift; sourceTree = "<group>"; };
 		D821F8AF2832A84D00C43774 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		D821F8B12832BE3D00C43774 /* ProfileMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMenuView.swift; sourceTree = "<group>"; };
 		D8262F6E281F2ADB00FA3E76 /* Vivi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vivi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -314,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				D821F8AF2832A84D00C43774 /* ProfilePresenter.swift */,
+				D806903328436912007916DF /* ProfileConfigurator.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -736,6 +739,7 @@
 				D8DEC041282ADEA2000A62B8 /* Completions.swift in Sources */,
 				D8DD1573283E9B08006EAA9C /* DetailImageViewController.swift in Sources */,
 				D8DEC03B282ACA3F000A62B8 /* UserModel.swift in Sources */,
+				D806903428436912007916DF /* ProfileConfigurator.swift in Sources */,
 				D86AEE8C283A29AF001BE89F /* TextMenuCell.swift in Sources */,
 				D8262F86281F2B7F00FA3E76 /* MainTabBarController.swift in Sources */,
 				D86A79FA282180F500F45D76 /* PlainLabel.swift in Sources */,

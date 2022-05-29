@@ -165,6 +165,14 @@ class AuthViewController: UIViewController {
 }
 
 extension AuthViewController: AuthViewType {
+    func startAnimation() {
+        signInButton.showLoading()
+    }
+    
+    func stopAnimation() {
+        signInButton.hideLoading()
+    }
+    
     func navigation() -> UINavigationController? {
         return navigationController
     }

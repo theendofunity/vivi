@@ -166,13 +166,21 @@ class RegistrationViewController: UIViewController {
 }
 
 extension RegistrationViewController: RegistrationViewType {
+    func showAnimation() {
+        registerButton.showLoading()
+    }
+    
+    func hideAnimation() {
+        registerButton.hideLoading()
+    }
+    
     func showError(error: Error) {
         alertError(error: error)
     }
     
     func showSuccess() {
         showAlert(title: "Поздравляем!", message: "Вы успешно зарегистрированы") {
-            self.navigationController?.popToRootViewController(animated: true)
+            self.presenter?.registrationSuccess()
         }
     }
     

@@ -46,9 +46,11 @@ extension UIViewController {
     
     func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .cancel)
+        let okButton = UIAlertAction(title: "OK", style: .cancel) { _ in 
+            completion?()
+        }
         alert.addAction(okButton)
-        present(alert, animated: true, completion: completion)
+        present(alert, animated: true)
     }
     
     func hideKeyboardWhenTappedAround() {

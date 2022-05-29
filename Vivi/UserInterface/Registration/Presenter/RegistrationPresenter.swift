@@ -11,10 +11,18 @@ protocol RegistrationViewType: AnyObject {
     func setFields(fields: [TextFieldViewModel])
     func showError(error: Error)
     func showSuccess()
+    func showAnimation()
+    func hideAnimation()
+}
+
+protocol RegistrationDelegate: AnyObject {
+    func registrationSuccess()
 }
 
 class RegistrationPresenter {
     weak var view: RegistrationViewType?
+    weak var delegate: RegistrationDelegate?
+    
     private var user: UserModel?
     
     func viewDidLoad() {
@@ -60,13 +68,16 @@ class RegistrationPresenter {
             return
         }
 
+        view?.showAnimation()
         AuthService.shared.registerUser(email: email, password: password) { [weak self] result in
             guard let self = self else { return }
+            
             switch result {
             case .success(let newUser):
                 self.user?.id = newUser.uid
                 self.saveUser()
             case .failure(let error):
+                self.view?.hideAnimation()
                 self.view?.showError(error: error)
             }
         }
@@ -74,13 +85,18 @@ class RegistrationPresenter {
     
     func saveUser() {
         guard let user = user else { return }
-        FirestoreService.shared.saveUser(user: user) { result in
+        FirestoreService.shared.saveUser(user: user) { [weak self] result in
+            self?.view?.hideAnimation()
             switch result {
             case .success():
-                self.view?.showSuccess()
+                self?.view?.showSuccess()
             case .failure(let error):
-                self.view?.showError(error: error)
+                self?.view?.showError(error: error)
             }
         }
+    }
+    
+    func registrationSuccess() {
+        delegate?.registrationSuccess()
     }
 }

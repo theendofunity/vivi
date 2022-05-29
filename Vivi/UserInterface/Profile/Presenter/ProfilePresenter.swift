@@ -29,6 +29,14 @@ class ProfilePresenter {
     private var pages: [PageType] = []
     
     func viewDidLoad() {
+       determineState()
+    }
+    
+    func viewDidAppear() {
+        determineState()
+    }
+    
+    func determineState() {
         if AuthService.shared.isLoggedIn {
             guard let _ = UserService.shared.user else { return }
             
@@ -36,10 +44,6 @@ class ProfilePresenter {
         } else {
             showAuth()
         }
-    }
-    
-    func viewDidAppear() {
-        
     }
     
     func reload() {
@@ -50,7 +54,8 @@ class ProfilePresenter {
     
     func logout() {
         AuthService.shared.logout()
-        viewDidLoad()
+        userService.user = nil
+        determineState()
     }
     
     func showAuth() {
@@ -116,7 +121,7 @@ extension ProfilePresenter {
 
 extension ProfilePresenter: AuthDelegate {
     func authSuccess() {
-        view?.navigation()?.popViewController(animated: true)
+        view?.navigation()?.popToRootViewController(animated: true)
         viewDidLoad()
     }
 }
