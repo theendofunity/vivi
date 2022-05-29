@@ -15,18 +15,20 @@ class FirestoreService {
     
     enum Reference: String {
         case users = "users"
+        case projects = "projects"
     }
     
     private init() {}
     
-    func saveUser(user: UserModel, completion: @escaping VoidCompletion) {
-        guard let id = user.id else {
+    func save(reference: Reference, data: FirestoreSavable, completion: @escaping VoidCompletion) {
+        guard let id = data.documentId() else {
             completion(.failure(NSError()))
             return
         }
-        let ref = db.collection(Reference.users.rawValue).document(id)
         
-        ref.setData(user.representation()) { error in
+        let ref = db.collection(reference.rawValue).document(id)
+        
+        ref.setData(data.representation()) { error in
             guard let error = error else {
                 completion(.success(Void()))
                 return

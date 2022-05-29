@@ -13,7 +13,7 @@ enum UserType: String {
     case developer
 }
 
-struct UserModel {
+struct UserModel: FirestoreSavable {
     var id: String?
     let firstName: String
     let lastName: String
@@ -79,5 +79,9 @@ struct UserModel {
     
     func usernameTitle() -> String {
         return "\(firstName) \(lastName)"
+    }
+    
+    func documentId() -> String? {
+        return id
     }
 }

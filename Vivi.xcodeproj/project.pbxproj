@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		83914B6072D7D2FED30ED495 /* Pods_Vivi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D9089F03D5FDB8614EC5901 /* Pods_Vivi.framework */; };
 		D806903428436912007916DF /* ProfileConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806903328436912007916DF /* ProfileConfigurator.swift */; };
+		D80690362843ED66007916DF /* ProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80690352843ED66007916DF /* ProjectModel.swift */; };
+		D80690382843EFE7007916DF /* FirestoreSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80690372843EFE7007916DF /* FirestoreSavable.swift */; };
 		D821F8B02832A84D00C43774 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821F8AF2832A84D00C43774 /* ProfilePresenter.swift */; };
 		D821F8B22832BE3D00C43774 /* ProfileMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821F8B12832BE3D00C43774 /* ProfileMenuView.swift */; };
 		D8262F72281F2ADB00FA3E76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F71281F2ADB00FA3E76 /* AppDelegate.swift */; };
@@ -77,6 +79,8 @@
 		7D9089F03D5FDB8614EC5901 /* Pods_Vivi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vivi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B48690AF950970DA87A9FD8B /* Pods-Vivi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vivi.release.xcconfig"; path = "Target Support Files/Pods-Vivi/Pods-Vivi.release.xcconfig"; sourceTree = "<group>"; };
 		D806903328436912007916DF /* ProfileConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurator.swift; sourceTree = "<group>"; };
+		D80690352843ED66007916DF /* ProjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModel.swift; sourceTree = "<group>"; };
+		D80690372843EFE7007916DF /* FirestoreSavable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreSavable.swift; sourceTree = "<group>"; };
 		D821F8AF2832A84D00C43774 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		D821F8B12832BE3D00C43774 /* ProfileMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMenuView.swift; sourceTree = "<group>"; };
 		D8262F6E281F2ADB00FA3E76 /* Vivi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vivi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -394,6 +398,7 @@
 		D8418E822822EC4400163255 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				D80690372843EFE7007916DF /* FirestoreSavable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -404,6 +409,7 @@
 				D86AEE8128393B54001BE89F /* TextFieldViewModel.swift */,
 				D8418E802822EA3A00163255 /* TextFieldType.swift */,
 				D8DEC03A282ACA3F000A62B8 /* UserModel.swift */,
+				D80690352843ED66007916DF /* ProjectModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -696,7 +702,9 @@
 				D8262F72281F2ADB00FA3E76 /* AppDelegate.swift in Sources */,
 				D86A79EB28215EF800F45D76 /* ExamplesViewModel.swift in Sources */,
 				D850CFE0282BC8F500C41DE7 /* ApplicationPresenter.swift in Sources */,
+				D80690362843ED66007916DF /* ProjectModel.swift in Sources */,
 				D86AEE7E2838EC50001BE89F /* TextFieldsStackView.swift in Sources */,
+				D80690382843EFE7007916DF /* FirestoreSavable.swift in Sources */,
 				D8262F93281F2D8400FA3E76 /* PortfolioPresenter.swift in Sources */,
 				D821F8B22832BE3D00C43774 /* ProfileMenuView.swift in Sources */,
 				D86AEE8228393B54001BE89F /* TextFieldViewModel.swift in Sources */,
