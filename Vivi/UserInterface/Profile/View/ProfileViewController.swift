@@ -142,7 +142,8 @@ extension ProfileViewController: ProfileViewType {
         segmentedControl.removeAllSegments()
         
         pages.forEach {
-            segmentedControl.insertSegment(withTitle: $0.rawValue, at: 0, animated: false)
+            let lastIndex = segmentedControl.numberOfSegments
+            segmentedControl.insertSegment(withTitle: $0.rawValue, at: lastIndex, animated: false)
         }
         segmentedControl.selectedSegmentIndex = 0
         pageDidChanged()
