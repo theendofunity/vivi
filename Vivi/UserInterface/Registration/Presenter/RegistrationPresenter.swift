@@ -85,7 +85,7 @@ class RegistrationPresenter {
     
     func saveUser() {
         guard let user = user else { return }
-        FirestoreService.shared.saveUser(user: user) { [weak self] result in
+        FirestoreService.shared.save(reference: .users, data: user) { [weak self] result in
             self?.view?.hideAnimation()
             switch result {
             case .success():

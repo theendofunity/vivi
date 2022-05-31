@@ -121,6 +121,8 @@ extension ProfilePresenter {
             showSketches()
         case .visualizations:
             showVisualizations()
+        case .allProjects:
+            showAllProjects()
         default:
             break
         }
@@ -145,7 +147,11 @@ extension ProfilePresenter {
         
         self.view?.navigation()?.pushViewController(view, animated: true)
     }
-    
+}
+
+//MARK: - User
+
+extension ProfilePresenter {
     func showForm() {
         showTextMenu(type: .form)
     }
@@ -168,5 +174,18 @@ extension ProfilePresenter {
     
     func showVisualizations() {
         showGalleryMenu(type: .visualizations)
+    }
+}
+
+//MARK: - Admin
+
+extension ProfilePresenter {
+    func showAllProjects() {
+        let view = TextMenuViewController()
+        let presenter = ProjectsPresenter()
+        view.presenter = presenter
+        presenter.view = view
+        
+        self.view?.navigation()?.pushViewController(view, animated: true)
     }
 }

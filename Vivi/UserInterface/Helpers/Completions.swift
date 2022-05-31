@@ -14,3 +14,7 @@ typealias UrlCompletion = (Result<URL, Error>) -> Void
 typealias VoidCompletion = (Result<Void, Error>) -> Void
 typealias StringsCompletion = (Result<[String], Error>) -> Void
 
+typealias DocumentsCompletion = (Result<[FirestoreSavable], Error>) -> Void
+typealias ProjectsCompletion = (Result<[ProjectModel], Error>) -> Void
+
+

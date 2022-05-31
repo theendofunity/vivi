@@ -55,4 +55,25 @@ class FirestoreService {
             completion(.success(userModel))
         }
     }
+    
+    func load<T: FirestoreSavable>(referenceType: Reference, completion: @escaping (Result<[T], Error>) -> Void) {
+        let ref = db.collection(referenceType.rawValue)
+        
+        ref.getDocuments { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let snapshot = snapshot else { return }
+            var data: [T] = []
+            
+            for document in snapshot.documents {
+                if let model = T(document: document.data()) {
+                    data.append(model)
+                }
+            }
+            completion(.success(data))
+        }
+    }
 }

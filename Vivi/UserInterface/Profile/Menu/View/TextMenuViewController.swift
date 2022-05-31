@@ -9,7 +9,7 @@ import UIKit
 import EasyPeasy
 
 class TextMenuViewController: UIViewController {
-    var presenter: TextMenuPresenter!
+    var presenter: TextMenuPresenterProtocol!
     var files: [String] = []
     
     private lazy var mainButton: MainButton = {
@@ -126,6 +126,6 @@ extension TextMenuViewController: UIDocumentPickerDelegate {
         guard controller.documentPickerMode == .import,
               let url = urls.first else { return }
         
-        presenter.uploadFile(with: url)
+        presenter.add(file: url)
     }
 }

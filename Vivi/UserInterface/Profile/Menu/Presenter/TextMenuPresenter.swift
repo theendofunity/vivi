@@ -19,7 +19,17 @@ protocol TextMenuViewType: AnyObject {
     func navigation() -> UINavigationController?
 }
 
-class TextMenuPresenter {
+protocol TextMenuPresenterProtocol: AnyObject {
+    func viewDidLoad()
+    func viewDidAppear()
+    
+    func buttonPressed()
+    func fileDidSelect(filename: String)
+    func loadData()
+    func add(file: Any)
+}
+
+class TextMenuPresenter: TextMenuPresenterProtocol {
     weak var view: TextMenuViewType?
     var type: ProfileMenuType
     var user: UserModel
@@ -118,5 +128,10 @@ extension TextMenuPresenter {
                 self?.view?.showError(error: error)
             }
         }
+    }
+    
+    func add(file: Any) {
+        guard let url = file as? URL else { return }
+        uploadFile(with: url)
     }
 }

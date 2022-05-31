@@ -64,6 +64,8 @@
 		D86AEE90283BF06A001BE89F /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE8F283BF06A001BE89F /* PhotoGalleryViewController.swift */; };
 		D86AEE92283BF07E001BE89F /* PhotoGalleryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE91283BF07E001BE89F /* PhotoGalleryPresenter.swift */; };
 		D86AEE94283BFAA7001BE89F /* PhotoGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE93283BFAA7001BE89F /* PhotoGalleryCell.swift */; };
+		D88A0CE22846686D00B02D3E /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A0CE12846686D00B02D3E /* NewProjectViewController.swift */; };
+		D88A0CE42846703500B02D3E /* ProjectsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A0CE32846703500B02D3E /* ProjectsPresenter.swift */; };
 		D8B27B0E282C285300EDAD23 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */; };
 		D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */; };
 		D8DD1573283E9B08006EAA9C /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */; };
@@ -72,6 +74,7 @@
 		D8DEC03B282ACA3F000A62B8 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC03A282ACA3F000A62B8 /* UserModel.swift */; };
 		D8DEC03D282ACEA6000A62B8 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC03C282ACEA6000A62B8 /* UserService.swift */; };
 		D8DEC041282ADEA2000A62B8 /* Completions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC040282ADEA2000A62B8 /* Completions.swift */; };
+		D8E113CE2845E23400CD0B4B /* NewProjectPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E113CD2845E23400CD0B4B /* NewProjectPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +139,8 @@
 		D86AEE8F283BF06A001BE89F /* PhotoGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewController.swift; sourceTree = "<group>"; };
 		D86AEE91283BF07E001BE89F /* PhotoGalleryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryPresenter.swift; sourceTree = "<group>"; };
 		D86AEE93283BFAA7001BE89F /* PhotoGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCell.swift; sourceTree = "<group>"; };
+		D88A0CE12846686D00B02D3E /* NewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
+		D88A0CE32846703500B02D3E /* ProjectsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsPresenter.swift; sourceTree = "<group>"; };
 		D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +149,7 @@
 		D8DEC03A282ACA3F000A62B8 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D8DEC03C282ACEA6000A62B8 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		D8DEC040282ADEA2000A62B8 /* Completions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Completions.swift; sourceTree = "<group>"; };
+		D8E113CD2845E23400CD0B4B /* NewProjectPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -529,6 +535,7 @@
 				D86AEE8D283AB56C001BE89F /* DocumentsDetailViewController.swift */,
 				D86AEE8F283BF06A001BE89F /* PhotoGalleryViewController.swift */,
 				D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */,
+				D88A0CE12846686D00B02D3E /* NewProjectViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -539,6 +546,8 @@
 				D850CFE1282BCB9300C41DE7 /* ProfileMenuType.swift */,
 				D86AEE88283A2544001BE89F /* TextMenuPresenter.swift */,
 				D86AEE91283BF07E001BE89F /* PhotoGalleryPresenter.swift */,
+				D8E113CD2845E23400CD0B4B /* NewProjectPresenter.swift */,
+				D88A0CE32846703500B02D3E /* ProjectsPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -707,6 +716,7 @@
 				D80690382843EFE7007916DF /* FirestoreSavable.swift in Sources */,
 				D8262F93281F2D8400FA3E76 /* PortfolioPresenter.swift in Sources */,
 				D821F8B22832BE3D00C43774 /* ProfileMenuView.swift in Sources */,
+				D88A0CE22846686D00B02D3E /* NewProjectViewController.swift in Sources */,
 				D86AEE8228393B54001BE89F /* TextFieldViewModel.swift in Sources */,
 				D8418E7C2821A8B300163255 /* RegistrationViewController.swift in Sources */,
 				D8262FB328202E8200FA3E76 /* ReusableCell.swift in Sources */,
@@ -730,6 +740,7 @@
 				D8262FA32820176900FA3E76 /* UIFont + Extensions.swift in Sources */,
 				D8262FA828201F2A00FA3E76 /* R.generated.swift in Sources */,
 				D8262FB028202E1D00FA3E76 /* PortfolioExampleView.swift in Sources */,
+				D8E113CE2845E23400CD0B4B /* NewProjectPresenter.swift in Sources */,
 				D86AEE8E283AB56C001BE89F /* DocumentsDetailViewController.swift in Sources */,
 				D8262FBA28203A6000FA3E76 /* ServicesView.swift in Sources */,
 				D8DD1575283FEF1C006EAA9C /* ZoomPhotoCell.swift in Sources */,
@@ -747,6 +758,7 @@
 				D8DEC041282ADEA2000A62B8 /* Completions.swift in Sources */,
 				D8DD1573283E9B08006EAA9C /* DetailImageViewController.swift in Sources */,
 				D8DEC03B282ACA3F000A62B8 /* UserModel.swift in Sources */,
+				D88A0CE42846703500B02D3E /* ProjectsPresenter.swift in Sources */,
 				D806903428436912007916DF /* ProfileConfigurator.swift in Sources */,
 				D86AEE8C283A29AF001BE89F /* TextMenuCell.swift in Sources */,
 				D8262F86281F2B7F00FA3E76 /* MainTabBarController.swift in Sources */,
