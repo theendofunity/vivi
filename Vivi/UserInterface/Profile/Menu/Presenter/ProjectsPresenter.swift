@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import SwiftLoader
+import SwiftLoader
 
 class ProjectsPresenter: TextMenuPresenterProtocol {
     weak var view: TextMenuViewType?
@@ -15,16 +17,18 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
     func viewDidLoad() {
         view?.setupTitle("Проекты")
         view?.setupButton(title: "Создать новый", isHidden: false)
-        loadData()
     }
     
     func viewDidAppear() {
+        SwiftLoader.show(animated: true)
+        loadData()
     }
     
     func buttonPressed() {
         let presenter = NewProjectPresenter()
         let view = NewProjectViewController()
         presenter.view = view
+        presenter.delegate = self
         view.presnter = presenter
         self.view?.navigation()?.present(view, animated: true)
     }
@@ -35,15 +39,21 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
     
     func loadData() {
         storage.load(referenceType: .projects) { [weak self] (result: Result<[ProjectModel], Error>) in
+            SwiftLoader.hide()
             guard let self = self else { return }
+            print(#function, result)
             switch result {
             case .success(let data):
                 self.projects = data
-                self.view?.setupFiles(files: data.map({ $0.title }))
+                self.updateView()
             case .failure(let error):
                 self.view?.showError(error: error)
             }
         }
+    }
+    
+    func updateView() {
+        self.view?.setupFiles(files: projects.map({ $0.title }))
     }
     
     func add(file: Any) {
@@ -51,4 +61,11 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
     }
     
     
+}
+
+extension ProjectsPresenter: NewProjectDelegate {
+    func projectAdded(_ project: ProjectModel) {
+        projects.append(project)
+        updateView()
+    }
 }

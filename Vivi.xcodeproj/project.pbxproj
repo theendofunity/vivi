@@ -66,6 +66,7 @@
 		D86AEE94283BFAA7001BE89F /* PhotoGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE93283BFAA7001BE89F /* PhotoGalleryCell.swift */; };
 		D88A0CE22846686D00B02D3E /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A0CE12846686D00B02D3E /* NewProjectViewController.swift */; };
 		D88A0CE42846703500B02D3E /* ProjectsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A0CE32846703500B02D3E /* ProjectsPresenter.swift */; };
+		D88A0CE628467CA200B02D3E /* UISegmentedControl + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A0CE528467CA200B02D3E /* UISegmentedControl + Extensions.swift */; };
 		D8B27B0E282C285300EDAD23 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */; };
 		D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */; };
 		D8DD1573283E9B08006EAA9C /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */; };
@@ -141,6 +142,7 @@
 		D86AEE93283BFAA7001BE89F /* PhotoGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCell.swift; sourceTree = "<group>"; };
 		D88A0CE12846686D00B02D3E /* NewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
 		D88A0CE32846703500B02D3E /* ProjectsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsPresenter.swift; sourceTree = "<group>"; };
+		D88A0CE528467CA200B02D3E /* UISegmentedControl + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl + Extensions.swift"; sourceTree = "<group>"; };
 		D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				D8262FBD282040A000FA3E76 /* UIView + Extensions.swift */,
 				D86A79E128212AA300F45D76 /* UIImageView + Extensions.swift */,
 				D86A79E328212EEE00F45D76 /* UIImage + Extensions.swift */,
+				D88A0CE528467CA200B02D3E /* UISegmentedControl + Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -728,6 +731,7 @@
 				D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */,
 				D8262F9B281F309900FA3E76 /* ChatViewController.swift in Sources */,
 				D86AEE89283A2544001BE89F /* TextMenuPresenter.swift in Sources */,
+				D88A0CE628467CA200B02D3E /* UISegmentedControl + Extensions.swift in Sources */,
 				D850CFDE282BBB9000C41DE7 /* ProfileMenuCell.swift in Sources */,
 				D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */,
 				D86A79E92821598A00F45D76 /* StorageService.swift in Sources */,

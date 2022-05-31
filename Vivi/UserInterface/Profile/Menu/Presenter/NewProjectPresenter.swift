@@ -13,8 +13,13 @@ protocol NewProjectViewType: AnyObject {
     func showSuccess()
 }
 
+protocol NewProjectDelegate: AnyObject {
+    func projectAdded(_ project: ProjectModel)
+}
+
 class NewProjectPresenter {
     weak var view: NewProjectViewType?
+    weak var delegate: NewProjectDelegate?
     
     func viewDidLoad() {
         setupFields()
@@ -36,6 +41,7 @@ class NewProjectPresenter {
         FirestoreService.shared.save(reference: .projects, data: project) { [weak self] result in
             switch result {
             case .success():
+                self?.delegate?.projectAdded(project)
                 self?.view?.showSuccess()
             case .failure(let error):
                 self?.view?.showError(error: error)

@@ -8,6 +8,8 @@
 import UIKit
 import EasyPeasy
 
+
+
 class NewProjectViewController: UIViewController {
     var presnter: NewProjectPresenter!
     
@@ -17,10 +19,22 @@ class NewProjectViewController: UIViewController {
         return stack
     }()
     
+    lazy var typeSegmentedControl: UISegmentedControl = {
+        let control = UISegmentedControl()
+        for item in ServiceType.allCases {
+            control.insertSegment(withTitle: item.rawValue, at: 0, animated: false)
+        }
+        control.setNumberOfLines(0)
+        control.selectedSegmentIndex = 0
+        
+        return control
+    }()
+    
     lazy var addButton: MainButton = {
         let button = MainButton()
         button.setTitle("Добавить", for: .normal)
         button.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
+        
         return button
     }()
     
@@ -30,6 +44,7 @@ class NewProjectViewController: UIViewController {
         setupView()
         setupConstraints()
         
+        
         presnter.viewDidLoad()
     }
     
@@ -37,12 +52,19 @@ class NewProjectViewController: UIViewController {
         view.backgroundColor = .background
         
         view.addSubview(fieldsStack)
+        view.addSubview(typeSegmentedControl)
         view.addSubview(addButton)
     }
     
     func setupConstraints() {
         fieldsStack.easy.layout(
             Top(16),
+            Leading(24),
+            Trailing(24)
+        )
+        
+        typeSegmentedControl.easy.layout(
+            Top(16).to(fieldsStack, .bottom),
             Leading(24),
             Trailing(24)
         )
@@ -55,10 +77,19 @@ class NewProjectViewController: UIViewController {
     }
     
     @objc func addButtonPressed() {
-//        guard let title = fieldsStack.text(for: .title),
-//              let address = fieldsStack.text(for: .address),
-//              let square = fieldsStack.text(for: .square),
-//              let type = fieldsStack.text(for: .type) else { return }
+        guard let title = fieldsStack.text(for: .title),
+              let address = fieldsStack.text(for: .address),
+              let square = fieldsStack.text(for: .square),
+              let type = fieldsStack.text(for: .type),
+        let serviceType = ServiceType(rawValue: typeSegmentedControl.titleForSegment(at: typeSegmentedControl.selectedSegmentIndex) ?? "")
+        else { return }
+        
+        let model = ProjectModel(title: title,
+                                 address: address,
+                                 square: Decimal(string: square) ?? 0,
+                                 type: type,
+                                 serviceType: serviceType)
+        presnter.save(project: model)
     }
 
 }
@@ -70,7 +101,7 @@ extension NewProjectViewController: NewProjectViewType {
     
     func showSuccess() {
         showAlert(title: "Сделяль!" , message:  "проект успешно добавлен") {
-            self.navigationController?.dismiss(animated: true)
+            self.dismiss(animated: true)
         }
     }
     

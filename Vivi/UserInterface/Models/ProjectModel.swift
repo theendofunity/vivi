@@ -31,20 +31,37 @@ struct ProjectModel: FirestoreSavable {
     init?(document: [String : Any]) {
         guard let title = document["title"] as? String,
               let address = document["address"] as? String,
-              let square = document["square"] as? Decimal,
+              let square = document["square"] as? Double,
               let type = document["type"] as? String,
               let serviceType = document["serviceType"] as? String
-        else { return nil }
+        else {
+            print("INIT NIL")
+            return nil }
         
         self.title = title
         self.address = address
-        self.square = square
+        self.square = Decimal(square)
         self.type = type
         self.serviceType = ServiceType(rawValue: serviceType) ?? .consultation
         
         if let users = document["users"] as? [String] {
             self.users = users
         }
+    }
+    
+    init(title: String,
+         address: String,
+         square: Decimal,
+         type: String,
+         serviceType: ServiceType,
+         users: [String] = []) {
+        self.title = title
+        self.address = address
+        self.square = square
+        self.type = type
+        self.serviceType = serviceType
+        self.users = users
+        
     }
     
     func documentId() -> String? {

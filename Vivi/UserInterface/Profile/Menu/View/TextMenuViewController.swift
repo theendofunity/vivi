@@ -46,6 +46,11 @@ class TextMenuViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.viewDidAppear()
+    }
+    
     func setupView() {
         view.backgroundColor = .background
         view.addSubview(collectionView)
