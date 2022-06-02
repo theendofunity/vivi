@@ -48,7 +48,14 @@ class TextFieldWithLabel: UIView {
     
     convenience init(model: TextFieldViewModel) {
         self.init(frame: .zero)
+        
         self.model = model
+        
+        setPlaceholder(model.type.placeholder())
+        setLabelText(model.type.fieldTitle())
+        type = model.type
+        textField.text = model.value
+        textField.isEnabled = model.canEdit
     }
     
     func setupView() {

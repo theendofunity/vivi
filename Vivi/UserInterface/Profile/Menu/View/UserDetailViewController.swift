@@ -47,6 +47,7 @@ class UserDetailViewController: UIViewController {
     lazy var projectStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [projectTextField, changeButton])
         stack.axis = .horizontal
+        stack.alignment = .bottom
         return stack
     }()
     
