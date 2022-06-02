@@ -30,9 +30,15 @@ class RegistrationPresenter {
     }
     
     func createFields() {
-        let fieldTypes = TextFieldType.allCases.filter {
-            $0 != .unknown
-        }
+        let fieldTypes: [TextFieldType] = [
+            .name,
+            .middleName,
+            .lastName,
+            .city,
+            .email,
+            .phone,
+            .password
+        ]
         let fields = fieldTypes.map {
             TextFieldViewModel(type: $0, value: "", canEdit: true)
         }
