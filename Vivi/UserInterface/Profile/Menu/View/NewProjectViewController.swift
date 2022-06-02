@@ -43,7 +43,7 @@ class NewProjectViewController: UIViewController {
 
         setupView()
         setupConstraints()
-        
+        hideKeyboardWhenTappedAround()
         
         presnter.viewDidLoad()
     }

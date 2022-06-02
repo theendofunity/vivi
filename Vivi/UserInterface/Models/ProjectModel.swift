@@ -34,9 +34,7 @@ struct ProjectModel: FirestoreSavable {
               let square = document["square"] as? Double,
               let type = document["type"] as? String,
               let serviceType = document["serviceType"] as? String
-        else {
-            print("INIT NIL")
-            return nil }
+        else { return nil }
         
         self.title = title
         self.address = address

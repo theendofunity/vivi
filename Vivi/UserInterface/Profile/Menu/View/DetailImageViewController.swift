@@ -87,7 +87,6 @@ class DetailImageViewController: UIViewController {
         snapshot.appendItems(urls, toSection: .photo)
         dataSource?.apply(snapshot)
         self.collectionView.scrollToItem(at: selectedIndex, at: .centeredVertically, animated: false)
-        print(#function, selectedIndex)
     }
     
     @objc func closeView() {

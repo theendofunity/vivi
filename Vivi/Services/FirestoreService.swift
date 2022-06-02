@@ -69,7 +69,6 @@ class FirestoreService {
             var data: [T] = []
             
             for document in snapshot.documents {
-                print(document.data())
                 if let model = T(document: document.data()) {
                     data.append(model)
                 }
