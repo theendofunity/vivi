@@ -34,6 +34,9 @@
 		D8262FBA28203A6000FA3E76 /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FB928203A6000FA3E76 /* ServicesView.swift */; };
 		D8262FBC28203C5C00FA3E76 /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FBB28203C5C00FA3E76 /* ServiceCell.swift */; };
 		D8262FBE282040A000FA3E76 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FBD282040A000FA3E76 /* UIView + Extensions.swift */; };
+		D83FFB5D2848B7D900C270DE /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83FFB5C2848B7D900C270DE /* UsersViewController.swift */; };
+		D83FFB5F2848B81B00C270DE /* UsersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83FFB5E2848B81B00C270DE /* UsersPresenter.swift */; };
+		D83FFB612848BB2700C270DE /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83FFB602848BB2700C270DE /* UserCell.swift */; };
 		D8418E7C2821A8B300163255 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8418E7B2821A8B300163255 /* RegistrationViewController.swift */; };
 		D8418E7F2821A8C800163255 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8418E7E2821A8C800163255 /* RegistrationPresenter.swift */; };
 		D8418E812822EA3A00163255 /* TextFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8418E802822EA3A00163255 /* TextFieldType.swift */; };
@@ -110,6 +113,9 @@
 		D8262FB928203A6000FA3E76 /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		D8262FBB28203C5C00FA3E76 /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 		D8262FBD282040A000FA3E76 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
+		D83FFB5C2848B7D900C270DE /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
+		D83FFB5E2848B81B00C270DE /* UsersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersPresenter.swift; sourceTree = "<group>"; };
+		D83FFB602848BB2700C270DE /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		D8418E7B2821A8B300163255 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		D8418E7E2821A8C800163255 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		D8418E802822EA3A00163255 /* TextFieldType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldType.swift; sourceTree = "<group>"; };
@@ -539,6 +545,7 @@
 				D86AEE8F283BF06A001BE89F /* PhotoGalleryViewController.swift */,
 				D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */,
 				D88A0CE12846686D00B02D3E /* NewProjectViewController.swift */,
+				D83FFB5C2848B7D900C270DE /* UsersViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -551,6 +558,7 @@
 				D86AEE91283BF07E001BE89F /* PhotoGalleryPresenter.swift */,
 				D8E113CD2845E23400CD0B4B /* NewProjectPresenter.swift */,
 				D88A0CE32846703500B02D3E /* ProjectsPresenter.swift */,
+				D83FFB5E2848B81B00C270DE /* UsersPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -561,6 +569,7 @@
 				D86AEE8B283A29AF001BE89F /* TextMenuCell.swift */,
 				D86AEE93283BFAA7001BE89F /* PhotoGalleryCell.swift */,
 				D8DD1574283FEF1C006EAA9C /* ZoomPhotoCell.swift */,
+				D83FFB602848BB2700C270DE /* UserCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -713,6 +722,7 @@
 				D8418E7F2821A8C800163255 /* RegistrationPresenter.swift in Sources */,
 				D8262F72281F2ADB00FA3E76 /* AppDelegate.swift in Sources */,
 				D86A79EB28215EF800F45D76 /* ExamplesViewModel.swift in Sources */,
+				D83FFB612848BB2700C270DE /* UserCell.swift in Sources */,
 				D850CFE0282BC8F500C41DE7 /* ApplicationPresenter.swift in Sources */,
 				D80690362843ED66007916DF /* ProjectModel.swift in Sources */,
 				D86AEE7E2838EC50001BE89F /* TextFieldsStackView.swift in Sources */,
@@ -734,6 +744,7 @@
 				D88A0CE628467CA200B02D3E /* UISegmentedControl + Extensions.swift in Sources */,
 				D850CFDE282BBB9000C41DE7 /* ProfileMenuCell.swift in Sources */,
 				D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */,
+				D83FFB5D2848B7D900C270DE /* UsersViewController.swift in Sources */,
 				D86A79E92821598A00F45D76 /* StorageService.swift in Sources */,
 				D8262FAC28202B9300FA3E76 /* LaunchViewController.swift in Sources */,
 				D86A79DC2821130900F45D76 /* ServiceType.swift in Sources */,
@@ -759,6 +770,7 @@
 				D8262FA528201AE200FA3E76 /* UIViewController + Extensions.swift in Sources */,
 				D8262FBC28203C5C00FA3E76 /* ServiceCell.swift in Sources */,
 				D86A79E228212AA300F45D76 /* UIImageView + Extensions.swift in Sources */,
+				D83FFB5F2848B81B00C270DE /* UsersPresenter.swift in Sources */,
 				D8DEC041282ADEA2000A62B8 /* Completions.swift in Sources */,
 				D8DD1573283E9B08006EAA9C /* DetailImageViewController.swift in Sources */,
 				D8DEC03B282ACA3F000A62B8 /* UserModel.swift in Sources */,

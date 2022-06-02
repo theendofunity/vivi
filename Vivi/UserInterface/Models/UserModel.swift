@@ -13,7 +13,7 @@ enum UserType: String {
     case developer
 }
 
-struct UserModel: FirestoreSavable {
+struct UserModel: FirestoreSavable, Hashable {
     var id: String?
     let firstName: String
     let lastName: String
@@ -26,6 +26,8 @@ struct UserModel: FirestoreSavable {
     var userType: UserType = .user
     var address: String?
     
+    var avatarUrl: String?
+    
     func representation() -> [String : Any] {
         var dict: [String : Any] = [:]
         dict = [
@@ -37,7 +39,8 @@ struct UserModel: FirestoreSavable {
             "city" : city,
             "project" : project ?? "",
             "userType" : userType.rawValue,
-            "address" : address ?? ""
+            "address" : address ?? "",
+            "avatarUrl" : avatarUrl ?? ""
         ]
         
         return dict
@@ -75,6 +78,7 @@ struct UserModel: FirestoreSavable {
         self.userType = UserType(rawValue: userType) ?? .user
         self.middleName = document["middleName"] as? String
         self.address = document["address"] as? String
+        self.avatarUrl = document["avatarUrl"] as? String ?? nil
     }
     
     func usernameTitle() -> String {

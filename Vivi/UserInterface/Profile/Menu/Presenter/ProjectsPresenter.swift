@@ -41,7 +41,6 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
         storage.load(referenceType: .projects) { [weak self] (result: Result<[ProjectModel], Error>) in
             SwiftLoader.hide()
             guard let self = self else { return }
-            print(#function, result)
             switch result {
             case .success(let data):
                 self.projects = data

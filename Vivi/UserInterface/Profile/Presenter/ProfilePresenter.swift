@@ -123,6 +123,8 @@ extension ProfilePresenter {
             showVisualizations()
         case .allProjects:
             showAllProjects()
+        case .users:
+            showUsers()
         default:
             break
         }
@@ -183,6 +185,15 @@ extension ProfilePresenter {
     func showAllProjects() {
         let view = TextMenuViewController()
         let presenter = ProjectsPresenter()
+        view.presenter = presenter
+        presenter.view = view
+        
+        self.view?.navigation()?.pushViewController(view, animated: true)
+    }
+    
+    func showUsers() {
+        let view = UsersViewController()
+        let presenter = UsersPresenter()
         view.presenter = presenter
         presenter.view = view
         
