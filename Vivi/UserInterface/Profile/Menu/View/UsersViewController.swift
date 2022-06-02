@@ -13,6 +13,7 @@ class UsersViewController: UIViewController {
         case users
     }
     
+    var users: [UserModel] = []
     var dataSource: UICollectionViewDiffableDataSource<Section, UserModel>?
     var presenter: UsersPresenter!
     
@@ -22,6 +23,7 @@ class UsersViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(cell: UserCell.self)
         collectionView.backgroundColor = .clear
+        collectionView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
         return collectionView
     }()
     
@@ -34,6 +36,8 @@ class UsersViewController: UIViewController {
         setupView()
         setupConstraints()
         configureDataSource()
+        setupSearch()
+        
         presenter.viewLoaded()
     }
     
@@ -49,6 +53,14 @@ class UsersViewController: UIViewController {
             Trailing(24),
             Bottom().to(view.safeAreaLayoutGuide, .bottom)
         )
+    }
+    
+    func setupSearch() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+    
     }
     
     func createLayout() -> UICollectionViewLayout {
@@ -82,11 +94,33 @@ extension UsersViewController: UsersViewType {
     }
     
     func update(users: [UserModel]) {
+        self.users = users
+        
+        reload(users: users)
+    }
+    
+    func reload(users: [UserModel]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, UserModel>()
         snapshot.appendSections([.users])
         snapshot.appendItems(users, toSection: .users)
         dataSource?.apply(snapshot)
     }
     
-    
+    func update(searchText: String) {
+        guard !searchText.isEmpty else {
+            reload(users: users)
+            return
+        }
+        
+        let filtredUsers = users.filter {
+            $0.usernameTitle().lowercased().contains(searchText.lowercased())
+        }
+        reload(users: filtredUsers)
+    }
+}
+
+extension UsersViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        update(searchText: searchText)
+    }
 }
