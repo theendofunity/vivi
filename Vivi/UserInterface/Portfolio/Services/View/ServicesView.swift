@@ -68,7 +68,6 @@ class ServicesView: UIView {
         )
     }
     
-    
     func createLayout() -> UICollectionViewLayout {
         let spacing: CGFloat = 8
         

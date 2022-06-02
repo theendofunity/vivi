@@ -33,15 +33,23 @@ class ApplicationPresenter {
     }
     
     func loadUser() {
-        guard let user = authService.currentUser else { return }
+        guard let user = authService.currentUser else {
+            self.logout()
+            return
+        }
         firestoreService.loadUser(userId: user.uid) { result in
             switch result {
             case .success(let user):
                 UserService.shared.user = user
                 self.delegate?.dataLoaded()
             case .failure(_):
-                break
+                self.logout()
             }
         }
+    }
+    
+    func logout() {
+        AuthService.shared.logout()
+        self.delegate?.dataLoaded()
     }
 }
