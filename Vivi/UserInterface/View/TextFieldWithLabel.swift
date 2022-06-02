@@ -9,6 +9,19 @@ import UIKit
 import EasyPeasy
 
 class TextFieldWithLabel: UIView {
+    var model: TextFieldViewModel? {
+        didSet {
+            guard let model = model else {
+                return
+            }
+            setPlaceholder(model.type.placeholder())
+            setLabelText(model.type.fieldTitle())
+            type = model.type
+            textField.text = model.value
+            textField.isEnabled = model.canEdit
+        }
+    }
+    
     var type: TextFieldType = .unknown
     
     lazy var label: UILabel = {
@@ -31,6 +44,11 @@ class TextFieldWithLabel: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    convenience init(model: TextFieldViewModel) {
+        self.init(frame: .zero)
+        self.model = model
     }
     
     func setupView() {

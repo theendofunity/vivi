@@ -63,12 +63,7 @@ extension TextFieldsStackView {
         clear()
         
         for field in fields {
-            let textField = TextFieldWithLabel()
-            textField.setPlaceholder(field.type.placeholder())
-            textField.setLabelText(field.type.fieldTitle())
-            textField.type = field.type
-            textField.textField.text = field.value
-            textField.textField.isEnabled = field.canEdit
+            let textField = TextFieldWithLabel(model: field)
             textField.textField.delegate = self
             stackView.addArrangedSubview(textField)
         }

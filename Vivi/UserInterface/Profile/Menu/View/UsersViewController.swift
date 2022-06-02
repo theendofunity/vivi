@@ -24,6 +24,7 @@ class UsersViewController: UIViewController {
         collectionView.register(cell: UserCell.self)
         collectionView.backgroundColor = .clear
         collectionView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -39,6 +40,11 @@ class UsersViewController: UIViewController {
         setupSearch()
         
         presenter.viewLoaded()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.viewAppeared()
     }
     
     func setupView() {
@@ -60,7 +66,6 @@ class UsersViewController: UIViewController {
         searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
-    
     }
     
     func createLayout() -> UICollectionViewLayout {
@@ -89,6 +94,10 @@ class UsersViewController: UIViewController {
 }
 
 extension UsersViewController: UsersViewType {
+    func navigation() -> UINavigationController? {
+        return navigationController
+    }
+    
     func showError(error: Error) {
         alertError(error: error)
     }
@@ -122,5 +131,14 @@ extension UsersViewController: UsersViewType {
 extension UsersViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         update(searchText: searchText)
+    }
+}
+
+extension UsersViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? UserCell,
+        let user = cell.user else { return }
+        
+        presenter.userDidSelect(user)
     }
 }

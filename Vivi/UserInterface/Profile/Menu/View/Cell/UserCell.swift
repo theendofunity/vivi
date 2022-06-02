@@ -10,6 +10,8 @@ import EasyPeasy
 import SDWebImage
 
 class UserCell: ReusableCell {
+    var user: UserModel?
+    
     lazy var photoView: UIImageView = {
         let view = UIImageView()
         view.clipsToBounds = true
@@ -66,6 +68,8 @@ class UserCell: ReusableCell {
     }
 
     func configure(user: UserModel) {
+        self.user = user
+        
         if let urlString = user.avatarUrl,
            let url = URL(string: urlString) {
             photoView.sd_setImage(with: url)

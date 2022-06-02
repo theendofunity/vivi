@@ -39,7 +39,6 @@ class LineTextField: UITextField {
                     attributes: [NSAttributedString.Key.foregroundColor: color]
                 )
             }
-            
         }
     }
 }

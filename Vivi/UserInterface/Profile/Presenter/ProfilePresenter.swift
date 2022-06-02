@@ -61,11 +61,11 @@ extension ProfilePresenter {
     func setupMenu() {
         guard let user = userService.user else { return }
         
-        var menuItems: [ProfileMenuType]
+        var menuItems: [ProfileMenuType] = []
         
-        if user.userType == .user {
+        if user.userType == .client {
             menuItems = [.form, .agreement, .examples, .sketches, .visualizations, .project]
-        } else {
+        } else if user.userType == .admin {
             menuItems = [.allProjects, .users, .main]
         }
         

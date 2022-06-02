@@ -9,14 +9,32 @@ import Foundation
 import SwiftLoader
 import SwiftLoader
 
+protocol ProjectPresenterDelegate: AnyObject {
+    func projectDidSelect(name: String)
+}
+
 class ProjectsPresenter: TextMenuPresenterProtocol {
+    enum ViewType {
+        case details
+        case select
+    }
+    
     weak var view: TextMenuViewType?
+    weak var delegate: ProjectPresenterDelegate?
+    
+    var type: ViewType
     var storage = FirestoreService.shared
     var projects: [ProjectModel] = []
     
+    init(type: ViewType = .details) {
+        self.type = type
+    }
+    
     func viewDidLoad() {
         view?.setupTitle("Проекты")
-        view?.setupButton(title: "Создать новый", isHidden: false)
+        
+        let isButtonHidden = type == .select
+        view?.setupButton(title: "Создать новый", isHidden: isButtonHidden)
     }
     
     func viewDidAppear() {
@@ -34,7 +52,9 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
     }
     
     func fileDidSelect(filename: String) {
-        
+        if type == .select {
+            delegate?.projectDidSelect(name: filename)
+        }
     }
     
     func loadData() {
@@ -58,8 +78,6 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
     func add(file: Any) {
         
     }
-    
-    
 }
 
 extension ProjectsPresenter: NewProjectDelegate {

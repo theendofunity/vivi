@@ -7,10 +7,10 @@
 
 import Foundation
 
-enum UserType: String {
-    case user
+enum UserType: String, CaseIterable {
+    case base
+    case client
     case admin
-    case developer
 }
 
 struct UserModel: FirestoreSavable, Hashable {
@@ -23,7 +23,7 @@ struct UserModel: FirestoreSavable, Hashable {
     
     var project: String?
     var target: String?
-    var userType: UserType = .user
+    var userType: UserType = .client
     var address: String?
     
     var avatarUrl: String?
@@ -75,7 +75,7 @@ struct UserModel: FirestoreSavable, Hashable {
         self.phone = phone
         self.city = city
         self.project = project
-        self.userType = UserType(rawValue: userType) ?? .user
+        self.userType = UserType(rawValue: userType) ?? .client
         self.middleName = document["middleName"] as? String
         self.address = document["address"] as? String
         self.avatarUrl = document["avatarUrl"] as? String ?? nil

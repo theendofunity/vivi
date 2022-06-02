@@ -11,6 +11,7 @@ import SwiftLoader
 protocol UsersViewType: AnyObject {
     func update(users: [UserModel])
     func showError(error: Error)
+    func navigation() -> UINavigationController?
 }
 
 class UsersPresenter {
@@ -18,11 +19,10 @@ class UsersPresenter {
     var storage = FirestoreService.shared
     
     func viewLoaded() {
-        loadData()
     }
     
     func viewAppeared() {
-        
+        loadData()
     }
     
     func loadData() {
@@ -39,5 +39,19 @@ class UsersPresenter {
                 self?.view?.showError(error: error)
             }
         }
+    }
+    
+    func userDidSelect(_ user: UserModel) {
+        let view = UserDetailViewController()
+        let presenter = UserDetailPresenter(user: user)
+        view.presenter = presenter
+        presenter.view = view
+        self.view?.navigation()?.pushViewController(view, animated: true)
+    }
+}
+
+extension UsersPresenter: UsersDetailDelegate {
+    func userUpdated() {
+//        loadData()
     }
 }

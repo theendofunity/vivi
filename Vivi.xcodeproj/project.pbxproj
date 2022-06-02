@@ -37,6 +37,8 @@
 		D83FFB5D2848B7D900C270DE /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83FFB5C2848B7D900C270DE /* UsersViewController.swift */; };
 		D83FFB5F2848B81B00C270DE /* UsersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83FFB5E2848B81B00C270DE /* UsersPresenter.swift */; };
 		D83FFB612848BB2700C270DE /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83FFB602848BB2700C270DE /* UserCell.swift */; };
+		D83FFB632849218800C270DE /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83FFB622849218800C270DE /* UserDetailViewController.swift */; };
+		D83FFB652849270B00C270DE /* UserDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83FFB642849270B00C270DE /* UserDetailPresenter.swift */; };
 		D8418E7C2821A8B300163255 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8418E7B2821A8B300163255 /* RegistrationViewController.swift */; };
 		D8418E7F2821A8C800163255 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8418E7E2821A8C800163255 /* RegistrationPresenter.swift */; };
 		D8418E812822EA3A00163255 /* TextFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8418E802822EA3A00163255 /* TextFieldType.swift */; };
@@ -116,6 +118,8 @@
 		D83FFB5C2848B7D900C270DE /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		D83FFB5E2848B81B00C270DE /* UsersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersPresenter.swift; sourceTree = "<group>"; };
 		D83FFB602848BB2700C270DE /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		D83FFB622849218800C270DE /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
+		D83FFB642849270B00C270DE /* UserDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailPresenter.swift; sourceTree = "<group>"; };
 		D8418E7B2821A8B300163255 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		D8418E7E2821A8C800163255 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		D8418E802822EA3A00163255 /* TextFieldType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldType.swift; sourceTree = "<group>"; };
@@ -546,6 +550,7 @@
 				D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */,
 				D88A0CE12846686D00B02D3E /* NewProjectViewController.swift */,
 				D83FFB5C2848B7D900C270DE /* UsersViewController.swift */,
+				D83FFB622849218800C270DE /* UserDetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -559,6 +564,7 @@
 				D8E113CD2845E23400CD0B4B /* NewProjectPresenter.swift */,
 				D88A0CE32846703500B02D3E /* ProjectsPresenter.swift */,
 				D83FFB5E2848B81B00C270DE /* UsersPresenter.swift */,
+				D83FFB642849270B00C270DE /* UserDetailPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -726,7 +732,9 @@
 				D850CFE0282BC8F500C41DE7 /* ApplicationPresenter.swift in Sources */,
 				D80690362843ED66007916DF /* ProjectModel.swift in Sources */,
 				D86AEE7E2838EC50001BE89F /* TextFieldsStackView.swift in Sources */,
+				D83FFB632849218800C270DE /* UserDetailViewController.swift in Sources */,
 				D80690382843EFE7007916DF /* FirestoreSavable.swift in Sources */,
+				D83FFB652849270B00C270DE /* UserDetailPresenter.swift in Sources */,
 				D8262F93281F2D8400FA3E76 /* PortfolioPresenter.swift in Sources */,
 				D821F8B22832BE3D00C43774 /* ProfileMenuView.swift in Sources */,
 				D88A0CE22846686D00B02D3E /* NewProjectViewController.swift in Sources */,
