@@ -25,15 +25,9 @@ class ServicesView: UIView {
         return label
     }()
     
-    private lazy var layout: UICollectionViewFlowLayout = {
-        let layout = UICollectionViewFlowLayout()
-//        let width = UIScreen.main.bounds.width
-        
-        layout.scrollDirection = .vertical
-        return layout
-    }()
-    
     private lazy var collectionView: UICollectionView = {
+        let layout = createLayout()
+        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(cell: ServiceCell.self)
         collectionView.delegate = self
@@ -74,6 +68,27 @@ class ServicesView: UIView {
         )
     }
     
+    
+    func createLayout() -> UICollectionViewLayout {
+        let spacing: CGFloat = 8
+        
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .absolute(100))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                     subitem: item,
+                                                       count: 2)
+        group.interItemSpacing = .fixed(spacing)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = spacing
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        
+        return layout
+    }
+    
     func configure(services: [ServiceType]) {
         self.services = services
     }
@@ -94,12 +109,5 @@ extension ServicesView: UICollectionViewDelegate, UICollectionViewDataSource {
         guard let cell = collectionView.cellForItem(at: indexPath) as? ServiceCell,
         let service = cell.service else { return }
         delegate?.serviceDidSelect(service: service)
-    }
-}
-
-extension ServicesView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let width = collectionView.frame.width
-        return CGSize(width: 170, height: 100)
     }
 }
