@@ -13,7 +13,7 @@ class ServiceCell: ReusableCell {
     
     private lazy var title: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = .denim
         label.font = .smallTextFont
         label.numberOfLines = 0
         label.textAlignment = .center
