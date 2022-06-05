@@ -54,7 +54,20 @@ class TextMenuPresenter: TextMenuPresenterProtocol {
     }
     
     func setupButton() {
-        view?.setupButton(title: "Добавить", isHidden: false)
+        guard let user = UserService.shared.user else { return }
+        
+        var isHidden = true
+        
+        switch user.userType {
+        case .base:
+            isHidden = true
+        case .client:
+            isHidden = type != .form
+        case .admin:
+            isHidden = false
+        }
+        
+        view?.setupButton(title: "Добавить", isHidden: isHidden)
     }
     
     func buttonPressed() {

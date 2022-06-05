@@ -34,13 +34,30 @@ class PhotoGalleryPresenter {
     
     func viewDidLoad() {
         view?.setupTitle(title: type.title())
-        view?.setupButton(title: "Добавить", isHidden: false)
-        loadData()
+        setupButton()
         
+        loadData()
     }
     
     func viewDidAppear() {
         
+    }
+    
+    func setupButton() {
+        guard let user = UserService.shared.user else { return }
+        
+        var isHidden = true
+        
+        switch user.userType {
+        case .base:
+            isHidden = true
+        case .client:
+            isHidden = type != .examples
+        case .admin:
+            isHidden = false
+        }
+        
+        view?.setupButton(title: "Добавить", isHidden: isHidden)
     }
     
     func loadData() {
