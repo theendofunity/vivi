@@ -45,6 +45,9 @@
 		D850CFDE282BBB9000C41DE7 /* ProfileMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850CFDD282BBB9000C41DE7 /* ProfileMenuCell.swift */; };
 		D850CFE0282BC8F500C41DE7 /* ApplicationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850CFDF282BC8F500C41DE7 /* ApplicationPresenter.swift */; };
 		D850CFE2282BCB9300C41DE7 /* ProfileMenuType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850CFE1282BCB9300C41DE7 /* ProfileMenuType.swift */; };
+		D863D095284D02EA00E98E2D /* ProjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D863D094284D02EA00E98E2D /* ProjectDetailViewController.swift */; };
+		D863D097284D02F700E98E2D /* ProjectDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D863D096284D02F700E98E2D /* ProjectDetailPresenter.swift */; };
+		D863D099284D2B8400E98E2D /* HeaderRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D863D098284D2B8400E98E2D /* HeaderRepresentable.swift */; };
 		D86A79DC2821130900F45D76 /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79DB2821130900F45D76 /* ServiceType.swift */; };
 		D86A79DE28211A3100F45D76 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79DD28211A3100F45D76 /* MainButton.swift */; };
 		D86A79E028211A6600F45D76 /* ServiceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79DF28211A6600F45D76 /* ServiceDetailsViewController.swift */; };
@@ -126,6 +129,9 @@
 		D850CFDD282BBB9000C41DE7 /* ProfileMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuCell.swift; sourceTree = "<group>"; };
 		D850CFDF282BC8F500C41DE7 /* ApplicationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationPresenter.swift; sourceTree = "<group>"; };
 		D850CFE1282BCB9300C41DE7 /* ProfileMenuType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuType.swift; sourceTree = "<group>"; };
+		D863D094284D02EA00E98E2D /* ProjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailViewController.swift; sourceTree = "<group>"; };
+		D863D096284D02F700E98E2D /* ProjectDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailPresenter.swift; sourceTree = "<group>"; };
+		D863D098284D2B8400E98E2D /* HeaderRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderRepresentable.swift; sourceTree = "<group>"; };
 		D86A79DB2821130900F45D76 /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		D86A79DD28211A3100F45D76 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		D86A79DF28211A6600F45D76 /* ServiceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailsViewController.swift; sourceTree = "<group>"; };
@@ -418,6 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				D80690372843EFE7007916DF /* FirestoreSavable.swift */,
+				D863D098284D2B8400E98E2D /* HeaderRepresentable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -551,6 +558,7 @@
 				D88A0CE12846686D00B02D3E /* NewProjectViewController.swift */,
 				D83FFB5C2848B7D900C270DE /* UsersViewController.swift */,
 				D83FFB622849218800C270DE /* UserDetailViewController.swift */,
+				D863D094284D02EA00E98E2D /* ProjectDetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -565,6 +573,7 @@
 				D88A0CE32846703500B02D3E /* ProjectsPresenter.swift */,
 				D83FFB5E2848B81B00C270DE /* UsersPresenter.swift */,
 				D83FFB642849270B00C270DE /* UserDetailPresenter.swift */,
+				D863D096284D02F700E98E2D /* ProjectDetailPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -749,6 +758,7 @@
 				D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */,
 				D8262F9B281F309900FA3E76 /* ChatViewController.swift in Sources */,
 				D86AEE89283A2544001BE89F /* TextMenuPresenter.swift in Sources */,
+				D863D097284D02F700E98E2D /* ProjectDetailPresenter.swift in Sources */,
 				D88A0CE628467CA200B02D3E /* UISegmentedControl + Extensions.swift in Sources */,
 				D850CFDE282BBB9000C41DE7 /* ProfileMenuCell.swift in Sources */,
 				D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */,
@@ -775,6 +785,8 @@
 				D86A79F22821740C00F45D76 /* AuthViewController.swift in Sources */,
 				D86A79E428212EEE00F45D76 /* UIImage + Extensions.swift in Sources */,
 				D86AEE92283BF07E001BE89F /* PhotoGalleryPresenter.swift in Sources */,
+				D863D095284D02EA00E98E2D /* ProjectDetailViewController.swift in Sources */,
+				D863D099284D2B8400E98E2D /* HeaderRepresentable.swift in Sources */,
 				D8262FA528201AE200FA3E76 /* UIViewController + Extensions.swift in Sources */,
 				D8262FBC28203C5C00FA3E76 /* ServiceCell.swift in Sources */,
 				D86A79E228212AA300F45D76 /* UIImageView + Extensions.swift in Sources */,

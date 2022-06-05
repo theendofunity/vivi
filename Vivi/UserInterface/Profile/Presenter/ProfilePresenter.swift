@@ -83,7 +83,8 @@ extension ProfilePresenter {
             .init(type: .name, value: user.firstName, canEdit: false),
             .init(type: .middleName, value: user.middleName ?? "", canEdit: false),
             .init(type: .lastName, value: user.lastName, canEdit: false),
-            .init(type: .city, value: user.city, canEdit: true)
+            .init(type: .city, value: user.city, canEdit: false),
+            .init(type: .address, value: user.address ?? "", canEdit: true),
         ]
         
         view?.setupPersonalInfo(info: personalInfo)
@@ -131,9 +132,11 @@ extension ProfilePresenter {
     }
     
     func showTextMenu(type: ProfileMenuType) {
-        guard let user = userService.user else { return }
+        guard let user = userService.user,
+        let project = user.project else { return }
+        
         let view = TextMenuViewController()
-        let presenter = TextMenuPresenter(type: type, user: user)
+        let presenter = TextMenuPresenter(type: type, project: project)
         view.presenter = presenter
         presenter.view = view
         
@@ -141,9 +144,11 @@ extension ProfilePresenter {
     }
     
     func showGalleryMenu(type: ProfileMenuType) {
-        guard let user = userService.user else { return }
+        guard let user = userService.user,
+        let project = user.project else { return }
+        
         let view = PhotoGalleryViewController()
-        let presenter = PhotoGalleryPresenter(type: type, user: user)
+        let presenter = PhotoGalleryPresenter(type: type, project: project)
         view.presenter = presenter
         presenter.view = view
         

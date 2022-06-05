@@ -18,10 +18,12 @@ class StorageService {
     enum ReferenceType {
         case examples
         case users
+        case projects
+        case project(id: String)
         case user(id: String)
         case agreements(id: String)
         case forms(id: String)
-        case project(id: String)
+        case projectDoc(id: String)
         case userExamples(id: String)
         case sketches(id: String)
         case visualizations(id: String)
@@ -35,23 +37,27 @@ class StorageService {
             case .user(let id):
                 return "Users/\(id)"
             case .agreements(let id):
-                let userPath = ReferenceType.user(id: id).path()
+                let userPath = ReferenceType.project(id: id).path()
                 return "\(userPath)/Agreements"
             case .forms(id: let id):
-                let userPath = ReferenceType.user(id: id).path()
+                let userPath = ReferenceType.project(id: id).path()
                 return "\(userPath)/Forms"
-            case .project(id: let id):
-                let userPath = ReferenceType.user(id: id).path()
+            case .projectDoc(id: let id):
+                let userPath = ReferenceType.project(id: id).path()
                 return "\(userPath)/Project"
             case .userExamples(id: let id):
-                let userPath = ReferenceType.user(id: id).path()
+                let userPath = ReferenceType.project(id: id).path()
                 return "\(userPath)/Examples"
             case .sketches(id: let id):
-                let userPath = ReferenceType.user(id: id).path()
+                let userPath = ReferenceType.project(id: id).path()
                 return "\(userPath)/Sketches"
             case .visualizations(id: let id):
-                let userPath = ReferenceType.user(id: id).path()
+                let userPath = ReferenceType.project(id: id).path()
                 return "\(userPath)/Visualizetions"
+            case .projects:
+                return "Projects"
+            case .project(id: let id):
+                return "\(ReferenceType.projects.path())/\(id)"
             }
         }
     }

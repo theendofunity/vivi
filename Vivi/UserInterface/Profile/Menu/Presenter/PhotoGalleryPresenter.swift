@@ -21,15 +21,15 @@ protocol PhotoGalleryViewType: AnyObject {
 class PhotoGalleryPresenter {
     weak var view: PhotoGalleryViewType?
     var type: ProfileMenuType
-    var user: UserModel
+    var project: String
     
     var urls: [URL] = []
     
     var storageService = StorageService.shared
     
-    init(type: ProfileMenuType, user: UserModel) {
+    init(type: ProfileMenuType, project: String) {
         self.type = type
-        self.user = user
+        self.project = project
     }
     
     func viewDidLoad() {
@@ -66,7 +66,7 @@ class PhotoGalleryPresenter {
     }
     
     func referenceType() -> StorageService.ReferenceType? {
-        guard let id = user.id else { return nil }
+        let id = project
         
         switch type {
         case .examples:

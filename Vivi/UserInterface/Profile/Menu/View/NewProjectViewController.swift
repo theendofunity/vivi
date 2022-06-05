@@ -30,6 +30,11 @@ class NewProjectViewController: UIViewController {
         return control
     }()
     
+    lazy var usersLabel: PlainLabel = {
+        let label = PlainLabel(text: "Пользователи", fontType: .normal)
+        return label
+    }()
+    
     lazy var addButton: MainButton = {
         let button = MainButton()
         button.setTitle("Добавить", for: .normal)
@@ -53,6 +58,7 @@ class NewProjectViewController: UIViewController {
         
         view.addSubview(fieldsStack)
         view.addSubview(typeSegmentedControl)
+        view.addSubview(usersLabel)
         view.addSubview(addButton)
     }
     
@@ -65,6 +71,12 @@ class NewProjectViewController: UIViewController {
         
         typeSegmentedControl.easy.layout(
             Top(16).to(fieldsStack, .bottom),
+            Leading(24),
+            Trailing(24)
+        )
+        
+        usersLabel.easy.layout(
+            Top(16).to(typeSegmentedControl, .bottom),
             Leading(24),
             Trailing(24)
         )

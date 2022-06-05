@@ -32,14 +32,14 @@ protocol TextMenuPresenterProtocol: AnyObject {
 class TextMenuPresenter: TextMenuPresenterProtocol {
     weak var view: TextMenuViewType?
     var type: ProfileMenuType
-    var user: UserModel
+    var project: String
     var files: [String] = []
     
     private var storageService = StorageService.shared
     
-    init(type: ProfileMenuType, user: UserModel) {
+    init(type: ProfileMenuType, project: String) {
         self.type = type
-        self.user = user
+        self.project = project
     }
     
     func viewDidLoad() {
@@ -81,13 +81,13 @@ class TextMenuPresenter: TextMenuPresenterProtocol {
 
 extension TextMenuPresenter {
     func referenceType() -> StorageService.ReferenceType? {
-        guard let id = user.id else { return nil }
+        let id = project
         
         switch type {
         case .agreement:
             return .agreements(id: id)
         case .project:
-            return .project(id: id)
+            return .projectDoc(id: id)
         case .form:
             return .forms(id: id)
         default:

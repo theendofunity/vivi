@@ -89,3 +89,20 @@ struct UserModel: FirestoreSavable, Hashable {
         return id
     }
 }
+
+extension UserModel: HeaderRepresentable {
+    func headerTitle() -> String {
+        return usernameTitle()
+    }
+    
+    func addressTitle() -> String {
+        return address ?? ""
+    }
+    
+    func imageUrl() -> URL? {
+        guard let urlString = avatarUrl else { return nil }
+        return URL(string: urlString)
+    }
+    
+    
+}

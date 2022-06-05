@@ -8,8 +8,13 @@
 import UIKit
 import EasyPeasy
 
-class PersonalInfoView: UIView {
+protocol PersonalInfoViewDelegate: AnyObject {
+    func saveButtonPressed()
+}
 
+class PersonalInfoView: UIView {
+    weak var delegate: PersonalInfoViewDelegate?
+    
     private lazy var textFieldsView: TextFieldsStackView = {
         let view = TextFieldsStackView()
         return view
@@ -53,7 +58,7 @@ class PersonalInfoView: UIView {
     }
 
     @objc func saveButtonPressed() {
-        
+        delegate?.saveButtonPressed()
     }
     
     func setupFields(fields: [TextFieldViewModel]) {

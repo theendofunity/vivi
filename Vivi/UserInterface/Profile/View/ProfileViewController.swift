@@ -23,7 +23,7 @@ class ProfileViewController: UIViewController {
     }()
     
     private lazy var headerView: ProfileHeaderView = {
-        let header = ProfileHeaderView()
+        let header = ProfileHeaderView(position: .center)
         return header
     }()
     
@@ -177,7 +177,7 @@ extension ProfileViewController: ProfileViewType {
     }
     
     func updateUserInfo(user: UserModel) {
-        headerView.update(user: user)
+        headerView.update(data: user)
     }
 }
 

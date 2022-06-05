@@ -159,7 +159,7 @@ extension UserDetailViewController: UserDetailViewType {
     }
     
     func setupHeader(user: UserModel) {
-        header.update(user: user)
+        header.update(data: user)
         
         for num in 0..<typeSegmentedControl.numberOfSegments {
             if typeSegmentedControl.titleForSegment(at: num) == user.userType.rawValue {

@@ -7,8 +7,16 @@
 
 import UIKit
 import EasyPeasy
+import SDWebImage
 
-class ProfileHeaderView: ReusableSupplementaryView {
+class ProfileHeaderView: UIView {
+    enum Position {
+        case center
+        case left
+    }
+    
+    var position: Position = .center
+    
     private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = R.image.consultation()
@@ -26,10 +34,25 @@ class ProfileHeaderView: ReusableSupplementaryView {
         return label
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    private lazy var titlesStack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [userNameLabel, addressLabel])
+        stack.axis = .vertical
+        stack.spacing = 8
+        
+        return stack
+    }()
+    
+    convenience init(position: Position = .center) {
+        self.init(frame: .zero)
+        
+        self.position = position
+        
         self.setupView()
         self.setupConstraints()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
     
     required init?(coder: NSCoder) {
@@ -44,32 +67,43 @@ class ProfileHeaderView: ReusableSupplementaryView {
     
     func setupView() {
         addSubview(avatarImageView)
-        addSubview(userNameLabel)
-        addSubview(addressLabel)
+        addSubview(titlesStack)
     }
     
     func setupConstraints() {
-        avatarImageView.easy.layout(
-            Top(16),
-            CenterX(),
-            Width(110),
-            Height(110)
-        )
-        
-        userNameLabel.easy.layout(
-            Top(16).to(avatarImageView, .bottom),
-            CenterX()
-        )
-        
-        addressLabel.easy.layout(
-            Top(16).to(userNameLabel, .bottom),
-            CenterX(),
-            Bottom()
-        )
+        if position == .center {
+            avatarImageView.easy.layout(
+                Top(16),
+                CenterX(),
+                Width(110),
+                Height(110)
+            )
+            
+            titlesStack.easy.layout(
+                Top(16).to(avatarImageView, .bottom),
+                CenterX(),
+                Bottom()
+            )
+        } else {
+            avatarImageView.easy.layout(
+                Top(16),
+                Leading(16),
+                Width(110),
+                Height(110),
+                Bottom()
+            )
+            
+            titlesStack.easy.layout(
+                Leading(16).to(avatarImageView, .trailing),
+                Trailing(),
+                CenterY()
+            )
+        }
     }
 
-    func update(user: UserModel) {
-        userNameLabel.text = user.usernameTitle()
-        addressLabel.text = user.address
+    func update(data: HeaderRepresentable) {
+        userNameLabel.text = data.headerTitle()
+        addressLabel.text = data.addressTitle()
+        avatarImageView.sd_setImage(with: data.imageUrl(), placeholderImage: R.image.consultation())
     }
 }

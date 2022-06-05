@@ -13,6 +13,7 @@ struct ProjectModel: FirestoreSavable {
     var square: Decimal
     var serviceType: ServiceType
     var type: String
+    var avatarUrl: String?
     var users: [String] = []
     
     func representation() -> [String : Any] {
@@ -23,7 +24,8 @@ struct ProjectModel: FirestoreSavable {
             "users" : users,
             "square" : square,
             "type" : type,
-            "serviceType" : serviceType.rawValue
+            "serviceType" : serviceType.rawValue,
+            "avatarUrl" : avatarUrl ?? ""
         ]
         return dict
     }
@@ -45,6 +47,10 @@ struct ProjectModel: FirestoreSavable {
         if let users = document["users"] as? [String] {
             self.users = users
         }
+        
+        if let url = document["avatarUrl"] as? String {
+            self.avatarUrl = url
+        }
     }
     
     init(title: String,
@@ -64,5 +70,20 @@ struct ProjectModel: FirestoreSavable {
     
     func documentId() -> String? {
         return title
+    }
+}
+
+extension ProjectModel: HeaderRepresentable {
+    func headerTitle() -> String {
+        return title
+    }
+    
+    func addressTitle() -> String {
+        return address
+    }
+    
+    func imageUrl() -> URL? {
+        guard let avatarUrl = avatarUrl else { return nil }
+        return URL(string: avatarUrl)
     }
 }

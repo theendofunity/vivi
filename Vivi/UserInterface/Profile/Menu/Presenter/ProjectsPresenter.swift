@@ -54,7 +54,22 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
     func fileDidSelect(filename: String) {
         if type == .select {
             delegate?.projectDidSelect(name: filename)
+        } else if type == .details {
+            showProject(filename)
         }
+    }
+    
+    func showProject(_ name: String) {
+        guard let project = projects.first(where: {
+            $0.title == name
+        }) else { return }
+        
+        let presenter = ProjectDetailPresenter(project: project)
+        let view = ProjectDetailViewController()
+        presenter.view = view
+        view.presenter = presenter
+        
+        self.view?.navigation()?.pushViewController(view, animated: true)
     }
     
     func loadData() {
