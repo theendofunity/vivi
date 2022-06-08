@@ -18,4 +18,6 @@ pod 'SDWebImage'
 
 pod 'SwiftLoader'
 
+pod 'MessageKit'
+
 end

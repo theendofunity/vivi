@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MessageKit
 
 enum UserType: String, CaseIterable {
     case base
@@ -88,6 +89,15 @@ struct UserModel: FirestoreSavable, Hashable {
     func documentId() -> String? {
         return id
     }
+    
+    static func == (lhs: UserModel, rhs: UserModel) -> Bool {
+        return lhs.documentId() == rhs.documentId()
+    }
+
+//        func hash(into hasher: inout Hasher) {
+//            hasher.combine(x)
+//            hasher.combine(y)
+//        }
 }
 
 extension UserModel: HeaderRepresentable {
@@ -103,6 +113,14 @@ extension UserModel: HeaderRepresentable {
         guard let urlString = avatarUrl else { return nil }
         return URL(string: urlString)
     }
+}
+
+extension UserModel: SenderType {
+    var senderId: String {
+        return id ?? ""
+    }
     
-    
+    var displayName: String {
+        return usernameTitle()
+    }
 }

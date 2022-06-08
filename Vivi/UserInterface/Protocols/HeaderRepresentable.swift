@@ -7,8 +7,14 @@
 
 import Foundation
 
-protocol HeaderRepresentable {
+protocol HeaderRepresentable: Hashable {
     func headerTitle() -> String
     func addressTitle() -> String
     func imageUrl() -> URL?
 }
+
+//extension HeaderRepresentable {
+//    func hash(into hasher: inout Hasher) {
+//        hasher.combine(headerTitle())
+//    }
+//}

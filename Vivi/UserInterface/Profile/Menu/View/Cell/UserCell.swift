@@ -21,18 +21,18 @@ class UserCell: ReusableCell {
         return view
     }()
     
-    lazy var usernameLabel: PlainLabel = {
+    lazy var titleLabel: PlainLabel = {
         let label = PlainLabel(text: "", fontType: .normal)
         return label
     }()
     
-    lazy var projectLabel: PlainLabel = {
+    lazy var subtitleLabel: PlainLabel = {
         let label = PlainLabel(text: "", fontType: .small)
         return label
     }()
     
     lazy var titlesStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [usernameLabel, projectLabel])
+        let stack = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
         stack.axis = .vertical
         stack.spacing = 4
         return stack
@@ -75,7 +75,7 @@ class UserCell: ReusableCell {
             photoView.sd_setImage(with: url)
         }
         
-        usernameLabel.text = user.usernameTitle()
-        projectLabel.text = user.project
+        titleLabel.text = user.usernameTitle()
+        subtitleLabel.text = user.project
     }
 }

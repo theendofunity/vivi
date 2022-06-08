@@ -16,6 +16,7 @@ class FirestoreService {
     enum Reference: String {
         case users = "users"
         case projects = "projects"
+        case chats = "chats"
     }
     
     private init() {}

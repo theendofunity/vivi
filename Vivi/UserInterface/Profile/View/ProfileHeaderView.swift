@@ -101,7 +101,7 @@ class ProfileHeaderView: UIView {
         }
     }
 
-    func update(data: HeaderRepresentable) {
+    func update<T: HeaderRepresentable>(data: T) {
         userNameLabel.text = data.headerTitle()
         addressLabel.text = data.addressTitle()
         avatarImageView.sd_setImage(with: data.imageUrl(), placeholderImage: R.image.consultation())

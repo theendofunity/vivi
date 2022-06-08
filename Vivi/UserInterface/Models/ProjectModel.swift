@@ -86,4 +86,8 @@ extension ProjectModel: HeaderRepresentable {
         guard let avatarUrl = avatarUrl else { return nil }
         return URL(string: avatarUrl)
     }
+    
+    static func == (lhs: ProjectModel, rhs: ProjectModel) -> Bool {
+        return lhs.documentId() == rhs.documentId()
+    }
 }
