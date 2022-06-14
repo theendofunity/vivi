@@ -131,11 +131,10 @@ class UserDetailViewController: UIViewController {
     
     @objc func saveButtonPressed() {
         let currentSegment = typeSegmentedControl.selectedSegmentIndex
-        guard let currentTitle = typeSegmentedControl.titleForSegment(at: currentSegment),
-              let project = projectTextField.text() else { return }
+        guard let currentTitle = typeSegmentedControl.titleForSegment(at: currentSegment) else { return }
         
         let type = UserType(rawValue: currentTitle) ?? .base
-        presenter.saveButtonPressed(project: project, userType: type)
+        presenter.saveButtonPressed(userType: type)
     }
     
     @objc func changeProjectPressed() {

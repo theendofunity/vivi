@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftLoader
 
 protocol NewChatViewType: AnyObject {
     func setup(users: [UserModel])
@@ -13,32 +14,59 @@ protocol NewChatViewType: AnyObject {
     func showError(error: Error)
 }
 
+protocol NewChatDelegate: AnyObject {
+    func usersSelected(users: [UserModel])
+}
+
 class NewChatPresenter {
     weak var view: NewChatViewType?
+    weak var delegate: NewChatDelegate?
+    var users: [UserModel] = []
     var storage = FirestoreService.shared
     
     func viewDidLoad() {
-        loadUsers()
-        loadProjects()
+        loadData()
     }
     
     func viewDidAppear() {
         
     }
     
-    func loadUsers() {
+    func loadData() {
+        let group = DispatchGroup()
+        
+        SwiftLoader.show(animated: true)
+        
+        loadUsers(group: group)
+        loadProjects(group: group)
+        
+        group.notify(queue: .main) {
+            SwiftLoader.hide()
+        }
+    }
+    
+    func loadUsers(group: DispatchGroup) {
+        group.enter()
         storage.load(referenceType: .users) { [weak self] (result: Result<[UserModel], Error>) in
+            group.leave()
             switch result {
             case .success(let users):
-                self?.view?.setup(users: users)
+                guard let id = UserService.shared.user?.id else { return }
+                let filtredUsers = users.filter {
+                    $0.id != id
+                }
+                self?.users = filtredUsers
+                self?.view?.setup(users: filtredUsers)
             case .failure(let error):
                 self?.view?.showError(error: error)
             }
         }
     }
     
-    func loadProjects() {
+    func loadProjects(group: DispatchGroup) {
+        group.enter()
         storage.load(referenceType: .projects) { [weak self] (result: Result<[ProjectModel], Error>) in
+            group.leave()
             switch result {
             case .success(let projects):
                 self?.view?.setup(projects: projects)
@@ -46,5 +74,18 @@ class NewChatPresenter {
                 self?.view?.showError(error: error)
             }
         }
+    }
+    
+    func userDidSelect(user: UserModel) {
+        delegate?.usersSelected(users: [user])
+    }
+    
+    func projectDidSelect(project: ProjectModel) {
+        print(project.title, project.users)
+        let usersInProject = users.filter { user in
+            return project.users.contains { $0 == user.id}
+        }
+        
+        delegate?.usersSelected(users: usersInProject)
     }
 }

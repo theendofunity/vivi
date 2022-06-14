@@ -38,7 +38,16 @@ class ChatPresenter {
         let presenter = NewChatPresenter()
         let view = NewChatViewController()
         presenter.view = view
+        presenter.delegate = self
         view.presenter = presenter
         self.view?.navigation()?.pushViewController(view, animated: true)
+    }
+}
+
+extension ChatPresenter: NewChatDelegate {
+    func usersSelected(users: [UserModel]) {
+        view?.navigation()?.popViewController(animated: true)
+        
+        print(users)
     }
 }

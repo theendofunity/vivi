@@ -77,4 +77,9 @@ class FirestoreService {
             completion(.success(data))
         }
     }
+    
+    func updateUsersInProject(project: ProjectModel) {
+        let ref = db.collection(Reference.projects.rawValue).document(project.title)
+        ref.setData(["users" : project.users], merge: true)
+    }
 }

@@ -73,6 +73,11 @@
 		D86AEE90283BF06A001BE89F /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE8F283BF06A001BE89F /* PhotoGalleryViewController.swift */; };
 		D86AEE92283BF07E001BE89F /* PhotoGalleryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE91283BF07E001BE89F /* PhotoGalleryPresenter.swift */; };
 		D86AEE94283BFAA7001BE89F /* PhotoGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86AEE93283BFAA7001BE89F /* PhotoGalleryCell.swift */; };
+		D8855CB32858F52900CCE65B /* ChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8855CB22858F52900CCE65B /* ChatDetailViewController.swift */; };
+		D8855CB52858F5EE00CCE65B /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8855CB42858F5EE00CCE65B /* ChatModel.swift */; };
+		D8855CB72858FCCC00CCE65B /* SenderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8855CB62858FCCC00CCE65B /* SenderModel.swift */; };
+		D8855CB92858FFE200CCE65B /* ImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8855CB82858FFE200CCE65B /* ImageItem.swift */; };
+		D8855CBB285902C400CCE65B /* ChatDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8855CBA285902C400CCE65B /* ChatDetailsPresenter.swift */; };
 		D88A0CE22846686D00B02D3E /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A0CE12846686D00B02D3E /* NewProjectViewController.swift */; };
 		D88A0CE42846703500B02D3E /* ProjectsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A0CE32846703500B02D3E /* ProjectsPresenter.swift */; };
 		D88A0CE628467CA200B02D3E /* UISegmentedControl + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A0CE528467CA200B02D3E /* UISegmentedControl + Extensions.swift */; };
@@ -161,6 +166,11 @@
 		D86AEE8F283BF06A001BE89F /* PhotoGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewController.swift; sourceTree = "<group>"; };
 		D86AEE91283BF07E001BE89F /* PhotoGalleryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryPresenter.swift; sourceTree = "<group>"; };
 		D86AEE93283BFAA7001BE89F /* PhotoGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCell.swift; sourceTree = "<group>"; };
+		D8855CB22858F52900CCE65B /* ChatDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailViewController.swift; sourceTree = "<group>"; };
+		D8855CB42858F5EE00CCE65B /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		D8855CB62858FCCC00CCE65B /* SenderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderModel.swift; sourceTree = "<group>"; };
+		D8855CB82858FFE200CCE65B /* ImageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageItem.swift; sourceTree = "<group>"; };
+		D8855CBA285902C400CCE65B /* ChatDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailsPresenter.swift; sourceTree = "<group>"; };
 		D88A0CE12846686D00B02D3E /* NewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
 		D88A0CE32846703500B02D3E /* ProjectsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsPresenter.swift; sourceTree = "<group>"; };
 		D88A0CE528467CA200B02D3E /* UISegmentedControl + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl + Extensions.swift"; sourceTree = "<group>"; };
@@ -364,6 +374,7 @@
 				D8BEF64B2851317600B675D9 /* Cell */,
 				D8262F9A281F309900FA3E76 /* ChatViewController.swift */,
 				D8BEF6492851199C00B675D9 /* NewChatViewController.swift */,
+				D8855CB22858F52900CCE65B /* ChatDetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -373,6 +384,7 @@
 			children = (
 				D8262F9C281F30A400FA3E76 /* ChatPresenter.swift */,
 				D8BEF6472851199000B675D9 /* NewChatPresenter.swift */,
+				D8855CBA285902C400CCE65B /* ChatDetailsPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -448,6 +460,9 @@
 				D8DEC03A282ACA3F000A62B8 /* UserModel.swift */,
 				D80690352843ED66007916DF /* ProjectModel.swift */,
 				D835AC4D284DD39F00F4CEDA /* MessageModel.swift */,
+				D8855CB42858F5EE00CCE65B /* ChatModel.swift */,
+				D8855CB62858FCCC00CCE65B /* SenderModel.swift */,
+				D8855CB82858FFE200CCE65B /* ImageItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -778,10 +793,13 @@
 				D86A79DE28211A3100F45D76 /* MainButton.swift in Sources */,
 				D821F8B02832A84D00C43774 /* ProfilePresenter.swift in Sources */,
 				D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */,
+				D8855CB52858F5EE00CCE65B /* ChatModel.swift in Sources */,
 				D8262F9B281F309900FA3E76 /* ChatViewController.swift in Sources */,
+				D8855CB92858FFE200CCE65B /* ImageItem.swift in Sources */,
 				D86AEE89283A2544001BE89F /* TextMenuPresenter.swift in Sources */,
 				D863D097284D02F700E98E2D /* ProjectDetailPresenter.swift in Sources */,
 				D88A0CE628467CA200B02D3E /* UISegmentedControl + Extensions.swift in Sources */,
+				D8855CB32858F52900CCE65B /* ChatDetailViewController.swift in Sources */,
 				D850CFDE282BBB9000C41DE7 /* ProfileMenuCell.swift in Sources */,
 				D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */,
 				D83FFB5D2848B7D900C270DE /* UsersViewController.swift in Sources */,
@@ -813,6 +831,8 @@
 				D8262FA528201AE200FA3E76 /* UIViewController + Extensions.swift in Sources */,
 				D8262FBC28203C5C00FA3E76 /* ServiceCell.swift in Sources */,
 				D86A79E228212AA300F45D76 /* UIImageView + Extensions.swift in Sources */,
+				D8855CBB285902C400CCE65B /* ChatDetailsPresenter.swift in Sources */,
+				D8855CB72858FCCC00CCE65B /* SenderModel.swift in Sources */,
 				D83FFB5F2848B81B00C270DE /* UsersPresenter.swift in Sources */,
 				D8DEC041282ADEA2000A62B8 /* Completions.swift in Sources */,
 				D8DD1573283E9B08006EAA9C /* DetailImageViewController.swift in Sources */,

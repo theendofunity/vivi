@@ -93,11 +93,6 @@ struct UserModel: FirestoreSavable, Hashable {
     static func == (lhs: UserModel, rhs: UserModel) -> Bool {
         return lhs.documentId() == rhs.documentId()
     }
-
-//        func hash(into hasher: inout Hasher) {
-//            hasher.combine(x)
-//            hasher.combine(y)
-//        }
 }
 
 extension UserModel: HeaderRepresentable {

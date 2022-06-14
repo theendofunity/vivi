@@ -34,7 +34,7 @@ class NewChatViewController: UIViewController {
 
         collectionView.backgroundColor = .clear
         collectionView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
-//        collectionView.delegate = self
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -141,7 +141,6 @@ class NewChatViewController: UIViewController {
         
         dataSource?.apply(snapshot)
     }
-
 }
 
 extension NewChatViewController: NewChatViewType {
@@ -157,5 +156,20 @@ extension NewChatViewController: NewChatViewType {
     func setup(projects: [ProjectModel]) {
         self.projects = projects
         reload()
+    }
+}
+
+extension NewChatViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let section = Section(rawValue: indexPath.section) else { return }
+        
+        switch section {
+        case .users:
+            let user = users[indexPath.item]
+            presenter.userDidSelect(user: user)
+        case .projects:
+            let project = projects[indexPath.item]
+            presenter.projectDidSelect(project: project)
+        }
     }
 }

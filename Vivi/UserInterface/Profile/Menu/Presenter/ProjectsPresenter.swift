@@ -10,7 +10,7 @@ import SwiftLoader
 import SwiftLoader
 
 protocol ProjectPresenterDelegate: AnyObject {
-    func projectDidSelect(name: String)
+    func projectDidSelect(project: ProjectModel)
 }
 
 class ProjectsPresenter: TextMenuPresenterProtocol {
@@ -53,7 +53,8 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
     
     func fileDidSelect(filename: String) {
         if type == .select {
-            delegate?.projectDidSelect(name: filename)
+            guard let project = projects.first(where: { $0.title == filename }) else { return }
+            delegate?.projectDidSelect(project: project)
         } else if type == .details {
             showProject(filename)
         }

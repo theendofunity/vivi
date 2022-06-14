@@ -26,6 +26,8 @@ class UserDetailPresenter {
     var user: UserModel
     var storage = FirestoreService.shared
     
+    var selectedProject: ProjectModel?
+    
     init(user: UserModel) {
         self.user = user
     }
@@ -40,13 +42,19 @@ class UserDetailPresenter {
     }
     
     func setupProject() {
-        let model = TextFieldViewModel(type: .project, value: user.project ?? "", canEdit: false)
+        var projectTitle = user.project ?? ""
+        if let selectedProject = selectedProject {
+            projectTitle = selectedProject.title
+        }
+        
+        let model = TextFieldViewModel(type: .project, value: projectTitle, canEdit: false)
         view?.setupProject(model: model)
     }
     
-    func saveButtonPressed(project: String, userType: UserType) {
+    func saveButtonPressed(userType: UserType) {
+        addUserToProject()
+        
         user.userType = userType
-        user.project = project
         
         SwiftLoader.show(animated: true)
         storage.save(reference: .users, data: user) { [weak self] result in
@@ -55,10 +63,21 @@ class UserDetailPresenter {
             case .success():
                 self?.view?.showSuccess()
                 self?.delegate?.userUpdated()
+                //TODO: add user to project
             case .failure(let error):
                 self?.view?.showError(error: error)
             }
         }
+    }
+    
+    func addUserToProject() {
+        guard let _ = selectedProject,
+              selectedProject?.title != user.project,
+              let id = user.id else { return }
+        
+        selectedProject?.users.append(id)
+        storage.updateUsersInProject(project: selectedProject!)
+        user.project = selectedProject?.title
     }
     
     func writeButtonPressed() {
@@ -77,10 +96,10 @@ class UserDetailPresenter {
 }
 
 extension UserDetailPresenter: ProjectPresenterDelegate {
-    func projectDidSelect(name: String) {
+    func projectDidSelect(project: ProjectModel) {
         view?.navigation()?.dismiss(animated: true)
         
-        user.project = name
+        selectedProject = project
         setupProject()
     }
 }
