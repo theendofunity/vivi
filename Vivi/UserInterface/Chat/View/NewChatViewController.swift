@@ -10,8 +10,8 @@ import EasyPeasy
 
 class NewChatViewController: UIViewController {
     enum Section: Int, CaseIterable {
-        case users = 0
-        case projects = 1
+        case projects = 0
+        case users = 1
     }
     
     enum Item: Hashable {
@@ -62,15 +62,15 @@ class NewChatViewController: UIViewController {
     func setupConstraints() {
         collectionView.easy.layout(
             Top().to(view.safeAreaLayoutGuide, .top),
-            Leading(24),
-            Trailing(24),
+            Leading(),
+            Trailing(),
             Bottom().to(view.safeAreaLayoutGuide, .bottom)
         )
     }
     
     func setupDataSource() {
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
-            if indexPath.section == Section.projects.rawValue {
+            if indexPath.section == Section.users.rawValue {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserCell.reuseId, for: indexPath) as? UserCell else { return UICollectionViewCell() }
                 switch itemIdentifier {
                 case .user(let user):
@@ -82,12 +82,12 @@ class NewChatViewController: UIViewController {
             } else {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCell.reuseId, for: indexPath) as? ProjectCell else { return UICollectionViewCell() }
                 
-//                switch itemIdentifier {
-//                case .user(let user):
-//                    cell.configure(user: user)
-//                default:
-//                    break
-//                }
+                switch itemIdentifier {
+                case .project(let project):
+                    cell.configure(project: project)
+                default:
+                    break
+                }
                 return cell
             }
         })
@@ -96,17 +96,18 @@ class NewChatViewController: UIViewController {
     func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { index, environment in
             if index == Section.projects.rawValue {
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3),
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
                                                       heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                       heightDimension: .absolute(40))
+                                                       heightDimension: .fractionalWidth(0.6))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                             subitem: item,
-                                                               count: 1)
+                                                               subitems: [item])
                 
                 let section = NSCollectionLayoutSection(group: group)
-                section.interGroupSpacing = 8.0
+                section.orthogonalScrollingBehavior = .continuous
+                
                 return section
             } else {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
@@ -114,14 +115,17 @@ class NewChatViewController: UIViewController {
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                       heightDimension: .absolute(60))
+                                                       heightDimension: .absolute(80))
                 let group: NSCollectionLayoutGroup = .vertical(layoutSize: groupSize,
                                                                subitems: [item])
                 
                 let section = NSCollectionLayoutSection(group: group)
+                section.contentInsets = .init(top: 0, leading: 24, bottom: 0, trailing: 24)
+
                 return section
             }
         }
+        
         return layout
     }
     
