@@ -63,7 +63,6 @@ class UserDetailPresenter {
             case .success():
                 self?.view?.showSuccess()
                 self?.delegate?.userUpdated()
-                //TODO: add user to project
             case .failure(let error):
                 self?.view?.showError(error: error)
             }

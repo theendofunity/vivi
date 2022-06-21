@@ -10,18 +10,36 @@ import UIKit
 
 protocol ChatViewType: AnyObject {
     func hideAddButton(isHidden: Bool)
+    func showError(error: Error)
+    func update(chats: [ChatModel])
     func navigation() -> UINavigationController?
 }
 
-class ChatPresenter {
+class ChatsListPresenter {
     var view: ChatViewType?
+    let storage = FirestoreService.shared
+    
+    var chats: [ChatModel] = []
     
     func viewLoaded() {
-    
+        loadChats()
     }
     
     func viewAppeared() {
         setupAddButton()
+    }
+    
+    func loadChats() {
+        storage.loadChats { [weak self] result in
+            print(result)
+            switch result {
+            case .success(let chats):
+                self?.chats = chats
+                self?.view?.update(chats: chats)
+            case .failure(let error):
+                self?.view?.showError(error: error)
+            }
+        }
     }
     
     func setupAddButton() {
@@ -44,7 +62,7 @@ class ChatPresenter {
     }
 }
 
-extension ChatPresenter: NewChatDelegate {
+extension ChatsListPresenter: NewChatDelegate {
     func usersSelected(users: [UserModel]) {
         view?.navigation()?.popViewController(animated: true)
         

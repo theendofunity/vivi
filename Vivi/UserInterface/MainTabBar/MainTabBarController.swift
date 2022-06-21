@@ -30,8 +30,8 @@ class MainTabBarController: UITabBarController {
         portfolioPresenter.view = portfolioViewController
         let portfolioImage = UIImage(systemName: "photo.on.rectangle")
         
-        let chatViewController = ChatViewController()
-        let chatPresenter = ChatPresenter()
+        let chatViewController = ChatsListViewController()
+        let chatPresenter = ChatsListPresenter()
         chatViewController.presenter = chatPresenter
         chatPresenter.view = chatViewController
         let chatImage = UIImage(systemName: "message")

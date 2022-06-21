@@ -20,8 +20,8 @@
 		D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F8A281F2C7A00FA3E76 /* UIColor + Extensions.swift */; };
 		D8262F8F281F2D6200FA3E76 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F8E281F2D6200FA3E76 /* PortfolioViewController.swift */; };
 		D8262F93281F2D8400FA3E76 /* PortfolioPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F92281F2D8400FA3E76 /* PortfolioPresenter.swift */; };
-		D8262F9B281F309900FA3E76 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F9A281F309900FA3E76 /* ChatViewController.swift */; };
-		D8262F9D281F30A400FA3E76 /* ChatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F9C281F30A400FA3E76 /* ChatPresenter.swift */; };
+		D8262F9B281F309900FA3E76 /* ChatsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F9A281F309900FA3E76 /* ChatsListViewController.swift */; };
+		D8262F9D281F30A400FA3E76 /* ChatsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F9C281F30A400FA3E76 /* ChatsListPresenter.swift */; };
 		D8262FA32820176900FA3E76 /* UIFont + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FA22820176900FA3E76 /* UIFont + Extensions.swift */; };
 		D8262FA528201AE200FA3E76 /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FA428201AE200FA3E76 /* UIViewController + Extensions.swift */; };
 		D8262FA828201F2A00FA3E76 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FA728201F2A00FA3E76 /* R.generated.swift */; };
@@ -86,6 +86,7 @@
 		D8BEF6482851199000B675D9 /* NewChatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BEF6472851199000B675D9 /* NewChatPresenter.swift */; };
 		D8BEF64A2851199C00B675D9 /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BEF6492851199C00B675D9 /* NewChatViewController.swift */; };
 		D8BEF64D2851318800B675D9 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BEF64C2851318800B675D9 /* ProjectCell.swift */; };
+		D8DA418D28625A96005AFE60 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA418C28625A96005AFE60 /* ChatCell.swift */; };
 		D8DD1573283E9B08006EAA9C /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */; };
 		D8DD1575283FEF1C006EAA9C /* ZoomPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD1574283FEF1C006EAA9C /* ZoomPhotoCell.swift */; };
 		D8DEC039282AC995000A62B8 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC038282AC995000A62B8 /* FirestoreService.swift */; };
@@ -113,8 +114,8 @@
 		D8262F8A281F2C7A00FA3E76 /* UIColor + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extensions.swift"; sourceTree = "<group>"; };
 		D8262F8E281F2D6200FA3E76 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		D8262F92281F2D8400FA3E76 /* PortfolioPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioPresenter.swift; sourceTree = "<group>"; };
-		D8262F9A281F309900FA3E76 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		D8262F9C281F30A400FA3E76 /* ChatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPresenter.swift; sourceTree = "<group>"; };
+		D8262F9A281F309900FA3E76 /* ChatsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListViewController.swift; sourceTree = "<group>"; };
+		D8262F9C281F30A400FA3E76 /* ChatsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListPresenter.swift; sourceTree = "<group>"; };
 		D8262FA22820176900FA3E76 /* UIFont + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extensions.swift"; sourceTree = "<group>"; };
 		D8262FA428201AE200FA3E76 /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
 		D8262FA728201F2A00FA3E76 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
@@ -179,6 +180,7 @@
 		D8BEF6472851199000B675D9 /* NewChatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatPresenter.swift; sourceTree = "<group>"; };
 		D8BEF6492851199C00B675D9 /* NewChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
 		D8BEF64C2851318800B675D9 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
+		D8DA418C28625A96005AFE60 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
 		D8DD1574283FEF1C006EAA9C /* ZoomPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomPhotoCell.swift; sourceTree = "<group>"; };
 		D8DEC038282AC995000A62B8 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
@@ -372,7 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				D8BEF64B2851317600B675D9 /* Cell */,
-				D8262F9A281F309900FA3E76 /* ChatViewController.swift */,
+				D8262F9A281F309900FA3E76 /* ChatsListViewController.swift */,
 				D8BEF6492851199C00B675D9 /* NewChatViewController.swift */,
 				D8855CB22858F52900CCE65B /* ChatDetailViewController.swift */,
 			);
@@ -382,7 +384,7 @@
 		D8262F99281F308400FA3E76 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				D8262F9C281F30A400FA3E76 /* ChatPresenter.swift */,
+				D8262F9C281F30A400FA3E76 /* ChatsListPresenter.swift */,
 				D8BEF6472851199000B675D9 /* NewChatPresenter.swift */,
 				D8855CBA285902C400CCE65B /* ChatDetailsPresenter.swift */,
 			);
@@ -620,6 +622,7 @@
 			isa = PBXGroup;
 			children = (
 				D8BEF64C2851318800B675D9 /* ProjectCell.swift */,
+				D8DA418C28625A96005AFE60 /* ChatCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -794,9 +797,10 @@
 				D821F8B02832A84D00C43774 /* ProfilePresenter.swift in Sources */,
 				D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */,
 				D8855CB52858F5EE00CCE65B /* ChatModel.swift in Sources */,
-				D8262F9B281F309900FA3E76 /* ChatViewController.swift in Sources */,
+				D8262F9B281F309900FA3E76 /* ChatsListViewController.swift in Sources */,
 				D8855CB92858FFE200CCE65B /* ImageItem.swift in Sources */,
 				D86AEE89283A2544001BE89F /* TextMenuPresenter.swift in Sources */,
+				D8DA418D28625A96005AFE60 /* ChatCell.swift in Sources */,
 				D863D097284D02F700E98E2D /* ProjectDetailPresenter.swift in Sources */,
 				D88A0CE628467CA200B02D3E /* UISegmentedControl + Extensions.swift in Sources */,
 				D8855CB32858F52900CCE65B /* ChatDetailViewController.swift in Sources */,
@@ -819,7 +823,7 @@
 				D8BEF64D2851318800B675D9 /* ProjectCell.swift in Sources */,
 				D8DD1575283FEF1C006EAA9C /* ZoomPhotoCell.swift in Sources */,
 				D8262F74281F2ADB00FA3E76 /* SceneDelegate.swift in Sources */,
-				D8262F9D281F30A400FA3E76 /* ChatPresenter.swift in Sources */,
+				D8262F9D281F30A400FA3E76 /* ChatsListPresenter.swift in Sources */,
 				D86AEE94283BFAA7001BE89F /* PhotoGalleryCell.swift in Sources */,
 				D850CFE2282BCB9300C41DE7 /* ProfileMenuType.swift in Sources */,
 				D8262FB82820316900FA3E76 /* PortfolioExampleCell.swift in Sources */,

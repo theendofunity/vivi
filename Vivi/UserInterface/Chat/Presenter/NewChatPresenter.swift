@@ -77,6 +77,15 @@ class NewChatPresenter {
     }
     
     func userDidSelect(user: UserModel) {
+        guard let currentId = AuthService.shared.currentUser?.uid,
+              let destinationId = user.id
+        else {
+            return
+        }
+        let selfChat = ChatModel(users: [currentId, destinationId], title: user.usernameTitle())
+        storage.startNewChat(chat: selfChat) { [weak self] result in
+            print(result)
+        }
         delegate?.usersSelected(users: [user])
     }
     

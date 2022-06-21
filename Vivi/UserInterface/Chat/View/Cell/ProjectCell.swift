@@ -48,7 +48,7 @@ class ProjectCell: ReusableCell {
             Top(),
             Leading(),
             Trailing(),
-            Width(150),
+//            Width(150),
             Height(150)
         )
         
@@ -62,7 +62,6 @@ class ProjectCell: ReusableCell {
 
     func configure(project: ProjectModel) {
         self.project = project
-        print(project.documentId())
         titleLabel.text = project.documentId()
         imageView.sd_setImage(with: project.imageUrl(), placeholderImage: R.image.logo())
     }

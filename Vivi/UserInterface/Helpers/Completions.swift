@@ -17,4 +17,6 @@ typealias StringsCompletion = (Result<[String], Error>) -> Void
 typealias DocumentsCompletion = (Result<[FirestoreSavable], Error>) -> Void
 typealias ProjectsCompletion = (Result<[ProjectModel], Error>) -> Void
 
+typealias ChatsCompletion = (Result<[ChatModel], Error>) -> Void
+
 
