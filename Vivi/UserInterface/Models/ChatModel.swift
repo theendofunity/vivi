@@ -12,39 +12,46 @@ struct ChatModel: FirestoreSavable {
     var messages: [MessageModel] = []
     var avatarUrl: String?
     var title: String = ""
+    var id: String
     
     internal init(users: [String] = [], messages: [MessageModel] = [], avatarUrl: String? = nil, title: String) {
         self.users = users
         self.messages = messages
         self.avatarUrl = avatarUrl
         self.title = title
+        self.id = UUID().uuidString
     }
     
     init?(document: [String : Any]) {
-        guard let users = document["users"] as? [String]
+        guard let users = document["users"] as? [String],
+              let id = document["id"] as? String
         else { return nil }
         
         self.avatarUrl = document["avatarUrl"] as? String
         self.users = users
+        self.id = id
 //        self.title = title
         
         if let messages = document["messages"] as? [MessageModel] {
             self.messages = messages
         }
-        
     }
     
-    
     func documentId() -> String? {
-        return "id"
+        return id
     }
     
     func representation() -> [String : Any] {
-        let dict: [String : Any] = [
+        var dict: [String : Any] = [
             "users" : users,
-            "messages" : messages
+            "id" : id,
+            "title" : title
         ]
-        //TODO: ADD OTHER FIELDS
+        if !messages.isEmpty {
+            dict["messages"] = messages.map({
+                $0.representation()
+            })
+        }
         
         return dict
     }

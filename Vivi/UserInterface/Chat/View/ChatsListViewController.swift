@@ -144,7 +144,10 @@ extension ChatsListViewController: ChatViewType {
 
 extension ChatsListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ChatCell,
+        let chat = cell.chat else { return }
         
+        presenter.chatDidSelected(chat: chat)
     }
 }
 

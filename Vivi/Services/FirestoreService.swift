@@ -83,17 +83,17 @@ class FirestoreService {
         ref.setData(["users" : project.users], merge: true)
     }
     
-    func startNewChat(chat: ChatModel, completion: @escaping VoidCompletion) {
-        let ref = db.collection(Reference.chats.rawValue)
-        ref.addDocument(data: chat.representation()) { error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            completion(.success(Void()))
-        }
-    }
+//    func startNewChat(chat: ChatModel, completion: @escaping VoidCompletion) {
+//        let ref = db.collection(Reference.chats.rawValue)
+//        ref.addDocument(data: chat.representation()) { error in
+//            if let error = error {
+//                completion(.failure(error))
+//                return
+//            }
+//            
+//            completion(.success(Void()))
+//        }
+//    }
     
     func loadChats(completion: @escaping ChatsCompletion) {
         guard let currentUser = AuthService.shared.currentUser else { return }

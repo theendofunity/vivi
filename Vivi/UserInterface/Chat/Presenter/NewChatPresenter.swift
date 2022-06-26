@@ -82,11 +82,11 @@ class NewChatPresenter {
         else {
             return
         }
-        let selfChat = ChatModel(users: [currentId, destinationId], title: user.usernameTitle())
-        storage.startNewChat(chat: selfChat) { [weak self] result in
-            print(result)
+        let selfChat = ChatModel(users: [currentId, destinationId], title: "")
+        //TODO: Fill title in storage
+        storage.save(reference: .chats, data: selfChat) { [weak self] result in
+            self?.delegate?.usersSelected(users: [user])
         }
-        delegate?.usersSelected(users: [user])
     }
     
     func projectDidSelect(project: ProjectModel) {

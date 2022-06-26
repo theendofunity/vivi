@@ -60,6 +60,17 @@ class ChatsListPresenter {
         view.presenter = presenter
         self.view?.navigation()?.pushViewController(view, animated: true)
     }
+    
+    func chatDidSelected(chat: ChatModel) {
+        guard let user = UserService.shared.user else { return }
+        
+        let presenter = ChatDetailsPresenter(chat: chat, currentUser: user)
+        let view = ChatDetailViewController()
+        presenter.view = view
+        view.presenter = presenter
+        
+        self.view?.navigation()?.pushViewController(view, animated: true)
+    }
 }
 
 extension ChatsListPresenter: NewChatDelegate {
