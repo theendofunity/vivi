@@ -30,10 +30,17 @@ struct ChatModel: FirestoreSavable {
         self.avatarUrl = document["avatarUrl"] as? String
         self.users = users
         self.id = id
-//        self.title = title
         
-        if let messages = document["messages"] as? [MessageModel] {
-            self.messages = messages
+        if let messages = document["messages"] as? [[String : Any]] {
+            for message in messages {
+                if let newMessage = MessageModel(document: message) {
+                    self.messages.append(newMessage)
+                }
+            }
+        }
+        
+        if let title = document["title"] as? String {
+            self.title = title
         }
     }
     
@@ -48,9 +55,7 @@ struct ChatModel: FirestoreSavable {
             "title" : title
         ]
         if !messages.isEmpty {
-            dict["messages"] = messages.map({
-                $0.representation()
-            })
+            dict["messages"] = messages.map({ $0.representation() })
         }
         
         return dict

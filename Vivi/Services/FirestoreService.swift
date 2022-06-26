@@ -114,7 +114,7 @@ class FirestoreService {
             if snapshot.count == 0 {
                 return
             }
-            print("count", snapshot.count)
+
             let chats: [ChatModel] = snapshot.documents.compactMap { ChatModel(document: $0.data()) }
             completion(.success(chats))
         }
