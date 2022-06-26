@@ -71,7 +71,7 @@ extension MessageModel: FirestoreSavable {
             "senderId" : sender.senderId,
             "id" : messageId,
             "imageUrl" : imageUrl ?? "",
-            "content" : content
+            "content" : content ?? ""
         ]
         return dict
     }

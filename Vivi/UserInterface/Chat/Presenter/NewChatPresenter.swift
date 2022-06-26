@@ -83,7 +83,7 @@ class NewChatPresenter {
             return
         }
         let selfChat = ChatModel(users: [currentId, destinationId], title: "")
-        //TODO: Fill title in storage
+        
         storage.save(reference: .chats, data: selfChat) { [weak self] result in
             self?.delegate?.usersSelected(users: [user])
         }

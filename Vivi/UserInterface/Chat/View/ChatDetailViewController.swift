@@ -56,9 +56,14 @@ extension ChatDetailViewController: MessagesDisplayDelegate {
 }
 
 extension ChatDetailViewController: ChatDetailViewType {
+    func showError(error: Error) {
+        alertError(error: error)
+    }
+    
     func update(messages: [MessageModel]) {
         self.messages = messages
         messagesCollectionView.reloadData()
+        messagesCollectionView.scrollToLastItem(at: .bottom, animated: true)
     }
 }
 

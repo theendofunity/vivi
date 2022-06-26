@@ -119,4 +119,38 @@ class FirestoreService {
             completion(.success(chats))
         }
     }
+    
+    func addMessagesObserver(chatId: String, completion: @escaping MessagesCompletion) -> ListenerRegistration? {
+        let ref = db.collection(Reference.chats.rawValue).document(chatId).collection("messages")
+        
+        print("REF", ref.path)
+        let listener = ref.addSnapshotListener { snapshot, error in
+            print("addSnapshotListener")
+            print(snapshot?.documentChanges)
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let snapshot = snapshot else { return }
+            
+            var messages: [MessageModel] = []
+            
+            snapshot.documentChanges.forEach {
+                switch $0.type {
+                case .added:
+                    if let chat = MessageModel(document: $0.document.data()) {
+                        messages.append(chat)
+                    }
+                    completion(.success(messages))
+                case .modified:
+                    break
+                case .removed:
+                    break
+                }
+            }
+        }
+        
+        return listener
+    }
 }
