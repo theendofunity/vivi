@@ -82,15 +82,14 @@ class NewChatPresenter {
         else {
             return
         }
-        let selfChat = ChatModel(users: [currentId, destinationId], title: "")
+        let chat = ChatModel(users: [currentId, destinationId], title: "")
         
-        storage.save(reference: .chats, data: selfChat) { [weak self] result in
+        storage.createChat(chat: chat) { [weak self] result in
             self?.delegate?.usersSelected(users: [user])
         }
     }
     
     func projectDidSelect(project: ProjectModel) {
-        print(project.title, project.users)
         let usersInProject = users.filter { user in
             return project.users.contains { $0 == user.id}
         }

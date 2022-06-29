@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 class FirestoreService {
     static var shared = FirestoreService()
-    private var db = Firestore.firestore()
+    var db = Firestore.firestore()
     
     enum Reference: String {
         case users = "users"
@@ -48,8 +48,8 @@ class FirestoreService {
             }
             
             guard let snapshot = snapshot,
-            let data = snapshot.data(),
-            let userModel = UserModel(document: data) else {
+                  let data = snapshot.data(),
+                  let userModel = UserModel(document: data) else {
                 return
             }
             
@@ -83,27 +83,43 @@ class FirestoreService {
         ref.setData(["users" : project.users], merge: true)
     }
     
-//    func startNewChat(chat: ChatModel, completion: @escaping VoidCompletion) {
-//        let ref = db.collection(Reference.chats.rawValue)
-//        ref.addDocument(data: chat.representation()) { error in
-//            if let error = error {
-//                completion(.failure(error))
-//                return
-//            }
-//            
-//            completion(.success(Void()))
-//        }
-//    }
+    //MARK: - Chats
+    
+    func createChat(chat: ChatModel, completion: @escaping VoidCompletion) {
+        let ref = db.collection(Reference.chats.rawValue).document(chat.id)
+        
+        ref.setData(chat.representation()) { error in
+            if let error = error {
+                completion(.failure(error))
+            }
+            completion(.success(Void()))
+        }
+    }
+    
+    func sendMessage(chat: ChatModel, message: MessageModel, completion: @escaping VoidCompletion) {
+        let ref = db.collection(Reference.chats.rawValue).document(chat.id).collection("messages")
+        
+        ref.addDocument(data: message.representation()) { error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            self.save(reference: .chats, data: chat) { result in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                completion(.success(Void()))
+            }
+        }
+    }
     
     func loadChats(completion: @escaping ChatsCompletion) {
         guard let currentUser = AuthService.shared.currentUser else { return }
-        print(#function)
         let ref = db.collection(Reference.chats.rawValue).whereField("users", arrayContains: currentUser.uid)
-
+        
         ref.getDocuments { snapshot, error in
-            snapshot?.documents.forEach({
-                print($0.data())
-            })
             if let error = error {
                 completion(.failure(error))
                 return
@@ -111,10 +127,6 @@ class FirestoreService {
             
             guard let snapshot = snapshot else { return }
             
-            if snapshot.count == 0 {
-                return
-            }
-
             let chats: [ChatModel] = snapshot.documents.compactMap { ChatModel(document: $0.data()) }
             completion(.success(chats))
         }
@@ -126,7 +138,7 @@ class FirestoreService {
         print("REF", ref.path)
         let listener = ref.addSnapshotListener { snapshot, error in
             print("addSnapshotListener")
-            print(snapshot?.documentChanges)
+            
             if let error = error {
                 completion(.failure(error))
                 return
@@ -136,19 +148,26 @@ class FirestoreService {
             
             var messages: [MessageModel] = []
             
-            snapshot.documentChanges.forEach {
-                switch $0.type {
+            print(snapshot.documentChanges.count)
+            
+            for diff in snapshot.documentChanges {
+                print("MESSAGE", diff.document.data())
+                guard let message = MessageModel(document: diff.document.data()) else { continue }
+                print("PARSING OK")
+                let type = diff.type
+                print("type", type.rawValue)
+                switch type {
                 case .added:
-                    if let chat = MessageModel(document: $0.document.data()) {
-                        messages.append(chat)
-                    }
-                    completion(.success(messages))
+                    print("added")
+                    messages.append(message)
                 case .modified:
-                    break
+                    print("modified")
                 case .removed:
-                    break
+                    print("removed")
                 }
+                
             }
+            completion(.success(messages))
         }
         
         return listener

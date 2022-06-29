@@ -70,7 +70,7 @@ class ChatCell: ReusableCell {
     func configure(chat: ChatModel) {
         self.chat = chat
         titleLabel.text = chat.title
-        subtitleLabel.text = chat.messages.last?.content
+        subtitleLabel.text = chat.lastMessageContent
         
         if let urlString = chat.avatarUrl {
             photoView.sd_setImage(with: URL(string: urlString))

@@ -31,7 +31,6 @@ class ChatsListPresenter {
     
     func loadChats() {
         storage.loadChats { [weak self] result in
-            print(result)
             switch result {
             case .success(let chats):
                 self?.chats = chats
@@ -75,8 +74,6 @@ class ChatsListPresenter {
 
 extension ChatsListPresenter: NewChatDelegate {
     func usersSelected(users: [UserModel]) {
-        view?.navigation()?.popViewController(animated: true)
-        
-        print(users)
+        view?.navigation()?.popViewController(animated: true)        
     }
 }

@@ -75,6 +75,4 @@ extension MessageModel: FirestoreSavable {
         ]
         return dict
     }
-    
-    
 }

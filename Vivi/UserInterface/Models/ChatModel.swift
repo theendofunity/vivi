@@ -9,17 +9,17 @@ import Foundation
 
 struct ChatModel: FirestoreSavable {
     var users: [String] = []
-    var messages: [MessageModel] = []
     var avatarUrl: String?
     var title: String = ""
     var id: String
+    var lastMessageContent: String? = nil
     
-    internal init(users: [String] = [], messages: [MessageModel] = [], avatarUrl: String? = nil, title: String) {
+    internal init(users: [String] = [], lastMessageContent: String? = nil, avatarUrl: String? = nil, title: String) {
         self.users = users
-        self.messages = messages
         self.avatarUrl = avatarUrl
         self.title = title
         self.id = UUID().uuidString
+        self.lastMessageContent = lastMessageContent
     }
     
     init?(document: [String : Any]) {
@@ -31,12 +31,8 @@ struct ChatModel: FirestoreSavable {
         self.users = users
         self.id = id
         
-        if let messages = document["messages"] as? [[String : Any]] {
-            for message in messages {
-                if let newMessage = MessageModel(document: message) {
-                    self.messages.append(newMessage)
-                }
-            }
+        if let lastMessageContent = document["lastMessageContent"] as? String {
+            self.lastMessageContent = lastMessageContent
         }
         
         if let title = document["title"] as? String {
@@ -49,14 +45,12 @@ struct ChatModel: FirestoreSavable {
     }
     
     func representation() -> [String : Any] {
-        var dict: [String : Any] = [
+        let dict: [String : Any] = [
             "users" : users,
             "id" : id,
-            "title" : title
+            "title" : title,
+            "lastMessageContent": lastMessageContent ?? ""
         ]
-        if !messages.isEmpty {
-            dict["messages"] = messages.map({ $0.representation() })
-        }
         
         return dict
     }

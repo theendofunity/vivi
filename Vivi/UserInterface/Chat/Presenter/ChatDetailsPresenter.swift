@@ -16,6 +16,7 @@ protocol ChatDetailViewType: AnyObject {
 class ChatDetailsPresenter {
     weak var view: ChatDetailViewType?
     var chat: ChatModel
+    var messages: [MessageModel] = []
     var currentSender: UserModel
     
     var listener: ListenerRegistration?
@@ -25,30 +26,30 @@ class ChatDetailsPresenter {
     init(chat: ChatModel, currentUser: UserModel) {
         self.chat = chat
         self.currentSender = currentUser
-        
-        listener = storage.addMessagesObserver(chatId: chat.id, completion: { [weak self] result in
-            print("LISTENER")
-            guard let self = self else { return }
-            print(result)
-            switch result {
-            case .success(let messages):
-                self.chat.messages = messages
-                self.view?.update(messages: self.chat.messages)
-            case .failure(let error):
-                self.view?.showError(error: error)
-            }
-        })
-       
     }
     
     deinit {
         listener?.remove()
     }
     
-    
-    
      func viewDidLoad() {
-        view?.update(messages: chat.messages)
+         listener = storage.addMessagesObserver(chatId: chat.id, completion: { [weak self] result in
+             print("LISTENER")
+             guard let self = self else { return }
+             print(result)
+             switch result {
+             case .success(let messages):
+                 let filtredMessages = messages.filter { newMessage in
+                     !self.messages.contains(where: { oldMessage in
+                         oldMessage.id == newMessage.id
+                     })
+                 }
+                 self.messages.append(contentsOf: filtredMessages)
+                 self.view?.update(messages: self.messages)
+             case .failure(let error):
+                 self.view?.showError(error: error)
+             }
+         })
     }
     
     func viewDidAppear() {
@@ -59,11 +60,18 @@ class ChatDetailsPresenter {
 extension ChatDetailsPresenter {
     func sendMessage(text: String) {
         let message = MessageModel(sender: currentSender, content: text)
-        chat.messages.append(message)
-        view?.update(messages: chat.messages)
         
-        storage.save(reference: .chats, data: chat) { result in
-            print(#function, result)
+        view?.update(messages: messages)
+        
+        chat.lastMessageContent = text
+        
+        storage.sendMessage(chat: chat, message: message) { [weak self] result in
+            switch result {
+            case .success():
+                break
+            case .failure(let error):
+                self?.view?.showError(error: error)
+            }
         }
     }
     
