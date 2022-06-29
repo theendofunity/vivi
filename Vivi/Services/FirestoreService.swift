@@ -135,10 +135,7 @@ class FirestoreService {
     func addMessagesObserver(chatId: String, completion: @escaping MessagesCompletion) -> ListenerRegistration? {
         let ref = db.collection(Reference.chats.rawValue).document(chatId).collection("messages")
         
-        print("REF", ref.path)
         let listener = ref.addSnapshotListener { snapshot, error in
-            print("addSnapshotListener")
-            
             if let error = error {
                 completion(.failure(error))
                 return
@@ -151,19 +148,13 @@ class FirestoreService {
             print(snapshot.documentChanges.count)
             
             for diff in snapshot.documentChanges {
-                print("MESSAGE", diff.document.data())
                 guard let message = MessageModel(document: diff.document.data()) else { continue }
-                print("PARSING OK")
                 let type = diff.type
-                print("type", type.rawValue)
                 switch type {
                 case .added:
-                    print("added")
                     messages.append(message)
-                case .modified:
-                    print("modified")
-                case .removed:
-                    print("removed")
+                default:
+                    break
                 }
                 
             }

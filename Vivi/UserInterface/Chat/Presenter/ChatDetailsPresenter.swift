@@ -33,27 +33,29 @@ class ChatDetailsPresenter {
     }
     
      func viewDidLoad() {
-         listener = storage.addMessagesObserver(chatId: chat.id, completion: { [weak self] result in
-             print("LISTENER")
-             guard let self = self else { return }
-             print(result)
-             switch result {
-             case .success(let messages):
-                 let filtredMessages = messages.filter { newMessage in
-                     !self.messages.contains(where: { oldMessage in
-                         oldMessage.id == newMessage.id
-                     })
-                 }
-                 self.messages.append(contentsOf: filtredMessages)
-                 self.view?.update(messages: self.messages)
-             case .failure(let error):
-                 self.view?.showError(error: error)
-             }
-         })
+         addListener()
     }
     
     func viewDidAppear() {
         
+    }
+    
+    func addListener() {
+        listener = storage.addMessagesObserver(chatId: chat.id, completion: { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let messages):
+                let filtredMessages = messages.filter { newMessage in
+                    !self.messages.contains(where: { oldMessage in
+                        oldMessage.id == newMessage.id
+                    })
+                }
+                self.messages.append(contentsOf: filtredMessages)
+                self.view?.update(messages: self.messages)
+            case .failure(let error):
+                self.view?.showError(error: error)
+            }
+        })
     }
 }
 
@@ -74,6 +76,4 @@ extension ChatDetailsPresenter {
             }
         }
     }
-    
-    
 }
