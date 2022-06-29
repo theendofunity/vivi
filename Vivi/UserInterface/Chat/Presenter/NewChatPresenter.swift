@@ -94,9 +94,10 @@ class NewChatPresenter {
             return project.users.contains { $0 == user.id}
         }
         
-        let chat = ChatModel(users: usersInProject.compactMap({ $0.id}),
-                             title: "")
+        var chat = ChatModel(users: usersInProject.compactMap({ $0.id}),
+                             title: project.title)
         
+        chat.id = project.documentId() ?? ""
         storage.createChat(chat: chat) { [weak self] result in
             self?.delegate?.usersSelected(users: usersInProject)
         }
