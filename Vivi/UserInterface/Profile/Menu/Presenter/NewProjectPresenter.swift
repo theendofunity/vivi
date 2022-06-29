@@ -37,7 +37,7 @@ class NewProjectPresenter {
     }
     
     
-    func save(project: ProjectModel) {
+    func save(project: ProjectModel) {        
         FirestoreService.shared.save(reference: .projects, data: project) { [weak self] result in
             switch result {
             case .success():

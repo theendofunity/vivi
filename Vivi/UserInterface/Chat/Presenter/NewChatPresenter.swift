@@ -55,7 +55,7 @@ class NewChatPresenter {
                 let filtredUsers = users.filter {
                     $0.id != id
                 }
-                self?.users = filtredUsers
+                self?.users = users
                 self?.view?.setup(users: filtredUsers)
             case .failure(let error):
                 self?.view?.showError(error: error)
@@ -94,6 +94,11 @@ class NewChatPresenter {
             return project.users.contains { $0 == user.id}
         }
         
-        delegate?.usersSelected(users: usersInProject)
+        let chat = ChatModel(users: usersInProject.compactMap({ $0.id}),
+                             title: "")
+        
+        storage.createChat(chat: chat) { [weak self] result in
+            self?.delegate?.usersSelected(users: usersInProject)
+        }
     }
 }

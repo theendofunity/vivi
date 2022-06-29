@@ -144,9 +144,7 @@ class FirestoreService {
             guard let snapshot = snapshot else { return }
             
             var messages: [MessageModel] = []
-            
-            print(snapshot.documentChanges.count)
-            
+                        
             for diff in snapshot.documentChanges {
                 guard let message = MessageModel(document: diff.document.data()) else { continue }
                 let type = diff.type

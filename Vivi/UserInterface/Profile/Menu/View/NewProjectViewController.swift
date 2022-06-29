@@ -93,14 +93,16 @@ class NewProjectViewController: UIViewController {
               let address = fieldsStack.text(for: .address),
               let square = fieldsStack.text(for: .square),
               let type = fieldsStack.text(for: .type),
-        let serviceType = ServiceType(rawValue: typeSegmentedControl.titleForSegment(at: typeSegmentedControl.selectedSegmentIndex) ?? "")
+              let serviceType = ServiceType(rawValue: typeSegmentedControl.titleForSegment(at: typeSegmentedControl.selectedSegmentIndex) ?? ""),
+              let id = UserService.shared.user?.id
         else { return }
         
         let model = ProjectModel(title: title,
                                  address: address,
                                  square: Decimal(string: square) ?? 0,
                                  type: type,
-                                 serviceType: serviceType)
+                                 serviceType: serviceType,
+                                 users: [id])
         presnter.save(project: model)
     }
 
