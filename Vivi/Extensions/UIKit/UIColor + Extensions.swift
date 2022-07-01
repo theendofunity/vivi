@@ -56,4 +56,12 @@ extension UIColor {
     static var tabbarRose: UIColor? {
         return UIColor(hex: 0x9B6D6E)
     }
+    
+    static var viviLightRose: UIColor? {
+        return UIColor(hex: 0xDCAAAA)
+    }
+    
+    static var viviLightBlue: UIColor? {
+        return UIColor(hex: 0x536872).withAlphaComponent(0.3)
+    }
 }

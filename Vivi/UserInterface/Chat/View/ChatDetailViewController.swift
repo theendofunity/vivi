@@ -8,6 +8,7 @@
 import UIKit
 import MessageKit
 import InputBarAccessoryView
+import EasyPeasy
 
 class ChatDetailViewController: MessagesViewController {
     var presenter: ChatDetailsPresenter?
@@ -21,14 +22,47 @@ class ChatDetailViewController: MessagesViewController {
         messagesCollectionView.messagesLayoutDelegate = self
         messageInputBar.delegate = self
         
+        setupView()
+        
         presenter?.viewDidLoad()
     }
 
     
-    
-//    func insertNewMessage(message: MessageModel) {
-//
-//    }
+    func setupView() {
+        navigationBarBase()
+        view.backgroundColor = .background
+        messagesCollectionView.backgroundColor = .background
+        
+        scrollsToLastItemOnKeyboardBeginsEditing = true
+        showMessageTimestampOnSwipeLeft = true
+        
+        setupInputBar()
+        
+    }
+
+    func setupInputBar() {
+        messageInputBar.contentView.backgroundColor = .clear
+        messageInputBar.backgroundView.backgroundColor = .viviLightBlue
+        messageInputBar.tintColor = .viviRose
+        messageInputBar.backgroundColor = .background
+        messageInputBar.inputTextView.textColor = .denim
+        messageInputBar.inputTextView.backgroundColor = .background
+
+        
+        messageInputBar.sendButton.setTitle("", for: .normal)
+        messageInputBar.sendButton.setImage(UIImage(systemName: "paperplane"), for: .normal)
+        messageInputBar.sendButton.imageView?.easy.layout(Width(35), Height(35), Center())
+        messageInputBar.sendButton.backgroundColor = .clear
+        
+        messageInputBar.inputTextView.layer.borderWidth = 1
+        messageInputBar.inputTextView.layer.borderColor = UIColor.denim?.cgColor
+        messageInputBar.rightStackView.backgroundColor = .clear
+        messageInputBar.separatorLine.backgroundColor = .viviLightBlue
+        messageInputBar.middleContentViewPadding = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
+        messageInputBar.topStackView.backgroundColor = .viviLightBlue
+        messageInputBar.inputTextView.round(8)
+       
+    }
 }
 
 extension ChatDetailViewController: MessagesDataSource {
@@ -37,14 +71,13 @@ extension ChatDetailViewController: MessagesDataSource {
     }
 
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
+        print(messages[indexPath.section])
         return messages[indexPath.section]
     }
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         return messages.count
     }
-
-
 }
 
 extension ChatDetailViewController: MessagesLayoutDelegate {
@@ -52,10 +85,34 @@ extension ChatDetailViewController: MessagesLayoutDelegate {
 }
 
 extension ChatDetailViewController: MessagesDisplayDelegate {
+    func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        if isFromCurrentSender(message: message) {
+            return .viviLightRose!
+        } else {
+            return .denim!
+        }
+    }
     
+    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
+        
+        return .bubble
+    }
+    
+    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+            let name = message.sender.displayName
+            return NSAttributedString(string: name,
+                                      attributes: [
+                                        NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1),
+                                        .foregroundColor : UIColor.denim!
+                                      ])
+        }
 }
 
 extension ChatDetailViewController: ChatDetailViewType {
+    func setTitle(title: String) {
+        self.title = title
+    }
+    
     func showError(error: Error) {
         alertError(error: error)
     }

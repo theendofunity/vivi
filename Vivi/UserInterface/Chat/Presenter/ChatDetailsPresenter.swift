@@ -11,16 +11,17 @@ import FirebaseFirestore
 protocol ChatDetailViewType: AnyObject {
     func update(messages: [MessageModel])
     func showError(error: Error)
+    func setTitle(title: String)
 }
 
 class ChatDetailsPresenter {
     weak var view: ChatDetailViewType?
+    
     var chat: ChatModel
     var messages: [MessageModel] = []
     var currentSender: UserModel
     
     var listener: ListenerRegistration?
-    
     var storage = FirestoreService.shared
     
     init(chat: ChatModel, currentUser: UserModel) {
@@ -34,6 +35,7 @@ class ChatDetailsPresenter {
     
      func viewDidLoad() {
          addListener()
+         setTitle()
     }
     
     func viewDidAppear() {
@@ -56,6 +58,24 @@ class ChatDetailsPresenter {
                 self.view?.showError(error: error)
             }
         })
+    }
+    
+    func setTitle() {
+        guard chat.title.isEmpty else {
+            view?.setTitle(title: chat.title)
+            return
+        }
+        
+        guard let userId = chat.users.first(where: { $0 != currentSender.id }) else { return }
+        
+        storage.loadUser(userId: userId) { [weak self] result in
+            switch result {
+            case .success(let user):
+                self?.view?.setTitle(title: user.displayName)
+            default:
+                break
+            }
+        }
     }
 }
 
