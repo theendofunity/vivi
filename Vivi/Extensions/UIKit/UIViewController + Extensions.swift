@@ -22,7 +22,7 @@ extension UIViewController {
     
     func navigationBarBase() {
         let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
+        appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .viviRose50
         
         let attributes = [

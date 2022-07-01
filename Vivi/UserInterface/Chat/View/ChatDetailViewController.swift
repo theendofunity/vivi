@@ -14,8 +14,18 @@ class ChatDetailViewController: MessagesViewController {
     var presenter: ChatDetailsPresenter?
     var messages: [MessageModel] = []
     
+    private lazy var backgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .background
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.addSubview(backgroundView)
+        let height = navigationController?.navigationBar.frame.height ?? 100
+        backgroundView.easy.layout(Top(0), Leading(), Trailing(), Height(height))
 
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesDisplayDelegate = self
@@ -30,14 +40,14 @@ class ChatDetailViewController: MessagesViewController {
     
     func setupView() {
         navigationBarBase()
+        navigationController?.navigationBar.isOpaque = true
         view.backgroundColor = .background
         messagesCollectionView.backgroundColor = .background
         
         scrollsToLastItemOnKeyboardBeginsEditing = true
         showMessageTimestampOnSwipeLeft = true
-        
+       
         setupInputBar()
-        
     }
 
     func setupInputBar() {
@@ -71,7 +81,6 @@ extension ChatDetailViewController: MessagesDataSource {
     }
 
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        print(messages[indexPath.section])
         return messages[indexPath.section]
     }
     
