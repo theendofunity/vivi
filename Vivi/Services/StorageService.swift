@@ -27,6 +27,7 @@ class StorageService {
         case userExamples(id: String)
         case sketches(id: String)
         case visualizations(id: String)
+        case avatars
         
         func path() -> String {
             switch self {
@@ -58,6 +59,8 @@ class StorageService {
                 return "Projects"
             case .project(id: let id):
                 return "\(ReferenceType.projects.path())/\(id)"
+            case .avatars:
+                return "Avatars"
             }
         }
     }
@@ -137,6 +140,25 @@ class StorageService {
                 return
             }
             completion(.success(url))
+        }
+    }
+    
+    func saveAvatar(imageUrl: URL, referenceType: ReferenceType, completion: @escaping UrlCompletion) {
+        uploadFile(.avatars, fileUrl: imageUrl) { result in
+            switch result {
+            case .success():
+                guard let fileName = imageUrl.pathComponents.last else { return }
+                self.getDownloadUrl(.avatars, fileName: fileName) { result in
+                    switch result {
+                    case .success(let url):
+                        completion(.success(url))
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
 }

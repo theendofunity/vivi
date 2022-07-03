@@ -24,6 +24,7 @@ class ProfileViewController: UIViewController {
     
     private lazy var headerView: ProfileHeaderView = {
         let header = ProfileHeaderView(position: .center)
+        header.delegate = self
         return header
     }()
     
@@ -143,6 +144,10 @@ extension ProfileViewController {
 }
 
 extension ProfileViewController: ProfileViewType {
+    func showError(error: Error) {
+        alertError(error: error)
+    }
+    
     func setupPages(pages: [PageType]) {
         segmentedControl.removeAllSegments()
         
@@ -188,6 +193,26 @@ extension ProfileViewController: ProfileMenuViewDelegate {
     }
 }
 
+extension ProfileViewController: HeaderViewDelegate {
+    func avatarDidSelect() {
+        showImagePicker()
+    }
+    
+    func showImagePicker() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        picker.mediaTypes = ["public.image"]
+        
+        navigationController?.present(picker, animated: true)
+    }
+}
 
-
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let url = info[.imageURL] as? URL else { return }
+        presenter.setAvatar(url: url)
+        dismiss(animated: true)
+    }
+}
 

@@ -28,6 +28,7 @@ struct UserModel: FirestoreSavable, Hashable {
     var address: String?
     
     var avatarUrl: String?
+    var avatar: UIImage?
     
     func representation() -> [String : Any] {
         var dict: [String : Any] = [:]

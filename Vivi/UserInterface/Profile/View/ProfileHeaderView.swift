@@ -9,6 +9,10 @@ import UIKit
 import EasyPeasy
 import SDWebImage
 
+protocol HeaderViewDelegate: AnyObject {
+    func avatarDidSelect()
+}
+
 class ProfileHeaderView: UIView {
     enum Position {
         case center
@@ -16,11 +20,13 @@ class ProfileHeaderView: UIView {
     }
     
     var position: Position = .center
+    weak var delegate: HeaderViewDelegate?
     
     private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = R.image.consultation()
         imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -68,6 +74,8 @@ class ProfileHeaderView: UIView {
     func setupView() {
         addSubview(avatarImageView)
         addSubview(titlesStack)
+        
+        addGestureRecognizer()
     }
     
     func setupConstraints() {
@@ -101,6 +109,16 @@ class ProfileHeaderView: UIView {
         }
     }
 
+    func addGestureRecognizer() {
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(avatarDidTouch))
+        recognizer.numberOfTapsRequired = 1
+        avatarImageView.addGestureRecognizer(recognizer)
+    }
+    
+    @objc func avatarDidTouch() {
+        delegate?.avatarDidSelect()
+    }
+    
     func update<T: HeaderRepresentable>(data: T) {
         userNameLabel.text = data.headerTitle()
         addressLabel.text = data.addressTitle()

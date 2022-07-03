@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftLoader
 
 enum PageType: String, CaseIterable {
     case project = "Проект"
@@ -20,14 +21,21 @@ protocol ProfileViewType: AnyObject {
     func updateUserInfo(user: UserModel)
     func setupPersonalInfo(info: [TextFieldViewModel])
     func changePage(to page: PageType)
+    func showError(error: Error)
 }
 
 class ProfilePresenter {
     weak var view: ProfileViewType?
     weak var navigationDelegate: ProfileNavigationDelegate?
-    private var userService = UserService.shared
     
+    private var userService = UserService.shared
+    private var storageService = StorageService.shared
+    private var user: UserModel
     private var pages: [PageType] = []
+    
+    init(user: UserModel) {
+        self.user = user
+    }
     
     func viewDidLoad() {
        determineState()
@@ -38,7 +46,6 @@ class ProfilePresenter {
     }
     
     func determineState() {
-        guard let _ = UserService.shared.user else { return }
         reload()
     }
     
@@ -59,8 +66,6 @@ class ProfilePresenter {
 
 extension ProfilePresenter {
     func setupMenu() {
-        guard let user = userService.user else { return }
-        
         var menuItems: [ProfileMenuType] = []
         
         if user.userType == .client {
@@ -75,8 +80,6 @@ extension ProfilePresenter {
     }
     
     func setupPersonalInfo() {
-        guard let user = userService.user else { return }
-        
         var personalInfo: [TextFieldViewModel] = []
         
         personalInfo = [
@@ -132,8 +135,7 @@ extension ProfilePresenter {
     }
     
     func showTextMenu(type: ProfileMenuType) {
-        guard let user = userService.user,
-        let project = user.project else { return }
+        guard let project = user.project else { return }
         
         let view = TextMenuViewController()
         let presenter = TextMenuPresenter(type: type, project: project)
@@ -144,8 +146,7 @@ extension ProfilePresenter {
     }
     
     func showGalleryMenu(type: ProfileMenuType) {
-        guard let user = userService.user,
-        let project = user.project else { return }
+        guard let project = user.project else { return }
         
         let view = PhotoGalleryViewController()
         let presenter = PhotoGalleryPresenter(type: type, project: project)
@@ -203,5 +204,42 @@ extension ProfilePresenter {
         presenter.view = view
         
         self.view?.navigation()?.pushViewController(view, animated: true)
+    }
+}
+
+extension ProfilePresenter {
+    func setAvatar(url: URL) {
+        user.avatarUrl = url.absoluteString
+        view?.updateUserInfo(user: user)
+        
+        SwiftLoader.show(animated: true)
+        
+        storageService.saveAvatar(imageUrl: url, referenceType: .avatars) { [weak self] result in
+            SwiftLoader.hide()
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let url):
+                self.user.avatarUrl = url.absoluteString
+                self.saveUser()
+            case .failure(let error):
+                self.view?.showError(error: error)
+            }
+        }
+    }
+    
+    func saveUser() {
+        SwiftLoader.show(animated: true)
+
+        FirestoreService.shared.save(reference: .users, data: self.user) { [weak self] result in
+            SwiftLoader.hide()
+            
+            switch result {
+            case .success():
+                break
+            case .failure(let error):
+                self?.view?.showError(error: error)
+            }
+        }
     }
 }

@@ -40,8 +40,9 @@ class ProfileConfigurator {
     }
     
     func showProfile() {
+        guard let user = UserService.shared.user else { return }
         let profileViewController = ProfileViewController()
-        let profilePresenter = ProfilePresenter()
+        let profilePresenter = ProfilePresenter(user: user)
         profileViewController.presenter = profilePresenter
         profilePresenter.view = profileViewController
         profilePresenter.navigationDelegate = self
