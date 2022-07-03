@@ -13,6 +13,7 @@ struct MessageModel: MessageType {
     var id: String? = nil
     var sender: SenderType
     var sentDate: Date
+    var avatarUrl: String?
 
     var content: String?
     var image: UIImage? = nil
@@ -43,6 +44,10 @@ extension MessageModel: FirestoreSavable {
         self.sentDate = sentDate.dateValue()
         self.id = id
         
+        if let avatarUrl = document["avatarUrl"] as? String {
+            self.avatarUrl = avatarUrl
+        }
+        
         if let imageUrl = document["imageUrl"] as? String,
            !imageUrl.isEmpty {
             self.imageUrl = URL(string: imageUrl)
@@ -70,8 +75,9 @@ extension MessageModel: FirestoreSavable {
             "senderName" : sender.displayName,
             "senderId" : sender.senderId,
             "id" : messageId,
-            "imageUrl" : imageUrl ?? "",
-            "content" : content ?? ""
+            "imageUrl" : imageUrl?.absoluteString ?? "",
+            "content" : content ?? "",
+            "avatarUrl" : avatarUrl
         ]
         return dict
     }

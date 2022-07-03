@@ -51,7 +51,7 @@ class ChatDetailsPresenter {
                     !self.messages.contains(where: { oldMessage in
                         oldMessage.id == newMessage.id
                     })
-                }
+                } .sorted { $0.sentDate < $1.sentDate }
                 self.messages.append(contentsOf: filtredMessages)
                 self.view?.update(messages: self.messages)
             case .failure(let error):
@@ -81,9 +81,10 @@ class ChatDetailsPresenter {
 
 extension ChatDetailsPresenter {
     func sendMessage(text: String) {
-        let message = MessageModel(sender: currentSender, content: text)
+        var message = MessageModel(sender: currentSender, content: text)
+        message.avatarUrl = currentSender.avatarUrl
         
-        view?.update(messages: messages)
+//        view?.update(messages: messages)
         
         chat.lastMessageContent = text
         

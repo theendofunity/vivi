@@ -115,6 +115,11 @@ extension ChatDetailViewController: MessagesDisplayDelegate {
                                         .foregroundColor : UIColor.denim!
                                       ])
         }
+    
+    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        guard let message = message as? MessageModel else { return }
+        avatarView.sd_setImage(with: URL(string: message.avatarUrl ?? ""))
+    }
 }
 
 extension ChatDetailViewController: ChatDetailViewType {
