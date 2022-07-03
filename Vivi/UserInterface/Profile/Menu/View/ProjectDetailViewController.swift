@@ -24,6 +24,7 @@ class ProjectDetailViewController: UIViewController {
     
     private lazy var headerView: ProfileHeaderView = {
         let header = ProfileHeaderView(position: .left)
+        header.delegate = self
         return header
     }()
     
@@ -111,6 +112,10 @@ extension ProjectDetailViewController: ProfileMenuViewDelegate {
 }
 
 extension ProjectDetailViewController: ProjectDetailViewType {
+    func showError(error: Error) {
+        alertError(error: error)
+    }
+    
     func setupMenu(items: [ProfileMenuType]) {
         menuView.updateMenu(menuItems: items)
     }
@@ -121,5 +126,28 @@ extension ProjectDetailViewController: ProjectDetailViewType {
     
     func updateHeader(project: ProjectModel) {
         headerView.update(data: project)
+    }
+}
+
+extension ProjectDetailViewController: HeaderViewDelegate {
+    func avatarDidSelect() {
+        showImagePicker()
+    }
+    
+    func showImagePicker() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        picker.mediaTypes = ["public.image"]
+        
+        navigationController?.present(picker, animated: true)
+    }
+}
+
+extension ProjectDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let url = info[.imageURL] as? URL else { return }
+        presenter.setAvatar(url: url)
+        dismiss(animated: true)
     }
 }

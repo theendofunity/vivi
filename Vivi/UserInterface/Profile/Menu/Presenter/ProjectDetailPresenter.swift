@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import SwiftLoader
 
 protocol ProjectDetailViewType: AnyObject {
     func setupMenu(items: [ProfileMenuType])
     func navigation() -> UINavigationController?
     func updateHeader(project: ProjectModel)
+    func showError(error: Error)
 }
 
 class ProjectDetailPresenter {
@@ -124,5 +126,37 @@ extension ProjectDetailPresenter {
         presenter.view = view
         
         self.view?.navigation()?.pushViewController(view, animated: true)
+    }
+}
+
+extension ProjectDetailPresenter {
+    func setAvatar(url: URL) {
+        guard let id = project.documentId() else { return }
+        SwiftLoader.show(animated: true)
+        StorageService.shared.saveAvatar(imageUrl: url, referenceType: .project(id: id)) { [weak self] result in
+            SwiftLoader.hide()
+            guard let self = self else { return }
+            switch result {
+            case .success(let url):
+                self.project.avatarUrl = url.absoluteString
+                self.view?.updateHeader(project: self.project)
+                self.saveProject()
+            case .failure(let error):
+                self.view?.showError(error: error)
+            }
+        }
+    }
+    
+    func saveProject() {
+        SwiftLoader.show(animated: true)
+        FirestoreService.shared.save(reference: .projects, data: project) { [weak self] result in
+            SwiftLoader.hide()
+            switch result {
+            case .success():
+                break
+            case .failure(let error):
+                self?.view?.showError(error: error)
+            }
+        }
     }
 }
