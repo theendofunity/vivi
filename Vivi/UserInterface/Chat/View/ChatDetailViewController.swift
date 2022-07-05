@@ -102,8 +102,11 @@ extension ChatDetailViewController: MessagesDisplayDelegate {
         }
     }
     
+    func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        return .white
+    }
+    
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
-        
         return .bubble
     }
     
