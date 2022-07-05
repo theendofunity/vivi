@@ -113,6 +113,7 @@ class ChatsListViewController: UIViewController {
         snapshot.appendSections([.chats])
         snapshot.appendItems(chats, toSection: .chats)
         dataSource?.apply(snapshot)
+        collectionView.reloadData()
     }
 }
 

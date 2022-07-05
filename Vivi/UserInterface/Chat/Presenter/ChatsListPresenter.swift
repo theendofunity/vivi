@@ -5,8 +5,8 @@
 //  Created by Дмитрий Дудкин on 02.05.2022.
 //
 
-import Foundation
 import UIKit
+import FirebaseFirestore
 
 protocol ChatViewType: AnyObject {
     func hideAddButton(isHidden: Bool)
@@ -18,15 +18,44 @@ protocol ChatViewType: AnyObject {
 class ChatsListPresenter {
     var view: ChatViewType?
     let storage = FirestoreService.shared
-    
+    var listener: ListenerRegistration?
     var chats: [ChatModel] = []
     
+    deinit {
+        listener = nil
+    }
+    
     func viewLoaded() {
-        loadChats()
+        addListener()
     }
     
     func viewAppeared() {
         setupAddButton()
+    }
+    
+    func addListener() {
+        listener = storage.addChatsObserver(completion: { [weak self] result in
+            switch result {
+            case .success(let chats):
+                for newChat in chats {
+                    if let index = self?.chats.firstIndex(where: { $0.id == newChat.id }) {
+                        self?.chats[index] = newChat
+                    } else {
+                        self?.chats.append(newChat)
+                    }
+                }
+//                self?.chats = self?.chats.sorted(by: {
+//                    $0.
+//                })
+                self?.reload()
+            case .failure(let error):
+                self?.view?.showError(error: error)
+            }
+        })
+    }
+    
+    func reload() {
+        view?.update(chats: chats)
     }
     
     func loadChats() {

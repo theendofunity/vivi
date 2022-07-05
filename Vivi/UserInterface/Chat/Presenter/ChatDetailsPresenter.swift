@@ -52,6 +52,7 @@ class ChatDetailsPresenter {
                         oldMessage.id == newMessage.id
                     })
                 } .sorted { $0.sentDate < $1.sentDate }
+                
                 self.messages.append(contentsOf: filtredMessages)
                 self.view?.update(messages: self.messages)
             case .failure(let error):
