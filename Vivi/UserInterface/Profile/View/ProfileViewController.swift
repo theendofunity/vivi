@@ -50,6 +50,7 @@ class ProfileViewController: UIViewController {
     private lazy var personalInfoView: PersonalInfoView = {
         let view = PersonalInfoView()
         view.isHidden = true
+        view.delegate = self
         return view
     }()
     
@@ -213,6 +214,12 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         guard let url = info[.imageURL] as? URL else { return }
         presenter.setAvatar(url: url)
         dismiss(animated: true)
+    }
+}
+
+extension ProfileViewController: PersonalInfoViewDelegate {
+    func saveButtonPressed() {
+        
     }
 }
 

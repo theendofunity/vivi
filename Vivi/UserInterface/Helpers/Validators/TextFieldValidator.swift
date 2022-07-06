@@ -18,7 +18,7 @@ class TextFieldValidator {
     
     static func validator(type: TextFieldType) -> ValidatorType? {
         switch type {
-        case .name, .lastName, .city:
+        case .name, .lastName, .city, .address:
             return NameValidator()
         case .email:
             return EmailValidator()

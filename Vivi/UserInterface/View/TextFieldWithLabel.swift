@@ -145,7 +145,8 @@ class TextFieldWithLabel: UIView {
     
     func validate() {
         guard let model = model,
-        model.allowValidation else { return }
+        model.allowValidation,
+        model.canEdit else { return }
         
         guard let error = TextFieldValidator.validate(type: type, text: text()) else {
             clearError()
