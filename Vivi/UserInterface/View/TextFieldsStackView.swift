@@ -10,7 +10,7 @@ import EasyPeasy
 
 protocol TextFieldsStackViewDelegate: AnyObject {
     func textFieldBeginEditing(textField: UITextField)
-    func textFieldEndEditing()
+    func textFieldEndEditing(textField: UITextField)
 }
 
 class TextFieldsStackView: UIView {
@@ -64,7 +64,7 @@ extension TextFieldsStackView {
         
         for field in fields {
             let textField = TextFieldWithLabel(model: field)
-            textField.textField.delegate = self
+            textField.delegate = self
             stackView.addArrangedSubview(textField)
         }
     }
@@ -77,12 +77,12 @@ extension TextFieldsStackView {
     }
 }
 
-extension TextFieldsStackView: UITextFieldDelegate {
+extension TextFieldsStackView: TextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         delegate?.textFieldBeginEditing(textField: textField)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        delegate?.textFieldEndEditing()
+        delegate?.textFieldEndEditing(textField: textField)
     }
 }

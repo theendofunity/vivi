@@ -81,6 +81,9 @@
 		D88A0CE22846686D00B02D3E /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A0CE12846686D00B02D3E /* NewProjectViewController.swift */; };
 		D88A0CE42846703500B02D3E /* ProjectsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A0CE32846703500B02D3E /* ProjectsPresenter.swift */; };
 		D88A0CE628467CA200B02D3E /* UISegmentedControl + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A0CE528467CA200B02D3E /* UISegmentedControl + Extensions.swift */; };
+		D89F59912875EF6B006876E1 /* TextFieldValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89F59902875EF6B006876E1 /* TextFieldValidator.swift */; };
+		D89F59932875F13B006876E1 /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89F59922875F13B006876E1 /* ValidationError.swift */; };
+		D89F59952875F92B006876E1 /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89F59942875F92B006876E1 /* String + Extensions.swift */; };
 		D8B27B0E282C285300EDAD23 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */; };
 		D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */; };
 		D8BEF6482851199000B675D9 /* NewChatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BEF6472851199000B675D9 /* NewChatPresenter.swift */; };
@@ -175,6 +178,9 @@
 		D88A0CE12846686D00B02D3E /* NewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
 		D88A0CE32846703500B02D3E /* ProjectsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsPresenter.swift; sourceTree = "<group>"; };
 		D88A0CE528467CA200B02D3E /* UISegmentedControl + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl + Extensions.swift"; sourceTree = "<group>"; };
+		D89F59902875EF6B006876E1 /* TextFieldValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldValidator.swift; sourceTree = "<group>"; };
+		D89F59922875F13B006876E1 /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
+		D89F59942875F92B006876E1 /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
 		D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		D8BEF6472851199000B675D9 /* NewChatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatPresenter.swift; sourceTree = "<group>"; };
@@ -292,6 +298,7 @@
 				D86A79E128212AA300F45D76 /* UIImageView + Extensions.swift */,
 				D86A79E328212EEE00F45D76 /* UIImage + Extensions.swift */,
 				D88A0CE528467CA200B02D3E /* UISegmentedControl + Extensions.swift */,
+				D89F59942875F92B006876E1 /* String + Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -618,6 +625,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		D89F598F2875EF5A006876E1 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				D89F59902875EF6B006876E1 /* TextFieldValidator.swift */,
+				D89F59922875F13B006876E1 /* ValidationError.swift */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
 		D8BEF64B2851317600B675D9 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -630,6 +646,7 @@
 		D8DEC03E282ADE8D000A62B8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D89F598F2875EF5A006876E1 /* Validators */,
 				D8DEC040282ADEA2000A62B8 /* Completions.swift */,
 			);
 			path = Helpers;
@@ -807,6 +824,7 @@
 				D850CFDE282BBB9000C41DE7 /* ProfileMenuCell.swift in Sources */,
 				D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */,
 				D83FFB5D2848B7D900C270DE /* UsersViewController.swift in Sources */,
+				D89F59952875F92B006876E1 /* String + Extensions.swift in Sources */,
 				D86A79E92821598A00F45D76 /* StorageService.swift in Sources */,
 				D8262FAC28202B9300FA3E76 /* LaunchViewController.swift in Sources */,
 				D86A79DC2821130900F45D76 /* ServiceType.swift in Sources */,
@@ -822,6 +840,7 @@
 				D8262FBA28203A6000FA3E76 /* ServicesView.swift in Sources */,
 				D8BEF64D2851318800B675D9 /* ProjectCell.swift in Sources */,
 				D8DD1575283FEF1C006EAA9C /* ZoomPhotoCell.swift in Sources */,
+				D89F59932875F13B006876E1 /* ValidationError.swift in Sources */,
 				D8262F74281F2ADB00FA3E76 /* SceneDelegate.swift in Sources */,
 				D8262F9D281F30A400FA3E76 /* ChatsListPresenter.swift in Sources */,
 				D86AEE94283BFAA7001BE89F /* PhotoGalleryCell.swift in Sources */,
@@ -841,6 +860,7 @@
 				D8DEC041282ADEA2000A62B8 /* Completions.swift in Sources */,
 				D8DD1573283E9B08006EAA9C /* DetailImageViewController.swift in Sources */,
 				D8DEC03B282ACA3F000A62B8 /* UserModel.swift in Sources */,
+				D89F59912875EF6B006876E1 /* TextFieldValidator.swift in Sources */,
 				D88A0CE42846703500B02D3E /* ProjectsPresenter.swift in Sources */,
 				D806903428436912007916DF /* ProfileConfigurator.swift in Sources */,
 				D86AEE8C283A29AF001BE89F /* TextMenuCell.swift in Sources */,

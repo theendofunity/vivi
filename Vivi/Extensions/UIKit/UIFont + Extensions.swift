@@ -23,4 +23,8 @@ extension UIFont {
     static var smallTextFont: UIFont? {
         return UIFont.systemFont(ofSize: 18)
     }
+    
+    static var errorFont: UIFont? {
+        return UIFont.systemFont(ofSize: 12)
+    }
 }

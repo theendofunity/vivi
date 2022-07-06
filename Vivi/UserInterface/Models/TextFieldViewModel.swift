@@ -11,4 +11,5 @@ struct TextFieldViewModel {
     var type: TextFieldType
     var value: String
     var canEdit = true
+    var allowValidation = true
 }

@@ -125,9 +125,10 @@ extension NewProjectViewController: NewProjectViewType {
 }
 
 extension NewProjectViewController: TextFieldsStackViewDelegate {
-    func textFieldBeginEditing(textField: UITextField) {
+    func textFieldEndEditing(textField: UITextField) {
+        
     }
     
-    func textFieldEndEditing() {
+    func textFieldBeginEditing(textField: UITextField) {
     }
 }

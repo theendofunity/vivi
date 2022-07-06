@@ -205,13 +205,13 @@ extension RegistrationViewController: RegistrationViewType {
 }
 
 extension RegistrationViewController: TextFieldsStackViewDelegate {
+    func textFieldEndEditing(textField: UITextField) {
+        
+    }
+    
     func textFieldBeginEditing(textField: UITextField) {
-//        scrollView.setContentOffset(textField.frame.origin, animated: true)
+        
     }
     
-    func textFieldEndEditing() {
-//        scrollView.contentOffset = .zero
-    }
-    
-    
+   
 }

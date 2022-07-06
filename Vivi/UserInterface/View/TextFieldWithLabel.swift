@@ -8,7 +8,13 @@
 import UIKit
 import EasyPeasy
 
+protocol TextFieldDelegate: AnyObject {
+    func textFieldDidEndEditing(_ textField: UITextField)
+}
+
 class TextFieldWithLabel: UIView {
+    weak var delegate: TextFieldDelegate?
+    
     var model: TextFieldViewModel? {
         didSet {
             guard let model = model else {
@@ -28,6 +34,13 @@ class TextFieldWithLabel: UIView {
         let label = UILabel()
         label.textColor = .denim
         label.font = .mainFont
+        return label
+    }()
+    
+    lazy var errorLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .red
+        label.font = .smallTextFont
         return label
     }()
     
@@ -56,10 +69,14 @@ class TextFieldWithLabel: UIView {
         type = model.type
         textField.text = model.value
         textField.isEnabled = model.canEdit
+        textField.delegate = self
+        
+        setKeyboardType()
     }
     
     func setupView() {
         addSubview(label)
+        addSubview(errorLabel)
         addSubview(textField)
     }
     
@@ -70,13 +87,35 @@ class TextFieldWithLabel: UIView {
             Trailing()
         )
         
+        errorLabel.easy.layout(
+            Top(4).to(label, .bottom),
+            Leading(),
+            Trailing()
+        )
+        
         textField.easy.layout(
-            Top(16).to(label, .bottom),
+            Top(4).to(errorLabel, .bottom),
             Leading(),
             Trailing(),
             Bottom(),
             Height(32)
         )
+    }
+    
+    func setKeyboardType() {
+        if type == .password {
+            textField.isSecureTextEntry = true
+        }
+        switch type {
+        case .email:
+            textField.keyboardType = .emailAddress
+        case .phone:
+            textField.keyboardType = .phonePad
+        case .password:
+            textField.keyboardType = .asciiCapable
+        default:
+            textField.keyboardType = .default
+        }
     }
     
     func setLabelText(_ text: String) {
@@ -89,5 +128,45 @@ class TextFieldWithLabel: UIView {
     
     func text() -> String? {
         return textField.text
+    }
+    
+    func showError(error: Error) {
+        errorLabel.text = error.localizedDescription
+    }
+    
+    func clearError() {
+        errorLabel.text = ""
+    }
+    
+    func haveError() -> Bool {
+        guard let text = errorLabel.text else { return false }
+        return !text.isEmpty
+    }
+    
+    func validate() {
+        guard let model = model,
+        model.allowValidation else { return }
+        
+        guard let error = TextFieldValidator.validate(type: type, text: text()) else {
+            clearError()
+            return
+        }
+        
+        showError(error: error)
+    }
+}
+
+extension TextFieldWithLabel: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        validate()
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        clearError()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        clearError()
+        return true
     }
 }
