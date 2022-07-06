@@ -70,6 +70,7 @@ class RegistrationViewController: UIViewController {
         super.viewDidLoad()
         
         navigationBarWithLogo()
+        
         setupView()
         setupConstraints()
         hideKeyboardWhenTappedAround()
@@ -147,6 +148,16 @@ class RegistrationViewController: UIViewController {
     }
     
     @objc func registerButtonPressed() {
+        if let error = textFieldsView.validate() {
+            showError(error: error)
+            return
+        }
+        
+        if !termsSwitch.isOn {
+            showError(error: ValidationError.terms)
+            return
+        }
+        
         guard let email = getText(.email),
               let password = getText(.password),
               let firstName = getText(.name),

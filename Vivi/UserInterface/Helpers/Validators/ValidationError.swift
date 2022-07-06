@@ -12,6 +12,8 @@ enum ValidationError {
     case incorrectEmail
     case incorrectPhone
     case incorrectPassword
+    case emptyFields
+    case terms
 }
 
 extension ValidationError: LocalizedError {
@@ -26,6 +28,10 @@ extension ValidationError: LocalizedError {
             return "Введите корректный номер телефона"
         case .incorrectPassword:
             return "6-20 символов, латиница"
+        case .emptyFields:
+            return "Заполните все поля"
+        case .terms:
+            return "Необходимо согласиться с условиями"
         }
     }
 }

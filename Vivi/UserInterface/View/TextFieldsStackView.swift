@@ -75,6 +75,19 @@ extension TextFieldsStackView {
             view.removeFromSuperview()
         }
     }
+    
+    func validate() -> Error? {
+        var haveError = false
+        
+        for subview in stackView.arrangedSubviews {
+            guard let textField = subview as? TextFieldWithLabel else { continue }
+            textField.validate()
+            if textField.haveError() {
+                haveError = true
+            }
+        }
+        return haveError ? ValidationError.emptyFields : nil
+    }
 }
 
 extension TextFieldsStackView: TextFieldDelegate {
