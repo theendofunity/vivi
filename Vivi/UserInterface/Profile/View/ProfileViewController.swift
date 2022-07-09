@@ -145,6 +145,10 @@ extension ProfileViewController {
 }
 
 extension ProfileViewController: ProfileViewType {
+    func showSaveSuccess() {
+        showAlert(title: "Успешно!", message: "Данные обновлены")
+    }
+    
     func showError(error: Error) {
         alertError(error: error)
     }
@@ -218,8 +222,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 }
 
 extension ProfileViewController: PersonalInfoViewDelegate {
-    func saveButtonPressed() {
-        
+    func saveButtonPressed(models: [TextFieldViewModel]) {
+        presenter.saveButtonPressed(models: models)
     }
 }
 

@@ -15,18 +15,7 @@ protocol TextFieldDelegate: AnyObject {
 class TextFieldWithLabel: UIView {
     weak var delegate: TextFieldDelegate?
     
-    var model: TextFieldViewModel? {
-        didSet {
-            guard let model = model else {
-                return
-            }
-            setPlaceholder(model.type.placeholder())
-            setLabelText(model.type.fieldTitle())
-            type = model.type
-            textField.text = model.value
-            textField.isEnabled = model.canEdit
-        }
-    }
+    var model: TextFieldViewModel?
     
     var type: TextFieldType = .unknown
     
@@ -64,14 +53,18 @@ class TextFieldWithLabel: UIView {
         
         self.model = model
         
+        configure(with: model)
+        textField.delegate = self
+        
+        setKeyboardType()
+    }
+    
+    func configure(with model: TextFieldViewModel) {
         setPlaceholder(model.type.placeholder())
         setLabelText(model.type.fieldTitle())
         type = model.type
         textField.text = model.value
         textField.isEnabled = model.canEdit
-        textField.delegate = self
-        
-        setKeyboardType()
     }
     
     func setupView() {
@@ -160,6 +153,7 @@ class TextFieldWithLabel: UIView {
 extension TextFieldWithLabel: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         validate()
+        model?.value = textField.text ?? ""
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -168,6 +162,11 @@ extension TextFieldWithLabel: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         clearError()
+      
+        guard let text = textField.text as? NSString else { return true }
+        let textAfterUpdate = text.replacingCharacters(in: range, with: string)
+        model?.value = textAfterUpdate
+        
         return true
     }
 }

@@ -22,6 +22,7 @@ protocol ProfileViewType: AnyObject {
     func setupPersonalInfo(info: [TextFieldViewModel])
     func changePage(to page: PageType)
     func showError(error: Error)
+    func showSaveSuccess()
 }
 
 class ProfilePresenter {
@@ -236,10 +237,22 @@ extension ProfilePresenter {
             
             switch result {
             case .success():
-                break
+                self?.view?.showSaveSuccess()
             case .failure(let error):
                 self?.view?.showError(error: error)
             }
         }
+    }
+    
+    func saveButtonPressed(models: [TextFieldViewModel]) {
+        for model in models {
+            switch model.type {
+            case .address:
+                self.user.address = model.value
+            default:
+                break
+            }
+        }
+        saveUser()
     }
 }

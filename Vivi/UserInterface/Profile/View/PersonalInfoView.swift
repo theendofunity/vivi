@@ -9,7 +9,7 @@ import UIKit
 import EasyPeasy
 
 protocol PersonalInfoViewDelegate: AnyObject {
-    func saveButtonPressed()
+    func saveButtonPressed(models: [TextFieldViewModel])
     func showError(error: Error)
 }
 
@@ -59,13 +59,13 @@ class PersonalInfoView: UIView {
     }
 
     @objc func saveButtonPressed() {
-        print(#function)
         if let error = textFieldsView.validate() {
-            print(error)
             delegate?.showError(error: error)
             return
         }
-        delegate?.saveButtonPressed()
+        
+        let models = textFieldsView.editableFields()
+        delegate?.saveButtonPressed(models: models)
     }
     
     func setupFields(fields: [TextFieldViewModel]) {

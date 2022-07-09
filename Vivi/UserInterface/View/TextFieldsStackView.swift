@@ -88,6 +88,19 @@ extension TextFieldsStackView {
         }
         return haveError ? ValidationError.emptyFields : nil
     }
+    
+    func editableFields() -> [TextFieldViewModel] {
+        var models: [TextFieldViewModel] = []
+        for subview in stackView.arrangedSubviews {
+            guard let textField = subview as? TextFieldWithLabel,
+                  let model = textField.model else { continue }
+            if model.canEdit {
+                models.append(model)
+            }
+        }
+        
+        return models
+    }
 }
 
 extension TextFieldsStackView: TextFieldDelegate {
