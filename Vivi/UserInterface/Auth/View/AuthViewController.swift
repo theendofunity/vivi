@@ -11,9 +11,16 @@ import EasyPeasy
 class AuthViewController: UIViewController {
     var presenter: AuthPresenter!
     
+    private lazy var scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.showsVerticalScrollIndicator = false
+        scroll.backgroundColor = .viviRose50
+        return scroll
+    }()
+    
     private lazy var backgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .viviRose50
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -82,10 +89,13 @@ class AuthViewController: UIViewController {
     }
     
     func setupView() {
-        view.backgroundColor = .background
-        view.addSubview(backgroundView)
-        view.addSubview(logoImageView)
-        view.addSubview(fieldsView)
+        view.backgroundColor = .viviRose50
+        view.addSubview(scrollView)
+        
+        scrollView.addSubview(backgroundView)
+        backgroundView.addSubview(logoImageView)
+        backgroundView.addSubview(fieldsView)
+        
         fieldsView.addSubview(titleLabel)
         fieldsView.addSubview(emailTextField)
         fieldsView.addSubview(passwordTextField)
@@ -95,15 +105,24 @@ class AuthViewController: UIViewController {
     }
     
     func setupConstraints() {
-        backgroundView.easy.layout(
+        scrollView.easy.layout(
             Top().to(view.safeAreaLayoutGuide, .top),
             Leading(),
             Trailing(),
             Bottom().to(view.safeAreaLayoutGuide, .bottom)
         )
         
+        backgroundView.easy.layout(
+            Top(),
+            Leading(),
+            Trailing(),
+            Bottom(),
+            Width().like(scrollView, .width),
+            Height(50).like(scrollView, .height)
+        )
+        
         logoImageView.easy.layout(
-            Top(24).to(view.safeAreaLayoutGuide, .top),
+            Top(24),
             CenterX(),
             Width(142),
             Height(123)
@@ -139,15 +158,17 @@ class AuthViewController: UIViewController {
             Trailing(24)
         )
         
-        registerButton.easy.layout(
-            Bottom(40).to(view.safeAreaLayoutGuide, .bottom),
+        inviteLabel.easy.layout(
+            Top(40).to(signInButton, .bottom),
             Leading(24)
         )
         
-        inviteLabel.easy.layout(
-            Bottom(4).to(registerButton, .top),
+        registerButton.easy.layout(
+            Top(4).to(inviteLabel, .bottom),
             Leading(24)
         )
+        
+        
     }
     
     @objc func registerButtonDidTouch() {
