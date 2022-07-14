@@ -24,7 +24,7 @@ class TextFieldValidator {
             return EmailValidator()
         case .phone:
             return PhoneValidator()
-        case .password:
+        case .password, .oldPassword, .newPassword:
             return PasswordValidator()
         default:
             return nil

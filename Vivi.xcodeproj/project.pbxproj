@@ -86,6 +86,8 @@
 		D89F59952875F92B006876E1 /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89F59942875F92B006876E1 /* String + Extensions.swift */; };
 		D8A1494128807E390012367E /* RestorePasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A1494028807E390012367E /* RestorePasswordPresenter.swift */; };
 		D8A1494328807E8A0012367E /* RestorePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A1494228807E8A0012367E /* RestorePasswordViewController.swift */; };
+		D8A14945288089820012367E /* SecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A14944288089820012367E /* SecurityViewController.swift */; };
+		D8A14947288089990012367E /* SecurityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A14946288089990012367E /* SecurityPresenter.swift */; };
 		D8B27B0E282C285300EDAD23 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */; };
 		D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */; };
 		D8BEF6482851199000B675D9 /* NewChatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BEF6472851199000B675D9 /* NewChatPresenter.swift */; };
@@ -185,6 +187,8 @@
 		D89F59942875F92B006876E1 /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
 		D8A1494028807E390012367E /* RestorePasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePasswordPresenter.swift; sourceTree = "<group>"; };
 		D8A1494228807E8A0012367E /* RestorePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePasswordViewController.swift; sourceTree = "<group>"; };
+		D8A14944288089820012367E /* SecurityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityViewController.swift; sourceTree = "<group>"; };
+		D8A14946288089990012367E /* SecurityPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityPresenter.swift; sourceTree = "<group>"; };
 		D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		D8BEF6472851199000B675D9 /* NewChatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatPresenter.swift; sourceTree = "<group>"; };
@@ -368,6 +372,7 @@
 				D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */,
 				D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */,
 				D86AEE7F2839393B001BE89F /* PersonalInfoView.swift */,
+				D8A14944288089820012367E /* SecurityViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 			children = (
 				D821F8AF2832A84D00C43774 /* ProfilePresenter.swift */,
 				D806903328436912007916DF /* ProfileConfigurator.swift */,
+				D8A14946288089990012367E /* SecurityPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -852,7 +858,9 @@
 				D8262F74281F2ADB00FA3E76 /* SceneDelegate.swift in Sources */,
 				D8262F9D281F30A400FA3E76 /* ChatsListPresenter.swift in Sources */,
 				D86AEE94283BFAA7001BE89F /* PhotoGalleryCell.swift in Sources */,
+				D8A14945288089820012367E /* SecurityViewController.swift in Sources */,
 				D850CFE2282BCB9300C41DE7 /* ProfileMenuType.swift in Sources */,
+				D8A14947288089990012367E /* SecurityPresenter.swift in Sources */,
 				D8262FB82820316900FA3E76 /* PortfolioExampleCell.swift in Sources */,
 				D86A79F22821740C00F45D76 /* AuthViewController.swift in Sources */,
 				D86A79E428212EEE00F45D76 /* UIImage + Extensions.swift in Sources */,

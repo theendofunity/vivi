@@ -10,6 +10,7 @@ import EasyPeasy
 
 protocol PersonalInfoViewDelegate: AnyObject {
     func saveButtonPressed(models: [TextFieldViewModel])
+    func securityButtonPressed()
     func showError(error: Error)
 }
 
@@ -19,6 +20,33 @@ class PersonalInfoView: UIView {
     private lazy var textFieldsView: TextFieldsStackView = {
         let view = TextFieldsStackView()
         return view
+    }()
+    
+    private lazy var securityButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Безопасность", for: .normal)
+        button.setTitleColor(.denim, for: .normal)
+        button.titleLabel?.font = .mainFont
+        button.titleLabel?.textAlignment = .left
+        button.layer.borderWidth = 0
+        
+        let line = UIView()
+        line.backgroundColor = .denim
+        button.addSubview(line)
+        line.easy.layout(
+            Bottom(),
+            Leading(),
+            Trailing(),
+            Height(1)
+        )
+        
+        button.titleLabel?.easy.layout(
+            Leading()
+        )
+        
+        button.addTarget(self, action: #selector(securityButtonPressed), for: .touchUpInside)
+        
+        return button
     }()
     
     private lazy var saveButton: MainButton = {
@@ -40,6 +68,7 @@ class PersonalInfoView: UIView {
     
     func setupView() {
         addSubview(textFieldsView)
+        addSubview(securityButton)
         addSubview(saveButton)
     }
     
@@ -50,8 +79,15 @@ class PersonalInfoView: UIView {
             Trailing(24)
         )
         
-        saveButton.easy.layout(
+        securityButton.easy.layout(
             Top(24).to(textFieldsView, .bottom),
+            Leading(24),
+            Trailing(24),
+            Height(40)
+        )
+        
+        saveButton.easy.layout(
+            Top(24).to(securityButton, .bottom),
             Leading(24),
             Trailing(24),
             Bottom()
@@ -66,6 +102,10 @@ class PersonalInfoView: UIView {
         
         let models = textFieldsView.editableFields()
         delegate?.saveButtonPressed(models: models)
+    }
+    
+    @objc func securityButtonPressed() {
+        delegate?.securityButtonPressed()
     }
     
     func setupFields(fields: [TextFieldViewModel]) {

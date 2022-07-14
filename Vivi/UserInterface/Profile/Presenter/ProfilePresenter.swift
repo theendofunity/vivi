@@ -255,4 +255,13 @@ extension ProfilePresenter {
         }
         saveUser()
     }
+    
+    func securityButtonPressed() {
+        let view = SecurityViewController()
+        let presenter = SecurityPresenter()
+        view.presenter = presenter
+        presenter.view = view
+        
+        self.view?.navigation()?.pushViewController(view, animated: true)
+    }
 }

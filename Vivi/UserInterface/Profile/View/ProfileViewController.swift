@@ -222,6 +222,10 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 }
 
 extension ProfileViewController: PersonalInfoViewDelegate {
+    func securityButtonPressed() {
+        presenter.securityButtonPressed()
+    }
+    
     func saveButtonPressed(models: [TextFieldViewModel]) {
         presenter.saveButtonPressed(models: models)
     }
