@@ -7,10 +7,12 @@
 
 import Foundation
 import Firebase
+import SwiftLoader
 
 protocol SecurityViewType: AnyObject {
     func showError(error: Error)
     func showSuccess(message: String)
+    func navigation() -> UINavigationController?
 }
 
 class SecurityPresenter {
@@ -33,6 +35,21 @@ class SecurityPresenter {
                     }
                     self?.view?.showSuccess(message: "Пароль успешно изменен")
                 }
+            }
+        }
+    }
+    
+    func removeAccount() {
+        SwiftLoader.show(animated: true)
+        AuthService.shared.deleteUser { [weak self] result in
+            SwiftLoader.hide()
+            switch result {
+            case .success():
+                self?.view?.showSuccess(message: "Аккаунт удален")
+                AuthService.shared.logout()
+                self?.view?.navigation()?.popViewController(animated: true)
+            case .failure(let error):
+                self?.view?.showError(error: error)
             }
         }
     }

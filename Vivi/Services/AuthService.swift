@@ -67,4 +67,25 @@ class AuthService {
             }
         }
     }
+    
+    func deleteUser(completion: @escaping VoidCompletion) {
+        guard let currentUser = currentUser else {
+            return
+        }
+        
+        currentUser.delete { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                FirestoreService.shared.deleteUserData(userId: currentUser.uid) { result in
+                    switch result {
+                    case .success():
+                        completion(.success(Void()))
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
+            }
+        }
+    }
 }

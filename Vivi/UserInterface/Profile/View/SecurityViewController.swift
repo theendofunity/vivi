@@ -130,7 +130,16 @@ class SecurityViewController: UIViewController {
     }
     
     @objc func removeAccountButtonPressed() {
+        let alert = UIAlertController(title: "Удаление аккаунта", message: "Вы уверены, что хотите удалить аккаунт?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Удалить", style: .destructive) { [weak self] _ in
+            self?.presenter.removeAccount()
+        }
+        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
         
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+        
+        present(alert, animated: true)
     }
 }
 

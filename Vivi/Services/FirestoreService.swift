@@ -197,4 +197,15 @@ class FirestoreService {
         }
         return listener
     }
+    
+    func deleteUserData(userId: String, completion: @escaping VoidCompletion) {
+        let ref = db.collection(Reference.users.rawValue).document(userId)
+        ref.delete { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(Void()))
+            }
+        }
+    }
 }
