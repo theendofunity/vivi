@@ -38,6 +38,14 @@ class AuthPresenter {
         view?.navigation()?.pushViewController(registrationView, animated: true)
     }
     
+    func restorePasswordDidTouch() {
+        let view = RestorePasswordViewController()
+        let presenter = RestorePasswordPresenter()
+        view.presenter = presenter
+        presenter.view = view
+        self.view?.navigation()?.pushViewController(view, animated: true)
+    }
+    
     func signInButtonDidTouch(email: String, password: String) {
         view?.startAnimation()
         signIn(email: email, password: password)

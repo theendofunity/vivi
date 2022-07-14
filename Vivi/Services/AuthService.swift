@@ -57,4 +57,14 @@ class AuthService {
           print("Error signing out: %@", signOutError)
         }
     }
+    
+    func restorePassword(email: String, completion: @escaping VoidCompletion) {
+        auth.sendPasswordReset(withEmail: email) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(Void()))
+            }
+        }
+    }
 }

@@ -69,6 +69,21 @@ class AuthViewController: UIViewController {
         return label
     }()
     
+    private lazy var orLabel: PlainLabel = {
+        let label = PlainLabel(text: "Или", fontType: .small)
+        label.textColor = .denim?.withAlphaComponent(0.7)
+        return label
+    }()
+    
+    private lazy var restorePasswordButton: UIButton = {
+        let button = UIButton()
+        button.layer.borderWidth = 0
+        button.setTitle("Восстановить пароль", for: .normal)
+        button.setTitleColor(.denim, for: .normal)
+        button.addTarget(self, action: #selector(restorePasswordButtonDidTouch), for: .touchUpInside)
+        return button
+    }()
+    
     private lazy var registerButton: UIButton = {
         let button = UIButton()
         button.layer.borderWidth = 0
@@ -77,6 +92,8 @@ class AuthViewController: UIViewController {
         button.addTarget(self, action: #selector(registerButtonDidTouch), for: .touchUpInside)
         return button
     }()
+    
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,6 +118,8 @@ class AuthViewController: UIViewController {
         fieldsView.addSubview(passwordTextField)
         fieldsView.addSubview(signInButton)
         fieldsView.addSubview(inviteLabel)
+        fieldsView.addSubview(orLabel)
+        fieldsView.addSubview(restorePasswordButton)
         fieldsView.addSubview(registerButton)
     }
     
@@ -168,11 +187,23 @@ class AuthViewController: UIViewController {
             Leading(24)
         )
         
+        orLabel.easy.layout(
+            Top(8).to(registerButton, .bottom),
+            Leading(24)
+        )
         
+        restorePasswordButton.easy.layout(
+            Top().to(orLabel, .bottom),
+            Leading(24)
+        )
     }
     
     @objc func registerButtonDidTouch() {
         presenter.registerButtonDidTouch()
+    }
+    
+    @objc func restorePasswordButtonDidTouch() {
+        presenter.restorePasswordDidTouch()
     }
     
     @objc func signInButtonDidTouch() {
