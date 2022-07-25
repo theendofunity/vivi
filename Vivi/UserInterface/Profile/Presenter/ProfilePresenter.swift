@@ -215,7 +215,7 @@ extension ProfilePresenter {
         
         SwiftLoader.show(animated: true)
         
-        storageService.saveAvatar(imageUrl: url, referenceType: .avatars) { [weak self] result in
+        storageService.saveImage(imageUrl: url, referenceType: .avatars) { [weak self] result in
             SwiftLoader.hide()
             guard let self = self else { return }
             

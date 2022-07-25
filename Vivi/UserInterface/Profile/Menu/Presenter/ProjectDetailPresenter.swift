@@ -131,9 +131,8 @@ extension ProjectDetailPresenter {
 
 extension ProjectDetailPresenter {
     func setAvatar(url: URL) {
-        guard let id = project.documentId() else { return }
         SwiftLoader.show(animated: true)
-        StorageService.shared.saveAvatar(imageUrl: url, referenceType: .project(id: id)) { [weak self] result in
+        StorageService.shared.saveImage(imageUrl: url, referenceType: .avatars) { [weak self] result in
             SwiftLoader.hide()
             guard let self = self else { return }
             switch result {

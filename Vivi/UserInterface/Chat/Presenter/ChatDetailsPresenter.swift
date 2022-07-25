@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
+import SwiftLoader
 
 protocol ChatDetailViewType: AnyObject {
     func update(messages: [MessageModel])
@@ -88,7 +89,11 @@ extension ChatDetailsPresenter {
 //        view?.update(messages: messages)
         
         chat.lastMessageContent = text
+        sendMessage(message: message)
         
+    }
+    
+    func sendMessage(message: MessageModel) {
         storage.sendMessage(chat: chat, message: message) { [weak self] result in
             switch result {
             case .success():
@@ -97,5 +102,23 @@ extension ChatDetailsPresenter {
                 self?.view?.showError(error: error)
             }
         }
+    }
+    
+    func sendMessage(media: URL) {
+        SwiftLoader.show(animated: true)
+        
+        StorageService.shared.saveImage(imageUrl: media, referenceType: .chatMedia) { [weak self] result in
+            SwiftLoader.hide()
+            switch result {
+            case .success(let url):
+                guard let self = self else { return }
+                var message = MessageModel(sender: self.currentSender, image: url)
+                message.avatarUrl = self.currentSender.avatarUrl
+                self.sendMessage(message: message)
+            case .failure(let error):
+                self?.view?.showError(error: error)
+            }
+        }
+        
     }
 }

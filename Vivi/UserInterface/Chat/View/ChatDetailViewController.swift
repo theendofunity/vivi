@@ -20,6 +20,16 @@ class ChatDetailViewController: MessagesViewController {
         return view
     }()
     
+    private lazy var mediaButton: InputBarButtonItem = {
+        let button = InputBarButtonItem()
+        button.setImage(UIImage(systemName: "photo.on.rectangle"), for: .normal)
+        button.setSize(CGSize(width: 40, height: 40), animated: false)
+        button.onTouchUpInside({ [weak self] _ in
+            self?.mediaButtonPressed()
+        })
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,7 +46,6 @@ class ChatDetailViewController: MessagesViewController {
         
         presenter?.viewDidLoad()
     }
-
     
     func setupView() {
         navigationBarBase()
@@ -61,7 +70,7 @@ class ChatDetailViewController: MessagesViewController {
         
         messageInputBar.sendButton.setTitle("", for: .normal)
         messageInputBar.sendButton.setImage(UIImage(systemName: "paperplane"), for: .normal)
-        messageInputBar.sendButton.imageView?.easy.layout(Width(35), Height(35), Center())
+        messageInputBar.sendButton.setSize(CGSize(width: 40, height: 40), animated: false)
         messageInputBar.sendButton.backgroundColor = .clear
         
         messageInputBar.inputTextView.layer.borderWidth = 1
@@ -71,7 +80,9 @@ class ChatDetailViewController: MessagesViewController {
         messageInputBar.middleContentViewPadding = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
         messageInputBar.topStackView.backgroundColor = .viviLightBlue
         messageInputBar.inputTextView.round(8)
-       
+        
+        messageInputBar.setStackViewItems([mediaButton], forStack: .left, animated: false)
+        messageInputBar.setLeftStackViewWidthConstant(to: 40, animated: false)
     }
 }
 
@@ -123,6 +134,11 @@ extension ChatDetailViewController: MessagesDisplayDelegate {
         guard let message = message as? MessageModel else { return }
         avatarView.sd_setImage(with: URL(string: message.avatarUrl ?? ""))
     }
+    
+    func configureMediaMessageImageView(_ imageView: UIImageView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        guard let message = message as? MessageModel else { return }
+        imageView.sd_setImage(with: message.imageUrl)
+    }
 }
 
 extension ChatDetailViewController: ChatDetailViewType {
@@ -147,3 +163,19 @@ extension ChatDetailViewController: InputBarAccessoryViewDelegate {
         presenter?.sendMessage(text: text)
     }
 }
+
+extension ChatDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    @objc func mediaButtonPressed() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let url = info[.imageURL] as? URL else { return }
+        presenter?.sendMessage(media: url)
+        dismiss(animated: true)
+    }
+}
+

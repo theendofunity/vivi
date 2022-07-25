@@ -144,6 +144,10 @@ class SecurityViewController: UIViewController {
 }
 
 extension SecurityViewController: SecurityViewType {
+    func navigation() -> UINavigationController? {
+        return navigationController
+    }
+    
     func showError(error: Error) {
         changePasswordButton.hideLoading()
         alertError(error: error)
