@@ -101,7 +101,9 @@ extension ChatDetailViewController: MessagesDataSource {
 }
 
 extension ChatDetailViewController: MessagesLayoutDelegate {
-    
+       func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+           return 20
+       }
 }
 
 extension ChatDetailViewController: MessagesDisplayDelegate {
@@ -125,7 +127,6 @@ extension ChatDetailViewController: MessagesDisplayDelegate {
             let name = message.sender.displayName
             return NSAttributedString(string: name,
                                       attributes: [
-                                        NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1),
                                         .foregroundColor : UIColor.denim!
                                       ])
         }
