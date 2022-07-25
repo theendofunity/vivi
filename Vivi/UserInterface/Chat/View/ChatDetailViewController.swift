@@ -40,6 +40,7 @@ class ChatDetailViewController: MessagesViewController {
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesDisplayDelegate = self
         messagesCollectionView.messagesLayoutDelegate = self
+        messagesCollectionView.messageCellDelegate = self
         messageInputBar.delegate = self
         
         setupView()
@@ -140,9 +141,15 @@ extension ChatDetailViewController: MessagesDisplayDelegate {
         guard let message = message as? MessageModel else { return }
         imageView.sd_setImage(with: message.imageUrl)
     }
+    
+   
 }
 
 extension ChatDetailViewController: ChatDetailViewType {
+    func navigation() -> UINavigationController? {
+        return navigationController
+    }
+    
     func setTitle(title: String) {
         self.title = title
     }
@@ -177,6 +184,20 @@ extension ChatDetailViewController: UIImagePickerControllerDelegate, UINavigatio
         guard let url = info[.imageURL] as? URL else { return }
         presenter?.sendMessage(media: url)
         dismiss(animated: true)
+    }
+}
+
+extension ChatDetailViewController: MessageCellDelegate {
+    func didTapImage(in cell: MessageCollectionViewCell) {
+        guard let indexPath = messagesCollectionView.indexPath(for: cell),
+              let message = messagesCollectionView.messagesDataSource?.messageForItem(at: indexPath,
+                                                                                      in: messagesCollectionView)
+        else { return }
+        
+        if case MessageKind.photo(let media) = message.kind,
+           let imageURL = media.url {
+            presenter?.openImage(url: imageURL)
+        }
     }
 }
 

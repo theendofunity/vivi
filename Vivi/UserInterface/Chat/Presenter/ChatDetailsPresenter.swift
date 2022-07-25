@@ -13,6 +13,7 @@ protocol ChatDetailViewType: AnyObject {
     func update(messages: [MessageModel])
     func showError(error: Error)
     func setTitle(title: String)
+    func navigation() -> UINavigationController?
 }
 
 class ChatDetailsPresenter {
@@ -119,6 +120,13 @@ extension ChatDetailsPresenter {
                 self?.view?.showError(error: error)
             }
         }
-        
+    }
+    
+    func openImage(url: URL) {
+        let view = DetailImageViewController()
+        view.modalPresentationStyle = .fullScreen
+        self.view?.navigation()?.present(view, animated: true, completion: {
+            view.update(urls: [url], selectedIndex: IndexPath(item: 0, section: 0))
+        })
     }
 }
