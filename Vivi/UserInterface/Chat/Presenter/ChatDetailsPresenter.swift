@@ -129,4 +129,18 @@ extension ChatDetailsPresenter {
             view.update(urls: [url], selectedIndex: IndexPath(item: 0, section: 0))
         })
     }
+    
+    func showImageConfirm(url: URL) {
+        let confirmView = ConfirmImageSendingViewController()
+        confirmView.delegate = self
+        confirmView.configure(imageUrl: url)
+        confirmView.modalPresentationStyle = .popover
+        view?.navigation()?.present(confirmView, animated: true)
+    }
+}
+
+extension ChatDetailsPresenter: ConfirmSendingImageDelegate {
+    func sendButtonPressed(imageUrl: URL) {
+        sendMessage(media: imageUrl)
+    }
 }

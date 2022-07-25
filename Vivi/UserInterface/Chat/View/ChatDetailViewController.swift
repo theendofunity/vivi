@@ -141,8 +141,6 @@ extension ChatDetailViewController: MessagesDisplayDelegate {
         guard let message = message as? MessageModel else { return }
         imageView.sd_setImage(with: message.imageUrl)
     }
-    
-   
 }
 
 extension ChatDetailViewController: ChatDetailViewType {
@@ -182,8 +180,12 @@ extension ChatDetailViewController: UIImagePickerControllerDelegate, UINavigatio
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let url = info[.imageURL] as? URL else { return }
-        presenter?.sendMessage(media: url)
         dismiss(animated: true)
+        showConfirmSending(url: url)
+    }
+    
+    func showConfirmSending(url: URL) {
+        presenter?.showImageConfirm(url: url)
     }
 }
 
