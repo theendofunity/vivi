@@ -22,7 +22,7 @@ class ChatDetailViewController: MessagesViewController {
     
     private lazy var mediaButton: InputBarButtonItem = {
         let button = InputBarButtonItem()
-        button.setImage(UIImage(systemName: "photo.on.rectangle"), for: .normal)
+        button.setImage(UIImage(systemName: "paperclip"), for: .normal)
         button.setSize(CGSize(width: 40, height: 40), animated: false)
         button.onTouchUpInside({ [weak self] _ in
             self?.mediaButtonPressed()
@@ -171,11 +171,35 @@ extension ChatDetailViewController: InputBarAccessoryViewDelegate {
 }
 
 extension ChatDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     @objc func mediaButtonPressed() {
+        let alert = UIAlertController(title: "Выберите тип", message: "", preferredStyle: .actionSheet)
+        let mediaAction = UIAlertAction(title: "Медиа", style: .default) { _ in
+            self.showImagePicker()
+        }
+        
+        let fileAction = UIAlertAction(title: "Файл", style: .default) { _ in
+            self.showFilePicker()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
+        
+        alert.addAction(mediaAction)
+        alert.addAction(fileAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+    }
+    
+    func showImagePicker() {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = .photoLibrary
         present(picker, animated: true)
+    }
+    
+    func showFilePicker() {
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
