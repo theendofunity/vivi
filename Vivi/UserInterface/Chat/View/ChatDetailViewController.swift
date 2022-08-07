@@ -195,6 +195,7 @@ extension ChatDetailViewController: UIImagePickerControllerDelegate, UINavigatio
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = .photoLibrary
+        picker.mediaTypes = ["public.image", "public.movie"]
         present(picker, animated: true)
     }
     
@@ -203,9 +204,17 @@ extension ChatDetailViewController: UIImagePickerControllerDelegate, UINavigatio
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let url = info[.imageURL] as? URL else { return }
-        dismiss(animated: true)
-        showConfirmSending(url: url)
+        guard let type = info[.mediaType] as? String else { return }
+        
+        if type == "public.image" {
+            guard let url = info[.imageURL] as? URL else { return }
+            dismiss(animated: true)
+            showConfirmSending(url: url)
+        } else if type == "public.movie" {
+            guard let url = info[.mediaURL] as? URL else { return }
+            dismiss(animated: true)
+            presenter?.sendData(data: url)
+        }
     }
     
     func showConfirmSending(url: URL) {

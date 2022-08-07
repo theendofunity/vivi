@@ -129,6 +129,24 @@ class StorageService {
         }
     }
     
+    func uploadData(_ referenceType: ReferenceType, fileUrl: URL, completion: @escaping VoidCompletion) {
+        guard let fileName = fileUrl.pathComponents.last else { return }
+        let ref = storage.reference(withPath: referenceType.path()).child(fileName)
+        guard let data = try? Data(contentsOf: fileUrl) else {
+            completion(.failure(NSError()))
+            return
+        }
+        ref.putData(data, metadata: nil, completion: { metadata, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let _ = metadata else { return }
+            completion(.success(Void()))
+        })
+    }
+    
     
     func getDownloadUrl(_ referenceType: ReferenceType, fileName: String, completion: @escaping UrlCompletion) {
         let ref = storage.reference(withPath: referenceType.path()).child(fileName)
@@ -147,7 +165,29 @@ class StorageService {
     }
     
     func saveImage(imageUrl: URL, referenceType: ReferenceType, completion: @escaping UrlCompletion) {
+        print("URL", imageUrl.absoluteString)
         uploadFile(referenceType, fileUrl: imageUrl) { result in
+            print(result)
+            switch result {
+            case .success():
+                guard let fileName = imageUrl.pathComponents.last else { return }
+                self.getDownloadUrl(referenceType, fileName: fileName) { result in
+                    switch result {
+                    case .success(let url):
+                        completion(.success(url))
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func saveData(imageUrl: URL, referenceType: ReferenceType, completion: @escaping UrlCompletion) {
+        uploadData(referenceType, fileUrl: imageUrl) { result in
+            print(result)
             switch result {
             case .success():
                 guard let fileName = imageUrl.pathComponents.last else { return }

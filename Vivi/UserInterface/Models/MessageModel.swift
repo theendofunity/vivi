@@ -10,6 +10,12 @@ import MessageKit
 import FirebaseFirestore
 
 struct MessageModel: MessageType {
+    enum MediaType: Int {
+        case none = 0
+        case image
+        case video
+    }
+    
     var id: String? = nil
     var sender: SenderType
     var sentDate: Date
@@ -18,6 +24,7 @@ struct MessageModel: MessageType {
     var content: String?
     var image: UIImage? = nil
     var imageUrl: URL? = nil
+    var mediaType: MediaType = .none
     
     var messageId: String {
         return id ?? UUID().uuidString
@@ -29,7 +36,14 @@ struct MessageModel: MessageType {
                                       image: nil,
                                       placeholderImage: UIImage(),
                                       size: CGSize(width: 500, height: 500))
-            return .photo(mediaItem)
+            switch mediaType {
+            case .none:
+                return .text(content ?? "")
+            case .image:
+                return .photo(mediaItem)
+            case .video:
+                return .video(mediaItem)
+            }
         }
         return .text(content ?? "")
     }
@@ -46,6 +60,10 @@ extension MessageModel: FirestoreSavable {
         self.sender = SenderModel(senderId: senderId, displayName: name)
         self.sentDate = sentDate.dateValue()
         self.id = id
+        
+        if let mediaType = document["mediaType"] as? Int {
+            self.mediaType = MediaType(rawValue: mediaType) ?? .none
+        }
         
         if let avatarUrl = document["avatarUrl"] as? String {
             self.avatarUrl = avatarUrl
@@ -86,7 +104,8 @@ extension MessageModel: FirestoreSavable {
             "id" : messageId,
             "imageUrl" : imageUrl?.absoluteString ?? "",
             "content" : content ?? "",
-            "avatarUrl" : avatarUrl ?? ""
+            "avatarUrl" : avatarUrl ?? "",
+            "mediaType" : mediaType.rawValue 
         ]
         return dict
     }

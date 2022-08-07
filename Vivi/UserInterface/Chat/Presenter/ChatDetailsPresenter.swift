@@ -105,15 +105,34 @@ extension ChatDetailsPresenter {
         }
     }
     
-    func sendMessage(media: URL) {
+    func sendMessage(imageUrl: URL) {
         SwiftLoader.show(animated: true)
         
-        StorageService.shared.saveImage(imageUrl: media, referenceType: .chatMedia) { [weak self] result in
+        StorageService.shared.saveImage(imageUrl: imageUrl, referenceType: .chatMedia) { [weak self] result in
             SwiftLoader.hide()
             switch result {
             case .success(let url):
                 guard let self = self else { return }
                 var message = MessageModel(sender: self.currentSender, image: url)
+                message.mediaType = .image
+                message.avatarUrl = self.currentSender.avatarUrl
+                self.sendMessage(message: message)
+            case .failure(let error):
+                self?.view?.showError(error: error)
+            }
+        }
+    }
+    
+    func sendData(data: URL) {
+        SwiftLoader.show(animated: true)
+        
+        StorageService.shared.saveData(imageUrl: data, referenceType: .chatMedia) { [weak self] result in
+            SwiftLoader.hide()
+            switch result {
+            case .success(let url):
+                guard let self = self else { return }
+                var message = MessageModel(sender: self.currentSender, image: url)
+                message.mediaType = .video
                 message.avatarUrl = self.currentSender.avatarUrl
                 self.sendMessage(message: message)
             case .failure(let error):
@@ -141,6 +160,6 @@ extension ChatDetailsPresenter {
 
 extension ChatDetailsPresenter: ConfirmSendingImageDelegate {
     func sendButtonPressed(imageUrl: URL) {
-        sendMessage(media: imageUrl)
+        sendMessage(imageUrl: imageUrl)
     }
 }
