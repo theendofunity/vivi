@@ -8,6 +8,8 @@
 import Foundation
 import FirebaseFirestore
 import SwiftLoader
+import AVKit
+import AVFoundation
 
 protocol ChatDetailViewType: AnyObject {
     func update(messages: [MessageModel])
@@ -147,6 +149,12 @@ extension ChatDetailsPresenter {
         self.view?.navigation()?.present(view, animated: true, completion: {
             view.update(urls: [url], selectedIndex: IndexPath(item: 0, section: 0))
         })
+    }
+    
+    func openVideo(url: URL) {
+        let player = AVPlayerViewController()
+        player.player = AVPlayer(url: url)
+        view?.navigation()?.present(player, animated: true)
     }
     
     func showImageConfirm(url: URL) {

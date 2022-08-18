@@ -229,9 +229,15 @@ extension ChatDetailViewController: MessageCellDelegate {
                                                                                       in: messagesCollectionView)
         else { return }
         
-        if case MessageKind.photo(let media) = message.kind,
-           let imageURL = media.url {
-            presenter?.openImage(url: imageURL)
+        switch message.kind {
+        case .photo(let media):
+            guard let url = media.url else { return }
+            presenter?.openImage(url: url)
+        case .video(let media):
+            guard let url = media.url else { return }
+            presenter?.openVideo(url: url)
+        default:
+            break
         }
     }
 }
