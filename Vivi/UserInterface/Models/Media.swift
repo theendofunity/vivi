@@ -10,7 +10,7 @@ import Foundation
 import Foundation
 import MessageKit
 
-struct ImageItem: MediaItem {
+struct Media: MediaItem {
     var url: URL?
     var image: UIImage?
     var placeholderImage: UIImage

@@ -14,6 +14,7 @@ struct MessageModel: MessageType {
         case none = 0
         case image
         case video
+        case file
     }
     
     var id: String? = nil
@@ -23,7 +24,7 @@ struct MessageModel: MessageType {
 
     var content: String?
     var image: UIImage? = nil
-    var imageUrl: URL? = nil
+    var dataUrl: URL? = nil
     var mediaType: MediaType = .none
     
     var messageId: String {
@@ -31,11 +32,11 @@ struct MessageModel: MessageType {
     }
     
     var kind: MessageKind {
-        if let url = imageUrl {
-            let mediaItem = ImageItem(url: url,
-                                      image: nil,
-                                      placeholderImage: UIImage(),
-                                      size: CGSize(width: 500, height: 500))
+        if let url = dataUrl {
+            let mediaItem = Media(url: url,
+                                  image: nil,
+                                  placeholderImage: UIImage(),
+                                  size: CGSize(width: 500, height: 500))
             switch mediaType {
             case .none:
                 return .text(content ?? "")
@@ -43,6 +44,12 @@ struct MessageModel: MessageType {
                 return .photo(mediaItem)
             case .video:
                 return .video(mediaItem)
+            case .file:
+                let link = Link(text: url.lastPathComponent,
+                                url: url,
+                                teaser: "",
+                                thumbnailImage: UIImage(systemName: "link.circle")!)
+                return .linkPreview(link)
             }
         }
         return .text(content ?? "")
@@ -71,7 +78,7 @@ extension MessageModel: FirestoreSavable {
         
         if let imageUrl = document["imageUrl"] as? String,
            !imageUrl.isEmpty {
-            self.imageUrl = URL(string: imageUrl)
+            self.dataUrl = URL(string: imageUrl)
             self.content = ""
         } else if let content = document["content"] as? String{
             self.content = content
@@ -86,9 +93,9 @@ extension MessageModel: FirestoreSavable {
         self.sentDate = Date()
     }
     
-    init(sender: UserModel, image: URL) {
+    init(sender: UserModel, url: URL) {
         self.sender = sender
-        self.imageUrl = image
+        self.dataUrl = url
         self.sentDate = Date()
     }
     
@@ -102,7 +109,7 @@ extension MessageModel: FirestoreSavable {
             "senderName" : sender.displayName,
             "senderId" : sender.senderId,
             "id" : messageId,
-            "imageUrl" : imageUrl?.absoluteString ?? "",
+            "imageUrl" : dataUrl?.absoluteString ?? "",
             "content" : content ?? "",
             "avatarUrl" : avatarUrl ?? "",
             "mediaType" : mediaType.rawValue 

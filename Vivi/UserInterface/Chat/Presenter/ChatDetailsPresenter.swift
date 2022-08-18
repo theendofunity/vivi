@@ -115,7 +115,7 @@ extension ChatDetailsPresenter {
             switch result {
             case .success(let url):
                 guard let self = self else { return }
-                var message = MessageModel(sender: self.currentSender, image: url)
+                var message = MessageModel(sender: self.currentSender, url: url)
                 message.mediaType = .image
                 message.avatarUrl = self.currentSender.avatarUrl
                 self.sendMessage(message: message)
@@ -125,16 +125,17 @@ extension ChatDetailsPresenter {
         }
     }
     
-    func sendData(data: URL) {
+    func sendData(data: URL, type: MessageModel.MediaType) {
         SwiftLoader.show(animated: true)
         
         StorageService.shared.saveData(imageUrl: data, referenceType: .chatMedia) { [weak self] result in
             SwiftLoader.hide()
+            data.stopAccessingSecurityScopedResource()
             switch result {
             case .success(let url):
                 guard let self = self else { return }
-                var message = MessageModel(sender: self.currentSender, image: url)
-                message.mediaType = .video
+                var message = MessageModel(sender: self.currentSender, url: url)
+                message.mediaType = type
                 message.avatarUrl = self.currentSender.avatarUrl
                 self.sendMessage(message: message)
             case .failure(let error):
@@ -155,6 +156,11 @@ extension ChatDetailsPresenter {
         let player = AVPlayerViewController()
         player.player = AVPlayer(url: url)
         view?.navigation()?.present(player, animated: true)
+    }
+    
+    func openLink(url: URL) {
+        let view = DocumentsDetailViewController(url: url)
+        self.view?.navigation()?.present(view, animated: true)
     }
     
     func showImageConfirm(url: URL) {

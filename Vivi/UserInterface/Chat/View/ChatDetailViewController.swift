@@ -9,6 +9,7 @@ import UIKit
 import MessageKit
 import InputBarAccessoryView
 import EasyPeasy
+import UniformTypeIdentifiers
 
 class ChatDetailViewController: MessagesViewController {
     var presenter: ChatDetailsPresenter?
@@ -139,7 +140,7 @@ extension ChatDetailViewController: MessagesDisplayDelegate {
     
     func configureMediaMessageImageView(_ imageView: UIImageView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         guard let message = message as? MessageModel else { return }
-        imageView.sd_setImage(with: message.imageUrl)
+        imageView.sd_setImage(with: message.dataUrl)
     }
 }
 
@@ -200,7 +201,10 @@ extension ChatDetailViewController: UIImagePickerControllerDelegate, UINavigatio
     }
     
     func showFilePicker() {
-        
+        let types = [UTType.pdf]
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: types)
+        picker.delegate = self
+        present(picker, animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -213,7 +217,7 @@ extension ChatDetailViewController: UIImagePickerControllerDelegate, UINavigatio
         } else if type == "public.movie" {
             guard let url = info[.mediaURL] as? URL else { return }
             dismiss(animated: true)
-            presenter?.sendData(data: url)
+            presenter?.sendData(data: url, type: .video)
         }
     }
     
@@ -239,6 +243,29 @@ extension ChatDetailViewController: MessageCellDelegate {
         default:
             break
         }
+    }
+    
+    func didTapMessage(in cell: MessageCollectionViewCell) {
+        guard let indexPath = messagesCollectionView.indexPath(for: cell),
+              let message = messagesCollectionView.messagesDataSource?.messageForItem(at: indexPath,
+                                                                                      in: messagesCollectionView)
+        else { return }
+        
+        switch message.kind {
+        case .linkPreview(let link):
+            presenter?.openLink(url: link.url)
+        default:
+            break
+        }
+    }
+}
+
+extension ChatDetailViewController: UIDocumentPickerDelegate {
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        dismiss(animated: true)
+        guard let url = urls.first,
+        url.startAccessingSecurityScopedResource() else { return }
+        presenter?.sendData(data: url, type: .file)
     }
 }
 
