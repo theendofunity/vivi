@@ -101,7 +101,7 @@ extension TextMenuViewController: TextMenuViewType {
     }
     
     func selectFile() {
-        let picker = UIDocumentPickerViewController(documentTypes: ["public.text", "public.content"], in: .import)
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.pdf, .text])
         picker.delegate = self
         picker.allowsMultipleSelection = false
         present(picker, animated: true)
@@ -128,8 +128,8 @@ extension TextMenuViewController: UICollectionViewDelegate, UICollectionViewData
 
 extension TextMenuViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        guard controller.documentPickerMode == .import,
-              let url = urls.first else { return }
+        guard let url = urls.first,
+        url.startAccessingSecurityScopedResource() else { return }
         
         presenter.add(file: url)
     }

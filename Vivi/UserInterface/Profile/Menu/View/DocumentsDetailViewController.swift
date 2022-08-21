@@ -7,13 +7,14 @@
 
 import UIKit
 import EasyPeasy
-import WebKit
+import PDFKit
 
 class DocumentsDetailViewController: UIViewController {
     var url: URL
     
-    private lazy var webView: WKWebView = {
-        let view = WKWebView()
+    private lazy var pdfView: PDFView = {
+        let view = PDFView()
+        view.autoScales = true
         return view
     }()
     
@@ -22,7 +23,7 @@ class DocumentsDetailViewController: UIViewController {
         let image = UIImage(systemName: "xmark")?.template()
         button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(closeView), for: .touchUpInside)
-        button.tintColor = .denim
+        button.tintColor = .white
         return button
     }()
     
@@ -45,12 +46,12 @@ class DocumentsDetailViewController: UIViewController {
     }
     
     func setupView() {
-        view.addSubview(webView)
+        view.addSubview(pdfView)
         view.addSubview(closeButton)
     }
     
     func setupConstraints() {
-        webView.easy.layout(
+        pdfView.easy.layout(
             Edges()
         )
         
@@ -63,8 +64,9 @@ class DocumentsDetailViewController: UIViewController {
     }
     
     func load() {
-        let request = URLRequest(url: url)
-        webView.load(request)
+        if let document = PDFDocument(url: url) {
+            pdfView.document = document
+        }
     }
     
     @objc func closeView() {
