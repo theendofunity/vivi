@@ -9,17 +9,19 @@ import Foundation
 
 struct ChatModel: FirestoreSavable {
     var users: [String] = []
+    var userNames: [String] = []
     var avatarUrl: String?
     var title: String = ""
     var id: String
     var lastMessageContent: String? = nil
     
-    internal init(users: [String] = [], lastMessageContent: String? = nil, avatarUrl: String? = nil, title: String) {
+    internal init(users: [String] = [], userNames: [String] = [], lastMessageContent: String? = nil, avatarUrl: String? = nil, title: String) {
         self.users = users
         self.avatarUrl = avatarUrl
         self.title = title
         self.id = UUID().uuidString
         self.lastMessageContent = lastMessageContent
+        self.userNames = userNames
     }
     
     init?(document: [String : Any]) {
@@ -37,6 +39,12 @@ struct ChatModel: FirestoreSavable {
         
         if let title = document["title"] as? String {
             self.title = title
+        } else {
+            title = userNames.first(where: { $0 != UserService.shared.user?.displayName }) ?? ""
+        }
+        
+        if let userNames = document["userNames"] as? [String] {
+            self.userNames = userNames
         }
     }
     
@@ -49,7 +57,8 @@ struct ChatModel: FirestoreSavable {
             "users" : users,
             "id" : id,
             "title" : title,
-            "lastMessageContent": lastMessageContent ?? ""
+            "lastMessageContent": lastMessageContent ?? "",
+            "userNames" : userNames
         ]
         
         return dict
