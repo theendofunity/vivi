@@ -130,8 +130,8 @@ extension ProfilePresenter {
             showAllProjects()
         case .users:
             showUsers()
-        default:
-            break
+        case .main:
+            showMain()
         }
     }
     
@@ -201,6 +201,16 @@ extension ProfilePresenter {
     func showUsers() {
         let view = UsersViewController()
         let presenter = UsersPresenter()
+        view.presenter = presenter
+        presenter.view = view
+        
+        self.view?.navigation()?.pushViewController(view, animated: true)
+    }
+    
+    func showMain() {
+        let examples = DataStore.shared.examples
+        let presenter = PortfolioExamplePresenter(examples: examples, type: .editing)
+        let view = PortfolioExamplesViewController()
         view.presenter = presenter
         presenter.view = view
         

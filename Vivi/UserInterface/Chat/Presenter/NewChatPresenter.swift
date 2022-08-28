@@ -80,12 +80,12 @@ class NewChatPresenter {
         guard let currentUser = UserService.shared.user,
               let currentId = currentUser.id,
               let destinationId = user.id
-        else {
-            return
-        }
+        else { return }
+        
         let chat = ChatModel(users: [currentId, destinationId],
                              userNames: [user.displayName, currentUser.displayName],
                              title: "")
+        
         
         storage.createChat(chat: chat) { [weak self] result in
             self?.delegate?.usersSelected(users: [user])

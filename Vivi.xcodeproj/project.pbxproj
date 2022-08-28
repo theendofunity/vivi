@@ -103,6 +103,11 @@
 		D8DEC03D282ACEA6000A62B8 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC03C282ACEA6000A62B8 /* UserService.swift */; };
 		D8DEC041282ADEA2000A62B8 /* Completions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC040282ADEA2000A62B8 /* Completions.swift */; };
 		D8E113CE2845E23400CD0B4B /* NewProjectPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E113CD2845E23400CD0B4B /* NewProjectPresenter.swift */; };
+		D8FEDA5F28BBC76A00CD9901 /* ProjectExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FEDA5E28BBC76A00CD9901 /* ProjectExample.swift */; };
+		D8FEDA6328BBCF3F00CD9901 /* PortfolioExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FEDA6228BBCF3F00CD9901 /* PortfolioExamplesViewController.swift */; };
+		D8FEDA6628BBD16900CD9901 /* PortfolioExamplePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FEDA6528BBD16900CD9901 /* PortfolioExamplePresenter.swift */; };
+		D8FEDA6828BBD6C800CD9901 /* PortfolioExampleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FEDA6728BBD6C800CD9901 /* PortfolioExampleListCell.swift */; };
+		D8FEDA6A28BBDBF700CD9901 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FEDA6928BBDBF700CD9901 /* DataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -206,6 +211,11 @@
 		D8DEC03C282ACEA6000A62B8 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		D8DEC040282ADEA2000A62B8 /* Completions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Completions.swift; sourceTree = "<group>"; };
 		D8E113CD2845E23400CD0B4B /* NewProjectPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectPresenter.swift; sourceTree = "<group>"; };
+		D8FEDA5E28BBC76A00CD9901 /* ProjectExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectExample.swift; sourceTree = "<group>"; };
+		D8FEDA6228BBCF3F00CD9901 /* PortfolioExamplesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioExamplesViewController.swift; sourceTree = "<group>"; };
+		D8FEDA6528BBD16900CD9901 /* PortfolioExamplePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioExamplePresenter.swift; sourceTree = "<group>"; };
+		D8FEDA6728BBD6C800CD9901 /* PortfolioExampleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioExampleListCell.swift; sourceTree = "<group>"; };
+		D8FEDA6928BBDBF700CD9901 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -488,6 +498,7 @@
 				D8855CB62858FCCC00CCE65B /* SenderModel.swift */,
 				D8855CB82858FFE200CCE65B /* Media.swift */,
 				D8C4690528AEB96700400096 /* Link.swift */,
+				D8FEDA5E28BBC76A00CD9901 /* ProjectExample.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -531,6 +542,7 @@
 			isa = PBXGroup;
 			children = (
 				D86A79D92821129900F45D76 /* View */,
+				D8FEDA6428BBD15300CD9901 /* Presenter */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -539,6 +551,7 @@
 			isa = PBXGroup;
 			children = (
 				D8262FAF28202E1D00FA3E76 /* PortfolioExampleView.swift */,
+				D8FEDA6228BBCF3F00CD9901 /* PortfolioExamplesViewController.swift */,
 				D86A79DA2821129E00F45D76 /* Cell */,
 				D86A79EA28215EF800F45D76 /* ExamplesViewModel.swift */,
 			);
@@ -549,6 +562,7 @@
 			isa = PBXGroup;
 			children = (
 				D8262FB72820316900FA3E76 /* PortfolioExampleCell.swift */,
+				D8FEDA6728BBD6C800CD9901 /* PortfolioExampleListCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -560,6 +574,7 @@
 				D86A79EC2821734000F45D76 /* AuthService.swift */,
 				D8DEC038282AC995000A62B8 /* FirestoreService.swift */,
 				D8DEC03C282ACEA6000A62B8 /* UserService.swift */,
+				D8FEDA6928BBDBF700CD9901 /* DataStore.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -668,6 +683,14 @@
 				D8DEC040282ADEA2000A62B8 /* Completions.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D8FEDA6428BBD15300CD9901 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				D8FEDA6528BBD16900CD9901 /* PortfolioExamplePresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -818,6 +841,7 @@
 				D80690362843ED66007916DF /* ProjectModel.swift in Sources */,
 				D86AEE7E2838EC50001BE89F /* TextFieldsStackView.swift in Sources */,
 				D83FFB632849218800C270DE /* UserDetailViewController.swift in Sources */,
+				D8FEDA6328BBCF3F00CD9901 /* PortfolioExamplesViewController.swift in Sources */,
 				D80690382843EFE7007916DF /* FirestoreSavable.swift in Sources */,
 				D83FFB652849270B00C270DE /* UserDetailPresenter.swift in Sources */,
 				D8262F93281F2D8400FA3E76 /* PortfolioPresenter.swift in Sources */,
@@ -836,6 +860,7 @@
 				D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */,
 				D8855CB52858F5EE00CCE65B /* ChatModel.swift in Sources */,
 				D8262F9B281F309900FA3E76 /* ChatsListViewController.swift in Sources */,
+				D8FEDA6828BBD6C800CD9901 /* PortfolioExampleListCell.swift in Sources */,
 				D8855CB92858FFE200CCE65B /* Media.swift in Sources */,
 				D86AEE89283A2544001BE89F /* TextMenuPresenter.swift in Sources */,
 				D8DA418D28625A96005AFE60 /* ChatCell.swift in Sources */,
@@ -846,6 +871,7 @@
 				D850CFDE282BBB9000C41DE7 /* ProfileMenuCell.swift in Sources */,
 				D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */,
 				D83FFB5D2848B7D900C270DE /* UsersViewController.swift in Sources */,
+				D8FEDA5F28BBC76A00CD9901 /* ProjectExample.swift in Sources */,
 				D89F59952875F92B006876E1 /* String + Extensions.swift in Sources */,
 				D86A79E92821598A00F45D76 /* StorageService.swift in Sources */,
 				D8262FAC28202B9300FA3E76 /* LaunchViewController.swift in Sources */,
@@ -859,6 +885,7 @@
 				D8262FB028202E1D00FA3E76 /* PortfolioExampleView.swift in Sources */,
 				D8E113CE2845E23400CD0B4B /* NewProjectPresenter.swift in Sources */,
 				D86AEE8E283AB56C001BE89F /* DocumentsDetailViewController.swift in Sources */,
+				D8FEDA6628BBD16900CD9901 /* PortfolioExamplePresenter.swift in Sources */,
 				D8262FBA28203A6000FA3E76 /* ServicesView.swift in Sources */,
 				D8BEF64D2851318800B675D9 /* ProjectCell.swift in Sources */,
 				D8DD1575283FEF1C006EAA9C /* ZoomPhotoCell.swift in Sources */,
@@ -876,6 +903,7 @@
 				D863D095284D02EA00E98E2D /* ProjectDetailViewController.swift in Sources */,
 				D863D099284D2B8400E98E2D /* HeaderRepresentable.swift in Sources */,
 				D8262FA528201AE200FA3E76 /* UIViewController + Extensions.swift in Sources */,
+				D8FEDA6A28BBDBF700CD9901 /* DataStore.swift in Sources */,
 				D8262FBC28203C5C00FA3E76 /* ServiceCell.swift in Sources */,
 				D86A79E228212AA300F45D76 /* UIImageView + Extensions.swift in Sources */,
 				D8855CBB285902C400CCE65B /* ChatDetailsPresenter.swift in Sources */,
