@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 protocol PortfolioExampleViewType: AnyObject {
     func updateView(examples: [ProjectExample])
     func showAddButton()
+    func navigation() -> UINavigationController?
 }
 
 class PortfolioExamplePresenter {
@@ -39,6 +41,11 @@ class PortfolioExamplePresenter {
     }
     
     func addButtonPressed() {
+        let view = NewExampleViewController()
+        let presenter = NewExamplePresenter()
+        view.presenter = presenter
+        presenter.view = view
         
+        self.view?.navigation()?.pushViewController(view, animated: true)
     }
 }

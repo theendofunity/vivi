@@ -66,7 +66,7 @@ class PortfolioExamplesViewController: UIViewController {
     }
     
     @objc func addButtonPressed() {
-        
+        presenter.addButtonPressed()
     }
 }
 
@@ -84,6 +84,10 @@ extension PortfolioExamplesViewController: UICollectionViewDelegate, UICollectio
 }
 
 extension PortfolioExamplesViewController: PortfolioExampleViewType {
+    func navigation() -> UINavigationController? {
+        return navigationController
+    }
+    
     func updateView(examples: [ProjectExample]) {
         colletionView.reloadData()
     }
