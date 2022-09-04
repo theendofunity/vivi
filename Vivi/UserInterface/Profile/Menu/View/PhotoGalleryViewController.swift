@@ -13,8 +13,6 @@ enum GallerySection {
 }
 
 class PhotoGalleryViewController: UIViewController {
-    
-    
     var presenter: PhotoGalleryPresenter!
     var dataSource: UICollectionViewDiffableDataSource<GallerySection, URL>?
     

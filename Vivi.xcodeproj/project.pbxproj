@@ -57,7 +57,6 @@
 		D86A79E428212EEE00F45D76 /* UIImage + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79E328212EEE00F45D76 /* UIImage + Extensions.swift */; };
 		D86A79E6282154EA00F45D76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D86A79E5282154EA00F45D76 /* GoogleService-Info.plist */; };
 		D86A79E92821598A00F45D76 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79E82821598A00F45D76 /* StorageService.swift */; };
-		D86A79EB28215EF800F45D76 /* ExamplesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79EA28215EF800F45D76 /* ExamplesViewModel.swift */; };
 		D86A79ED2821734000F45D76 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79EC2821734000F45D76 /* AuthService.swift */; };
 		D86A79F22821740C00F45D76 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79F12821740C00F45D76 /* AuthViewController.swift */; };
 		D86A79F42821742200F45D76 /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79F32821742200F45D76 /* AuthPresenter.swift */; };
@@ -110,6 +109,7 @@
 		D8FEDA6A28BBDBF700CD9901 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FEDA6928BBDBF700CD9901 /* DataStore.swift */; };
 		D8FEDA6C28BBDE5400CD9901 /* NewExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FEDA6B28BBDE5400CD9901 /* NewExampleViewController.swift */; };
 		D8FEDA6E28BBDF7200CD9901 /* NewExamplePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FEDA6D28BBDF7200CD9901 /* NewExamplePresenter.swift */; };
+		D8FEDA7728C5100B00CD9901 /* NewExampleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FEDA7628C5100B00CD9901 /* NewExampleCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -167,7 +167,6 @@
 		D86A79E328212EEE00F45D76 /* UIImage + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extensions.swift"; sourceTree = "<group>"; };
 		D86A79E5282154EA00F45D76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D86A79E82821598A00F45D76 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
-		D86A79EA28215EF800F45D76 /* ExamplesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesViewModel.swift; sourceTree = "<group>"; };
 		D86A79EC2821734000F45D76 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		D86A79F12821740C00F45D76 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		D86A79F32821742200F45D76 /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
@@ -220,6 +219,7 @@
 		D8FEDA6928BBDBF700CD9901 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		D8FEDA6B28BBDE5400CD9901 /* NewExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExampleViewController.swift; sourceTree = "<group>"; };
 		D8FEDA6D28BBDF7200CD9901 /* NewExamplePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExamplePresenter.swift; sourceTree = "<group>"; };
+		D8FEDA7628C5100B00CD9901 /* NewExampleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExampleCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -556,9 +556,8 @@
 			children = (
 				D8262FAF28202E1D00FA3E76 /* PortfolioExampleView.swift */,
 				D8FEDA6228BBCF3F00CD9901 /* PortfolioExamplesViewController.swift */,
-				D86A79DA2821129E00F45D76 /* Cell */,
-				D86A79EA28215EF800F45D76 /* ExamplesViewModel.swift */,
 				D8FEDA6B28BBDE5400CD9901 /* NewExampleViewController.swift */,
+				D86A79DA2821129E00F45D76 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -568,6 +567,7 @@
 			children = (
 				D8262FB72820316900FA3E76 /* PortfolioExampleCell.swift */,
 				D8FEDA6728BBD6C800CD9901 /* PortfolioExampleListCell.swift */,
+				D8FEDA7628C5100B00CD9901 /* NewExampleCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -841,7 +841,6 @@
 				D8BEF64A2851199C00B675D9 /* NewChatViewController.swift in Sources */,
 				D8A1494328807E8A0012367E /* RestorePasswordViewController.swift in Sources */,
 				D8262F72281F2ADB00FA3E76 /* AppDelegate.swift in Sources */,
-				D86A79EB28215EF800F45D76 /* ExamplesViewModel.swift in Sources */,
 				D83FFB612848BB2700C270DE /* UserCell.swift in Sources */,
 				D850CFE0282BC8F500C41DE7 /* ApplicationPresenter.swift in Sources */,
 				D80690362843ED66007916DF /* ProjectModel.swift in Sources */,
@@ -904,6 +903,7 @@
 				D850CFE2282BCB9300C41DE7 /* ProfileMenuType.swift in Sources */,
 				D8A14947288089990012367E /* SecurityPresenter.swift in Sources */,
 				D8262FB82820316900FA3E76 /* PortfolioExampleCell.swift in Sources */,
+				D8FEDA7728C5100B00CD9901 /* NewExampleCell.swift in Sources */,
 				D86A79F22821740C00F45D76 /* AuthViewController.swift in Sources */,
 				D86A79E428212EEE00F45D76 /* UIImage + Extensions.swift in Sources */,
 				D86AEE92283BF07E001BE89F /* PhotoGalleryPresenter.swift in Sources */,

@@ -10,7 +10,7 @@ import EasyPeasy
 import SDWebImage
 
 class PortfolioExampleCell: ReusableCell {
-    var example: ExamplesViewModel?
+    var example: ProjectExample?
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -36,8 +36,9 @@ class PortfolioExampleCell: ReusableCell {
         imageView.easy.layout(Edges())
     }
 
-    func configure(viewModel: ExamplesViewModel) {
+    func configure(viewModel: ProjectExample) {
         self.example = viewModel
-        imageView.sd_setImage(with: viewModel.mainImageUrl)
+        guard let url = URL(string: viewModel.titleImageUrl ?? "") else { return }
+        imageView.sd_setImage(with: url)
     }
 }

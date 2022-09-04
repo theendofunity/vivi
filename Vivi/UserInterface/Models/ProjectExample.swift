@@ -37,6 +37,13 @@ struct ProjectExampleChapter: FirestoreSavable {
 }
 
 struct ProjectExample: FirestoreSavable {
+    var title: String
+    var description: String?
+    var titleImageUrl: String?
+    var visualisations: ProjectExampleChapter?
+    var drafts: ProjectExampleChapter?
+    var result: ProjectExampleChapter?
+    
     init?(document: [String : Any]) {
         guard let title = document["title"] as? String else { return nil }
         
@@ -57,6 +64,11 @@ struct ProjectExample: FirestoreSavable {
         }
     }
     
+    init() {
+        title = ""
+        description = ""
+    }
+    
     func documentId() -> String? {
         return title
     }
@@ -73,10 +85,15 @@ struct ProjectExample: FirestoreSavable {
         return dict
     }
     
-    var title: String
-    var description: String?
-    var titleImageUrl: String?
-    var visualisations: ProjectExampleChapter?
-    var drafts: ProjectExampleChapter?
-    var result: ProjectExampleChapter?
+    
+}
+
+extension ProjectExample: Hashable {
+    static func == (lhs: ProjectExample, rhs: ProjectExample) -> Bool {
+        return lhs.title == rhs.title && lhs.description == rhs.description
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(title)
+    }
 }

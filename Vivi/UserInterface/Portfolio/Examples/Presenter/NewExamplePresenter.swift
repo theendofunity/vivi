@@ -8,13 +8,18 @@
 import Foundation
 
 protocol NewExampleViewType: AnyObject {
-    
+    func update(model: ProjectExample)
 }
 
 class NewExamplePresenter {
     weak var view: NewExampleViewType?
+    var example = ProjectExample()
     
     func viewDidLoad() {
-        
+        setupItems()
+    }
+    
+    func setupItems() {
+        view?.update(model: example)
     }
 }

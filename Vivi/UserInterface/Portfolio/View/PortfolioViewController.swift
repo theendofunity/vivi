@@ -75,7 +75,7 @@ extension PortfolioViewController: PortfolioViewType {
         alertError(error: error)
     }
     
-    func setExamples(examples: [ExamplesViewModel]) {
+    func setExamples(examples: [ProjectExample]) {
         exampleView.configure(examples: examples)
     }
     

@@ -9,7 +9,7 @@ import UIKit
 import EasyPeasy
 
 class PortfolioExampleView: UIView {
-    var examples: [ExamplesViewModel] = []
+    var examples: [ProjectExample] = []
     
     private lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -61,7 +61,7 @@ class PortfolioExampleView: UIView {
         )
     }
     
-    func configure(examples: [ExamplesViewModel]) {
+    func configure(examples: [ProjectExample]) {
         self.examples = examples
         pageControl.numberOfPages = examples.count
         collectionView.reloadData()
