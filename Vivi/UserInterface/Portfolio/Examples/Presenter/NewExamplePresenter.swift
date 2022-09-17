@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol NewExampleViewType: AnyObject {
     func update(model: ProjectExample)
@@ -20,6 +21,24 @@ class NewExamplePresenter {
     }
     
     func setupItems() {
+        view?.update(model: example)
+    }
+}
+
+extension NewExamplePresenter {
+    func addImage(image: UIImage, section: NewExampleSection) {
+        var item = ProjectExampleChapterItem()
+        item.image = image
+        
+        switch section {
+        case .drafts:
+            example.drafts.images.insert(item, at: 0)
+        case .visualisations:
+            example.visualisations.images.insert(item, at: 0)
+        case .result:
+            example.result.images.insert(item, at: 0)
+        }
+        
         view?.update(model: example)
     }
 }

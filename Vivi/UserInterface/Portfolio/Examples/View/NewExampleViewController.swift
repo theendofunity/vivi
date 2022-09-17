@@ -28,6 +28,7 @@ enum NewExampleSection: Int, CaseIterable {
 class NewExampleViewController: UIViewController {
     var presenter: NewExamplePresenter!
     var example : ProjectExample?
+    var selectedSection: NewExampleSection?
     
     var dataSource: UICollectionViewDiffableDataSource<NewExampleSection, ProjectExampleChapterItem>?
     
@@ -53,6 +54,7 @@ class NewExampleViewController: UIViewController {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.register(cell: NewExampleCell.self)
         collection.register(header: TitleHeader.self)
+        collection.delegate = self
         return collection
     }()
     
@@ -113,9 +115,7 @@ class NewExampleViewController: UIViewController {
     }
     
     func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { sectionIndex, environment in
-//            guard let section = NewExampleSection(rawValue: sectionIndex) else { return nil }
-            
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, environment in            
             return self.createSection()
         }
         
@@ -189,5 +189,34 @@ extension NewExampleViewController: NewExampleViewType {
 
         
         dataSource?.apply(snapshot)
+    }
+}
+
+extension NewExampleViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? NewExampleCell else { return }
+        if cell.item?.type == .empty {
+            selectedSection = NewExampleSection(rawValue: indexPath.section)
+            showPicker()
+        }
+    }
+    
+    func showPicker() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        picker.mediaTypes = ["public.image"]
+        present(picker, animated: true)
+    }
+}
+
+extension NewExampleViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        
+        guard let image = info[.originalImage] as? UIImage,
+        let section = selectedSection
+        else { return }
+        presenter.addImage(image: image, section: section)
     }
 }
