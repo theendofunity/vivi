@@ -29,7 +29,7 @@ class NewExampleViewController: UIViewController {
     var presenter: NewExamplePresenter!
     var example : ProjectExample?
     
-    var dataSource: UICollectionViewDiffableDataSource<NewExampleSection, UIImage>?
+    var dataSource: UICollectionViewDiffableDataSource<NewExampleSection, ProjectExampleChapterItem>?
     
     private lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
@@ -156,10 +156,10 @@ class NewExampleViewController: UIViewController {
     }
     
     func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<NewExampleSection, UIImage>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+        dataSource = UICollectionViewDiffableDataSource<NewExampleSection, ProjectExampleChapterItem>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewExampleCell.reuseId, for: indexPath) as? NewExampleCell else { return UICollectionViewCell() }
             
-            cell.configure(image: itemIdentifier)
+            cell.configure(item: itemIdentifier)
             return cell
         })
         dataSource?.supplementaryViewProvider = { collectionView, string, indexPath in
@@ -180,29 +180,13 @@ extension NewExampleViewController: NewExampleViewType {
     func update(model: ProjectExample) {
         self.example = model
         
-        var snapshot = NSDiffableDataSourceSnapshot<NewExampleSection, UIImage>()
+        var snapshot = NSDiffableDataSourceSnapshot<NewExampleSection, ProjectExampleChapterItem>()
         snapshot.appendSections(NewExampleSection.allCases)
         
-        if var drafts: [UIImage] = model.drafts?.images {
-            drafts.append(UIImage())
-            snapshot.appendItems(drafts, toSection: .drafts)
-        } else {
-            snapshot.appendItems([UIImage(systemName: "plus")!], toSection: .drafts)
-        }
-        
-        if var visualisations: [UIImage] = model.visualisations?.images {
-            visualisations.append(UIImage())
-            snapshot.appendItems(visualisations, toSection: .visualisations)
-        } else {
-            snapshot.appendItems([UIImage(systemName: "plus")!], toSection: .visualisations)
-        }
+        snapshot.appendItems(model.drafts.images, toSection: .drafts)
+        snapshot.appendItems(model.visualisations.images, toSection: .visualisations)
+        snapshot.appendItems(model.result.images, toSection: .result)
 
-        if var result: [UIImage] = model.result?.images {
-            result.append(UIImage())
-            snapshot.appendItems(result, toSection: .result)
-        } else {
-            snapshot.appendItems([UIImage(systemName: "plus")!], toSection: .result)
-        }
         
         dataSource?.apply(snapshot)
     }

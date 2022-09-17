@@ -10,7 +10,7 @@ import EasyPeasy
 import SDWebImage
 
 class NewExampleCell: ReusableCell {
-    var image: UIImage?
+    var item: ProjectExampleChapterItem?
     
     private lazy var imageView: UIImageView = {
         let view = UIImageView()
@@ -37,12 +37,8 @@ class NewExampleCell: ReusableCell {
         )
     }
 
-    func configure(image: UIImage) {
-        if image != UIImage() {
-            self.image = image
-            imageView.image = image
-        } else {
-            imageView.image = UIImage(systemName: "plus")
-        }
+    func configure(item: ProjectExampleChapterItem) {
+        imageView.image = item.image
+        self.item = item
     }
 }
