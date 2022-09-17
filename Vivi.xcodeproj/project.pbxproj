@@ -102,6 +102,7 @@
 		D8DEC03D282ACEA6000A62B8 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC03C282ACEA6000A62B8 /* UserService.swift */; };
 		D8DEC041282ADEA2000A62B8 /* Completions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEC040282ADEA2000A62B8 /* Completions.swift */; };
 		D8E113CE2845E23400CD0B4B /* NewProjectPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E113CD2845E23400CD0B4B /* NewProjectPresenter.swift */; };
+		D8F46A9A28D5DB9F00CB6479 /* TitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F46A9928D5DB9F00CB6479 /* TitleHeader.swift */; };
 		D8FEDA5F28BBC76A00CD9901 /* ProjectExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FEDA5E28BBC76A00CD9901 /* ProjectExample.swift */; };
 		D8FEDA6328BBCF3F00CD9901 /* PortfolioExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FEDA6228BBCF3F00CD9901 /* PortfolioExamplesViewController.swift */; };
 		D8FEDA6628BBD16900CD9901 /* PortfolioExamplePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FEDA6528BBD16900CD9901 /* PortfolioExamplePresenter.swift */; };
@@ -212,6 +213,7 @@
 		D8DEC03C282ACEA6000A62B8 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		D8DEC040282ADEA2000A62B8 /* Completions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Completions.swift; sourceTree = "<group>"; };
 		D8E113CD2845E23400CD0B4B /* NewProjectPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectPresenter.swift; sourceTree = "<group>"; };
+		D8F46A9928D5DB9F00CB6479 /* TitleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeader.swift; sourceTree = "<group>"; };
 		D8FEDA5E28BBC76A00CD9901 /* ProjectExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectExample.swift; sourceTree = "<group>"; };
 		D8FEDA6228BBCF3F00CD9901 /* PortfolioExamplesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioExamplesViewController.swift; sourceTree = "<group>"; };
 		D8FEDA6528BBD16900CD9901 /* PortfolioExamplePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioExamplePresenter.swift; sourceTree = "<group>"; };
@@ -558,6 +560,7 @@
 				D8FEDA6228BBCF3F00CD9901 /* PortfolioExamplesViewController.swift */,
 				D8FEDA6B28BBDE5400CD9901 /* NewExampleViewController.swift */,
 				D86A79DA2821129E00F45D76 /* Cell */,
+				D8F46A9928D5DB9F00CB6479 /* TitleHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -846,6 +849,7 @@
 				D80690362843ED66007916DF /* ProjectModel.swift in Sources */,
 				D86AEE7E2838EC50001BE89F /* TextFieldsStackView.swift in Sources */,
 				D83FFB632849218800C270DE /* UserDetailViewController.swift in Sources */,
+				D8F46A9A28D5DB9F00CB6479 /* TitleHeader.swift in Sources */,
 				D8FEDA6328BBCF3F00CD9901 /* PortfolioExamplesViewController.swift in Sources */,
 				D80690382843EFE7007916DF /* FirestoreSavable.swift in Sources */,
 				D83FFB652849270B00C270DE /* UserDetailPresenter.swift in Sources */,

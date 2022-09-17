@@ -12,6 +12,17 @@ enum NewExampleSection: Int, CaseIterable {
     case drafts = 0
     case visualisations
     case result
+    
+    var title: String {
+        switch self {
+        case .drafts:
+            return "Чертежи"
+        case .visualisations:
+            return "Визуализации"
+        case .result:
+            return "Результат"
+        }
+    }
 }
 
 class NewExampleViewController: UIViewController {
@@ -41,6 +52,7 @@ class NewExampleViewController: UIViewController {
         let layout = createLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.register(cell: NewExampleCell.self)
+        collection.register(header: TitleHeader.self)
         return collection
     }()
     
@@ -131,6 +143,15 @@ class NewExampleViewController: UIViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                heightDimension: .absolute(50.0))
+
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                 elementKind: UICollectionView.elementKindSectionHeader,
+                                                                 alignment: .top)
+        
+        section.boundarySupplementaryItems = [header]
+        
         return section
     }
     
@@ -141,6 +162,13 @@ class NewExampleViewController: UIViewController {
             cell.configure(image: itemIdentifier)
             return cell
         })
+        dataSource?.supplementaryViewProvider = { collectionView, string, indexPath in
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TitleHeader.reuseId, for: indexPath) as? TitleHeader else { return UICollectionReusableView() }
+            if let section = NewExampleSection(rawValue: indexPath.section) {
+                header.configure(title: section.title)
+            }
+            return header
+        }
     }
 }
 
@@ -166,7 +194,7 @@ extension NewExampleViewController: NewExampleViewType {
             visualisations.append(UIImage())
             snapshot.appendItems(visualisations, toSection: .visualisations)
         } else {
-            snapshot.appendItems([UIImage(systemName: "plus.square")!], toSection: .visualisations)
+            snapshot.appendItems([UIImage(systemName: "plus")!], toSection: .visualisations)
         }
 
         if var result: [UIImage] = model.result?.images {
