@@ -79,6 +79,21 @@ extension NewExamplePresenter {
     }
     
     private func uploadImages(group: DispatchGroup, type: NewExampleSection) {
+        guard let cover = example.titleImage,
+        let data = cover.jpegData(compressionQuality: 0.5) else { return }
+        
+        group.enter()
+        storage.saveData(data: data,
+                         referenceType: .examples) { result in
+            group.leave()
+            switch result {
+            case .success(let url):
+                self.example.titleImageUrl = url.absoluteString
+            case .failure(_):
+                break
+            }
+        }
+        
         switch type {
         case .drafts:
             for item in example.drafts.images {
