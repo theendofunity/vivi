@@ -17,7 +17,8 @@ protocol PortfolioViewType: AnyObject {
 
 class PortfolioPresenter {
     weak var view: PortfolioViewType?
-        
+    var examples: [ProjectExample] = []
+    
     func viewDidLoad() {
         configureServices()
         loadExamples()
@@ -33,6 +34,15 @@ class PortfolioPresenter {
     }
     
     func loadExamples() {
+        FirestoreService.shared.load(referenceType: .examples) { [weak self] (result: Result<[ProjectExample], Error>) in
+            switch result {
+            case .success(let examples):
+                self?.examples = examples
+                self?.view?.setExamples(examples: examples)
+            case .failure(let error):
+                self?.view?.showError(error: error)
+            }
+        }
 //        StorageService.shared.getUrls(.examples) { [weak self] result in
 //            guard let self = self else { return }
 //            switch result {
