@@ -38,7 +38,7 @@ struct ProjectExampleChapterItem: Hashable {
     }
 }
 
-struct ProjectExampleChapter: FirestoreSavable {
+struct ProjectExampleChapter: FirestoreSavable, Hashable {
     init() {
         title = ""
         description = ""

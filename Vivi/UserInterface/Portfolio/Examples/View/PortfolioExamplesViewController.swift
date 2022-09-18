@@ -13,6 +13,7 @@ class PortfolioExamplesViewController: UIViewController {
     
     private lazy var layout: UICollectionViewLayout = {
         let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 48, height: 300)
         return layout
     }()
     
@@ -20,6 +21,7 @@ class PortfolioExamplesViewController: UIViewController {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.backgroundColor = .clear
         collection.delegate = self
+        collection.dataSource = self
         collection.register(cell: PortfolioExampleListCell.self)
         
         return collection
@@ -52,10 +54,10 @@ class PortfolioExamplesViewController: UIViewController {
     
     func setupConstraints() {
         colletionView.easy.layout(
-            Top(),
+            Top().to(view.safeAreaLayoutGuide, .top),
             Leading(24),
             Trailing(24),
-            Bottom()
+            Bottom().to(view.safeAreaLayoutGuide, .bottom)
         )
         
         addButton.easy.layout(
@@ -80,6 +82,10 @@ extension PortfolioExamplesViewController: UICollectionViewDelegate, UICollectio
         
         cell.configure(example: presenter.examples[indexPath.item])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.cellDidSelect(indexPath: indexPath)
     }
 }
 

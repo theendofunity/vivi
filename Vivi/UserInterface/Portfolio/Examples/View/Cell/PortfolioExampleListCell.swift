@@ -19,6 +19,7 @@ class PortfolioExampleListCell: ReusableCell {
     
     private lazy var descriptionLabel: PlainLabel = {
         let label = PlainLabel(text: "", fontType: .normal)
+        label.numberOfLines = 0
         return label
     }()
     
@@ -38,28 +39,28 @@ class PortfolioExampleListCell: ReusableCell {
     }
     
     func setupView() {
-        addSubview(titleLabel)
         addSubview(imageView)
+        addSubview(titleLabel)
         addSubview(descriptionLabel)
     }
     
     func setupConstraints() {
-        titleLabel.easy.layout(
+        imageView.easy.layout(
             Top(8),
-            Leading(8)
+            Leading(),
+            Trailing(),
+            Height(200)
         )
         
-        imageView.easy.layout(
-            Top(16).to(titleLabel),
-            Leading(8),
-            Trailing(8),
-            Height(100)
+        titleLabel.easy.layout(
+            Top(16).to(imageView),
+            Leading()
         )
         
         descriptionLabel.easy.layout(
-            Top(16).to(imageView),
-            Leading(16),
-            Trailing(16),
+            Top(8).to(titleLabel),
+            Leading(),
+            Trailing(),
             Bottom()
         )
     }

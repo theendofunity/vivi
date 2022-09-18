@@ -8,7 +8,13 @@
 import UIKit
 import EasyPeasy
 
+protocol PortfolioExampleViewDelegate: AnyObject {
+    func openPortfolioList()
+}
+
 class PortfolioExampleView: UIView {
+    weak var delegate: PortfolioExampleViewDelegate?
+    
     var examples: [ProjectExample] = []
     
     private lazy var layout: UICollectionViewFlowLayout = {
@@ -82,5 +88,8 @@ extension PortfolioExampleView: UICollectionViewDelegate, UICollectionViewDataSo
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.openPortfolioList()
+    }
     
 }

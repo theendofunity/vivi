@@ -43,15 +43,14 @@ class PortfolioPresenter {
                 self?.view?.showError(error: error)
             }
         }
-//        StorageService.shared.getUrls(.examples) { [weak self] result in
-//            guard let self = self else { return }
-//            switch result {
-//            case .success(let urls):
-//                let viewModels = urls.map { ExamplesViewModel(mainImageUrl: $0) }
-//                self.view?.setExamples(examples: viewModels)
-//            case .failure(let error):
-//                self.view?.showError(error: error)
-//            }
-//        }
+    }
+    
+    func openExamples() {
+        let view = PortfolioExamplesViewController()
+        let presenter = PortfolioExamplePresenter(examples: examples, type: .showing)
+        view.presenter = presenter
+        presenter.view = view
+        
+        self.view?.navigationController()?.pushViewController(view, animated: true)
     }
 }

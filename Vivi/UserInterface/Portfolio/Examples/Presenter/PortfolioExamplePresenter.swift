@@ -48,4 +48,13 @@ class PortfolioExamplePresenter {
         
         self.view?.navigation()?.pushViewController(view, animated: true)
     }
+    
+    func cellDidSelect(indexPath: IndexPath) {
+        let example = examples[indexPath.item]
+        let view = PortfolioExampleDetailViewController()
+        let presenter = PortfolioExampleDetailPresenter(example: example)
+        view.presenter = presenter
+        presenter.view = view
+        self.view?.navigation()?.pushViewController(view, animated: true)
+    }
 }

@@ -19,6 +19,7 @@ class PortfolioViewController: UIViewController {
     
     private lazy var exampleView: PortfolioExampleView = {
         let view = PortfolioExampleView()
+        view.delegate = self
         return view
     }()
     
@@ -91,5 +92,11 @@ extension PortfolioViewController: PortfolioViewType {
 extension PortfolioViewController: ServiceViewDelegate {
     func serviceDidSelect(service: ServiceType) {
         presenter.serviceDidSelect(service: service)
+    }
+}
+
+extension PortfolioViewController: PortfolioExampleViewDelegate {
+    func openPortfolioList() {
+        presenter.openExamples()
     }
 }
