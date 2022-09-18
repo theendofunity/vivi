@@ -10,7 +10,7 @@ import EasyPeasy
 
 class TitleHeader: ReusableSupplementaryView {
     private lazy var titleLabel: PlainLabel = {
-        let label = PlainLabel(text: "", fontType: .big)
+        let label = PlainLabel(text: "", fontType: .normal)
         label.text = "TEST label"
         return label
     }()

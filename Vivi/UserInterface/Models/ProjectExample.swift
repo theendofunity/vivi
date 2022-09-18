@@ -20,7 +20,7 @@ struct ProjectExampleChapterItem: Hashable {
     var image: UIImage? {
         get {
             if type == .empty {
-                return UIImage(systemName: "plus")
+                return UIImage(systemName: "plus")?.template()
             } else {
                 return realImage
             }
@@ -77,6 +77,7 @@ struct ProjectExample: FirestoreSavable {
     var title: String
     var description: String?
     var titleImageUrl: String?
+    var titleImage: UIImage?
     var visualisations: ProjectExampleChapter = ProjectExampleChapter()
     var drafts: ProjectExampleChapter = ProjectExampleChapter()
     var result: ProjectExampleChapter = ProjectExampleChapter()
@@ -122,7 +123,9 @@ struct ProjectExample: FirestoreSavable {
         return dict
     }
     
-    
+    var numberOfItems: Int {
+        return visualisations.images.count + drafts.images.count + result.images.count
+    }
 }
 
 extension ProjectExample: Hashable {

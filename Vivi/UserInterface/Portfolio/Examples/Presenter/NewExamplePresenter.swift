@@ -10,6 +10,7 @@ import UIKit
 
 protocol NewExampleViewType: AnyObject {
     func update(model: ProjectExample)
+    func updateCover(image: UIImage)
 }
 
 class NewExamplePresenter {
@@ -40,5 +41,10 @@ extension NewExamplePresenter {
         }
         
         view?.update(model: example)
+    }
+    
+    func addImageToCover(image: UIImage) {
+        example.titleImage = image
+        view?.updateCover(image: image)
     }
 }

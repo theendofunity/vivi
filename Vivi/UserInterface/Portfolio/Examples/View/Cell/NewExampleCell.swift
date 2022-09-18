@@ -14,6 +14,7 @@ class NewExampleCell: ReusableCell {
     
     private lazy var imageView: UIImageView = {
         let view = UIImageView()
+        view.tintColor = .viviRose50
         return view
     }()
     

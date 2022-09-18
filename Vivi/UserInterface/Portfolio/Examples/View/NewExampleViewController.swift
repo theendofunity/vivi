@@ -27,7 +27,6 @@ enum NewExampleSection: Int, CaseIterable {
 
 class NewExampleViewController: UIViewController {
     var presenter: NewExamplePresenter!
-    var example : ProjectExample?
     var selectedSection: NewExampleSection?
     
     var dataSource: UICollectionViewDiffableDataSource<NewExampleSection, ProjectExampleChapterItem>?
@@ -35,6 +34,11 @@ class NewExampleViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
         return scroll
+    }()
+    
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        return view
     }()
     
     private lazy var titleTextField: TextFieldWithLabel = {
@@ -49,12 +53,31 @@ class NewExampleViewController: UIViewController {
         return textField
     }()
     
+    private lazy var coverImageLabel: PlainLabel = {
+        let label = PlainLabel(text: "Обложка", fontType: .normal)
+        return label
+    }()
+    
+    private lazy var coverImageView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(systemName: "plus")?.template()
+        view.tintColor = .viviRose50
+        view.isUserInteractionEnabled = true
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(coverImageTapped))
+        view.addGestureRecognizer(gesture)
+        view.contentMode = .scaleAspectFit
+        view.clipsToBounds = true
+        return view
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let layout = createLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.register(cell: NewExampleCell.self)
         collection.register(header: TitleHeader.self)
         collection.delegate = self
+        collection.backgroundColor = .clear
+        collection.isScrollEnabled = false
         return collection
     }()
     
@@ -74,14 +97,32 @@ class NewExampleViewController: UIViewController {
         
         view.addSubview(scrollView)
         
-        scrollView.addSubview(titleTextField)
-        scrollView.addSubview(descriptionTextField)
-        scrollView.addSubview(collectionView)
+        scrollView.addSubview(containerView)
+        
+        containerView.addSubview(titleTextField)
+        containerView.addSubview(descriptionTextField)
+        containerView.addSubview(coverImageLabel)
+        containerView.addSubview(coverImageView)
+        containerView.addSubview(collectionView)
     }
     
     func setupConstraints() {
         let width = UIScreen.main.bounds.width
-        scrollView.easy.layout(Edges(), Width(width))
+        
+        scrollView.easy.layout(
+            Top().to(view.safeAreaLayoutGuide, .top),
+            Width(width),
+            Leading(),
+            Trailing(),
+            Bottom().to(view.safeAreaLayoutGuide, .bottom)
+        )
+        
+        containerView.easy.layout(
+            Top(),
+            Leading(),
+            Trailing(),
+            Bottom()
+        )
         
         titleTextField.easy.layout(
             Top(24),
@@ -95,12 +136,24 @@ class NewExampleViewController: UIViewController {
             Trailing(24)
         )
         
+        coverImageLabel.easy.layout(
+            Leading(24),
+            Top(24).to(descriptionTextField)
+        )
+        
+        coverImageView.easy.layout(
+            Leading(24),
+            Trailing(24),
+            Top(16).to(coverImageLabel),
+            Height(100)
+        )
+        
         collectionView.easy.layout(
-            Top(24).to(descriptionTextField),
+            Top(24).to(coverImageView),
             Leading(24),
             Trailing(24),
             Width(width - 48),
-            Height(1000)
+            Bottom()
         )
     }
     
@@ -115,7 +168,7 @@ class NewExampleViewController: UIViewController {
     }
     
     func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { sectionIndex, environment in            
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, environment in
             return self.createSection()
         }
         
@@ -140,6 +193,7 @@ class NewExampleViewController: UIViewController {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitem: item,
                                                        count: 2)
+        group.interItemSpacing = .fixed(8)
         
         let section = NSCollectionLayoutSection(group: group)
         
@@ -149,7 +203,6 @@ class NewExampleViewController: UIViewController {
         let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
                                                                  elementKind: UICollectionView.elementKindSectionHeader,
                                                                  alignment: .top)
-        
         section.boundarySupplementaryItems = [header]
         
         return section
@@ -173,13 +226,15 @@ class NewExampleViewController: UIViewController {
 }
 
 extension NewExampleViewController: NewExampleViewType {
+    func updateCover(image: UIImage) {
+        coverImageView.image = image
+    }
+    
     @objc func saveButtonPressed() {
         
     }
     
     func update(model: ProjectExample) {
-        self.example = model
-        
         var snapshot = NSDiffableDataSourceSnapshot<NewExampleSection, ProjectExampleChapterItem>()
         snapshot.appendSections(NewExampleSection.allCases)
         
@@ -189,6 +244,13 @@ extension NewExampleViewController: NewExampleViewType {
 
         
         dataSource?.apply(snapshot)
+        
+        let itemsHeight: CGFloat = 70
+        collectionView.easy.layout(Height(CGFloat(model.numberOfItems) * itemsHeight + 300.0))
+    }
+    
+    @objc func coverImageTapped() {
+        showPicker()
     }
 }
 
@@ -214,9 +276,13 @@ extension NewExampleViewController: UIImagePickerControllerDelegate, UINavigatio
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
         
-        guard let image = info[.originalImage] as? UIImage,
-        let section = selectedSection
-        else { return }
-        presenter.addImage(image: image, section: section)
+        guard let image = info[.originalImage] as? UIImage else { return }
+        
+        if let section = selectedSection {
+            presenter.addImage(image: image, section: section)
+            selectedSection = nil
+        } else {
+            presenter.addImageToCover(image: image)
+        }
     }
 }
