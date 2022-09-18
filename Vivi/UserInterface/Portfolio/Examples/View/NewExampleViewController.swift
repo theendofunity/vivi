@@ -226,12 +226,23 @@ class NewExampleViewController: UIViewController {
 }
 
 extension NewExampleViewController: NewExampleViewType {
+    func showSuccess() {
+        showAlert(title: "Мяк!", message: "Новый пример проекта добавлен")
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func showError(error: Error) {
+        alertError(error: error)
+    }
+    
     func updateCover(image: UIImage) {
         coverImageView.image = image
     }
     
     @objc func saveButtonPressed() {
-        
+        guard let title = titleTextField.text(),
+              let description = descriptionTextField.text() else { return }
+        presenter.saveButtonPressed(title: title, description: description)
     }
     
     func update(model: ProjectExample) {

@@ -17,6 +17,7 @@ class FirestoreService {
         case users = "users"
         case projects = "projects"
         case chats = "chats"
+        case examples = "examples" 
     }
     
     private init() {}

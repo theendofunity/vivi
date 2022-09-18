@@ -147,6 +147,21 @@ class StorageService {
         })
     }
     
+    func uploadData(_ referenceType: ReferenceType, data: Data, filename: String, completion: @escaping VoidCompletion) {
+       
+        let ref = storage.reference(withPath: referenceType.path()).child(filename)
+      
+        ref.putData(data, metadata: nil, completion: { metadata, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let _ = metadata else { return }
+            completion(.success(Void()))
+        })
+    }
+    
     
     func getDownloadUrl(_ referenceType: ReferenceType, fileName: String, completion: @escaping UrlCompletion) {
         let ref = storage.reference(withPath: referenceType.path()).child(fileName)
@@ -191,6 +206,26 @@ class StorageService {
             switch result {
             case .success():
                 guard let fileName = imageUrl.pathComponents.last else { return }
+                self.getDownloadUrl(referenceType, fileName: fileName) { result in
+                    switch result {
+                    case .success(let url):
+                        completion(.success(url))
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func saveData(data: Data, referenceType: ReferenceType, completion: @escaping UrlCompletion) {
+        let fileName = UUID().uuidString
+        uploadData(referenceType, data: data, filename: fileName) { result in
+            print(result)
+            switch result {
+            case .success():
                 self.getDownloadUrl(referenceType, fileName: fileName) { result in
                     switch result {
                     case .success(let url):
