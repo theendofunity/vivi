@@ -78,6 +78,22 @@ class TextMenuViewController: UIViewController {
 }
 
 extension TextMenuViewController: TextMenuViewType {
+    func selectLink() {
+        let alert = UIAlertController(title: "Новая анкета", message: "Введите ссылку на анкету", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Сохранить", style: .default) { action in
+            guard let textField = alert.textFields?.first,
+                  let text = textField.text,
+                  let url = URL(string: text) else { return }
+            self.presenter.add(file: url)
+        }
+        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        alert.addTextField()
+        
+        present(alert, animated: true)
+    }
+    
     func navigation() -> UINavigationController? {
         return navigationController
     }

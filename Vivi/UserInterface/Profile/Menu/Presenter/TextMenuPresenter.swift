@@ -15,6 +15,7 @@ protocol TextMenuViewType: AnyObject {
     func setupFiles(files: [String])
     func showError(error: Error)
     func selectFile()
+    func selectLink()
     
     func navigation() -> UINavigationController?
 }

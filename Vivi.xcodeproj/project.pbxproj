@@ -13,6 +13,9 @@
 		D80690382843EFE7007916DF /* FirestoreSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80690372843EFE7007916DF /* FirestoreSavable.swift */; };
 		D821F8B02832A84D00C43774 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821F8AF2832A84D00C43774 /* ProfilePresenter.swift */; };
 		D821F8B22832BE3D00C43774 /* ProfileMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821F8B12832BE3D00C43774 /* ProfileMenuView.swift */; };
+		D823976C28D78B71007BE85F /* FormPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823976B28D78B71007BE85F /* FormPresenter.swift */; };
+		D823976E28D78DF0007BE85F /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823976D28D78DF0007BE85F /* FormModel.swift */; };
+		D823977428DA17EE007BE85F /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823977328DA17EE007BE85F /* WebViewController.swift */; };
 		D8262F72281F2ADB00FA3E76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F71281F2ADB00FA3E76 /* AppDelegate.swift */; };
 		D8262F74281F2ADB00FA3E76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F73281F2ADB00FA3E76 /* SceneDelegate.swift */; };
 		D8262F7B281F2ADB00FA3E76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8262F7A281F2ADB00FA3E76 /* Assets.xcassets */; };
@@ -124,6 +127,9 @@
 		D80690372843EFE7007916DF /* FirestoreSavable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreSavable.swift; sourceTree = "<group>"; };
 		D821F8AF2832A84D00C43774 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		D821F8B12832BE3D00C43774 /* ProfileMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMenuView.swift; sourceTree = "<group>"; };
+		D823976B28D78B71007BE85F /* FormPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormPresenter.swift; sourceTree = "<group>"; };
+		D823976D28D78DF0007BE85F /* FormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModel.swift; sourceTree = "<group>"; };
+		D823977328DA17EE007BE85F /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		D8262F6E281F2ADB00FA3E76 /* Vivi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vivi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8262F71281F2ADB00FA3E76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8262F73281F2ADB00FA3E76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -458,6 +464,7 @@
 				D86A79F728217B6F00F45D76 /* TextFieldWithLabel.swift */,
 				D86A79F9282180F500F45D76 /* PlainLabel.swift */,
 				D86AEE7D2838EC50001BE89F /* TextFieldsStackView.swift */,
+				D823977328DA17EE007BE85F /* WebViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -509,6 +516,7 @@
 				D8855CB82858FFE200CCE65B /* Media.swift */,
 				D8C4690528AEB96700400096 /* Link.swift */,
 				D8FEDA5E28BBC76A00CD9901 /* ProjectExample.swift */,
+				D823976D28D78DF0007BE85F /* FormModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -651,6 +659,7 @@
 				D850CFE1282BCB9300C41DE7 /* ProfileMenuType.swift */,
 				D86AEE88283A2544001BE89F /* TextMenuPresenter.swift */,
 				D86AEE91283BF07E001BE89F /* PhotoGalleryPresenter.swift */,
+				D823976B28D78B71007BE85F /* FormPresenter.swift */,
 				D8E113CD2845E23400CD0B4B /* NewProjectPresenter.swift */,
 				D88A0CE32846703500B02D3E /* ProjectsPresenter.swift */,
 				D83FFB5E2848B81B00C270DE /* UsersPresenter.swift */,
@@ -867,6 +876,7 @@
 				D86AEE8228393B54001BE89F /* TextFieldViewModel.swift in Sources */,
 				D8418E7C2821A8B300163255 /* RegistrationViewController.swift in Sources */,
 				D8262FB328202E8200FA3E76 /* ReusableCell.swift in Sources */,
+				D823976E28D78DF0007BE85F /* FormModel.swift in Sources */,
 				D8262F8F281F2D6200FA3E76 /* PortfolioViewController.swift in Sources */,
 				D8B27B0E282C285300EDAD23 /* ProfileViewController.swift in Sources */,
 				D86AEE802839393B001BE89F /* PersonalInfoView.swift in Sources */,
@@ -881,6 +891,7 @@
 				D86AEE89283A2544001BE89F /* TextMenuPresenter.swift in Sources */,
 				D8DA418D28625A96005AFE60 /* ChatCell.swift in Sources */,
 				D863D097284D02F700E98E2D /* ProjectDetailPresenter.swift in Sources */,
+				D823976C28D78B71007BE85F /* FormPresenter.swift in Sources */,
 				D88A0CE628467CA200B02D3E /* UISegmentedControl + Extensions.swift in Sources */,
 				D8C4690628AEB96700400096 /* Link.swift in Sources */,
 				D8855CB32858F52900CCE65B /* ChatDetailViewController.swift in Sources */,
@@ -930,6 +941,7 @@
 				D8855CB72858FCCC00CCE65B /* SenderModel.swift in Sources */,
 				D83FFB5F2848B81B00C270DE /* UsersPresenter.swift in Sources */,
 				D8DEC041282ADEA2000A62B8 /* Completions.swift in Sources */,
+				D823977428DA17EE007BE85F /* WebViewController.swift in Sources */,
 				D8DD1573283E9B08006EAA9C /* DetailImageViewController.swift in Sources */,
 				D8DEC03B282ACA3F000A62B8 /* UserModel.swift in Sources */,
 				D89F59912875EF6B006876E1 /* TextFieldValidator.swift in Sources */,

@@ -96,7 +96,12 @@ extension ProjectDetailPresenter {
     }
     
     func showForm() {
-        showTextMenu(type: .form)
+        let view = TextMenuViewController()
+        let presenter = FormPresenter(type: .form, project: project.title)
+        view.presenter = presenter
+        presenter.view = view
+        
+        self.view?.navigation()?.pushViewController(view, animated: true)
     }
     
     func showAgreements() {

@@ -162,7 +162,14 @@ extension ProfilePresenter {
 
 extension ProfilePresenter {
     func showForm() {
-        showTextMenu(type: .form)
+        guard let project = user.project else { return }
+        
+        let view = TextMenuViewController()
+        let presenter = FormPresenter(type: .form, project: project)
+        view.presenter = presenter
+        presenter.view = view
+        
+        self.view?.navigation()?.pushViewController(view, animated: true)
     }
     
     func showAgreements() {
