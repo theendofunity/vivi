@@ -40,7 +40,8 @@ class FormPresenter: TextMenuPresenterProtocol {
         
         let webView = WebViewController()
         webView.load(url: url)
-        view?.navigation()?.pushViewController(webView, animated: true)
+        webView.modalPresentationStyle = .fullScreen
+        view?.navigation()?.present(webView, animated: true)
     }
     
     func loadData() {
