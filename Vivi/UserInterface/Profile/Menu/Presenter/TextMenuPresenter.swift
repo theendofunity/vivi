@@ -64,7 +64,7 @@ class TextMenuPresenter: TextMenuPresenterProtocol {
             isHidden = true
         case .client:
             isHidden = type != .form
-        case .admin:
+        case .admin, .worker, .developer:
             isHidden = false
         }
         

@@ -53,7 +53,7 @@ class PhotoGalleryPresenter {
             isHidden = true
         case .client:
             isHidden = type != .examples
-        case .admin:
+        case .admin, .developer, .worker:
             isHidden = false
         }
         

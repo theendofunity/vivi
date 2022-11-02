@@ -12,6 +12,8 @@ enum UserType: String, CaseIterable {
     case base
     case client
     case admin
+    case developer
+    case worker
 }
 
 struct UserModel: FirestoreSavable, Hashable {
