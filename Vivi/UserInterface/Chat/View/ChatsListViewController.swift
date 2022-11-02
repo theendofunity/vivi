@@ -15,6 +15,8 @@ class ChatsListViewController: UIViewController {
     
     var presenter: ChatsListPresenter!
     var dataSource: UICollectionViewDiffableDataSource<Section, ChatModel>?
+    weak var navigationDelegate: TabConfiguratorDelegate?
+    
     private lazy var addButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage(systemName: "plus"),
                                      style: .plain,

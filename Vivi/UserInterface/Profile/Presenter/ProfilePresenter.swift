@@ -27,7 +27,7 @@ protocol ProfileViewType: AnyObject {
 
 class ProfilePresenter {
     weak var view: ProfileViewType?
-    weak var navigationDelegate: ProfileNavigationDelegate?
+    weak var navigationDelegate: TabConfiguratorDelegate?
     
     private var userService = UserService.shared
     private var storageService = StorageService.shared

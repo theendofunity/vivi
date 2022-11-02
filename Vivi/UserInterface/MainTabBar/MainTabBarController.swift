@@ -9,8 +9,9 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
 
-    private var profileConfigurator: ProfileConfigurator?
-    
+    private var profileTabConfigurator: TabConfigurator?
+    private var chatTabConfigurator: TabConfigurator?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,22 +29,18 @@ class MainTabBarController: UITabBarController {
         let portfolioViewController = PortfolioViewController()
         portfolioViewController.presenter = portfolioPresenter
         portfolioPresenter.view = portfolioViewController
+        
         let portfolioImage = UIImage(systemName: "photo.on.rectangle")
-        
-        let chatViewController = ChatsListViewController()
-        let chatPresenter = ChatsListPresenter()
-        chatViewController.presenter = chatPresenter
-        chatPresenter.view = chatViewController
         let chatImage = UIImage(systemName: "message")
-        
         let profileImage = UIImage(systemName: "person")
         
         let main =  createNavigationController(rootViewController: portfolioViewController, title: "Портфолио", image: portfolioImage)
-        let chat = createNavigationController(rootViewController: chatViewController, title: "Чат", image: chatImage)
+        let chat = createNavigationController(rootViewController: nil, title: "Чат", image: chatImage)
         let profile = createNavigationController(rootViewController: nil, title: "Профиль", image: profileImage)
 
-        profileConfigurator = ProfileConfigurator(navigation: profile)
-    
+        profileTabConfigurator = ProfileTabConfigurator(navigation: profile)
+        chatTabConfigurator = ChatTabConfigurator(navigation: chat)
+        
         viewControllers = [
            main,
            chat,

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		83914B6072D7D2FED30ED495 /* Pods_Vivi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D9089F03D5FDB8614EC5901 /* Pods_Vivi.framework */; };
-		D806903428436912007916DF /* ProfileConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806903328436912007916DF /* ProfileConfigurator.swift */; };
+		D806903428436912007916DF /* ProfileTabConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806903328436912007916DF /* ProfileTabConfigurator.swift */; };
 		D80690362843ED66007916DF /* ProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80690352843ED66007916DF /* ProjectModel.swift */; };
 		D80690382843EFE7007916DF /* FirestoreSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80690372843EFE7007916DF /* FirestoreSavable.swift */; };
 		D821F8B02832A84D00C43774 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821F8AF2832A84D00C43774 /* ProfilePresenter.swift */; };
@@ -37,6 +37,8 @@
 		D8262FBA28203A6000FA3E76 /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FB928203A6000FA3E76 /* ServicesView.swift */; };
 		D8262FBC28203C5C00FA3E76 /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FBB28203C5C00FA3E76 /* ServiceCell.swift */; };
 		D8262FBE282040A000FA3E76 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FBD282040A000FA3E76 /* UIView + Extensions.swift */; };
+		D82C49912913061100217887 /* TabConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82C49902913061100217887 /* TabConfigurator.swift */; };
+		D82C499329130AC900217887 /* ChatConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82C499229130AC900217887 /* ChatConfigurator.swift */; };
 		D835AC4E284DD39F00F4CEDA /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D835AC4D284DD39F00F4CEDA /* MessageModel.swift */; };
 		D83A1AC0288EFD4F0066438B /* ConfirmImageSendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83A1ABF288EFD4F0066438B /* ConfirmImageSendingViewController.swift */; };
 		D83FFB5D2848B7D900C270DE /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83FFB5C2848B7D900C270DE /* UsersViewController.swift */; };
@@ -122,7 +124,7 @@
 		65AD19DA22EFCB7EA22119D4 /* Pods-Vivi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vivi.debug.xcconfig"; path = "Target Support Files/Pods-Vivi/Pods-Vivi.debug.xcconfig"; sourceTree = "<group>"; };
 		7D9089F03D5FDB8614EC5901 /* Pods_Vivi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vivi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B48690AF950970DA87A9FD8B /* Pods-Vivi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vivi.release.xcconfig"; path = "Target Support Files/Pods-Vivi/Pods-Vivi.release.xcconfig"; sourceTree = "<group>"; };
-		D806903328436912007916DF /* ProfileConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurator.swift; sourceTree = "<group>"; };
+		D806903328436912007916DF /* ProfileTabConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabConfigurator.swift; sourceTree = "<group>"; };
 		D80690352843ED66007916DF /* ProjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModel.swift; sourceTree = "<group>"; };
 		D80690372843EFE7007916DF /* FirestoreSavable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreSavable.swift; sourceTree = "<group>"; };
 		D821F8AF2832A84D00C43774 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
@@ -153,6 +155,8 @@
 		D8262FB928203A6000FA3E76 /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		D8262FBB28203C5C00FA3E76 /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 		D8262FBD282040A000FA3E76 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
+		D82C49902913061100217887 /* TabConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabConfigurator.swift; sourceTree = "<group>"; };
+		D82C499229130AC900217887 /* ChatConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatConfigurator.swift; sourceTree = "<group>"; };
 		D835AC4D284DD39F00F4CEDA /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		D83A1ABF288EFD4F0066438B /* ConfirmImageSendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmImageSendingViewController.swift; sourceTree = "<group>"; };
 		D83FFB5C2848B7D900C270DE /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
@@ -411,7 +415,7 @@
 			isa = PBXGroup;
 			children = (
 				D821F8AF2832A84D00C43774 /* ProfilePresenter.swift */,
-				D806903328436912007916DF /* ProfileConfigurator.swift */,
+				D806903328436912007916DF /* ProfileTabConfigurator.swift */,
 				D8A14946288089990012367E /* SecurityPresenter.swift */,
 			);
 			path = Presenter;
@@ -435,6 +439,7 @@
 				D8262F9C281F30A400FA3E76 /* ChatsListPresenter.swift */,
 				D8BEF6472851199000B675D9 /* NewChatPresenter.swift */,
 				D8855CBA285902C400CCE65B /* ChatDetailsPresenter.swift */,
+				D82C499229130AC900217887 /* ChatConfigurator.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -703,6 +708,7 @@
 			children = (
 				D89F598F2875EF5A006876E1 /* Validators */,
 				D8DEC040282ADEA2000A62B8 /* Completions.swift */,
+				D82C49902913061100217887 /* TabConfigurator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -900,7 +906,9 @@
 				D83FFB5D2848B7D900C270DE /* UsersViewController.swift in Sources */,
 				D8FEDA5F28BBC76A00CD9901 /* ProjectExample.swift in Sources */,
 				D89F59952875F92B006876E1 /* String + Extensions.swift in Sources */,
+				D82C499329130AC900217887 /* ChatConfigurator.swift in Sources */,
 				D8FEDA6C28BBDE5400CD9901 /* NewExampleViewController.swift in Sources */,
+				D82C49912913061100217887 /* TabConfigurator.swift in Sources */,
 				D86A79E92821598A00F45D76 /* StorageService.swift in Sources */,
 				D8262FAC28202B9300FA3E76 /* LaunchViewController.swift in Sources */,
 				D86A79DC2821130900F45D76 /* ServiceType.swift in Sources */,
@@ -946,7 +954,7 @@
 				D8DEC03B282ACA3F000A62B8 /* UserModel.swift in Sources */,
 				D89F59912875EF6B006876E1 /* TextFieldValidator.swift in Sources */,
 				D88A0CE42846703500B02D3E /* ProjectsPresenter.swift in Sources */,
-				D806903428436912007916DF /* ProfileConfigurator.swift in Sources */,
+				D806903428436912007916DF /* ProfileTabConfigurator.swift in Sources */,
 				D86AEE8C283A29AF001BE89F /* TextMenuCell.swift in Sources */,
 				D8262F86281F2B7F00FA3E76 /* MainTabBarController.swift in Sources */,
 				D86A79FA282180F500F45D76 /* PlainLabel.swift in Sources */,
