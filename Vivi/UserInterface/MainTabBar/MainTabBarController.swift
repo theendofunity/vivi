@@ -36,10 +36,6 @@ class MainTabBarController: UITabBarController {
         chatPresenter.view = chatViewController
         let chatImage = UIImage(systemName: "message")
         
-//        let profileViewController = ProfileViewController()
-//        let profilePresenter = ProfilePresenter()
-//        profileViewController.presenter = profilePresenter
-//        profilePresenter.view = profileViewController
         let profileImage = UIImage(systemName: "person")
         
         let main =  createNavigationController(rootViewController: portfolioViewController, title: "Портфолио", image: portfolioImage)

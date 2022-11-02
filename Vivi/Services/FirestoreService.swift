@@ -94,11 +94,17 @@ class FirestoreService {
     func createChat(chat: ChatModel, completion: @escaping VoidCompletion) {
         let ref = db.collection(Reference.chats.rawValue).document(chat.id)
         
-        ref.setData(chat.representation()) { error in
-            if let error = error {
-                completion(.failure(error))
+        ref.getDocument { document, error in
+            if let document, document.exists {
+                completion(.success(Void()))
+            } else {
+                ref.setData(chat.representation()) { error in
+                    if let error = error {
+                        completion(.failure(error))
+                    }
+                    completion(.success(Void()))
+                }
             }
-            completion(.success(Void()))
         }
     }
     
