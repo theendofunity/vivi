@@ -38,7 +38,7 @@
 		D8262FBC28203C5C00FA3E76 /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FBB28203C5C00FA3E76 /* ServiceCell.swift */; };
 		D8262FBE282040A000FA3E76 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262FBD282040A000FA3E76 /* UIView + Extensions.swift */; };
 		D82C49912913061100217887 /* TabConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82C49902913061100217887 /* TabConfigurator.swift */; };
-		D82C499329130AC900217887 /* ChatConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82C499229130AC900217887 /* ChatConfigurator.swift */; };
+		D82C499329130AC900217887 /* ChatTabConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82C499229130AC900217887 /* ChatTabConfigurator.swift */; };
 		D835AC4E284DD39F00F4CEDA /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D835AC4D284DD39F00F4CEDA /* MessageModel.swift */; };
 		D83A1AC0288EFD4F0066438B /* ConfirmImageSendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83A1ABF288EFD4F0066438B /* ConfirmImageSendingViewController.swift */; };
 		D83FFB5D2848B7D900C270DE /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83FFB5C2848B7D900C270DE /* UsersViewController.swift */; };
@@ -156,7 +156,7 @@
 		D8262FBB28203C5C00FA3E76 /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 		D8262FBD282040A000FA3E76 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		D82C49902913061100217887 /* TabConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabConfigurator.swift; sourceTree = "<group>"; };
-		D82C499229130AC900217887 /* ChatConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatConfigurator.swift; sourceTree = "<group>"; };
+		D82C499229130AC900217887 /* ChatTabConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTabConfigurator.swift; sourceTree = "<group>"; };
 		D835AC4D284DD39F00F4CEDA /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		D83A1ABF288EFD4F0066438B /* ConfirmImageSendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmImageSendingViewController.swift; sourceTree = "<group>"; };
 		D83FFB5C2848B7D900C270DE /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
@@ -439,7 +439,7 @@
 				D8262F9C281F30A400FA3E76 /* ChatsListPresenter.swift */,
 				D8BEF6472851199000B675D9 /* NewChatPresenter.swift */,
 				D8855CBA285902C400CCE65B /* ChatDetailsPresenter.swift */,
-				D82C499229130AC900217887 /* ChatConfigurator.swift */,
+				D82C499229130AC900217887 /* ChatTabConfigurator.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -906,7 +906,7 @@
 				D83FFB5D2848B7D900C270DE /* UsersViewController.swift in Sources */,
 				D8FEDA5F28BBC76A00CD9901 /* ProjectExample.swift in Sources */,
 				D89F59952875F92B006876E1 /* String + Extensions.swift in Sources */,
-				D82C499329130AC900217887 /* ChatConfigurator.swift in Sources */,
+				D82C499329130AC900217887 /* ChatTabConfigurator.swift in Sources */,
 				D8FEDA6C28BBDE5400CD9901 /* NewExampleViewController.swift in Sources */,
 				D82C49912913061100217887 /* TabConfigurator.swift in Sources */,
 				D86A79E92821598A00F45D76 /* StorageService.swift in Sources */,

@@ -23,6 +23,7 @@ class FirestoreService {
     
     private init() {}
     
+//MARK: - Base
     func save(reference: Reference, data: FirestoreSavable, completion: @escaping VoidCompletion) {
         guard let id = data.documentId() else {
             completion(.failure(NSError()))
@@ -37,25 +38,6 @@ class FirestoreService {
                 return
             }
             completion(.failure(error))
-        }
-    }
-    
-    func loadUser(userId: String, completion: @escaping UserModelCompletion) {
-        let ref = db.collection(Reference.users.rawValue).document(userId)
-        
-        ref.getDocument { snapshot, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            guard let snapshot = snapshot,
-                  let data = snapshot.data(),
-                  let userModel = UserModel(document: data) else {
-                return
-            }
-            
-            completion(.success(userModel))
         }
     }
     
@@ -80,6 +62,31 @@ class FirestoreService {
         }
     }
     
+    //MARK: - Users
+    
+    func loadUser(userId: String, completion: @escaping UserModelCompletion) {
+        let ref = db.collection(Reference.users.rawValue).document(userId)
+        
+        ref.getDocument { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let snapshot = snapshot,
+                  let data = snapshot.data(),
+                  let userModel = UserModel(document: data) else {
+                return
+            }
+            
+            completion(.success(userModel))
+        }
+    }
+    
+    func addUserToChat(userId: String, chatId: String) {
+        db.collection(Reference.users.rawValue).document(userId).updateData(["chats" : FieldValue.arrayUnion([chatId])])
+    }
+    
     func updateUsersInProject(project: ProjectModel) {
         let ref = db.collection(Reference.projects.rawValue).document(project.title)
         ref.setData(["users" : project.users], merge: true)
@@ -87,6 +94,17 @@ class FirestoreService {
         guard let id = project.documentId() else { return }
         let chatRef = db.collection(Reference.chats.rawValue).document(id)
         chatRef.updateData(project.representation())
+    }
+    
+    func deleteUserData(userId: String, completion: @escaping VoidCompletion) {
+        let ref = db.collection(Reference.users.rawValue).document(userId)
+        ref.delete { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(Void()))
+            }
+        }
     }
     
     //MARK: - Chats
@@ -101,6 +119,9 @@ class FirestoreService {
                 ref.setData(chat.representation()) { error in
                     if let error = error {
                         completion(.failure(error))
+                    }
+                    chat.users.forEach {
+                        self.addUserToChat(userId: $0, chatId: chat.id)
                     }
                     completion(.success(Void()))
                 }
@@ -204,16 +225,5 @@ class FirestoreService {
             completion(.success(chats))
         }
         return listener
-    }
-    
-    func deleteUserData(userId: String, completion: @escaping VoidCompletion) {
-        let ref = db.collection(Reference.users.rawValue).document(userId)
-        ref.delete { error in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                completion(.success(Void()))
-            }
-        }
     }
 }
