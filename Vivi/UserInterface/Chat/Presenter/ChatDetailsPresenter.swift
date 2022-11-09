@@ -50,7 +50,7 @@ class ChatDetailsPresenter {
         guard let user = UserService.shared.user else { return }
         
         for message in messages.reversed() {
-            if message.isReaded(by: user.id) {
+            if !message.isReaded(by: user.id) {
                 ChatService.shared.readMessage(message: message)
             } else {
                 break //read untin new messages

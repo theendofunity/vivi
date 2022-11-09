@@ -36,21 +36,18 @@ class ChatService {
     }
     
     func sendMessage(chat: ChatModel, message: MessageModel, completion: @escaping VoidCompletion) {
-        let ref = FirestoreService.shared.db.collection(FirestoreService.Reference.chats.rawValue).document(chat.id).collection("messages")
+        let ref = FirestoreService.shared.db
+            .collection(FirestoreService.Reference.chats.rawValue)
+            .document(chat.id)
+            .collection("messages")
+            .document(message.id)
        
-        ref.addDocument(data: message.representation()) { error in
+        ref.setData(message.representation()) { error in
             if let error = error {
                 completion(.failure(error))
                 return
             }
-            
-            FirestoreService.shared.save(reference: .chats, data: chat) { result in
-                if let error = error {
-                    completion(.failure(error))
-                    return
-                }
-                completion(.success(Void()))
-            }
+            completion(.success(Void()))
         }
     }
     
@@ -137,6 +134,9 @@ class ChatService {
     
     func readMessage(message: MessageModel) {
         guard let user = UserService.shared.user else { return }
+        
+        var message = message
+        message.readed.append(user.id)
         
         let ref = FirestoreService.shared.db
             .collection(FirestoreService.Reference.chats.rawValue)
