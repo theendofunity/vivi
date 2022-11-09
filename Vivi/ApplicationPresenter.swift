@@ -51,6 +51,7 @@ class ApplicationPresenter {
     
     func logout() {
         AuthService.shared.logout()
+        DataStore.shared.clearPrivateData()
         self.delegate?.dataLoaded()
     }
 }

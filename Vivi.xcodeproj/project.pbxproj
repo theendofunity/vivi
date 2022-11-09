@@ -100,6 +100,7 @@
 		D8BEF64D2851318800B675D9 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BEF64C2851318800B675D9 /* ProjectCell.swift */; };
 		D8C4690628AEB96700400096 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C4690528AEB96700400096 /* Link.swift */; };
 		D8CC1819291C46FB00FF6A03 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC1818291C46FB00FF6A03 /* ChatService.swift */; };
+		D8CC181B291C59DA00FF6A03 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC181A291C59D900FF6A03 /* Errors.swift */; };
 		D8DA418D28625A96005AFE60 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA418C28625A96005AFE60 /* ChatCell.swift */; };
 		D8DD1573283E9B08006EAA9C /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */; };
 		D8DD1575283FEF1C006EAA9C /* ZoomPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD1574283FEF1C006EAA9C /* ZoomPhotoCell.swift */; };
@@ -219,6 +220,7 @@
 		D8BEF64C2851318800B675D9 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		D8C4690528AEB96700400096 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
 		D8CC1818291C46FB00FF6A03 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		D8CC181A291C59D900FF6A03 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		D8DA418C28625A96005AFE60 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
 		D8DD1574283FEF1C006EAA9C /* ZoomPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomPhotoCell.swift; sourceTree = "<group>"; };
@@ -712,6 +714,7 @@
 				D89F598F2875EF5A006876E1 /* Validators */,
 				D8DEC040282ADEA2000A62B8 /* Completions.swift */,
 				D82C49902913061100217887 /* TabConfigurator.swift */,
+				D8CC181A291C59D900FF6A03 /* Errors.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -907,6 +910,7 @@
 				D8855CB32858F52900CCE65B /* ChatDetailViewController.swift in Sources */,
 				D850CFDE282BBB9000C41DE7 /* ProfileMenuCell.swift in Sources */,
 				D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */,
+				D8CC181B291C59DA00FF6A03 /* Errors.swift in Sources */,
 				D83FFB5D2848B7D900C270DE /* UsersViewController.swift in Sources */,
 				D8FEDA5F28BBC76A00CD9901 /* ProjectExample.swift in Sources */,
 				D89F59952875F92B006876E1 /* String + Extensions.swift in Sources */,

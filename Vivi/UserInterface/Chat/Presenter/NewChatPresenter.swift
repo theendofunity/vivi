@@ -83,9 +83,14 @@ class NewChatPresenter {
                              userNames: [user.displayName, currentUser.displayName],
                              title: "")
         
-        
-        ChatService.shared.createChat(chat: chat) { [weak self] result in
-            self?.delegate?.usersSelected(users: [user])
+        if let existChats = DataStore.shared.chats,
+           existChats.contains(where: { oldChat in oldChat.isEqualTo(chat: chat) }) {
+            view?.showError(error: CustomError.chatAlreadyExist)
+        } else {
+            
+            ChatService.shared.createChat(chat: chat) { [weak self] result in
+                self?.delegate?.usersSelected(users: [user])
+            }
         }
     }
     
@@ -98,8 +103,16 @@ class NewChatPresenter {
                              title: project.title)
         
         chat.id = project.documentId() ?? ""
-        ChatService.shared.createChat(chat: chat) { [weak self] result in
-            self?.delegate?.usersSelected(users: usersInProject)
+        
+        if let existChats = DataStore.shared.chats,
+           existChats.contains(where: { oldChat in
+               oldChat.isEqualTo(chat: chat)
+           }) {
+            view?.showError(error: CustomError.chatAlreadyExist)
+        } else {
+            ChatService.shared.createChat(chat: chat) { [weak self] result in
+                self?.delegate?.usersSelected(users: usersInProject)
+            }
         }
     }
 }

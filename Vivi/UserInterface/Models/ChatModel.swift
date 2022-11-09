@@ -67,11 +67,16 @@ struct ChatModel: FirestoreSavable {
         
         return title
     }
+    
+    func isEqualTo(chat: ChatModel) -> Bool {
+        return displayTitle() == chat.displayTitle() &&
+        users == chat.users
+    }
 }
 
 extension ChatModel: Hashable {
     static func == (lhs: ChatModel, rhs: ChatModel) -> Bool {
-        lhs.id == rhs.id
+        lhs.id == rhs.id && lhs.title == rhs.title && lhs.users == rhs.users
     }
     
     func hash(into hasher: inout Hasher) {

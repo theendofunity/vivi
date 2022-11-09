@@ -44,10 +44,10 @@ class ChatsListPresenter {
                         self?.chats.append(newChat)
                     }
                 }
-//                self?.chats = self?.chats.sorted(by: {
-//                    $0.
-//                })
                 self?.reload()
+                
+                DataStore.shared.chats = chats
+                
             case .failure(let error):
                 self?.view?.showError(error: error)
             }
