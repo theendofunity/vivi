@@ -17,7 +17,7 @@ extension String {
     
     func isValidPhone() -> Bool {
         let beginFromPlus = self.prefix(1) == "+"
-        let finalSize =  beginFromPlus ? 12 : 10
+        let finalSize =  beginFromPlus ? 12 : 11
         
         if self.count != finalSize {
             return false

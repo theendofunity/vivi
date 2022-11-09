@@ -26,7 +26,7 @@ class ChatDetailsPresenter {
     var currentSender: UserModel
     
     var listener: ListenerRegistration?
-    var storage = FirestoreService.shared
+    var storage = ChatService.shared
     
     init(chat: ChatModel, currentUser: UserModel) {
         self.chat = chat
@@ -46,6 +46,18 @@ class ChatDetailsPresenter {
         
     }
     
+    func readAllMessages() {
+        guard let user = UserService.shared.user else { return }
+        
+        for message in messages.reversed() {
+            if message.isReaded(by: user.id) {
+                ChatService.shared.readMessage(message: message)
+            } else {
+                break //read untin new messages
+            }
+        }
+    }
+    
     func addListener() {
         listener = storage.addMessagesObserver(chatId: chat.id, completion: { [weak self] result in
             guard let self = self else { return }
@@ -59,6 +71,8 @@ class ChatDetailsPresenter {
                 
                 self.messages.append(contentsOf: filtredMessages)
                 self.view?.update(messages: self.messages)
+                
+                self.readAllMessages()
             case .failure(let error):
                 self.view?.showError(error: error)
             }
@@ -66,14 +80,11 @@ class ChatDetailsPresenter {
     }
     
     func setTitle() {
-        guard chat.title.isEmpty else {
-            view?.setTitle(title: chat.title)
-            return
-        }
+        view?.setTitle(title: chat.displayTitle())
         
         guard let userId = chat.users.first(where: { $0 != currentSender.id }) else { return }
         
-        storage.loadUser(userId: userId) { [weak self] result in
+        FirestoreService.shared.loadUser(userId: userId) { [weak self] result in
             switch result {
             case .success(let user):
                 self?.view?.setTitle(title: user.displayName)
@@ -88,15 +99,16 @@ extension ChatDetailsPresenter {
     func sendMessage(text: String) {
         var message = MessageModel(sender: currentSender, content: text)
         message.avatarUrl = currentSender.avatarUrl
-        
-//        view?.update(messages: messages)
-        
+                
         chat.lastMessageContent = text
         sendMessage(message: message)
         
     }
     
     func sendMessage(message: MessageModel) {
+        var message = message
+        message.chatID = chat.id
+        
         storage.sendMessage(chat: chat, message: message) { [weak self] result in
             switch result {
             case .success():

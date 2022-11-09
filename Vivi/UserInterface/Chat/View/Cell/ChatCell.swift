@@ -69,7 +69,7 @@ class ChatCell: ReusableCell {
 
     func configure(chat: ChatModel) {
         self.chat = chat
-        titleLabel.text = chat.title
+        titleLabel.text = chat.displayTitle()
         subtitleLabel.text = chat.lastMessageContent
         
         if let urlString = chat.avatarUrl {

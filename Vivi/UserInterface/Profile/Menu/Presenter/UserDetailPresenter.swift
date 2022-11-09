@@ -71,10 +71,10 @@ class UserDetailPresenter {
     
     func addUserToProject() {
         guard let _ = selectedProject,
-              selectedProject?.title != user.project,
-              let id = user.id else { return }
+              selectedProject?.title != user.project
+        else { return }
         
-        selectedProject?.users.append(id)
+        selectedProject?.users.append(user.id)
         storage.updateUsersInProject(project: selectedProject!)
         user.project = selectedProject?.title
     }

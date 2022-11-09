@@ -52,8 +52,7 @@ class RegistrationPresenter {
                                middleName: String?,
                                phone: String,
                                city: String) {
-        let user = UserModel(id: nil,
-                             firstName: firstName,
+        let user = UserModel(firstName: firstName,
                              lastName: lastName,
                              middleName: middleName,
                              city: city,

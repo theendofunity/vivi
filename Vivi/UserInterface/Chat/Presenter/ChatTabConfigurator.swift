@@ -17,4 +17,14 @@ class ChatTabConfigurator: TabConfigurator {
         
         navigation.setViewControllers([chatViewController], animated: true)
     }
+    
+    func startChatForNewUser() {
+        guard let user = UserService.shared.user,
+              !user.chats.isEmpty
+        else {
+            return
+        }
+        
+//        FirestoreService.shared.createChat(chat: <#T##ChatModel#>, completion: <#T##VoidCompletion#>)
+    }
 }

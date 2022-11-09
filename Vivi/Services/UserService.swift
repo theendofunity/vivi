@@ -18,10 +18,7 @@ class UserService {
         user = nil
     }
     
-//    func loadUser() {
-//        guard let userId = AuthService.shared.currentUser?.uid else { return }
-//        FirestoreService.shared.loadUser(userId: userId) { result in
-//            <#code#>
-//        }
-//    }
+    func loadUser(id: String, completion: UserCompletion) {
+        
+    }
 }

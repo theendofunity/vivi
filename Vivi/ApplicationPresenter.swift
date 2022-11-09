@@ -21,6 +21,7 @@ class ApplicationPresenter {
     }
     
     func start() {
+//        authService.logout()
         if authService.isLoggedIn {
             loadData()
         } else {

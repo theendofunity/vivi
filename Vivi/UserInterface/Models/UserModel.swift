@@ -17,7 +17,7 @@ enum UserType: String, CaseIterable {
 }
 
 struct UserModel: FirestoreSavable, Hashable {
-    var id: String?
+    var id: String
     let firstName: String
     let lastName: String
     let middleName: String?
@@ -37,7 +37,7 @@ struct UserModel: FirestoreSavable, Hashable {
     func representation() -> [String : Any] {
         var dict: [String : Any] = [:]
         dict = [
-            "id" : id ?? "",
+            "id" : id,
             "firstName" : firstName,
             "lastName" : lastName,
             "middleName" : middleName ?? "",
@@ -53,13 +53,12 @@ struct UserModel: FirestoreSavable, Hashable {
         return dict
     }
     
-    init(id: String?,
-         firstName: String,
+    init(firstName: String,
          lastName: String,
          middleName: String?,
          city: String,
          phone: String) {
-        self.id = id
+        self.id = UUID().uuidString
         self.firstName = firstName
         self.lastName = lastName
         self.phone = phone

@@ -77,17 +77,14 @@ class NewChatPresenter {
     }
     
     func userDidSelect(user: UserModel) {
-        guard let currentUser = UserService.shared.user,
-              let currentId = currentUser.id,
-              let destinationId = user.id
-        else { return }
+        guard let currentUser = UserService.shared.user else { return }
         
-        let chat = ChatModel(users: [currentId, destinationId],
+        let chat = ChatModel(users: [currentUser.id, user.id],
                              userNames: [user.displayName, currentUser.displayName],
                              title: "")
         
         
-        storage.createChat(chat: chat) { [weak self] result in
+        ChatService.shared.createChat(chat: chat) { [weak self] result in
             self?.delegate?.usersSelected(users: [user])
         }
     }
@@ -101,7 +98,7 @@ class NewChatPresenter {
                              title: project.title)
         
         chat.id = project.documentId() ?? ""
-        storage.createChat(chat: chat) { [weak self] result in
+        ChatService.shared.createChat(chat: chat) { [weak self] result in
             self?.delegate?.usersSelected(users: usersInProject)
         }
     }

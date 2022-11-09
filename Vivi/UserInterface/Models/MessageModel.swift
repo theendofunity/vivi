@@ -17,7 +17,7 @@ struct MessageModel: MessageType {
         case file
     }
     
-    var id: String? = nil
+    var id: String
     var sender: SenderType
     var sentDate: Date
     var avatarUrl: String?
@@ -26,9 +26,11 @@ struct MessageModel: MessageType {
     var image: UIImage? = nil
     var dataUrl: URL? = nil
     var mediaType: MediaType = .none
+    var chatID: String = ""
+    var readed: [String] = []
     
     var messageId: String {
-        return id ?? UUID().uuidString
+        return id
     }
     
     var kind: MessageKind {
@@ -85,18 +87,25 @@ extension MessageModel: FirestoreSavable {
         } else {
             return nil
         }
+        
+        readed = document["readed"] as? [String] ?? []
+        chatID = document["chatId"] as? String ?? ""
     }
     
     init(sender: UserModel, content: String) {
         self.sender = sender
         self.content = content
         self.sentDate = Date()
+        self.id = UUID().uuidString
+        self.readed = [sender.id]
     }
     
     init(sender: UserModel, url: URL) {
+        self.id = UUID().uuidString
         self.sender = sender
         self.dataUrl = url
         self.sentDate = Date()
+        self.readed = [sender.id]
     }
     
     func documentId() -> String? {
@@ -112,8 +121,14 @@ extension MessageModel: FirestoreSavable {
             "imageUrl" : dataUrl?.absoluteString ?? "",
             "content" : content ?? "",
             "avatarUrl" : avatarUrl ?? "",
-            "mediaType" : mediaType.rawValue 
+            "mediaType" : mediaType.rawValue,
+            "readed" : readed,
+            "chatId" : chatID
         ]
         return dict
+    }
+    
+    func isReaded(by userId: String) -> Bool {
+        return readed.contains {  $0 == userId }
     }
 }

@@ -37,11 +37,7 @@ struct ChatModel: FirestoreSavable {
             self.lastMessageContent = lastMessageContent
         }
         
-        if let title = document["title"] as? String {
-            self.title = title
-        } else {
-            title = userNames.first(where: { $0 != UserService.shared.user?.displayName }) ?? ""
-        }
+        title = document["title"] as? String ?? ""
         
         if let userNames = document["userNames"] as? [String] {
             self.userNames = userNames
@@ -63,11 +59,19 @@ struct ChatModel: FirestoreSavable {
         
         return dict
     }
+    
+    func displayTitle() -> String {
+        if title.isEmpty {
+            return userNames.first(where: { $0 != UserService.shared.user?.displayName }) ?? ""
+        }
+        
+        return title
+    }
 }
 
 extension ChatModel: Hashable {
     static func == (lhs: ChatModel, rhs: ChatModel) -> Bool {
-        lhs.title == rhs.title
+        lhs.id == rhs.id
     }
     
     func hash(into hasher: inout Hasher) {

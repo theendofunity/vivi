@@ -99,6 +99,7 @@
 		D8BEF64A2851199C00B675D9 /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BEF6492851199C00B675D9 /* NewChatViewController.swift */; };
 		D8BEF64D2851318800B675D9 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BEF64C2851318800B675D9 /* ProjectCell.swift */; };
 		D8C4690628AEB96700400096 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C4690528AEB96700400096 /* Link.swift */; };
+		D8CC1819291C46FB00FF6A03 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC1818291C46FB00FF6A03 /* ChatService.swift */; };
 		D8DA418D28625A96005AFE60 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA418C28625A96005AFE60 /* ChatCell.swift */; };
 		D8DD1573283E9B08006EAA9C /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */; };
 		D8DD1575283FEF1C006EAA9C /* ZoomPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD1574283FEF1C006EAA9C /* ZoomPhotoCell.swift */; };
@@ -217,6 +218,7 @@
 		D8BEF6492851199C00B675D9 /* NewChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
 		D8BEF64C2851318800B675D9 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		D8C4690528AEB96700400096 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
+		D8CC1818291C46FB00FF6A03 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		D8DA418C28625A96005AFE60 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
 		D8DD1574283FEF1C006EAA9C /* ZoomPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomPhotoCell.swift; sourceTree = "<group>"; };
@@ -601,6 +603,7 @@
 				D8DEC038282AC995000A62B8 /* FirestoreService.swift */,
 				D8DEC03C282ACEA6000A62B8 /* UserService.swift */,
 				D8FEDA6928BBDBF700CD9901 /* DataStore.swift */,
+				D8CC1818291C46FB00FF6A03 /* ChatService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -900,6 +903,7 @@
 				D823976C28D78B71007BE85F /* FormPresenter.swift in Sources */,
 				D88A0CE628467CA200B02D3E /* UISegmentedControl + Extensions.swift in Sources */,
 				D8C4690628AEB96700400096 /* Link.swift in Sources */,
+				D8CC1819291C46FB00FF6A03 /* ChatService.swift in Sources */,
 				D8855CB32858F52900CCE65B /* ChatDetailViewController.swift in Sources */,
 				D850CFDE282BBB9000C41DE7 /* ProfileMenuCell.swift in Sources */,
 				D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */,

@@ -17,7 +17,7 @@ protocol ChatViewType: AnyObject {
 
 class ChatsListPresenter {
     var view: ChatViewType?
-    let storage = FirestoreService.shared
+    let storage = ChatService.shared
     var listener: ListenerRegistration?
     var chats: [ChatModel] = []
     
