@@ -47,7 +47,14 @@ class ChatService {
                 completion(.failure(error))
                 return
             }
+            
+            let chatRef = FirestoreService.shared.db
+                .collection(FirestoreService.Reference.chats.rawValue)
+                .document(chat.id)
+            chatRef.updateData(["lastMessageContent" : message.content ?? ""]) 
+            
             completion(.success(Void()))
+
         }
     }
     

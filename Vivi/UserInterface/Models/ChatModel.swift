@@ -14,6 +14,7 @@ struct ChatModel: FirestoreSavable {
     var title: String = ""
     var id: String
     var lastMessageContent: String? = nil
+    var isLastMessageRead: Bool = true
     
     internal init(users: [String] = [], userNames: [String] = [], lastMessageContent: String? = nil, avatarUrl: String? = nil, title: String) {
         self.users = users
@@ -42,6 +43,8 @@ struct ChatModel: FirestoreSavable {
         if let userNames = document["userNames"] as? [String] {
             self.userNames = userNames
         }
+        
+        isLastMessageRead = document ["isLastMessageRead"] as? Bool ?? true
     }
     
     func documentId() -> String? {
@@ -54,7 +57,8 @@ struct ChatModel: FirestoreSavable {
             "id" : id,
             "title" : title,
             "lastMessageContent": lastMessageContent ?? "",
-            "userNames" : userNames
+            "userNames" : userNames,
+            "isLastMessageRead" : isLastMessageRead
         ]
         
         return dict
