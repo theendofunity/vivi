@@ -49,9 +49,12 @@ class ChatDetailsPresenter {
     func readAllMessages() {
         guard let user = UserService.shared.user else { return }
         
+        chat.lastMessage = messages.last
+        
         for message in messages.reversed() {
             if !message.isReaded(by: user.id) {
                 ChatService.shared.readMessage(message: message)
+                ChatService.shared.updateLastMessage(chat: chat)
             } else {
                 break //read untin new messages
             }
@@ -69,10 +72,11 @@ class ChatDetailsPresenter {
                     })
                 } .sorted { $0.sentDate < $1.sentDate }
                 
-                self.messages.append(contentsOf: filtredMessages)
-                self.view?.update(messages: self.messages)
-                
-                self.readAllMessages()
+                if !filtredMessages.isEmpty {
+                    self.messages.append(contentsOf: filtredMessages)
+                    self.view?.update(messages: self.messages)
+                    self.readAllMessages()
+                }
             case .failure(let error):
                 self.view?.showError(error: error)
             }
@@ -100,7 +104,6 @@ extension ChatDetailsPresenter {
         var message = MessageModel(sender: currentSender, content: text)
         message.avatarUrl = currentSender.avatarUrl
                 
-        chat.lastMessageContent = text
         sendMessage(message: message)
         
     }
@@ -108,8 +111,9 @@ extension ChatDetailsPresenter {
     func sendMessage(message: MessageModel) {
         var message = message
         message.chatID = chat.id
+        chat.lastMessage = message
         
-        storage.sendMessage(chat: chat, message: message) { [weak self] result in
+        storage.sendMessage(chat: chat) { [weak self] result in
             switch result {
             case .success():
                 break

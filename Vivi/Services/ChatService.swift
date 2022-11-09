@@ -35,7 +35,9 @@ class ChatService {
         }
     }
     
-    func sendMessage(chat: ChatModel, message: MessageModel, completion: @escaping VoidCompletion) {
+    func sendMessage(chat: ChatModel, completion: @escaping VoidCompletion) {
+        guard let message = chat.lastMessage else { return }
+        
         let ref = FirestoreService.shared.db
             .collection(FirestoreService.Reference.chats.rawValue)
             .document(chat.id)
@@ -48,14 +50,18 @@ class ChatService {
                 return
             }
             
-            let chatRef = FirestoreService.shared.db
-                .collection(FirestoreService.Reference.chats.rawValue)
-                .document(chat.id)
-            chatRef.updateData(["lastMessageContent" : message.content ?? ""]) 
+            self.updateLastMessage(chat: chat)
             
             completion(.success(Void()))
-
         }
+    }
+    
+    func updateLastMessage(chat: ChatModel) {
+        guard let message = chat.lastMessage else { return }
+        let chatRef = FirestoreService.shared.db
+            .collection(FirestoreService.Reference.chats.rawValue)
+            .document(chat.id)
+        chatRef.updateData(["lastMessage" : message.representation()])
     }
     
     func loadChats(completion: @escaping ChatsCompletion) {

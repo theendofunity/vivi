@@ -13,15 +13,14 @@ struct ChatModel: FirestoreSavable {
     var avatarUrl: String?
     var title: String = ""
     var id: String
-    var lastMessageContent: String? = nil
-    var isLastMessageRead: Bool = true
+    var lastMessage: MessageModel?
+   
     
     internal init(users: [String] = [], userNames: [String] = [], lastMessageContent: String? = nil, avatarUrl: String? = nil, title: String) {
         self.users = users
         self.avatarUrl = avatarUrl
         self.title = title
         self.id = UUID().uuidString
-        self.lastMessageContent = lastMessageContent
         self.userNames = userNames
     }
     
@@ -34,17 +33,14 @@ struct ChatModel: FirestoreSavable {
         self.users = users
         self.id = id
         
-        if let lastMessageContent = document["lastMessageContent"] as? String {
-            self.lastMessageContent = lastMessageContent
-        }
-        
         title = document["title"] as? String ?? ""
         
         if let userNames = document["userNames"] as? [String] {
             self.userNames = userNames
         }
         
-        isLastMessageRead = document ["isLastMessageRead"] as? Bool ?? true
+        let messageContent = document["lastMessage"] as? [String : Any] ?? [:]
+        lastMessage = MessageModel(document: messageContent)
     }
     
     func documentId() -> String? {
@@ -56,9 +52,8 @@ struct ChatModel: FirestoreSavable {
             "users" : users,
             "id" : id,
             "title" : title,
-            "lastMessageContent": lastMessageContent ?? "",
             "userNames" : userNames,
-            "isLastMessageRead" : isLastMessageRead
+            "lastMessage" : lastMessage?.representation() ?? [:]
         ]
         
         return dict
