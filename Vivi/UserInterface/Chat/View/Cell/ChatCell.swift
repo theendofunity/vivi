@@ -38,6 +38,13 @@ class ChatCell: ReusableCell {
         return stack
     }()
     
+    private lazy var unreadView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .viviRose
+        view.round(4)
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupView()
@@ -51,6 +58,7 @@ class ChatCell: ReusableCell {
     func setupView() {
         addSubview(photoView)
         addSubview(titlesStack)
+        addSubview(unreadView)
     }
     
     func setupConstraints() {
@@ -65,13 +73,20 @@ class ChatCell: ReusableCell {
             Leading(16).to(photoView, .trailing),
             CenterY()
         )
+        
+        unreadView.easy.layout(
+            Trailing(8),
+            CenterY(),
+            Width(8),
+            Height(8)
+        )
     }
 
     func configure(chat: ChatModel) {
         self.chat = chat
         titleLabel.text = chat.displayTitle()
         subtitleLabel.text = chat.lastMessage?.content
-        
+        unreadView.isHidden = chat.lastMessage?.isReadedByMe() ?? true
         if let urlString = chat.avatarUrl {
             photoView.sd_setImage(with: URL(string: urlString))
         }
