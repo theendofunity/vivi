@@ -49,16 +49,27 @@ class ChatDetailsPresenter {
     func readAllMessages() {
         guard let user = UserService.shared.user else { return }
         
-        chat.lastMessage = messages.last
-        
         for message in messages.reversed() {
-            if !message.isReaded(by: user.id) {
-                ChatService.shared.readMessage(message: message)
-                ChatService.shared.updateLastMessage(chat: chat)
+            if !message.isReadedByMe() {
+                if let index = messages.firstIndex(where: { $0.id == message.id }) {
+                    var readedMessage = message
+                    readedMessage.readed.append(user.id)
+                    messages[index] = readedMessage
+                    
+                    ChatService.shared.readMessage(message: readedMessage)
+                }
             } else {
-                break //read untin new messages
+                break
             }
         }
+        chat.lastMessage = messages.last
+        ChatService.shared.updateLastMessage(chat: chat)
+
+        if let chatIndex = DataStore.shared.chats?.firstIndex(where: { $0.id == chat.id }) {
+            DataStore.shared.chats?[chatIndex] = chat
+        }
+        
+        NotificationCenter.default.post(name: .messageReaded, object: nil)
     }
     
     func addListener() {

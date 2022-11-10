@@ -148,8 +148,7 @@ class ChatService {
     func readMessage(message: MessageModel) {
         guard let user = UserService.shared.user else { return }
         
-        var message = message
-        message.readed.append(user.id)
+        
         
         let ref = FirestoreService.shared.db
             .collection(FirestoreService.Reference.chats.rawValue)

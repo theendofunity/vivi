@@ -22,4 +22,22 @@ class DataStore {
     func clearPrivateData() {
         chats = nil
     }
+    
+    func unreadChats() -> Int? {
+        guard let chats else { return nil }
+                
+        let unreadCount = chats.filter {
+            if let message = $0.lastMessage {
+                return !message.isReadedByMe()
+            } else {
+                return false
+            }
+        }
+        
+        if unreadCount.count == 0 {
+            return nil
+        }
+        
+        return unreadCount.count
+    }
 }

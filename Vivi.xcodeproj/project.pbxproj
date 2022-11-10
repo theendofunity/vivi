@@ -101,6 +101,7 @@
 		D8C4690628AEB96700400096 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C4690528AEB96700400096 /* Link.swift */; };
 		D8CC1819291C46FB00FF6A03 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC1818291C46FB00FF6A03 /* ChatService.swift */; };
 		D8CC181B291C59DA00FF6A03 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC181A291C59D900FF6A03 /* Errors.swift */; };
+		D8CC181D291D8E8900FF6A03 /* NSNotification.Name + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC181C291D8E8900FF6A03 /* NSNotification.Name + Extension.swift */; };
 		D8DA418D28625A96005AFE60 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA418C28625A96005AFE60 /* ChatCell.swift */; };
 		D8DD1573283E9B08006EAA9C /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */; };
 		D8DD1575283FEF1C006EAA9C /* ZoomPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD1574283FEF1C006EAA9C /* ZoomPhotoCell.swift */; };
@@ -221,6 +222,7 @@
 		D8C4690528AEB96700400096 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
 		D8CC1818291C46FB00FF6A03 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		D8CC181A291C59D900FF6A03 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		D8CC181C291D8E8900FF6A03 /* NSNotification.Name + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification.Name + Extension.swift"; sourceTree = "<group>"; };
 		D8DA418C28625A96005AFE60 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
 		D8DD1574283FEF1C006EAA9C /* ZoomPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomPhotoCell.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				D8262F89281F2C6500FA3E76 /* UIKit */,
+				D8CC181C291D8E8900FF6A03 /* NSNotification.Name + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -955,6 +958,7 @@
 				D86A79E228212AA300F45D76 /* UIImageView + Extensions.swift in Sources */,
 				D8855CBB285902C400CCE65B /* ChatDetailsPresenter.swift in Sources */,
 				D8855CB72858FCCC00CCE65B /* SenderModel.swift in Sources */,
+				D8CC181D291D8E8900FF6A03 /* NSNotification.Name + Extension.swift in Sources */,
 				D83FFB5F2848B81B00C270DE /* UsersPresenter.swift in Sources */,
 				D8DEC041282ADEA2000A62B8 /* Completions.swift in Sources */,
 				D823977428DA17EE007BE85F /* WebViewController.swift in Sources */,

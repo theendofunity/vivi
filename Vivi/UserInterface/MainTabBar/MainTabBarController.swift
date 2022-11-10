@@ -8,7 +8,12 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
-
+    enum Tab: Int {
+        case main = 0
+        case chat = 1
+        case profile = 2
+    }
+    
     private var profileTabConfigurator: TabConfigurator?
     private var chatTabConfigurator: TabConfigurator?
 
@@ -22,6 +27,9 @@ class MainTabBarController: UITabBarController {
         tabBar.unselectedItemTintColor = .denim
         
         setupViewControllers()
+        updateUnreadBadge()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUnreadBadge), name: .messageReaded, object: nil)
     }
     
     func setupViewControllers() {
@@ -56,5 +64,22 @@ class MainTabBarController: UITabBarController {
         navigationController.tabBarItem.title = title
         navigationController.tabBarItem.image = image
         return navigationController
+    }
+
+    func setUnreadBadge(count: Int?) {
+        if let items = tabBar.items {
+            let chatItem = items[Tab.chat.rawValue]
+            if let count = count {
+                chatItem.badgeValue = "\(count)"
+                chatItem.badgeColor = .viviRose
+            } else {
+                chatItem.badgeValue = nil
+            }
+        }
+    }
+    
+    @objc func updateUnreadBadge() {
+       let count = DataStore.shared.unreadChats()
+        setUnreadBadge(count: count)
     }
 }

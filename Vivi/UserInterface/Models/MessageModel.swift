@@ -129,12 +129,12 @@ extension MessageModel: FirestoreSavable {
     }
     
     func isReaded(by userId: String) -> Bool {
-        return readed.contains {  $0 == userId }
+        return readed.contains { $0 == userId }
     }
     
     func isReadedByMe() -> Bool {
-        if let user = UserService.shared.user {
-            return isReaded(by: user.id)
+        if let user = UserService.shared.user?.id {
+            return isReaded(by: user)
         } else {
             return true
         }
