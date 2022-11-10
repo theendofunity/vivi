@@ -46,16 +46,14 @@ class AuthService {
             
             if let result = result {
                 completion(.success(result.user))
+                NotificationCenter.default.post(name: .login, object: nil)
             }
         }
     }
     
     func logout() {
-        do {
-          try auth.signOut()
-        } catch let signOutError as NSError {
-          print("Error signing out: %@", signOutError)
-        }
+        try? auth.signOut()
+        NotificationCenter.default.post(name: .logout, object: nil)
     }
     
     func restorePassword(email: String, completion: @escaping VoidCompletion) {

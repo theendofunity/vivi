@@ -59,7 +59,7 @@ class ProfilePresenter {
     func logout() {
         AuthService.shared.logout()
         userService.user = nil
-        navigationDelegate?.stateChanged()
+//        navigationDelegate?.stateChanged()
     }
 }
 

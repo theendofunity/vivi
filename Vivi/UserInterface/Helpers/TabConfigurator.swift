@@ -28,6 +28,9 @@ class TabConfigurator: TabConfiguratorProtocol {
         self.navigation = navigation
         
         determineState()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loginChanged), name: .logout, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loginChanged), name: .login, object: nil)
     }
     
     func determineState() {
@@ -53,6 +56,9 @@ class TabConfigurator: TabConfiguratorProtocol {
         
     }
 
+    @objc func loginChanged() {
+        determineState()
+    }
 }
 
 extension TabConfigurator: TabConfiguratorDelegate, AuthDelegate {
