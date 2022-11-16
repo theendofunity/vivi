@@ -42,6 +42,10 @@ class TabConfigurator: TabConfiguratorProtocol {
     }
     
     func showAuth() {
+        if navigation.viewControllers.last is AuthViewController {
+            return
+        }
+        
         let authPresenter = AuthPresenter()
         let authViewController = AuthViewController()
         

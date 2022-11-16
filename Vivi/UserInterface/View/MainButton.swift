@@ -11,7 +11,7 @@ import EasyPeasy
 class MainButton: UIButton {
     lazy var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .medium)
-        indicator.tintColor = .denim
+        indicator.color = .denim
         indicator.hidesWhenStopped = true
         indicator.isHidden = true
         return indicator
