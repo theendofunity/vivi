@@ -83,6 +83,27 @@ class FirestoreService {
         }
     }
     
+    func loadUsers(type: UserType, completion: @escaping UserModelCompletion) {
+        let ref = db.collection(Reference.users.rawValue).whereField("userType", isEqualTo: type.rawValue)
+        
+        ref.getDocuments { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let snapshot = snapshot else { return }
+            
+            let users: [UserModel] = snapshot.documents.compactMap { UserModel(document: $0.data()) }
+            
+            if let user = users.first {
+                completion(.success(user))
+            } else {
+                completion(.failure(CustomError.noUser))
+            }
+        }
+    }
+    
     func updateUsersInProject(project: ProjectModel) {
         let ref = db.collection(Reference.projects.rawValue).document(project.title)
         ref.setData(["users" : project.users], merge: true)

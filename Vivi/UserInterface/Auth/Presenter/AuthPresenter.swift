@@ -62,6 +62,7 @@ class AuthPresenter {
                     case .success(let user):
                         UserService.shared.user = user
                         self?.delegate?.authSuccess()
+                        NotificationCenter.default.post(name: .login, object: nil)
                     case .failure(let error):
                         self?.view?.showError(error: error)
                     }

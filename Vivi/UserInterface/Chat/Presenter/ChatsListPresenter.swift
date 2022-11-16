@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import SwiftLoader
 
 protocol ChatViewType: AnyObject {
     func hideAddButton(isHidden: Bool)
@@ -31,6 +32,8 @@ class ChatsListPresenter {
     
     func viewAppeared() {
         setupAddButton()
+        
+        checkChatsState()
     }
     
     func addListener() {
@@ -58,17 +61,17 @@ class ChatsListPresenter {
         view?.update(chats: chats)
     }
     
-    func loadChats() {
-        storage.loadChats { [weak self] result in
-            switch result {
-            case .success(let chats):
-                self?.chats = chats
-                self?.view?.update(chats: chats)
-            case .failure(let error):
-                self?.view?.showError(error: error)
-            }
-        }
-    }
+//    func loadChats() {
+//        storage.loadChats { [weak self] result in
+//            switch result {
+//            case .success(let chats):
+//                self?.chats = chats
+//                self?.view?.update(chats: chats)
+//            case .failure(let error):
+//                self?.view?.showError(error: error)
+//            }
+//        }
+//    }
     
     func setupAddButton() {
         var isButtonHidden = true
@@ -104,5 +107,34 @@ class ChatsListPresenter {
 extension ChatsListPresenter: NewChatDelegate {
     func usersSelected(users: [UserModel]) {
         view?.navigation()?.popViewController(animated: true)        
+    }
+}
+
+extension ChatsListPresenter {
+    func checkChatsState() {
+        guard let user = UserService.shared.user,
+        user.userType == .base
+        else {
+            return
+        }
+        
+        if user.chats.isEmpty {
+            startChatForNewUser()
+        }
+    }
+    
+    func startChatForNewUser() {
+        SwiftLoader.show(title: "Создается час с администратором", animated: true)
+        
+        ChatService.shared.startChatWithAdmin { [weak self] result in
+            SwiftLoader.hide()
+            
+            switch result {
+            case .success():
+                break
+            case .failure(let error):
+                self?.view?.showError(error: error)
+            }
+        }
     }
 }

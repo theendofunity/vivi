@@ -58,8 +58,6 @@ class ProfilePresenter {
     
     func logout() {
         AuthService.shared.logout()
-        userService.user = nil
-//        navigationDelegate?.stateChanged()
     }
 }
 
@@ -95,7 +93,12 @@ extension ProfilePresenter {
     }
     
     func setupPages() {
-        pages = PageType.allCases
+        if user.userType == .base {
+            pages = [.profile]
+        } else {
+            pages = PageType.allCases
+        }
+        
         view?.setupPages(pages: pages)
     }
 }

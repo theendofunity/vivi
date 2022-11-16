@@ -9,6 +9,7 @@ import Foundation
 
 enum CustomError {
     case chatAlreadyExist
+    case noUser
 }
 
 extension CustomError: LocalizedError {
@@ -16,6 +17,8 @@ extension CustomError: LocalizedError {
         switch self {
         case .chatAlreadyExist:
             return "Чат уже существует"
+        case .noUser:
+            return "Пользователь не найден. Попробуйте позже"
         }
     }
 }

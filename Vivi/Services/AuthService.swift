@@ -46,13 +46,15 @@ class AuthService {
             
             if let result = result {
                 completion(.success(result.user))
-                NotificationCenter.default.post(name: .login, object: nil)
             }
         }
     }
     
     func logout() {
         try? auth.signOut()
+        UserService.shared.user = nil
+        DataStore.shared.clearPrivateData()
+        
         NotificationCenter.default.post(name: .logout, object: nil)
     }
     

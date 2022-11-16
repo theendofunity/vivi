@@ -17,7 +17,11 @@ class ApplicationPresenter {
     var authService = AuthService.shared
     
     init() {
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(logout), name: .logout, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .logout, object: nil)
     }
     
     func start() {
@@ -33,6 +37,7 @@ class ApplicationPresenter {
         let group = DispatchGroup()
         loadUser(group: group)
         loadChats(group: group)
+        
         group.notify(queue: .main) {
             self.delegate?.dataLoaded()
         }
@@ -40,7 +45,7 @@ class ApplicationPresenter {
     
     func loadUser(group: DispatchGroup) {
         guard let user = authService.currentUser else {
-            self.logout()
+            self.authService.logout()
             return
         }
         
@@ -52,7 +57,7 @@ class ApplicationPresenter {
             case .success(let user):
                 UserService.shared.user = user
             case .failure(_):
-                self.logout()
+                self.authService.logout()
             }
         }
     }
@@ -67,15 +72,13 @@ class ApplicationPresenter {
             case .success(let chats):
                 DataStore.shared.chats = chats
             case .failure(_):
-                self.logout()
+                self.authService.logout()
             }
         }
     }
     
-    func logout() {
+    @objc func logout() {
         AuthService.shared.logout()
-        UserService.shared.user = nil
-        DataStore.shared.clearPrivateData()
         self.delegate?.dataLoaded()
     }
 }

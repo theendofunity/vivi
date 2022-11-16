@@ -161,6 +161,9 @@ extension ProfileViewController: ProfileViewType {
             segmentedControl.insertSegment(withTitle: $0.rawValue, at: lastIndex, animated: false)
         }
         segmentedControl.selectedSegmentIndex = 0
+        
+        segmentedControl.isHidden = pages.count == 1
+        
         pageDidChanged()
     }
     

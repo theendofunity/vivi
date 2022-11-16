@@ -30,6 +30,12 @@ class ChatService {
                         self.addUserToChat(userId: $0, chatId: chat.id)
                     }
                     completion(.success(Void()))
+                    
+                    if let currentUser = UserService.shared.user {
+                        var updatedUser = currentUser
+                        updatedUser.chats.append(chat.id)
+                        UserService.shared.user = updatedUser
+                    }
                 }
             }
         }
@@ -81,6 +87,43 @@ class ChatService {
         }
     }
     
+    func addUserToChat(userId: String, chatId: String) {
+        FirestoreService.shared.db.collection(FirestoreService.Reference.users.rawValue).document(userId).updateData(["chats" : FieldValue.arrayUnion([chatId])])
+    }
+    
+    func readMessage(message: MessageModel) {
+        guard let user = UserService.shared.user else { return }
+        
+        let ref = FirestoreService.shared.db
+            .collection(FirestoreService.Reference.chats.rawValue)
+            .document(message.chatID)
+            .collection("messages")
+            .document(message.id)
+        ref.updateData(["readed" : FieldValue.arrayUnion([user.id])])
+    }
+    
+    func startChatWithAdmin(completion: @escaping VoidCompletion) {
+        guard let currentUser = UserService.shared.user else { return }
+        
+        FirestoreService.shared.loadUsers(type: .admin) { result in
+            switch result {
+            case .success(let user):
+                let chat = ChatModel(users: [currentUser.id, user.id],
+                                     userNames: [user.displayName, currentUser.displayName],
+                                     title: "")
+                
+                self.createChat(chat: chat, completion: completion)
+                                     
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+}
+
+//MARK: - Observers
+
+extension ChatService {
     func addMessagesObserver(chatId: String, completion: @escaping MessagesCompletion) -> ListenerRegistration? {
         let ref = FirestoreService.shared.db.collection(FirestoreService.Reference.chats.rawValue).document(chatId).collection("messages")
         
@@ -139,22 +182,5 @@ class ChatService {
             completion(.success(chats))
         }
         return listener
-    }
-    
-    func addUserToChat(userId: String, chatId: String) {
-        FirestoreService.shared.db.collection(FirestoreService.Reference.users.rawValue).document(userId).updateData(["chats" : FieldValue.arrayUnion([chatId])])
-    }
-    
-    func readMessage(message: MessageModel) {
-        guard let user = UserService.shared.user else { return }
-        
-        
-        
-        let ref = FirestoreService.shared.db
-            .collection(FirestoreService.Reference.chats.rawValue)
-            .document(message.chatID)
-            .collection("messages")
-            .document(message.id)
-        ref.updateData(["readed" : FieldValue.arrayUnion([user.id])])
     }
 }

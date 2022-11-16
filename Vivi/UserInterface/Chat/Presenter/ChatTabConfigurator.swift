@@ -9,6 +9,9 @@ import Foundation
 
 class ChatTabConfigurator: TabConfigurator {
     override func showContent() {
+        if navigation.viewControllers.last is ChatsListViewController {
+            return
+        }
         let chatViewController = ChatsListViewController()
         let chatPresenter = ChatsListPresenter()
         chatViewController.presenter = chatPresenter
@@ -16,15 +19,5 @@ class ChatTabConfigurator: TabConfigurator {
         chatPresenter.view = chatViewController
         
         navigation.setViewControllers([chatViewController], animated: true)
-    }
-    
-    func startChatForNewUser() {
-        guard let user = UserService.shared.user,
-              !user.chats.isEmpty
-        else {
-            return
-        }
-        
-//        FirestoreService.shared.createChat(chat: <#T##ChatModel#>, completion: <#T##VoidCompletion#>)
     }
 }
