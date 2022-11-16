@@ -16,8 +16,6 @@
 		D823976C28D78B71007BE85F /* FormPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823976B28D78B71007BE85F /* FormPresenter.swift */; };
 		D823976E28D78DF0007BE85F /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823976D28D78DF0007BE85F /* FormModel.swift */; };
 		D823977428DA17EE007BE85F /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823977328DA17EE007BE85F /* WebViewController.swift */; };
-		D8262F72281F2ADB00FA3E76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F71281F2ADB00FA3E76 /* AppDelegate.swift */; };
-		D8262F74281F2ADB00FA3E76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F73281F2ADB00FA3E76 /* SceneDelegate.swift */; };
 		D8262F7B281F2ADB00FA3E76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8262F7A281F2ADB00FA3E76 /* Assets.xcassets */; };
 		D8262F86281F2B7F00FA3E76 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F85281F2B7F00FA3E76 /* MainTabBarController.swift */; };
 		D8262F8B281F2C7A00FA3E76 /* UIColor + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8262F8A281F2C7A00FA3E76 /* UIColor + Extensions.swift */; };
@@ -60,7 +58,6 @@
 		D86A79E028211A6600F45D76 /* ServiceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79DF28211A6600F45D76 /* ServiceDetailsViewController.swift */; };
 		D86A79E228212AA300F45D76 /* UIImageView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79E128212AA300F45D76 /* UIImageView + Extensions.swift */; };
 		D86A79E428212EEE00F45D76 /* UIImage + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79E328212EEE00F45D76 /* UIImage + Extensions.swift */; };
-		D86A79E6282154EA00F45D76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D86A79E5282154EA00F45D76 /* GoogleService-Info.plist */; };
 		D86A79E92821598A00F45D76 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79E82821598A00F45D76 /* StorageService.swift */; };
 		D86A79ED2821734000F45D76 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79EC2821734000F45D76 /* AuthService.swift */; };
 		D86A79F22821740C00F45D76 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A79F12821740C00F45D76 /* AuthViewController.swift */; };
@@ -102,6 +99,9 @@
 		D8CC1819291C46FB00FF6A03 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC1818291C46FB00FF6A03 /* ChatService.swift */; };
 		D8CC181B291C59DA00FF6A03 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC181A291C59D900FF6A03 /* Errors.swift */; };
 		D8CC181D291D8E8900FF6A03 /* NSNotification.Name + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC181C291D8E8900FF6A03 /* NSNotification.Name + Extension.swift */; };
+		D8CC18292925745400FF6A03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC18242925745200FF6A03 /* SceneDelegate.swift */; };
+		D8CC182A2925745400FF6A03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8CC18252925745200FF6A03 /* GoogleService-Info.plist */; };
+		D8CC182C2925745400FF6A03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC18272925745300FF6A03 /* AppDelegate.swift */; };
 		D8DA418D28625A96005AFE60 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA418C28625A96005AFE60 /* ChatCell.swift */; };
 		D8DD1573283E9B08006EAA9C /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */; };
 		D8DD1575283FEF1C006EAA9C /* ZoomPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD1574283FEF1C006EAA9C /* ZoomPhotoCell.swift */; };
@@ -136,8 +136,6 @@
 		D823976D28D78DF0007BE85F /* FormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModel.swift; sourceTree = "<group>"; };
 		D823977328DA17EE007BE85F /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		D8262F6E281F2ADB00FA3E76 /* Vivi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vivi.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8262F71281F2ADB00FA3E76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D8262F73281F2ADB00FA3E76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D8262F7A281F2ADB00FA3E76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8262F7F281F2ADB00FA3E76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8262F85281F2B7F00FA3E76 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 		D86A79DF28211A6600F45D76 /* ServiceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailsViewController.swift; sourceTree = "<group>"; };
 		D86A79E128212AA300F45D76 /* UIImageView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extensions.swift"; sourceTree = "<group>"; };
 		D86A79E328212EEE00F45D76 /* UIImage + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extensions.swift"; sourceTree = "<group>"; };
-		D86A79E5282154EA00F45D76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D86A79E82821598A00F45D76 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		D86A79EC2821734000F45D76 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		D86A79F12821740C00F45D76 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
@@ -223,6 +220,9 @@
 		D8CC1818291C46FB00FF6A03 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		D8CC181A291C59D900FF6A03 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		D8CC181C291D8E8900FF6A03 /* NSNotification.Name + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification.Name + Extension.swift"; sourceTree = "<group>"; };
+		D8CC18242925745200FF6A03 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		D8CC18252925745200FF6A03 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D8CC18272925745300FF6A03 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8DA418C28625A96005AFE60 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
 		D8DD1574283FEF1C006EAA9C /* ZoomPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomPhotoCell.swift; sourceTree = "<group>"; };
@@ -294,17 +294,11 @@
 		D8262F70281F2ADB00FA3E76 /* Vivi */ = {
 			isa = PBXGroup;
 			children = (
-				D8262F71281F2ADB00FA3E76 /* AppDelegate.swift */,
-				D8262F73281F2ADB00FA3E76 /* SceneDelegate.swift */,
+				D8CC18232925744500FF6A03 /* App */,
 				D86A79E72821596A00F45D76 /* Services */,
 				D8262F87281F2C1300FA3E76 /* UserInterface */,
 				D8262F88281F2C5700FA3E76 /* Extensions */,
-				D8262F7A281F2ADB00FA3E76 /* Assets.xcassets */,
-				D8262FA728201F2A00FA3E76 /* R.generated.swift */,
-				D86A79E5282154EA00F45D76 /* GoogleService-Info.plist */,
 				D8262F7F281F2ADB00FA3E76 /* Info.plist */,
-				D8262FAD28202D1D00FA3E76 /* LaunchScreen.storyboard */,
-				D850CFDF282BC8F500C41DE7 /* ApplicationPresenter.swift */,
 			);
 			path = Vivi;
 			sourceTree = "<group>";
@@ -711,6 +705,20 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		D8CC18232925744500FF6A03 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D8CC18272925745300FF6A03 /* AppDelegate.swift */,
+				D8CC18252925745200FF6A03 /* GoogleService-Info.plist */,
+				D8262FA728201F2A00FA3E76 /* R.generated.swift */,
+				D8262F7A281F2ADB00FA3E76 /* Assets.xcassets */,
+				D850CFDF282BC8F500C41DE7 /* ApplicationPresenter.swift */,
+				D8262FAD28202D1D00FA3E76 /* LaunchScreen.storyboard */,
+				D8CC18242925745200FF6A03 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		D8DEC03E282ADE8D000A62B8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -794,8 +802,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8262F7B281F2ADB00FA3E76 /* Assets.xcassets in Resources */,
+				D8CC182A2925745400FF6A03 /* GoogleService-Info.plist in Resources */,
 				D8262FAE28202D1D00FA3E76 /* LaunchScreen.storyboard in Resources */,
-				D86A79E6282154EA00F45D76 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -873,7 +881,6 @@
 				D8418E7F2821A8C800163255 /* RegistrationPresenter.swift in Sources */,
 				D8BEF64A2851199C00B675D9 /* NewChatViewController.swift in Sources */,
 				D8A1494328807E8A0012367E /* RestorePasswordViewController.swift in Sources */,
-				D8262F72281F2ADB00FA3E76 /* AppDelegate.swift in Sources */,
 				D83FFB612848BB2700C270DE /* UserCell.swift in Sources */,
 				D850CFE0282BC8F500C41DE7 /* ApplicationPresenter.swift in Sources */,
 				D80690362843ED66007916DF /* ProjectModel.swift in Sources */,
@@ -938,11 +945,11 @@
 				D8BEF64D2851318800B675D9 /* ProjectCell.swift in Sources */,
 				D8DD1575283FEF1C006EAA9C /* ZoomPhotoCell.swift in Sources */,
 				D89F59932875F13B006876E1 /* ValidationError.swift in Sources */,
-				D8262F74281F2ADB00FA3E76 /* SceneDelegate.swift in Sources */,
 				D8262F9D281F30A400FA3E76 /* ChatsListPresenter.swift in Sources */,
 				D86AEE94283BFAA7001BE89F /* PhotoGalleryCell.swift in Sources */,
 				D8A14945288089820012367E /* SecurityViewController.swift in Sources */,
 				D850CFE2282BCB9300C41DE7 /* ProfileMenuType.swift in Sources */,
+				D8CC18292925745400FF6A03 /* SceneDelegate.swift in Sources */,
 				D8A14947288089990012367E /* SecurityPresenter.swift in Sources */,
 				D8262FB82820316900FA3E76 /* PortfolioExampleCell.swift in Sources */,
 				D8FEDA7728C5100B00CD9901 /* NewExampleCell.swift in Sources */,
@@ -957,6 +964,7 @@
 				D8262FBC28203C5C00FA3E76 /* ServiceCell.swift in Sources */,
 				D86A79E228212AA300F45D76 /* UIImageView + Extensions.swift in Sources */,
 				D8855CBB285902C400CCE65B /* ChatDetailsPresenter.swift in Sources */,
+				D8CC182C2925745400FF6A03 /* AppDelegate.swift in Sources */,
 				D8855CB72858FCCC00CCE65B /* SenderModel.swift in Sources */,
 				D8CC181D291D8E8900FF6A03 /* NSNotification.Name + Extension.swift in Sources */,
 				D83FFB5F2848B81B00C270DE /* UsersPresenter.swift in Sources */,
@@ -1112,7 +1120,8 @@
 				INFOPLIST_FILE = Vivi/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1144,7 +1153,8 @@
 				INFOPLIST_FILE = Vivi/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
