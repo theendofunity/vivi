@@ -180,7 +180,6 @@ class StorageService {
     }
     
     func saveImage(imageUrl: URL, referenceType: ReferenceType, completion: @escaping UrlCompletion) {
-        print("URL", imageUrl.absoluteString)
         uploadFile(referenceType, fileUrl: imageUrl) { result in
             print(result)
             switch result {
