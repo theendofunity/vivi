@@ -41,8 +41,30 @@ class RegistrationViewController: UIViewController {
         return termsSwitch
     }()
     
-    private lazy var termsLabel: PlainLabel = {
-        let label = PlainLabel(text: "Соглашаюсь с условиями", fontType: .small)
+    private lazy var termsLabel: UITextView = {
+        let label = UITextView()
+        label.isEditable = false
+        label.backgroundColor = .clear
+        label.dataDetectorTypes = .link
+        label.isSelectable = true
+        
+        let attributedString = NSMutableAttributedString(string: "Соглашаюсь ",
+                                                         attributes: [.font : UIFont.smallTextFont ?? UIFont.systemFont(ofSize: 12),
+                                                                      .foregroundColor : UIColor.denim ?? .black])
+        let url = DataStore.shared.settings?.agreementUrl
+        
+        let urlAttributes: [NSAttributedString.Key : Any] = [
+            .font: UIFont.smallTextFont ?? UIFont.systemFont(ofSize: 12),
+            .foregroundColor : UIColor.denim ?? .black,
+            .underlineColor : UIColor.denim ?? .black,
+            .underlineStyle : NSUnderlineStyle.single.rawValue,
+            .link : URL(string: url ?? "") as Any
+        ]
+        
+        let urlString = NSMutableAttributedString(string: "с условиями", attributes: urlAttributes)
+        attributedString.append(urlString)
+        label.attributedText = attributedString
+        label.delegate = self
         return label
     }()
     
@@ -177,6 +199,10 @@ class RegistrationViewController: UIViewController {
 }
 
 extension RegistrationViewController: RegistrationViewType {
+    func navigation() -> UINavigationController? {
+        return navigationController
+    }
+    
     func showAnimation() {
         registerButton.showLoading()
     }
@@ -225,4 +251,11 @@ extension RegistrationViewController: TextFieldsStackViewDelegate {
     }
     
    
+}
+
+extension RegistrationViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        presenter.openUrl(url: URL)
+        return false
+    }
 }

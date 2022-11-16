@@ -12,6 +12,7 @@ class DataStore {
  
     //public data
     var examples: [ProjectExample] = []
+    var settings: SettingsModel?
     
     //private data
     

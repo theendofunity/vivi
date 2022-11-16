@@ -5,7 +5,7 @@
 //  Created by Дмитрий Дудкин on 04.05.2022.
 //
 
-import Foundation
+import UIKit
 
 protocol RegistrationViewType: AnyObject {
     func setFields(fields: [TextFieldViewModel])
@@ -13,6 +13,7 @@ protocol RegistrationViewType: AnyObject {
     func showSuccess()
     func showAnimation()
     func hideAnimation()
+    func navigation() -> UINavigationController?
 }
 
 protocol RegistrationDelegate: AnyObject {
@@ -104,5 +105,11 @@ class RegistrationPresenter {
     
     func registrationSuccess() {
         delegate?.registrationSuccess()
+    }
+    
+    func openUrl(url: URL) {
+        let webView = WebViewController()
+        webView.load(url: url)
+        self.view?.navigation()?.present(webView, animated: true)
     }
 }

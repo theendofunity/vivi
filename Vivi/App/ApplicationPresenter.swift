@@ -26,17 +26,16 @@ class ApplicationPresenter {
     
     func start() {
 //        authService.logout()
-        if authService.isLoggedIn {
-            loadData()
-        } else {
-            delegate?.dataLoaded()
-        }
+        loadData()
     }
     
     func loadData() {
         let group = DispatchGroup()
-        loadUser(group: group)
-        loadChats(group: group)
+        if authService.isLoggedIn {
+            loadUser(group: group)
+            loadChats(group: group)
+        }
+        loadSettings(group: group)
         
         group.notify(queue: .main) {
             self.delegate?.dataLoaded()
@@ -76,6 +75,23 @@ class ApplicationPresenter {
             }
         }
     }
+    
+    func loadSettings(group: DispatchGroup) {
+        group.enter()
+        print(#function)
+
+        firestoreService.load(referenceType: .settings) { (result: Result<[SettingsModel], Error>) in
+            group.leave()
+            switch result {
+            case .success(let settings):
+                DataStore.shared.settings = settings.first
+
+            case .failure(_):
+                break
+            }
+        }
+    }
+                             
     
     @objc func logout() {
         AuthService.shared.logout()

@@ -102,6 +102,7 @@
 		D8CC18292925745400FF6A03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC18242925745200FF6A03 /* SceneDelegate.swift */; };
 		D8CC182A2925745400FF6A03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8CC18252925745200FF6A03 /* GoogleService-Info.plist */; };
 		D8CC182C2925745400FF6A03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC18272925745300FF6A03 /* AppDelegate.swift */; };
+		D8CC182F292590C400FF6A03 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC182E292590C400FF6A03 /* SettingsModel.swift */; };
 		D8DA418D28625A96005AFE60 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA418C28625A96005AFE60 /* ChatCell.swift */; };
 		D8DD1573283E9B08006EAA9C /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */; };
 		D8DD1575283FEF1C006EAA9C /* ZoomPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD1574283FEF1C006EAA9C /* ZoomPhotoCell.swift */; };
@@ -223,6 +224,7 @@
 		D8CC18242925745200FF6A03 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D8CC18252925745200FF6A03 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D8CC18272925745300FF6A03 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D8CC182E292590C400FF6A03 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		D8DA418C28625A96005AFE60 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		D8DD1572283E9B08006EAA9C /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
 		D8DD1574283FEF1C006EAA9C /* ZoomPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomPhotoCell.swift; sourceTree = "<group>"; };
@@ -523,6 +525,7 @@
 				D8C4690528AEB96700400096 /* Link.swift */,
 				D8FEDA5E28BBC76A00CD9901 /* ProjectExample.swift */,
 				D823976D28D78DF0007BE85F /* FormModel.swift */,
+				D8CC182E292590C400FF6A03 /* SettingsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -885,6 +888,7 @@
 				D850CFE0282BC8F500C41DE7 /* ApplicationPresenter.swift in Sources */,
 				D80690362843ED66007916DF /* ProjectModel.swift in Sources */,
 				D86AEE7E2838EC50001BE89F /* TextFieldsStackView.swift in Sources */,
+				D8CC182F292590C400FF6A03 /* SettingsModel.swift in Sources */,
 				D83FFB632849218800C270DE /* UserDetailViewController.swift in Sources */,
 				D8F46A9A28D5DB9F00CB6479 /* TitleHeader.swift in Sources */,
 				D8FEDA6328BBCF3F00CD9901 /* PortfolioExamplesViewController.swift in Sources */,
