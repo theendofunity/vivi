@@ -106,7 +106,7 @@ class AuthViewController: UIViewController {
     }
     
     func setupView() {
-        view.backgroundColor = .viviRose50
+        view.backgroundColor = .white //TODO: fix after change colors
         view.addSubview(scrollView)
         
         scrollView.addSubview(backgroundView)
