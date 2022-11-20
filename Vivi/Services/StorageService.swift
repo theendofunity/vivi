@@ -179,26 +179,6 @@ class StorageService {
         }
     }
     
-    func saveImage(imageUrl: URL, referenceType: ReferenceType, completion: @escaping UrlCompletion) {
-        uploadFile(referenceType, fileUrl: imageUrl) { result in
-            print(result)
-            switch result {
-            case .success():
-                guard let fileName = imageUrl.pathComponents.last else { return }
-                self.getDownloadUrl(referenceType, fileName: fileName) { result in
-                    switch result {
-                    case .success(let url):
-                        completion(.success(url))
-                    case .failure(let error):
-                        completion(.failure(error))
-                    }
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
     func saveData(imageUrl: URL, referenceType: ReferenceType, completion: @escaping UrlCompletion) {
         uploadData(referenceType, fileUrl: imageUrl) { result in
             print(result)

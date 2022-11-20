@@ -99,7 +99,7 @@ class PhotoGalleryPresenter {
     
     func uploadPhoto(image: UIImage) {
         guard let ref = referenceType(),
-        let data = image.jpegData(compressionQuality: 0.5) else { return }
+        let data = image.jpegData(compressionQuality: Constants.compressionQuality) else { return }
         
         SwiftLoader.show(animated: true)
 

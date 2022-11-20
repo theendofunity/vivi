@@ -232,7 +232,7 @@ extension ProfilePresenter {
 extension ProfilePresenter {
     func setAvatar(image: UIImage) {
        
-        guard let data = image.jpegData(compressionQuality: 0.5) else {
+        guard let data = image.jpegData(compressionQuality: Constants.compressionQuality) else {
             return
         }
         

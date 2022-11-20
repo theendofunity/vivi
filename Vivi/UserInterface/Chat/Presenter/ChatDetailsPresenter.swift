@@ -135,7 +135,7 @@ extension ChatDetailsPresenter {
     }
     
     func sendMessage(image: UIImage) {
-        guard let data = image.jpegData(compressionQuality: 0.5) else { return }
+        guard let data = image.jpegData(compressionQuality: Constants.compressionQuality) else { return }
         
         SwiftLoader.show(animated: true)
         

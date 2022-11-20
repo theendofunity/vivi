@@ -80,7 +80,7 @@ extension NewExamplePresenter {
     
     private func uploadImages(group: DispatchGroup, type: NewExampleSection) {
         guard let cover = example.titleImage,
-        let data = cover.jpegData(compressionQuality: 0.5) else { return }
+              let data = cover.jpegData(compressionQuality: Constants.compressionQuality) else { return }
         
         group.enter()
         storage.saveData(data: data,
@@ -100,7 +100,7 @@ extension NewExamplePresenter {
                 if item.type == .empty {
                     continue
                 }
-                if let data = item.image?.jpegData(compressionQuality: 0.5) {
+                if let data = item.image?.jpegData(compressionQuality: Constants.compressionQuality) {
                     group.enter()
                     storage.saveData(data: data,
                                      referenceType: .examples) { result in
@@ -119,7 +119,7 @@ extension NewExamplePresenter {
                 if item.type == .empty {
                     continue
                 }
-                if let data = item.image?.jpegData(compressionQuality: 0.5) {
+                if let data = item.image?.jpegData(compressionQuality: Constants.compressionQuality) {
                     group.enter()
                     storage.saveData(data: data,
                                      referenceType: .examples) { result in
@@ -138,7 +138,7 @@ extension NewExamplePresenter {
                 if item.type == .empty {
                     continue
                 }
-                if let data = item.image?.jpegData(compressionQuality: 0.5) {
+                if let data = item.image?.jpegData(compressionQuality: Constants.compressionQuality) {
                     group.enter()
                     storage.saveData(data: data,
                                      referenceType: .examples) { result in

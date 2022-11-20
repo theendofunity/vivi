@@ -92,6 +92,7 @@
 		D8A14947288089990012367E /* SecurityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A14946288089990012367E /* SecurityPresenter.swift */; };
 		D8B27B0E282C285300EDAD23 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */; };
 		D8B27B10282C38D300EDAD23 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */; };
+		D8BE31CA292AC65200ED4DF4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BE31C9292AC65200ED4DF4 /* Constants.swift */; };
 		D8BEF6482851199000B675D9 /* NewChatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BEF6472851199000B675D9 /* NewChatPresenter.swift */; };
 		D8BEF64A2851199C00B675D9 /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BEF6492851199C00B675D9 /* NewChatViewController.swift */; };
 		D8BEF64D2851318800B675D9 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BEF64C2851318800B675D9 /* ProjectCell.swift */; };
@@ -214,6 +215,7 @@
 		D8A14946288089990012367E /* SecurityPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityPresenter.swift; sourceTree = "<group>"; };
 		D8B27B0D282C285300EDAD23 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D8B27B0F282C38D300EDAD23 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		D8BE31C9292AC65200ED4DF4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D8BEF6472851199000B675D9 /* NewChatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatPresenter.swift; sourceTree = "<group>"; };
 		D8BEF6492851199C00B675D9 /* NewChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
 		D8BEF64C2851318800B675D9 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
@@ -718,6 +720,7 @@
 				D850CFDF282BC8F500C41DE7 /* ApplicationPresenter.swift */,
 				D8262FAD28202D1D00FA3E76 /* LaunchScreen.storyboard */,
 				D8CC18242925745200FF6A03 /* SceneDelegate.swift */,
+				D8BE31C9292AC65200ED4DF4 /* Constants.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -918,6 +921,7 @@
 				D8DA418D28625A96005AFE60 /* ChatCell.swift in Sources */,
 				D863D097284D02F700E98E2D /* ProjectDetailPresenter.swift in Sources */,
 				D823976C28D78B71007BE85F /* FormPresenter.swift in Sources */,
+				D8BE31CA292AC65200ED4DF4 /* Constants.swift in Sources */,
 				D88A0CE628467CA200B02D3E /* UISegmentedControl + Extensions.swift in Sources */,
 				D8C4690628AEB96700400096 /* Link.swift in Sources */,
 				D8CC1819291C46FB00FF6A03 /* ChatService.swift in Sources */,

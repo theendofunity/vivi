@@ -136,7 +136,7 @@ extension ProjectDetailPresenter {
 
 extension ProjectDetailPresenter {
     func setAvatar(image: UIImage) {
-        guard let data = image.jpegData(compressionQuality: 0.5) else { return }
+        guard let data = image.jpegData(compressionQuality: Constants.compressionQuality) else { return }
         
         SwiftLoader.show(animated: true)
         StorageService.shared.saveData(data: data, referenceType: .avatars) { [weak self] result in
