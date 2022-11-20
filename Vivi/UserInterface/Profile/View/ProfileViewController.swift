@@ -225,8 +225,8 @@ extension ProfileViewController: HeaderViewDelegate {
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let url = info[.imageURL] as? URL else { return }
-        presenter.setAvatar(url: url)
+        guard let image = info[.originalImage] as? UIImage else { return }
+        presenter.setAvatar(image: image)
         dismiss(animated: true)
     }
 }

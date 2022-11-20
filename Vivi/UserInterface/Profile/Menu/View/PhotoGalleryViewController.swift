@@ -137,8 +137,8 @@ extension PhotoGalleryViewController: PhotoGalleryViewType {
 extension PhotoGalleryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let url = info[.imageURL] as? URL else { return }
-        presenter.uploadPhoto(url: url)
+        guard let image = info[.imageURL] as? UIImage else { return }
+        presenter.uploadPhoto(image: image)
         dismiss(animated: true)
     }
 }

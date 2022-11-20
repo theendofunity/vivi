@@ -134,10 +134,12 @@ extension ChatDetailsPresenter {
         }
     }
     
-    func sendMessage(imageUrl: URL) {
+    func sendMessage(image: UIImage) {
+        guard let data = image.jpegData(compressionQuality: 0.5) else { return }
+        
         SwiftLoader.show(animated: true)
         
-        StorageService.shared.saveImage(imageUrl: imageUrl, referenceType: .chatMedia) { [weak self] result in
+        StorageService.shared.saveData(data: data, referenceType: .chatMedia) { [weak self] result in
             SwiftLoader.hide()
             switch result {
             case .success(let url):
@@ -190,17 +192,17 @@ extension ChatDetailsPresenter {
         self.view?.navigation()?.present(view, animated: true)
     }
     
-    func showImageConfirm(url: URL) {
+    func showImageConfirm(image: UIImage) {
         let confirmView = ConfirmImageSendingViewController()
         confirmView.delegate = self
-        confirmView.configure(imageUrl: url)
+        confirmView.configure(image: image)
         confirmView.modalPresentationStyle = .popover
         view?.navigation()?.present(confirmView, animated: true)
     }
 }
 
 extension ChatDetailsPresenter: ConfirmSendingImageDelegate {
-    func sendButtonPressed(imageUrl: URL) {
-        sendMessage(imageUrl: imageUrl)
+    func sendButtonPressed(image: UIImage) {
+        sendMessage(image: image)
     }
 }

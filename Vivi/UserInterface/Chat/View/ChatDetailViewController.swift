@@ -211,9 +211,9 @@ extension ChatDetailViewController: UIImagePickerControllerDelegate, UINavigatio
         guard let type = info[.mediaType] as? String else { return }
         
         if type == "public.image" {
-            guard let url = info[.imageURL] as? URL else { return }
+            guard let image = info[.originalImage] as? UIImage else { return }
             dismiss(animated: true)
-            showConfirmSending(url: url)
+            showConfirmSending(image: image)
         } else if type == "public.movie" {
             guard let url = info[.mediaURL] as? URL else { return }
             dismiss(animated: true)
@@ -221,8 +221,8 @@ extension ChatDetailViewController: UIImagePickerControllerDelegate, UINavigatio
         }
     }
     
-    func showConfirmSending(url: URL) {
-        presenter?.showImageConfirm(url: url)
+    func showConfirmSending(image: UIImage) {
+        presenter?.showImageConfirm(image: image)
     }
 }
 

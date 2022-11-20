@@ -9,7 +9,7 @@ import UIKit
 import EasyPeasy
 
 protocol ConfirmSendingImageDelegate: AnyObject {
-    func sendButtonPressed(imageUrl: URL)
+    func sendButtonPressed(image: UIImage)
 }
 
 class ConfirmImageSendingViewController: UIViewController {
@@ -102,8 +102,8 @@ class ConfirmImageSendingViewController: UIViewController {
     }
 
     @objc func sendButtonPressed() {
-        guard let url = url else { return }
-        delegate?.sendButtonPressed(imageUrl: url)
+        guard let image = imageView.image else { return }
+        delegate?.sendButtonPressed(image: image)
         dismiss(animated: true)
     }
     
@@ -111,8 +111,7 @@ class ConfirmImageSendingViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    func configure(imageUrl: URL) {
-        self.url = imageUrl
-        imageView.sd_setImage(with: imageUrl)
+    func configure(image: UIImage) {
+        imageView.image = image
     }
 }

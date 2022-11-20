@@ -230,19 +230,22 @@ extension ProfilePresenter {
 }
 
 extension ProfilePresenter {
-    func setAvatar(url: URL) {
-        user.avatarUrl = url.absoluteString
-        view?.updateUserInfo(user: user)
+    func setAvatar(image: UIImage) {
+       
+        guard let data = image.jpegData(compressionQuality: 0.5) else {
+            return
+        }
         
         SwiftLoader.show(animated: true)
         
-        storageService.saveImage(imageUrl: url, referenceType: .avatars) { [weak self] result in
+        storageService.saveData(data: data, referenceType: .avatars) { [weak self] result in
             SwiftLoader.hide()
             guard let self = self else { return }
             
             switch result {
             case .success(let url):
                 self.user.avatarUrl = url.absoluteString
+                self.view?.updateUserInfo(user: self.user)
                 self.saveUser()
             case .failure(let error):
                 self.view?.showError(error: error)

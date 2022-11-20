@@ -97,16 +97,17 @@ class PhotoGalleryPresenter {
         }
     }
     
-    func uploadPhoto(url: URL) {
-        guard let ref = referenceType() else { return }
+    func uploadPhoto(image: UIImage) {
+        guard let ref = referenceType(),
+        let data = image.jpegData(compressionQuality: 0.5) else { return }
         
         SwiftLoader.show(animated: true)
 
-        storageService.uploadFile(ref, fileUrl: url) { [weak self] result in
+        storageService.saveData(data: data, referenceType: ref) { [weak self] result in
             SwiftLoader.hide()
             guard let self = self else { return }
             switch result {
-            case .success():
+            case .success(let url):
                 self.urls.append(url)
                 self.view?.update(urls: self.urls)
             case .failure(let error):

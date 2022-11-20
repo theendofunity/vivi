@@ -135,9 +135,11 @@ extension ProjectDetailPresenter {
 }
 
 extension ProjectDetailPresenter {
-    func setAvatar(url: URL) {
+    func setAvatar(image: UIImage) {
+        guard let data = image.jpegData(compressionQuality: 0.5) else { return }
+        
         SwiftLoader.show(animated: true)
-        StorageService.shared.saveImage(imageUrl: url, referenceType: .avatars) { [weak self] result in
+        StorageService.shared.saveData(data: data, referenceType: .avatars) { [weak self] result in
             SwiftLoader.hide()
             guard let self = self else { return }
             switch result {
