@@ -11,4 +11,8 @@ extension UIImage {
     func template() -> UIImage {
         return withRenderingMode(.alwaysTemplate)
     }
+    
+    func saveImage() {
+        UIImageWriteToSavedPhotosAlbum(self, nil, nil, nil)
+    }
 }

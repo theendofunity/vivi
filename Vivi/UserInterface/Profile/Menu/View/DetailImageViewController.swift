@@ -20,6 +20,14 @@ class DetailImageViewController: UIViewController {
         return button
     }()
     
+    private lazy var saveImageButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "square.and.arrow.down"), for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(saveImage), for: .touchUpInside)
+        return button
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let layout = createLayout()
        
@@ -43,12 +51,20 @@ class DetailImageViewController: UIViewController {
     func setupView() {
         view.addSubview(collectionView)
         view.addSubview(closeButton)
+        view.addSubview(saveImageButton)
     }
     
     func setupConstraints() {
         closeButton.easy.layout(
             Top(24).to(view.safeAreaLayoutGuide, .top),
             Trailing(24),
+            Width(25),
+            Height(25)
+        )
+        
+        saveImageButton.easy.layout(
+            Top(24).to(view.safeAreaLayoutGuide, .top),
+            Leading(24),
             Width(25),
             Height(25)
         )
@@ -91,6 +107,15 @@ class DetailImageViewController: UIViewController {
     
     @objc func closeView() {
         self.dismiss(animated: true)
+    }
+    
+    @objc func saveImage() {
+        guard let cell = collectionView.visibleCells.first as? ZoomPhotoCell else {
+            return
+        }
+        
+        let image = cell.photoView.image
+        image?.saveImage()
     }
 }
 
