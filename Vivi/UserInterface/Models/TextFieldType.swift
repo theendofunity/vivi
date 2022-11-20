@@ -24,6 +24,7 @@ enum TextFieldType: CaseIterable {
     case oldPassword
     case newPassword
     case description
+    case birthday
     
     func fieldTitle() -> String {
         switch self {
@@ -55,6 +56,8 @@ enum TextFieldType: CaseIterable {
             return "Новый пароль"
         case .description:
             return "Описание"
+        case .birthday:
+            return "Дата рождения"
         default:
             return ""
             
@@ -77,6 +80,8 @@ enum TextFieldType: CaseIterable {
             return "Пароль"
         case .phone:
             return "Номер телефона"
+        case .birthday:
+            return "Дата рождения"
         default:
             return ""
         }

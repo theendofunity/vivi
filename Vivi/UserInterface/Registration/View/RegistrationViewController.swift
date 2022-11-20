@@ -185,7 +185,8 @@ class RegistrationViewController: UIViewController {
               let firstName = getText(.name),
               let lastName = getText(.lastName),
               let city = getText(.city),
-              let phone = getText(.phone)
+              let phone = getText(.phone),
+              let birthday = getText(.birthday)
         else { return }
         
         presenter.registerButtonPressed(email: email,
@@ -194,7 +195,8 @@ class RegistrationViewController: UIViewController {
                                         lastName: lastName,
                                         middleName: getText(.middleName),
                                         phone: phone,
-                                        city: city)
+                                        city: city,
+                                        birthday: birthday)
     }
 }
 

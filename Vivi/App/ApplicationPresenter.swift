@@ -25,7 +25,6 @@ class ApplicationPresenter {
     }
     
     func start() {
-//        authService.logout()
         loadData()
     }
     

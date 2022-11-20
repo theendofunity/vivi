@@ -85,6 +85,7 @@ extension ProfilePresenter {
             .init(type: .name, value: user.firstName, canEdit: false),
             .init(type: .middleName, value: user.middleName ?? "", canEdit: false),
             .init(type: .lastName, value: user.lastName, canEdit: false),
+            .init(type: .birthday, value: user.birthday, canEdit: false),
             .init(type: .city, value: user.city, canEdit: false),
             .init(type: .address, value: user.address ?? "", canEdit: true),
         ]

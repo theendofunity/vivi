@@ -26,6 +26,8 @@ class TextFieldValidator {
             return PhoneValidator()
         case .password, .oldPassword, .newPassword:
             return PasswordValidator()
+        case .birthday:
+            return BirthdayValidator()
         default:
             return nil
         }
@@ -90,7 +92,7 @@ class PhoneValidator: ValidatorType {
 }
 
 class PasswordValidator: ValidatorType {
-    var type: TextFieldType = .phone
+    var type: TextFieldType = .password
     
     func validate(text: String) -> Error? {
         if text.isEmpty {
@@ -105,6 +107,37 @@ class PasswordValidator: ValidatorType {
     func isValid(text: String) -> Bool {
         return text.count >= 6 && text.count <= 20
     }
+}
+
+class BirthdayValidator: ValidatorType {
+    var type: TextFieldType = .birthday
+    
+    func validate(text: String) -> Error? {
+        if text.isEmpty {
+            return ValidationError.empty
+        } else if !isValid(text: text) {
+            return ValidationError.incorrectDate
+        } else {
+            return nil
+        }
+    }
+    
+    func isValid(text: String) -> Bool {
+        let dateformater = DateFormatter()
+        dateformater.timeStyle = .none
+        dateformater.dateStyle = .medium
+        if let date = dateformater.date(from: text) {
+            let currentDate = Date()
+            var component = DateComponents()
+            component.year = -18
+            let targetDate = Calendar.current.date(byAdding: component, to: currentDate) ?? Date()
+            return date <= targetDate
+        } else {
+            return false
+        }
+    }
+    
+    
 }
 
 

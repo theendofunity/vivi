@@ -30,12 +30,21 @@ class TextFieldWithLabel: UIView {
         let label = UILabel()
         label.textColor = .red
         label.font = .smallTextFont
+        label.numberOfLines = 2
         return label
     }()
     
     lazy var textField: LineTextField = {
         let textField = LineTextField()
         return textField
+    }()
+    
+    lazy var datePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.datePickerMode = .date
+        picker.preferredDatePickerStyle = .wheels
+        picker.sizeToFit()
+        return picker
     }()
     
     override init(frame: CGRect) {
@@ -106,9 +115,29 @@ class TextFieldWithLabel: UIView {
             textField.keyboardType = .phonePad
         case .password:
             textField.keyboardType = .asciiCapable
+        case .birthday:
+           setupPicker()
         default:
             textField.keyboardType = .default
         }
+    }
+    
+    func setupPicker() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        textField.inputAccessoryView = toolbar
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
+        toolbar.items = [doneButton]
+        textField.inputView = datePicker
+    }
+    
+    @objc func donePressed() {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        let date = datePicker.date
+        textField.text = "\(formatter.string(from: date))"
+        endEditing(true)
     }
     
     func setLabelText(_ text: String) {

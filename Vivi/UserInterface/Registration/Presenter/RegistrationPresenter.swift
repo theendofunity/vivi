@@ -35,6 +35,7 @@ class RegistrationPresenter {
             .name,
             .middleName,
             .lastName,
+            .birthday,
             .city,
             .email,
             .phone,
@@ -52,12 +53,14 @@ class RegistrationPresenter {
                                lastName: String,
                                middleName: String?,
                                phone: String,
-                               city: String) {
+                               city: String,
+                               birthday: String) {
         let user = UserModel(firstName: firstName,
                              lastName: lastName,
                              middleName: middleName,
                              city: city,
-                             phone: phone)
+                             phone: phone,
+                             birthday: birthday)
         self.user = user
         
         if validate() {

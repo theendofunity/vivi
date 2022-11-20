@@ -14,6 +14,7 @@ enum ValidationError {
     case incorrectPassword
     case emptyFields
     case terms
+    case incorrectDate
 }
 
 extension ValidationError: LocalizedError {
@@ -32,6 +33,8 @@ extension ValidationError: LocalizedError {
             return "Заполните все поля"
         case .terms:
             return "Необходимо согласиться с условиями"
+        case .incorrectDate:
+            return "Для регистрации необходимо быть старше 18 лет"
         }
     }
 }

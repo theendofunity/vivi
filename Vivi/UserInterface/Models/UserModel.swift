@@ -23,6 +23,7 @@ struct UserModel: FirestoreSavable, Hashable {
     let middleName: String?
     let city: String
     let phone: String
+    let birthday: String
     
     var project: String?
     var target: String?
@@ -47,7 +48,8 @@ struct UserModel: FirestoreSavable, Hashable {
             "userType" : userType.rawValue,
             "address" : address ?? "",
             "avatarUrl" : avatarUrl ?? "",
-            "chats" : chats
+            "chats" : chats,
+            "birthday" : birthday
         ]
         
         return dict
@@ -57,13 +59,15 @@ struct UserModel: FirestoreSavable, Hashable {
          lastName: String,
          middleName: String?,
          city: String,
-         phone: String) {
+         phone: String,
+         birthday: String) {
         self.id = UUID().uuidString
         self.firstName = firstName
         self.lastName = lastName
         self.phone = phone
         self.city = city
         self.middleName = middleName
+        self.birthday = birthday
     }
     
     init?(document: [String : Any]) {
@@ -73,12 +77,14 @@ struct UserModel: FirestoreSavable, Hashable {
         let phone = document["phone"] as? String,
         let city = document["city"] as? String,
         let project = document ["project"] as? String,
+        let birthday = document["birthday"] as? String,
         let userType = document["userType"] as? String else { return nil }
         
         self.id = id
         self.firstName = firstName
         self.lastName = lastName
         self.phone = phone
+        self.birthday = birthday
         self.city = city
         self.project = project
         self.userType = UserType(rawValue: userType) ?? .client
@@ -118,7 +124,7 @@ extension UserModel: HeaderRepresentable {
 
 extension UserModel: SenderType {
     var senderId: String {
-        return id ?? ""
+        return id
     }
     
     var displayName: String {
