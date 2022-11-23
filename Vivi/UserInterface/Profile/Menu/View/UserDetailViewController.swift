@@ -170,5 +170,6 @@ extension UserDetailViewController: UserDetailViewType {
     
     func setupProject(model: TextFieldViewModel) {
         projectTextField.model = model
+        projectTextField.textField.text = model.value
     }
 }
