@@ -114,8 +114,15 @@ class DetailImageViewController: UIViewController {
             return
         }
         
+        UIImpactFeedbackGenerator().impactOccurred()
+        
         let image = cell.photoView.image
         image?.saveImage()
+        
+        let alert = UIAlertController(title: "Cохранено", message: nil, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ок", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
     }
 }
 

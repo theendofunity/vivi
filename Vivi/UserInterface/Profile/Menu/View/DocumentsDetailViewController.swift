@@ -8,6 +8,7 @@
 import UIKit
 import EasyPeasy
 import PDFKit
+import SwiftLoader
 
 class DocumentsDetailViewController: UIViewController {
     var url: URL
@@ -24,6 +25,14 @@ class DocumentsDetailViewController: UIViewController {
         button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(closeView), for: .touchUpInside)
         button.tintColor = .white
+        return button
+    }()
+    
+    private lazy var saveButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "square.and.arrow.down"), for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -48,6 +57,7 @@ class DocumentsDetailViewController: UIViewController {
     func setupView() {
         view.addSubview(pdfView)
         view.addSubview(closeButton)
+        view.addSubview(saveButton)
     }
     
     func setupConstraints() {
@@ -61,15 +71,43 @@ class DocumentsDetailViewController: UIViewController {
             Width(25),
             Height(25)
         )
+        
+        saveButton.easy.layout(
+            Top(24).to(view.safeAreaLayoutGuide, .top),
+            Leading(24),
+            Width(25),
+            Height(25)
+        )
     }
     
     func load() {
-        if let document = PDFDocument(url: url) {
-            pdfView.document = document
+        DispatchQueue.global().async {
+            if let document = PDFDocument(url: self.url) {
+                DispatchQueue.main.async {
+                    self.pdfView.document = document
+                    
+                }
+            }
         }
     }
     
     @objc func closeView() {
         self.dismiss(animated: true)
+    }
+    
+    @objc func saveButtonPressed() {
+        UIImpactFeedbackGenerator().impactOccurred()
+
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        let documentName = url.lastPathComponent
+        let path = documentsDirectory.appendingPathComponent(documentName)
+        
+        pdfView.document?.write(to: path)
+
+        let alert = UIAlertController(title: "Cохранено", message: nil, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ок", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
     }
 }
