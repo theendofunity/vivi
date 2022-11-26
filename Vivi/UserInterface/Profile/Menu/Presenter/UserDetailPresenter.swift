@@ -26,7 +26,7 @@ class UserDetailPresenter {
     var user: UserModel
     var storage = FirestoreService.shared
     
-    var selectedProject: ProjectModel?
+    var selectedProjects: [ProjectModel] = []
     
     init(user: UserModel) {
         self.user = user
@@ -42,9 +42,12 @@ class UserDetailPresenter {
     }
     
     func setupProject() {
-        var projectTitle = user.project ?? ""
-        if let selectedProject = selectedProject {
+        var projectTitle = user.projects.first ?? ""
+        if let selectedProject = selectedProjects.first {
             projectTitle = selectedProject.title
+            if selectedProjects.count > 1 {
+                projectTitle.append(" ...")
+            }
         }
         
         let model = TextFieldViewModel(type: .project, value: projectTitle, canEdit: false)
@@ -70,13 +73,14 @@ class UserDetailPresenter {
     }
     
     func addUserToProject() {
-        guard let _ = selectedProject,
-              selectedProject?.title != user.project
-        else { return }
-        
-        selectedProject?.users.append(user.id)
-        storage.updateUsersInProject(project: selectedProject!)
-        user.project = selectedProject?.title
+        for (index, project) in selectedProjects.enumerated() {
+            var changableProject = project
+            changableProject.users.append(user.id)
+            user.projects.append(changableProject.title)
+            storage.updateUsersInProject(project: changableProject)
+            
+            selectedProjects[index] = changableProject
+        }
     }
     
     func writeButtonPressed() {
@@ -85,7 +89,7 @@ class UserDetailPresenter {
     
     func changeProjectButtonPressed() {
         let view = TextMenuViewController()
-        let presenter = ProjectsPresenter(type: .select)
+        let presenter = ProjectsPresenter(type: .select, selectionType: .multiply)
         presenter.delegate = self
         view.presenter = presenter
         presenter.view = view
@@ -95,10 +99,10 @@ class UserDetailPresenter {
 }
 
 extension UserDetailPresenter: ProjectPresenterDelegate {
-    func projectDidSelect(project: ProjectModel) {
+    func projectsDidSelect(projects: [ProjectModel]) {
         view?.navigation()?.dismiss(animated: true)
         
-        selectedProject = project
+        selectedProjects = projects
         setupProject()
     }
 }

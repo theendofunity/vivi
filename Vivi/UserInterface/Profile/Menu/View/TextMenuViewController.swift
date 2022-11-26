@@ -78,6 +78,12 @@ class TextMenuViewController: UIViewController {
 }
 
 extension TextMenuViewController: TextMenuViewType {
+    func selectCell(indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? TextMenuCell else { return }
+        
+        cell.select()
+    }
+    
     func selectLink() {
         let alert = UIAlertController(title: "Новая анкета", message: "Введите ссылку на анкету", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Сохранить", style: .default) { action in

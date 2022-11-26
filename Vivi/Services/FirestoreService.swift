@@ -107,7 +107,7 @@ class FirestoreService {
     
     func updateUsersInProject(project: ProjectModel) {
         let ref = db.collection(Reference.projects.rawValue).document(project.title)
-        ref.setData(["users" : project.users], merge: true)
+        ref.updateData(["users" : FieldValue.arrayUnion(project.users)])
         
         guard let id = project.documentId() else { return }
         let chatRef = db.collection(Reference.chats.rawValue).document(id)

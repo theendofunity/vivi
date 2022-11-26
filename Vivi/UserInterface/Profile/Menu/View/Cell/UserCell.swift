@@ -76,6 +76,6 @@ class UserCell: ReusableCell {
         }
         
         titleLabel.text = user.usernameTitle()
-        subtitleLabel.text = user.project
+        subtitleLabel.text = user.projects.first
     }
 }

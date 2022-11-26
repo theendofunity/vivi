@@ -22,6 +22,15 @@ class TextMenuCell: ReusableCell {
         return view
     }()
     
+    private lazy var selectionImageView: UIImageView = {
+        let view = UIImageView()
+        let image = UIImage(systemName: "checkmark")?.template()
+        view.image = image
+        view.tintColor = .denim
+        view.isHidden = true
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupView()
@@ -36,6 +45,7 @@ class TextMenuCell: ReusableCell {
         backgroundColor = .background
         addSubview(titleLabel)
         addSubview(arrowImageView)
+        addSubview(selectionImageView)
     }
     
     func setupConstraints() {
@@ -48,9 +58,19 @@ class TextMenuCell: ReusableCell {
             Trailing(),
             CenterY()
         )
+        
+        selectionImageView.easy.layout(
+            Trailing(),
+            CenterY()
+        )
     }
 
     func configure(title: String) {
         titleLabel.text = title
+    }
+    
+    func select() {
+        arrowImageView.isHidden.toggle()
+        selectionImageView.isHidden.toggle()
     }
 }

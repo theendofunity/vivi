@@ -69,8 +69,10 @@ extension ProfilePresenter {
         
         if user.userType == .client {
             menuItems = [.form, .agreement, .examples, .sketches, .visualizations, .project]
-        } else if user.userType == .admin {
+        } else if user.userType == .admin || user.userType == .developer {
             menuItems = [.allProjects, .users, .main]
+        } else if user.userType == .worker {
+            menuItems = [.allProjects]
         }
         
         view?.setupMenu(items: menuItems)
@@ -140,7 +142,7 @@ extension ProfilePresenter {
     }
     
     func showTextMenu(type: ProfileMenuType) {
-        guard let project = user.project else { return }
+        guard let project = user.projects.first else { return }
         
         let view = TextMenuViewController()
         let presenter = TextMenuPresenter(type: type, project: project)
@@ -151,7 +153,7 @@ extension ProfilePresenter {
     }
     
     func showGalleryMenu(type: ProfileMenuType) {
-        guard let project = user.project else { return }
+        guard let project = user.projects.first else { return }
         
         let view = PhotoGalleryViewController()
         let presenter = PhotoGalleryPresenter(type: type, project: project)
@@ -166,7 +168,7 @@ extension ProfilePresenter {
 
 extension ProfilePresenter {
     func showForm() {
-        guard let project = user.project else { return }
+        guard let project = user.projects.first else { return }
         
         let view = TextMenuViewController()
         let presenter = FormPresenter(type: .form, project: project)

@@ -17,6 +17,8 @@ protocol TextMenuViewType: AnyObject {
     func selectFile()
     func selectLink()
     
+    func selectCell(indexPath: IndexPath)
+    
     func navigation() -> UINavigationController?
 }
 
@@ -31,6 +33,8 @@ protocol TextMenuPresenterProtocol: AnyObject {
 }
 
 class TextMenuPresenter: TextMenuPresenterProtocol {
+   
+    
     weak var view: TextMenuViewType?
     var type: ProfileMenuType
     var project: String

@@ -10,7 +10,7 @@ import SwiftLoader
 import SwiftLoader
 
 protocol ProjectPresenterDelegate: AnyObject {
-    func projectDidSelect(project: ProjectModel)
+    func projectsDidSelect(projects: [ProjectModel])
 }
 
 class ProjectsPresenter: TextMenuPresenterProtocol {
@@ -19,22 +19,34 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
         case select
     }
     
+    enum SelectionType {
+        case single
+        case multiply
+    }
+    
     weak var view: TextMenuViewType?
     weak var delegate: ProjectPresenterDelegate?
     
     var type: ViewType
+    var selectionType: SelectionType
     var storage = FirestoreService.shared
     var projects: [ProjectModel] = []
+    var selectedProjects: [ProjectModel] = []
     
-    init(type: ViewType = .details) {
+    init(type: ViewType = .details, selectionType: SelectionType = .single) {
         self.type = type
+        self.selectionType = selectionType
     }
     
     func viewDidLoad() {
         view?.setupTitle("Проекты")
         
-        let isButtonHidden = type == .select
-        view?.setupButton(title: "Создать новый", isHidden: isButtonHidden)
+        if type == .select {
+            let title = selectionType == .single ? "Создать новый" : "Cохранить"
+            view?.setupButton(title: title, isHidden: false)
+        } else {
+            view?.setupButton(title: "", isHidden: true)
+        }
     }
     
     func viewDidAppear() {
@@ -43,6 +55,15 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
     }
     
     func buttonPressed() {
+        switch selectionType {
+        case .single:
+            newProjectButtonPressed()
+        case .multiply:
+            saveButtonPressed()
+        }
+    }
+    
+    func newProjectButtonPressed() {
         let presenter = NewProjectPresenter()
         let view = NewProjectViewController()
         presenter.view = view
@@ -51,10 +72,26 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
         self.view?.navigation()?.present(view, animated: true)
     }
     
+    func saveButtonPressed() {
+        delegate?.projectsDidSelect(projects: selectedProjects)
+    }
+    
     func fileDidSelect(filename: String) {
         if type == .select {
-            guard let project = projects.first(where: { $0.title == filename }) else { return }
-            delegate?.projectDidSelect(project: project)
+            if selectionType == .single {
+                guard let project = projects.first(where: { $0.title == filename }) else { return }
+                delegate?.projectsDidSelect(projects: [project])
+            } else {
+                guard let index = projects.firstIndex(where: {$0.title == filename}) else { return }
+                view?.selectCell(indexPath: IndexPath(item: index, section: 0))
+                
+                let project = projects[index]
+                if selectedProjects.contains(where: {$0.title == project.title}) {
+                    selectedProjects.remove(at: index)
+                } else {
+                    selectedProjects.append(project)
+                }
+            }
         } else if type == .details {
             showProject(filename)
         }

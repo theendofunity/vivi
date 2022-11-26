@@ -25,7 +25,7 @@ struct UserModel: FirestoreSavable, Hashable {
     let phone: String
     let birthday: String
     
-    var project: String?
+    var projects: [String] = []
     var target: String?
     var userType: UserType = .base
     var address: String?
@@ -44,7 +44,7 @@ struct UserModel: FirestoreSavable, Hashable {
             "middleName" : middleName ?? "",
             "phone" : phone,
             "city" : city,
-            "project" : project ?? "",
+            "projects" : projects,
             "userType" : userType.rawValue,
             "address" : address ?? "",
             "avatarUrl" : avatarUrl ?? "",
@@ -76,7 +76,6 @@ struct UserModel: FirestoreSavable, Hashable {
         let lastName = document["lastName"] as? String,
         let phone = document["phone"] as? String,
         let city = document["city"] as? String,
-        let project = document ["project"] as? String,
         let birthday = document["birthday"] as? String,
         let userType = document["userType"] as? String else { return nil }
         
@@ -86,8 +85,8 @@ struct UserModel: FirestoreSavable, Hashable {
         self.phone = phone
         self.birthday = birthday
         self.city = city
-        self.project = project
-        self.userType = UserType(rawValue: userType) ?? .client
+        self.projects = document["projects"] as? [String] ?? []
+        self.userType = UserType(rawValue: userType) ?? .base
         self.middleName = document["middleName"] as? String
         self.address = document["address"] as? String
         self.avatarUrl = document["avatarUrl"] as? String ?? nil
