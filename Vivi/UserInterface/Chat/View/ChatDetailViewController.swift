@@ -59,6 +59,7 @@ class ChatDetailViewController: MessagesViewController {
         showMessageTimestampOnSwipeLeft = true
        
         setupInputBar()
+        setupNavBar()
     }
 
     func setupInputBar() {
@@ -85,6 +86,11 @@ class ChatDetailViewController: MessagesViewController {
         
         messageInputBar.setStackViewItems([mediaButton], forStack: .left, animated: false)
         messageInputBar.setLeftStackViewWidthConstant(to: 40, animated: false)
+    }
+    
+    func setupNavBar() {
+        let item = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .done, target: self, action: #selector(openUsers))
+        navigationItem.rightBarButtonItem = item
     }
 }
 
@@ -266,6 +272,12 @@ extension ChatDetailViewController: UIDocumentPickerDelegate {
         guard let url = urls.first,
         url.startAccessingSecurityScopedResource() else { return }
         presenter?.sendData(data: url, type: .file)
+    }
+}
+
+extension ChatDetailViewController {
+    @objc func openUsers() {
+        presenter?.openUsers()
     }
 }
 

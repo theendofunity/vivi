@@ -108,6 +108,15 @@ class ChatDetailsPresenter {
             }
         }
     }
+    
+    func openUsers() {
+        let view = UsersViewController()
+        let presenter = UsersPresenter(projectName: chat.title)
+        view.presenter = presenter
+        presenter.view = view
+        
+        self.view?.navigation()?.pushViewController(view, animated: true)
+    }
 }
 
 extension ChatDetailsPresenter {
