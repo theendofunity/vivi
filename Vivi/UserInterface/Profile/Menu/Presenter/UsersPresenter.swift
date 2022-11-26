@@ -17,6 +17,15 @@ protocol UsersViewType: AnyObject {
 class UsersPresenter {
     weak var view: UsersViewType?
     var storage = FirestoreService.shared
+    var project: String?
+    
+    init() {
+        
+    }
+    
+    init(projectName: String) {
+        self.project = projectName
+    }
     
     func viewLoaded() {
     }
@@ -33,7 +42,14 @@ class UsersPresenter {
             
             switch result {
             case .success(let users):
-                let filtredUsers = users.filter { $0.userType != .admin }
+                var filtredUsers = users.filter { $0.userType != .admin }
+                if let project = self?.project {
+                    filtredUsers = filtredUsers.filter({
+                        $0.projects.contains { title in
+                            title == project
+                        }
+                    })
+                }
                 self?.view?.update(users: filtredUsers)
             case .failure(let error):
                 self?.view?.showError(error: error)

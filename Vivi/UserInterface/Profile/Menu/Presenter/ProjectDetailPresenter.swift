@@ -126,7 +126,7 @@ extension ProjectDetailPresenter {
     
     func showUsers() {
         let view = UsersViewController()
-        let presenter = UsersPresenter()
+        let presenter = UsersPresenter(projectName: project.title)
         view.presenter = presenter
         presenter.view = view
         
