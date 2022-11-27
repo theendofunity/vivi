@@ -10,7 +10,7 @@ import SwiftLoader
 import SwiftLoader
 
 protocol ProjectPresenterDelegate: AnyObject {
-    func projectsDidSelect(projects: [ProjectModel])
+    func projectsUpdated(selectedProjects: [ProjectModel], allProjects: [ProjectModel])
 }
 
 class ProjectsPresenter: TextMenuPresenterProtocol {
@@ -29,13 +29,15 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
     
     var type: ViewType
     var selectionType: SelectionType
+    var user: UserModel
     var storage = FirestoreService.shared
     var projects: [ProjectModel] = []
     var selectedProjects: [String : ProjectModel] = [:]
     
-    init(type: ViewType = .details, selectionType: SelectionType = .single) {
+    init(type: ViewType = .details, selectionType: SelectionType = .single, user: UserModel) {
         self.type = type
         self.selectionType = selectionType
+        self.user = user
     }
     
     func viewDidLoad() {
@@ -83,14 +85,14 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
     }
     
     func saveButtonPressed() {
-        delegate?.projectsDidSelect(projects: Array(selectedProjects.values))
+        delegate?.projectsUpdated(selectedProjects: Array(selectedProjects.values), allProjects: projects)
     }
     
     func fileDidSelect(filename: String) {
         if type == .select {
             if selectionType == .single {
                 guard let project = projects.first(where: { $0.title == filename }) else { return }
-                delegate?.projectsDidSelect(projects: [project])
+                delegate?.projectsUpdated(selectedProjects: [project], allProjects: projects)
             } else {
                 guard let index = projects.firstIndex(where: {$0.title == filename}) else { return }
                 view?.selectCell(indexPath: IndexPath(item: index, section: 0))
@@ -134,11 +136,31 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
     }
     
     func updateView() {
+        checkSelectedProjects()
         self.view?.setupFiles(files: projects.map({ $0.title }))
+    }
+    
+    func checkSelectedProjects() {
+        for (index, project) in projects.enumerated() {
+            let indexPath = IndexPath(item: index, section: 0)
+            
+            if user.projects.contains(where: { projectName in
+                projectName == project.title
+            }) {
+                view?.selectCell(indexPath: indexPath)
+                self.selectedProjects[project.title] = project
+            }
+        }
     }
     
     func add(file: Any) {
         
+    }
+    
+    func isCellSelected(indexPath: IndexPath) -> Bool {
+        let project = projects[indexPath.item]
+        
+        return selectedProjects[project.title] != nil
     }
 }
 

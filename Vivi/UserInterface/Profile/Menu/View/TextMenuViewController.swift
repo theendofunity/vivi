@@ -140,6 +140,7 @@ extension TextMenuViewController: UICollectionViewDelegate, UICollectionViewData
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TextMenuCell.reuseId, for: indexPath) as? TextMenuCell else { return UICollectionViewCell() }
         let title = files[indexPath.item]
         cell.configure(title: title)
+        cell.setSelected(isSelected: presenter.isCellSelected(indexPath: indexPath))
         return cell
     }
     

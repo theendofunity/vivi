@@ -73,4 +73,8 @@ class FormPresenter: TextMenuPresenterProtocol {
             }
         }
     }
+    
+    func isCellSelected(indexPath: IndexPath) -> Bool {
+        return false
+    }
 }

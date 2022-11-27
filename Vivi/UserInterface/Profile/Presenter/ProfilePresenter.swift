@@ -222,7 +222,7 @@ extension ProfilePresenter {
 extension ProfilePresenter {
     func showAllProjects() {
         let view = TextMenuViewController()
-        let presenter = ProjectsPresenter()
+        let presenter = ProjectsPresenter(user: user)
         view.presenter = presenter
         presenter.view = view
         

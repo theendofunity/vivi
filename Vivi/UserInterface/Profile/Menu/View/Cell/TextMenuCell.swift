@@ -73,4 +73,9 @@ class TextMenuCell: ReusableCell {
         arrowImageView.isHidden.toggle()
         selectionImageView.isHidden.toggle()
     }
+    
+    func setSelected(isSelected: Bool) {
+        arrowImageView.isHidden = isSelected
+        selectionImageView.isHidden = !isSelected
+    }
 }

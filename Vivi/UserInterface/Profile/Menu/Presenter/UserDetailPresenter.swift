@@ -27,6 +27,7 @@ class UserDetailPresenter {
     var storage = FirestoreService.shared
     
     var selectedProjects: [ProjectModel] = []
+    var allProjects: [ProjectModel] = []
     
     init(user: UserModel) {
         self.user = user
@@ -57,6 +58,8 @@ class UserDetailPresenter {
     func saveButtonPressed(userType: UserType) {
         addUserToProject()
         
+        user.projects = selectedProjects.map({ $0.title })
+
         user.userType = userType
         
         SwiftLoader.show(animated: true)
@@ -73,13 +76,27 @@ class UserDetailPresenter {
     }
     
     func addUserToProject() {
+        //add to project
         for (index, project) in selectedProjects.enumerated() {
             var changableProject = project
             changableProject.users.append(user.id)
-            user.projects.append(changableProject.title)
             storage.updateUsersInProject(project: changableProject)
             
             selectedProjects[index] = changableProject
+        }
+        
+        //remove from project
+        for (index, project) in allProjects.enumerated() {
+            if selectedProjects.contains(where: { $0.documentId() == project.documentId() }) {
+                continue
+            }
+            
+            if let userIndex = project.users.firstIndex(where: { $0 == user.id }) {
+                var changableProject = project
+                changableProject.users.remove(at: userIndex)
+                storage.removeUsersFromProject(project: project, users: [user.id])
+                allProjects[index] = changableProject
+            }
         }
     }
     
@@ -89,7 +106,7 @@ class UserDetailPresenter {
     
     func changeProjectButtonPressed() {
         let view = TextMenuViewController()
-        let presenter = ProjectsPresenter(type: .select, selectionType: .multiply)
+        let presenter = ProjectsPresenter(type: .select, selectionType: .multiply, user: user)
         presenter.delegate = self
         view.presenter = presenter
         presenter.view = view
@@ -99,10 +116,11 @@ class UserDetailPresenter {
 }
 
 extension UserDetailPresenter: ProjectPresenterDelegate {
-    func projectsDidSelect(projects: [ProjectModel]) {
+    func projectsUpdated(selectedProjects: [ProjectModel], allProjects: [ProjectModel]) {
         view?.navigation()?.dismiss(animated: true)
         
-        selectedProjects = projects
+        self.selectedProjects = selectedProjects
+        self.allProjects = allProjects
         setupProject()
     }
 }

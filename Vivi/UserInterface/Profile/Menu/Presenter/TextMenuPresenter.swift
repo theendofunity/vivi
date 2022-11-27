@@ -30,11 +30,10 @@ protocol TextMenuPresenterProtocol: AnyObject {
     func fileDidSelect(filename: String)
     func loadData()
     func add(file: Any)
+    func isCellSelected(indexPath: IndexPath) -> Bool
 }
 
 class TextMenuPresenter: TextMenuPresenterProtocol {
-   
-    
     weak var view: TextMenuViewType?
     var type: ProfileMenuType
     var project: String
@@ -151,5 +150,9 @@ extension TextMenuPresenter {
     func add(file: Any) {
         guard let url = file as? URL else { return }
         uploadFile(with: url)
+    }
+    
+    func isCellSelected(indexPath: IndexPath) -> Bool {
+        return false
     }
 }

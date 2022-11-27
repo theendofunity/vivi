@@ -111,7 +111,16 @@ class FirestoreService {
         
         guard let id = project.documentId() else { return }
         let chatRef = db.collection(Reference.chats.rawValue).document(id)
-        chatRef.updateData(project.representation())
+        chatRef.updateData(["users" : FieldValue.arrayUnion(project.users)])
+    }
+    
+    func removeUsersFromProject(project: ProjectModel, users: [String]) {
+        let ref = db.collection(Reference.projects.rawValue).document(project.title)
+        ref.updateData(["users" : FieldValue.arrayRemove(users)])
+        
+        guard let id = project.documentId() else { return }
+        let chatRef = db.collection(Reference.chats.rawValue).document(id)
+        chatRef.updateData(["users" : FieldValue.arrayRemove(users)])
     }
     
     func deleteUserData(userId: String, completion: @escaping VoidCompletion) {
