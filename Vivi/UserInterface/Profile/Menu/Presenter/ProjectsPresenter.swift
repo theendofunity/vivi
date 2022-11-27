@@ -57,7 +57,10 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
                 view?.setupButton(title: "Cохранить", isHidden: false)
             }
         } else {
-            view?.setupButton(title: "Создать новый", isHidden: false)
+            if let user = UserService.shared.user,
+               user.userType == .admin {
+                view?.setupButton(title: "Создать новый", isHidden: false)
+            }
         }
     }
     
@@ -123,7 +126,14 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                self.projects = data
+                guard let user = UserService.shared.user else {
+                    return
+                }
+                self.projects = data.filter({
+                    $0.users.contains { userId in
+                        userId == user.id
+                    }
+                })
                 self.updateView()
             case .failure(let error):
                 self.view?.showError(error: error)

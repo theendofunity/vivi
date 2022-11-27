@@ -15,6 +15,7 @@ class TextMenuViewController: UIViewController {
     private lazy var mainButton: MainButton = {
         let button = MainButton()
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        button.isHidden = true
         return button
     }()
     
