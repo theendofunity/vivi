@@ -77,7 +77,6 @@ class ApplicationPresenter {
     
     func loadSettings(group: DispatchGroup) {
         group.enter()
-        print(#function)
 
         firestoreService.load(referenceType: .settings) { (result: Result<[SettingsModel], Error>) in
             group.leave()

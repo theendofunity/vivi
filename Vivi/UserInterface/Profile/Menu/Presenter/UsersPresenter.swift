@@ -58,6 +58,11 @@ class UsersPresenter {
     }
     
     func userDidSelect(_ user: UserModel) {
+        guard let selfUser = UserService.shared.user,
+              selfUser.userType == .admin
+        else {
+            return
+        }
         let view = UserDetailViewController()
         let presenter = UserDetailPresenter(user: user)
         view.presenter = presenter

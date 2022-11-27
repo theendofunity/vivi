@@ -41,17 +41,24 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
     func viewDidLoad() {
         view?.setupTitle("Проекты")
         
-        if type == .select {
-            let title = selectionType == .single ? "Создать новый" : "Cохранить"
-            view?.setupButton(title: title, isHidden: false)
-        } else {
-            view?.setupButton(title: "", isHidden: true)
-        }
+       setupButton()
     }
     
     func viewDidAppear() {
         SwiftLoader.show(animated: true)
         loadData()
+    }
+    
+    func setupButton() {
+        if type == .select {
+            if selectionType == .single {
+                view?.setupButton(title: "", isHidden: true)
+            } else {
+                view?.setupButton(title: "Cохранить", isHidden: false)
+            }
+        } else {
+            view?.setupButton(title: "Создать новый", isHidden: false)
+        }
     }
     
     func buttonPressed() {

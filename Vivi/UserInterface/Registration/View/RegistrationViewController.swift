@@ -47,6 +47,7 @@ class RegistrationViewController: UIViewController {
         label.backgroundColor = .clear
         label.dataDetectorTypes = .link
         label.isSelectable = true
+        label.isScrollEnabled = false
         
         let attributedString = NSMutableAttributedString(string: "Соглашаюсь ",
                                                          attributes: [.font : UIFont.smallTextFont ?? UIFont.systemFont(ofSize: 12),

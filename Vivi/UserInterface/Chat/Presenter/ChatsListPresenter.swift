@@ -61,18 +61,6 @@ class ChatsListPresenter {
         view?.update(chats: chats)
     }
     
-//    func loadChats() {
-//        storage.loadChats { [weak self] result in
-//            switch result {
-//            case .success(let chats):
-//                self?.chats = chats
-//                self?.view?.update(chats: chats)
-//            case .failure(let error):
-//                self?.view?.showError(error: error)
-//            }
-//        }
-//    }
-    
     func setupAddButton() {
         var isButtonHidden = true
         

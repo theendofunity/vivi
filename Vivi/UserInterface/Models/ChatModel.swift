@@ -53,7 +53,8 @@ struct ChatModel: FirestoreSavable {
             "id" : id,
             "title" : title,
             "userNames" : userNames,
-            "lastMessage" : lastMessage?.representation() ?? [:]
+            "lastMessage" : lastMessage?.representation() ?? [:],
+            "avatarUrl" : avatarUrl ?? ""
         ]
         
         return dict

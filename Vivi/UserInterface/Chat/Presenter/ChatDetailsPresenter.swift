@@ -96,17 +96,6 @@ class ChatDetailsPresenter {
     
     func setTitle() {
         view?.setTitle(title: chat.displayTitle())
-        
-        guard let userId = chat.users.first(where: { $0 != currentSender.id }) else { return }
-        
-        FirestoreService.shared.loadUser(userId: userId) { [weak self] result in
-            switch result {
-            case .success(let user):
-                self?.view?.setTitle(title: user.displayName)
-            default:
-                break
-            }
-        }
     }
     
     func openUsers() {

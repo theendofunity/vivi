@@ -76,7 +76,6 @@ class SecurityViewController: UIViewController {
             Bottom().to(view.safeAreaLayoutGuide, .bottom),
             Leading(),
             Trailing(),
-            Bottom(),
             Width().like(view, .width)
         )
         

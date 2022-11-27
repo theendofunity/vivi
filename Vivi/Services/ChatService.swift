@@ -157,7 +157,9 @@ extension ChatService {
     func addChatsObserver(completion: @escaping ChatsCompletion) -> ListenerRegistration? {
         guard let user = UserService.shared.user else { return nil }
         
-        let ref = FirestoreService.shared.db.collection(FirestoreService.Reference.chats.rawValue).whereField("users", arrayContains: user.id)
+        let ref = FirestoreService.shared.db
+            .collection(FirestoreService.Reference.chats.rawValue)
+            .whereField("users", arrayContains: user.id)
         
         let listener = ref.addSnapshotListener { snapshot, error in
             if let error = error {

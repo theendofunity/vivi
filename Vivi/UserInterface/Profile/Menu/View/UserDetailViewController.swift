@@ -26,8 +26,14 @@ class UserDetailViewController: UIViewController {
         for types in UserType.allCases {
             segmentedControl.insertSegment(withTitle: types.rawValue, at: 0, animated: false)
         }
-        
+        segmentedControl.backgroundColor = .viviRose50
+        segmentedControl.selectedSegmentTintColor = .viviLightBlue
         return segmentedControl
+    }()
+    
+    lazy var projectLabel: PlainLabel = {
+        let label = PlainLabel(text: "Проект", fontType: .normal)
+        return label
     }()
     
     lazy var projectTextField: TextFieldWithLabel = {
@@ -85,6 +91,7 @@ class UserDetailViewController: UIViewController {
         view.addSubview(header)
         view.addSubview(typeLabel)
         view.addSubview(typeSegmentedControl)
+        view.addSubview(projectLabel)
         view.addSubview(projectStack)
         view.addSubview(writeButton)
     }
@@ -107,8 +114,14 @@ class UserDetailViewController: UIViewController {
             Trailing(24)
         )
         
-        projectStack.easy.layout(
+        projectLabel.easy.layout(
             Top(24).to(typeSegmentedControl, .bottom),
+            Leading(24),
+            Trailing(24)
+        )
+        
+        projectStack.easy.layout(
+            Top(16).to(projectLabel, .bottom),
             Leading(24),
             Trailing(24)
         )

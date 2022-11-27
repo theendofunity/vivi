@@ -79,10 +79,10 @@ class NewChatPresenter {
     func userDidSelect(user: UserModel) {
         guard let currentUser = UserService.shared.user else { return }
         
-        let chat = ChatModel(users: [currentUser.id, user.id],
+        var chat = ChatModel(users: [currentUser.id, user.id],
                              userNames: [user.displayName, currentUser.displayName],
                              title: "")
-        
+        chat.avatarUrl = user.avatarUrl
         if let existChats = DataStore.shared.chats,
            existChats.contains(where: { oldChat in oldChat.isEqualTo(chat: chat) }) {
             view?.showError(error: CustomError.chatAlreadyExist)
@@ -103,6 +103,7 @@ class NewChatPresenter {
                              title: project.title)
         
         chat.id = project.documentId() ?? ""
+        chat.avatarUrl = project.avatarUrl
         
         if let existChats = DataStore.shared.chats,
            existChats.contains(where: { oldChat in

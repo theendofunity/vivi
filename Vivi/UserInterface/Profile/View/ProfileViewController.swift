@@ -67,6 +67,7 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationBarWithLogo()
+        scrollView.setContentOffset(.zero, animated: false)
         presenter.viewDidAppear()
     }
     

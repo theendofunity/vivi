@@ -43,7 +43,25 @@ class ProfilePresenter {
     }
     
     func viewDidAppear() {
+        loadUser()
         determineState()
+    }
+    
+    func loadUser() {
+        SwiftLoader.show(animated: true)
+        
+        FirestoreService.shared.loadUser(userId: user.id) { [weak self] result in
+            SwiftLoader.hide()
+            
+            switch result {
+            case .success(let user):
+                UserService.shared.user = user
+                self?.user = user
+                self?.determineState()
+            case .failure(let error):
+                self?.view?.showError(error: error)
+            }
+        }
     }
     
     func determineState() {
