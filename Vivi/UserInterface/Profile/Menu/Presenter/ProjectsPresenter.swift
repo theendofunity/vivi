@@ -31,7 +31,7 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
     var selectionType: SelectionType
     var storage = FirestoreService.shared
     var projects: [ProjectModel] = []
-    var selectedProjects: [ProjectModel] = []
+    var selectedProjects: [String : ProjectModel] = [:]
     
     init(type: ViewType = .details, selectionType: SelectionType = .single) {
         self.type = type
@@ -83,7 +83,7 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
     }
     
     func saveButtonPressed() {
-        delegate?.projectsDidSelect(projects: selectedProjects)
+        delegate?.projectsDidSelect(projects: Array(selectedProjects.values))
     }
     
     func fileDidSelect(filename: String) {
@@ -95,11 +95,10 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
                 guard let index = projects.firstIndex(where: {$0.title == filename}) else { return }
                 view?.selectCell(indexPath: IndexPath(item: index, section: 0))
                 
-                let project = projects[index]
-                if selectedProjects.contains(where: {$0.title == project.title}) {
-                    selectedProjects.remove(at: index)
+                if selectedProjects[filename] == nil {
+                    selectedProjects[filename] = projects[index]
                 } else {
-                    selectedProjects.append(project)
+                    selectedProjects[filename] = nil
                 }
             }
         } else if type == .details {
@@ -126,14 +125,7 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                guard let user = UserService.shared.user else {
-                    return
-                }
-                self.projects = data.filter({
-                    $0.users.contains { userId in
-                        userId == user.id
-                    }
-                })
+                self.projects = data
                 self.updateView()
             case .failure(let error):
                 self.view?.showError(error: error)
