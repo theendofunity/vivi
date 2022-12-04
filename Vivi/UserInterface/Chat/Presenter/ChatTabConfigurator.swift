@@ -9,9 +9,6 @@ import Foundation
 
 class ChatTabConfigurator: TabConfigurator {
     override func showContent() {
-        if navigation.viewControllers.last is ChatsListViewController {
-            return
-        }
         let chatViewController = ChatsListViewController()
         let chatPresenter = ChatsListPresenter()
         chatViewController.presenter = chatPresenter
