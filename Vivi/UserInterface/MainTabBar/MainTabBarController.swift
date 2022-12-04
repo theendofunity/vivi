@@ -29,6 +29,8 @@ class MainTabBarController: UITabBarController {
         setupViewControllers()
         updateUnreadBadge()
         
+        delegate = self
+        
         NotificationCenter.default.addObserver(self, selector: #selector(updateUnreadBadge), name: .messageReaded, object: nil)
     }
     
@@ -81,5 +83,20 @@ class MainTabBarController: UITabBarController {
     @objc func updateUnreadBadge() {
        let count = DataStore.shared.unreadChats()
         setUnreadBadge(count: count)
+    }
+}
+
+extension MainTabBarController: UITabBarControllerDelegate {
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {        
+        if tabBar.selectedItem == item {
+           
+            if let navigation = viewControllers?[selectedIndex] as? UINavigationController,
+               let rootViewController = navigation.viewControllers.first {
+                let scrollView = rootViewController.view.subviews.compactMap { view in
+                    view as? UIScrollView
+                }
+                scrollView.first?.setContentOffset(.zero, animated: true)
+            }
+        }
     }
 }
