@@ -156,5 +156,7 @@ extension TextMenuViewController: UIDocumentPickerDelegate {
         url.startAccessingSecurityScopedResource() else { return }
         
         presenter.add(file: url)
+        
+//        url.stopAccessingSecurityScopedResource()
     }
 }

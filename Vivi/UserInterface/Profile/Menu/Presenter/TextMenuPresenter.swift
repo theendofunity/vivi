@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SwiftLoader
+import PDFKit
 
 protocol TextMenuViewType: AnyObject {
     func setupTitle(_ title: String)
@@ -135,9 +136,17 @@ extension TextMenuPresenter {
     }
     
     func uploadFile(with url: URL) {
-        guard let reference = referenceType() else { return }
+        guard let reference = referenceType(),
+        let doc = PDFDocument(url: url),
+        let data = doc.dataRepresentation() else { return }
+
+        let filename = url.lastPathComponent
         
-        storageService.uploadFile(reference, fileUrl: url) { [weak self] result in
+        SwiftLoader.show(animated: true)
+        
+        storageService.uploadData(reference, data: data, filename: filename) {  [weak self]  result in
+            SwiftLoader.hide()
+            
             switch result {
             case .success():
                 self?.loadData()
