@@ -15,6 +15,16 @@ class ChatDetailViewController: MessagesViewController {
     var presenter: ChatDetailsPresenter?
     var messages: [MessageModel] = []
     
+    open var isInputBarHidden: Bool = false {
+        didSet {
+            if isInputBarHidden, isFirstResponder {
+                resignFirstResponder()
+            } else if !isFirstResponder {
+                becomeFirstResponder()
+            }
+        }
+    }
+    
     private lazy var backgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .background
@@ -57,7 +67,6 @@ class ChatDetailViewController: MessagesViewController {
         
         scrollsToLastItemOnKeyboardBeginsEditing = true
         showMessageTimestampOnSwipeLeft = true
-       
         setupInputBar()
         setupNavBar()
     }
@@ -180,6 +189,7 @@ extension ChatDetailViewController: InputBarAccessoryViewDelegate {
 extension ChatDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @objc func mediaButtonPressed() {
+
         let alert = UIAlertController(title: "Выберите тип", message: "", preferredStyle: .actionSheet)
         let mediaAction = UIAlertAction(title: "Медиа", style: .default) { _ in
             self.showImagePicker()
@@ -194,8 +204,8 @@ extension ChatDetailViewController: UIImagePickerControllerDelegate, UINavigatio
         alert.addAction(mediaAction)
         alert.addAction(fileAction)
         alert.addAction(cancelAction)
-        
-        present(alert, animated: true)
+        isInputBarHidden = true
+        present(alert, animated: true, completion: nil)
     }
     
     func showImagePicker() {
