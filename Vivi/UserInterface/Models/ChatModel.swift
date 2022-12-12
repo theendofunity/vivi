@@ -5,16 +5,30 @@
 //  Created by Дмитрий Дудкин on 14.06.2022.
 //
 
-import Foundation
+import UIKit
 
-struct ChatModel: FirestoreSavable {
+protocol ChatModelDelegate: AnyObject {
+    func modelUpdated()
+}
+
+class ChatModel: FirestoreSavable {
+    enum ChatType {
+        case project
+        case person
+    }
+    
+    weak var delegate: ChatModelDelegate?
+    
+//    MARK: - stored
     var users: [String] = []
     var userNames: [String] = []
-    var avatarUrl: String?
     var title: String = ""
     var id: String
     var lastMessage: MessageModel?
-   
+    
+//    MARK: - Internal
+    var avatarUrl: String?
+    var type: ChatType = .person
     
     internal init(users: [String] = [], userNames: [String] = [], lastMessageContent: String? = nil, avatarUrl: String? = nil, title: String) {
         self.users = users
@@ -24,12 +38,11 @@ struct ChatModel: FirestoreSavable {
         self.userNames = userNames
     }
     
-    init?(document: [String : Any]) {
+    required init?(document: [String : Any]) {
         guard let users = document["users"] as? [String],
               let id = document["id"] as? String
         else { return nil }
         
-        self.avatarUrl = document["avatarUrl"] as? String
         self.users = users
         self.id = id
         
@@ -41,6 +54,15 @@ struct ChatModel: FirestoreSavable {
         
         let messageContent = document["lastMessage"] as? [String : Any] ?? [:]
         lastMessage = MessageModel(document: messageContent)
+        
+        if title.isEmpty,
+           users.count == 2 {
+            type = .person
+        } else {
+            type = .project
+        }
+        
+        updateAvatars()
     }
     
     func documentId() -> String? {
@@ -53,8 +75,7 @@ struct ChatModel: FirestoreSavable {
             "id" : id,
             "title" : title,
             "userNames" : userNames,
-            "lastMessage" : lastMessage?.representation() ?? [:],
-            "avatarUrl" : avatarUrl ?? ""
+            "lastMessage" : lastMessage?.representation() ?? [:]
         ]
         
         return dict
@@ -71,6 +92,13 @@ struct ChatModel: FirestoreSavable {
     func isEqualTo(chat: ChatModel) -> Bool {
         return displayTitle() == chat.displayTitle() &&
         users == chat.users
+    }
+    
+    func updateAvatars() {
+        AvatarsService.shared.getAvatarUrl(for: self) { [weak self] url in
+            self?.avatarUrl = url
+            self?.delegate?.modelUpdated()
+        }
     }
 }
 

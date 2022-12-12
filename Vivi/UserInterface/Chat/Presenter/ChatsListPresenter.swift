@@ -41,6 +41,7 @@ class ChatsListPresenter {
             switch result {
             case .success(let chats):
                 for newChat in chats {
+                    newChat.delegate = self
                     if let index = self?.chats.firstIndex(where: { $0.id == newChat.id }) {
                         self?.chats[index] = newChat
                     } else {
@@ -124,5 +125,11 @@ extension ChatsListPresenter {
                 self?.view?.showError(error: error)
             }
         }
+    }
+}
+
+extension ChatsListPresenter: ChatModelDelegate {
+    func modelUpdated() {
+        self.view?.update(chats: chats)
     }
 }

@@ -87,7 +87,8 @@ class ChatCell: ReusableCell {
         titleLabel.text = chat.displayTitle()
         subtitleLabel.text = chat.lastMessage?.content
         unreadView.isHidden = chat.lastMessage?.isReadedByMe() ?? true
-        if let urlString = chat.avatarUrl {
+        if let urlString = chat.avatarUrl,
+           !urlString.isEmpty {
             photoView.sd_setImage(with: URL(string: urlString))
         }
     }
