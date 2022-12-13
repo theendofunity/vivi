@@ -117,7 +117,7 @@ extension ProjectDetailPresenter {
     }
     
     func showSketches() {
-        showGalleryMenu(type: .sketches)
+        showTextMenu(type: .sketches)
     }
     
     func showVisualizations() {

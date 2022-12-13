@@ -108,6 +108,8 @@ extension TextMenuPresenter {
             return .projectDoc(id: id)
         case .form:
             return .forms(id: id)
+        case .sketches:
+            return .sketches(id: id)
         default:
             return nil
         }
