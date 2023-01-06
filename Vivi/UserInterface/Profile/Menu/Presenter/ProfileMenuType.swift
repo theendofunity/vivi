@@ -20,6 +20,8 @@ enum ProfileMenuType: CaseIterable {
     case main
     case allProjects
     
+    case calculator
+    
     func title() -> String {
         switch self {
         case .form:
@@ -40,6 +42,8 @@ enum ProfileMenuType: CaseIterable {
             return "Главная"
         case .allProjects:
             return "Проекты"
+        case .calculator:
+            return "Калькулятор"
         }
     }
     

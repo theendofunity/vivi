@@ -109,3 +109,22 @@ extension ServiceType {
         return R.image.consultation()
     }
 }
+
+extension ServiceType {
+    func isPriceForUnit() -> Bool {
+        return self != .consultation
+    }
+    
+    func priceForUnit() -> Int {
+        switch self {
+        case .planning:
+            return 300
+        case .sketch:
+            return 1200
+        case .fullProject:
+            return 1800
+        default:
+            return 0
+        }
+    }
+}

@@ -88,9 +88,9 @@ extension ProfilePresenter {
         if user.userType == .client {
             menuItems = [.form, .agreement, .examples, .sketches, .visualizations, .project]
         } else if user.userType == .admin || user.userType == .developer {
-            menuItems = [.allProjects, .users, .main]
+            menuItems = [.allProjects, .users, .main, .calculator]
         } else if user.userType == .worker {
-            menuItems = [.allProjects]
+            menuItems = [.allProjects, .calculator]
         }
         
         view?.setupMenu(items: menuItems)
@@ -156,6 +156,8 @@ extension ProfilePresenter {
             showUsers()
         case .main:
             showMain()
+        case .calculator:
+            showCalculator()
         }
     }
     
@@ -242,6 +244,15 @@ extension ProfilePresenter {
         let examples = DataStore.shared.examples
         let presenter = PortfolioExamplePresenter(examples: examples, type: .editing)
         let view = PortfolioExamplesViewController()
+        view.presenter = presenter
+        presenter.view = view
+        
+        self.view?.navigation()?.pushViewController(view, animated: true)
+    }
+    
+    func showCalculator() {
+        let view = CalculatorViewController()
+        let presenter = CalculatorPresenter()
         view.presenter = presenter
         presenter.view = view
         
