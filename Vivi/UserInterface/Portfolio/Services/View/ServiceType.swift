@@ -127,4 +127,8 @@ extension ServiceType {
             return 0
         }
     }
+    
+    func stepsCount() -> Int {
+        return self == .planning ? 2 : 3
+    }
 }

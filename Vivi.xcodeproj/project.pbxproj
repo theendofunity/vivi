@@ -86,8 +86,9 @@
 		D890E4ED2947EF5500296A54 /* AvatarsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D890E4EC2947EF5500296A54 /* AvatarsService.swift */; };
 		D89BC69F296899D200F5D05A /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89BC69E296899D200F5D05A /* CalculatorViewController.swift */; };
 		D89BC6A1296899E900F5D05A /* CalculatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89BC6A0296899E900F5D05A /* CalculatorPresenter.swift */; };
-		D89BC6A32968ADCF00F5D05A /* ProjectStepPriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89BC6A22968ADCF00F5D05A /* ProjectStepPriceViewModel.swift */; };
+		D89BC6A32968ADCF00F5D05A /* ProjectStepPriceCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89BC6A22968ADCF00F5D05A /* ProjectStepPriceCalculator.swift */; };
 		D89BC6A52968B3E400F5D05A /* StepCalculationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89BC6A42968B3E400F5D05A /* StepCalculationView.swift */; };
+		D89BC6A7296B669F00F5D05A /* ProjectPriceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89BC6A6296B669F00F5D05A /* ProjectPriceModel.swift */; };
 		D89F59912875EF6B006876E1 /* TextFieldValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89F59902875EF6B006876E1 /* TextFieldValidator.swift */; };
 		D89F59932875F13B006876E1 /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89F59922875F13B006876E1 /* ValidationError.swift */; };
 		D89F59952875F92B006876E1 /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89F59942875F92B006876E1 /* String + Extensions.swift */; };
@@ -214,8 +215,9 @@
 		D890E4EC2947EF5500296A54 /* AvatarsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsService.swift; sourceTree = "<group>"; };
 		D89BC69E296899D200F5D05A /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 		D89BC6A0296899E900F5D05A /* CalculatorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorPresenter.swift; sourceTree = "<group>"; };
-		D89BC6A22968ADCF00F5D05A /* ProjectStepPriceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStepPriceViewModel.swift; sourceTree = "<group>"; };
+		D89BC6A22968ADCF00F5D05A /* ProjectStepPriceCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStepPriceCalculator.swift; sourceTree = "<group>"; };
 		D89BC6A42968B3E400F5D05A /* StepCalculationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCalculationView.swift; sourceTree = "<group>"; };
+		D89BC6A6296B669F00F5D05A /* ProjectPriceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPriceModel.swift; sourceTree = "<group>"; };
 		D89F59902875EF6B006876E1 /* TextFieldValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldValidator.swift; sourceTree = "<group>"; };
 		D89F59922875F13B006876E1 /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		D89F59942875F92B006876E1 /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 				D8FEDA5E28BBC76A00CD9901 /* ProjectExample.swift */,
 				D823976D28D78DF0007BE85F /* FormModel.swift */,
 				D8CC182E292590C400FF6A03 /* SettingsModel.swift */,
+				D89BC6A6296B669F00F5D05A /* ProjectPriceModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -691,7 +694,7 @@
 				D83FFB642849270B00C270DE /* UserDetailPresenter.swift */,
 				D89BC6A0296899E900F5D05A /* CalculatorPresenter.swift */,
 				D863D096284D02F700E98E2D /* ProjectDetailPresenter.swift */,
-				D89BC6A22968ADCF00F5D05A /* ProjectStepPriceViewModel.swift */,
+				D89BC6A22968ADCF00F5D05A /* ProjectStepPriceCalculator.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -978,7 +981,7 @@
 				D8CC18292925745400FF6A03 /* SceneDelegate.swift in Sources */,
 				D8A14947288089990012367E /* SecurityPresenter.swift in Sources */,
 				D8262FB82820316900FA3E76 /* PortfolioExampleCell.swift in Sources */,
-				D89BC6A32968ADCF00F5D05A /* ProjectStepPriceViewModel.swift in Sources */,
+				D89BC6A32968ADCF00F5D05A /* ProjectStepPriceCalculator.swift in Sources */,
 				D8FEDA7728C5100B00CD9901 /* NewExampleCell.swift in Sources */,
 				D86A79F22821740C00F45D76 /* AuthViewController.swift in Sources */,
 				D86A79E428212EEE00F45D76 /* UIImage + Extensions.swift in Sources */,
@@ -1012,6 +1015,7 @@
 				D835AC4E284DD39F00F4CEDA /* MessageModel.swift in Sources */,
 				D8418E812822EA3A00163255 /* TextFieldType.swift in Sources */,
 				D86A79E028211A6600F45D76 /* ServiceDetailsViewController.swift in Sources */,
+				D89BC6A7296B669F00F5D05A /* ProjectPriceModel.swift in Sources */,
 				D86AEE90283BF06A001BE89F /* PhotoGalleryViewController.swift in Sources */,
 				D86A79F628217A0C00F45D76 /* LineTextField.swift in Sources */,
 			);

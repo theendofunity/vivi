@@ -57,16 +57,16 @@ class StepCalculationView: UIView {
         stack.addArrangedSubview(label)
     }
     
-    func configure(viewModel: ProjectStepPriceViewModel) {
-        titleLabel.text = "\(viewModel.stepNumber.rawValue) этап"
-        addLabel(text: "Стоимость: \(viewModel.stepPrice)")
-        addLabel(text: "Обмеры: \(viewModel.meassureSallary())")
-        addLabel(text: "Дизайнер: \(viewModel.designerSallary())")
-        addLabel(text: "Чертежник: \(viewModel.drawerSallary())")
-        addLabel(text: "Визуализатор: \(viewModel.visualisatorSallary())")
-        addLabel(text: "Печать: \(viewModel.printSallary())")
+    func configure(viewModel: ProjectPriceModel) {
+        titleLabel.text = viewModel.title
+        addLabel(text: "Стоимость: \(viewModel.totalPrice)")
+        addLabel(text: "Обмеры: \(viewModel.meassureSallary)")
+        addLabel(text: "Дизайнер: \(viewModel.designerSallary)")
+        addLabel(text: "Чертежник: \(viewModel.drawerSallary)")
+        addLabel(text: "Визуализатор: \(viewModel.visualisatorSallary)")
+        addLabel(text: "Печать: \(viewModel.printSallary)")
 
-        addLabel(text: "Расходы: \(viewModel.costs())")
-        addLabel(text: "Прибыль: \(viewModel.profit())")
+        addLabel(text: "Расходы: \(viewModel.totalCost)")
+        addLabel(text: "Прибыль: \(viewModel.totalProfit)")
     }
 }

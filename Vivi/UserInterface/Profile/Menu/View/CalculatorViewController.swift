@@ -19,11 +19,12 @@ class CalculatorViewController: UIViewController {
     
     private lazy var stackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [typeSegmentedControl,
-                                                  squareTextField,
-                                                  designerTextField,
-                                                  drawerTextField,
-                                                  calculateButton,
-                                                  resultView])
+                                                   squareTextField,
+                                                   designerTextField,
+                                                   drawerTextField,
+                                                   calculateButton,
+                                                   resultView,
+                                                   stepsResultView])
         stack.axis = .vertical
         stack.spacing = 16
         return stack
@@ -31,7 +32,8 @@ class CalculatorViewController: UIViewController {
     
     private lazy var typeSegmentedControl: UISegmentedControl = {
         let control = UISegmentedControl()
-        for item in ServiceType.allCases {
+        let items: [ServiceType] = [.planning, .sketch, .fullProject]
+        for item in items {
             control.insertSegment(withTitle: item.rawValue, at: 0, animated: false)
         }
         control.setNumberOfLines(0)
@@ -76,7 +78,13 @@ class CalculatorViewController: UIViewController {
         return button
     }()
     
-    private lazy var resultView: UIStackView = {
+    private lazy var resultView: StepCalculationView = {
+        let view = StepCalculationView()
+        view.isHidden = true
+        return view
+    }()
+    
+    private lazy var stepsResultView: UIStackView = {
         let view = UIStackView()
         view.backgroundColor = .viviRose50
         view.axis = .vertical
@@ -143,16 +151,21 @@ extension CalculatorViewController {
     }
 }
 extension CalculatorViewController: CalculatorViewType {
-    func showResult(viewModels: [ProjectStepPriceViewModel]) {
-        for view in resultView.arrangedSubviews {
-            resultView.removeArrangedSubview(view)
+    func showResult(viewModel: ProjectPriceModel) {
+        resultView.isHidden = false
+        resultView.configure(viewModel: viewModel)
+    }
+    
+    func showSteps(viewModels: [ProjectPriceModel]) {
+        for view in stepsResultView.arrangedSubviews {
+            stepsResultView.removeArrangedSubview(view)
             view.removeFromSuperview()
         }
         
         for viewModel in viewModels {
             let stepView = StepCalculationView()
             stepView.configure(viewModel: viewModel)
-            resultView.addArrangedSubview(stepView)
+            stepsResultView.addArrangedSubview(stepView)
         }
     }
     

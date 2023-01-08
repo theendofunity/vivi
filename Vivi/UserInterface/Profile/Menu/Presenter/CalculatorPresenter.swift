@@ -9,7 +9,8 @@ import Foundation
 
 protocol CalculatorViewType: AnyObject {
     func showError(error: Error)
-    func showResult(viewModels: [ProjectStepPriceViewModel])
+    func showSteps(viewModels: [ProjectPriceModel])
+    func showResult(viewModel: ProjectPriceModel)
 }
 
 class CalculatorPresenter {
@@ -27,17 +28,22 @@ class CalculatorPresenter {
        }
         
         if projectType.isPriceForUnit() {
-            var viewModels: [ProjectStepPriceViewModel] = []
-            for step in ProjectStepPriceViewModel.StepNumber.allCases {
-                let viewModel = ProjectStepPriceViewModel(square: square,
+            var viewModels: [ProjectPriceModel] = []
+            let totalStepsCount = projectType.stepsCount()
+            
+            for step in 0..<totalStepsCount {
+                let calculator = ProjectStepPriceCalculator(square: square,
                                                           projectType: projectType,
                                                           designerRate: designerSallary,
                                                           drawerRate: drawerSallary,
-                                                          stepNumber: step)
-                viewModels.append(viewModel)
+                                                          stepNumber: ProjectStepPriceCalculator.StepNumber.allCases[step])
+                viewModels.append(calculator.calculate())
             }
             
-            view?.showResult(viewModels: viewModels)
+            view?.showSteps(viewModels: viewModels)
+            
+            let result = ProjectPriceModel(viewModels: viewModels)
+            view?.showResult(viewModel: result)
         }
     }
     
