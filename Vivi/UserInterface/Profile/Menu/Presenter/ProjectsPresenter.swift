@@ -60,7 +60,7 @@ class ProjectsPresenter: TextMenuPresenterProtocol {
             }
         } else {
             if let user = UserService.shared.user,
-               user.userType == .admin {
+               user.userType.canCreateProjects {
                 view?.setupButton(title: "Создать новый", isHidden: false)
             }
         }

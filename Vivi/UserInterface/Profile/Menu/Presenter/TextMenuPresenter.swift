@@ -68,7 +68,11 @@ class TextMenuPresenter: TextMenuPresenterProtocol {
             isHidden = true
         case .client:
             isHidden = type != .form
-        case .admin, .worker, .developer:
+        default:
+            break
+        }
+        
+        if user.userType.canAddFiles {
             isHidden = false
         }
         

@@ -91,6 +91,8 @@ extension ProfilePresenter {
             menuItems = [.allProjects, .users, .main, .calculator]
         } else if user.userType == .worker {
             menuItems = [.allProjects, .calculator]
+        } else if user.userType == .contentManager {
+            menuItems = [.allProjects, .calculator]
         }
         
         view?.setupMenu(items: menuItems)

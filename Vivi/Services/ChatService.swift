@@ -105,7 +105,7 @@ class ChatService {
     func startChatWithAdmin(completion: @escaping VoidCompletion) {
         guard let currentUser = UserService.shared.user else { return }
         
-        FirestoreService.shared.loadUsers(type: .admin) { result in
+        FirestoreService.shared.loadUsers(type: .contentManager) { result in
             switch result {
             case .success(let user):
                 let chat = ChatModel(users: [currentUser.id, user.id],

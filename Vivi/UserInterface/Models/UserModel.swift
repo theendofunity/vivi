@@ -14,6 +14,23 @@ enum UserType: String, CaseIterable {
     case admin
     case developer
     case worker
+    case contentManager
+    
+    var canCreateChats: Bool {
+        return self == .admin || self == .developer || self == .contentManager
+    }
+    
+    var canAddFiles: Bool {
+        return self == .admin || self == .developer || self == .worker
+    }
+    
+    var canChangeUsers: Bool {
+        return self == .admin || self == .developer
+    }
+    
+    var canCreateProjects: Bool {
+        return self == .admin || self == .developer
+    }
 }
 
 struct UserModel: FirestoreSavable, Hashable {

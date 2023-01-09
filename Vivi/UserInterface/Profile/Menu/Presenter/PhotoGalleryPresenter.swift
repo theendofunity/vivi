@@ -53,7 +53,11 @@ class PhotoGalleryPresenter {
             isHidden = true
         case .client:
             isHidden = type != .examples
-        case .admin, .developer, .worker:
+        default:
+            break
+        }
+        
+        if user.userType.canAddFiles {
             isHidden = false
         }
         

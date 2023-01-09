@@ -66,7 +66,7 @@ class ChatsListPresenter {
         var isButtonHidden = true
         
         if let user = UserService.shared.user {
-            isButtonHidden = user.userType != .admin
+            isButtonHidden = !user.userType.canCreateChats
         }
         
         view?.hideAddButton(isHidden: isButtonHidden)
