@@ -52,6 +52,8 @@ struct UserModel: FirestoreSavable, Hashable {
     var avatarUrl: String?
     var avatar: UIImage?
     
+    var token: String?
+    
     func representation() -> [String : Any] {
         var dict: [String : Any] = [:]
         dict = [
@@ -66,7 +68,8 @@ struct UserModel: FirestoreSavable, Hashable {
             "address" : address ?? "",
             "avatarUrl" : avatarUrl ?? "",
             "chats" : chats,
-            "birthday" : birthday
+            "birthday" : birthday,
+            "token" : token
         ]
         
         return dict
@@ -108,6 +111,7 @@ struct UserModel: FirestoreSavable, Hashable {
         self.address = document["address"] as? String
         self.avatarUrl = document["avatarUrl"] as? String ?? nil
         self.chats = document["chats"] as? [String] ?? []
+        self.token = document["token"] as? String
     }
     
     func usernameTitle() -> String {

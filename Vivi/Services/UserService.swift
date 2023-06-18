@@ -11,6 +11,7 @@ class UserService {
     static var shared = UserService()
     var user: UserModel?
     var authService = AuthService.shared
+    
     private init() {
     }
     

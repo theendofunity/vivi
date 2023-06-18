@@ -49,28 +49,29 @@ class ApplicationPresenter {
         
         group.enter()
         
-        firestoreService.loadUser(userId: user.uid) { result in
-            group.leave()
+        firestoreService.loadUser(userId: user.uid) { [weak self] result in
             switch result {
             case .success(let user):
                 UserService.shared.user = user
+                self?.updateToken()
             case .failure(_):
-                self.authService.logout()
+                self?.authService.logout()
             }
+            group.leave()
         }
     }
     
     func loadChats(group: DispatchGroup) {
         group.enter()
         
-        ChatService.shared.loadChats { result in
+        ChatService.shared.loadChats { [weak self] result in
             group.leave()
             
             switch result {
             case .success(let chats):
                 DataStore.shared.chats = chats
             case .failure(_):
-                self.authService.logout()
+                self?.authService.logout()
             }
         }
     }
@@ -90,6 +91,18 @@ class ApplicationPresenter {
         }
     }
                              
+    func updateToken() {
+        guard let token = UserDefaults.standard.fcmToken,
+              var user = UserService.shared.user,
+              user.token != token else {
+            return
+        }
+        
+        user.token = token
+        UserService.shared.user = user
+        
+        FirestoreService.shared.save(reference: .users, data: user)
+    }
     
     @objc func logout() {
         AuthService.shared.logout()

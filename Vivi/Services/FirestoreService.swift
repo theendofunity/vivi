@@ -25,9 +25,9 @@ class FirestoreService {
     private init() {}
     
 //MARK: - Base
-    func save(reference: Reference, data: FirestoreSavable, completion: @escaping VoidCompletion) {
+    func save(reference: Reference, data: FirestoreSavable, completion: VoidCompletion? = nil) {
         guard let id = data.documentId() else {
-            completion(.failure(NSError()))
+            completion?(.failure(NSError()))
             return
         }
         
@@ -35,10 +35,10 @@ class FirestoreService {
         
         ref.setData(data.representation()) { error in
             guard let error = error else {
-                completion(.success(Void()))
+                completion?(.success(Void()))
                 return
             }
-            completion(.failure(error))
+            completion?(.failure(error))
         }
     }
     

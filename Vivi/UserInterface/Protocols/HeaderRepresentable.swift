@@ -12,9 +12,3 @@ protocol HeaderRepresentable: Hashable {
     func addressTitle() -> String
     func imageUrl() -> URL?
 }
-
-//extension HeaderRepresentable {
-//    func hash(into hasher: inout Hasher) {
-//        hasher.combine(headerTitle())
-//    }
-//}

@@ -92,3 +92,4 @@ iOSInjectionProject/
 *.generated.swift
 
 GoogleService-Info.plist
+Pods

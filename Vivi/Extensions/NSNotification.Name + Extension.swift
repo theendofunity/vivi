@@ -11,4 +11,5 @@ extension NSNotification.Name {
     static let login = Notification.Name("login")
     static let logout = Notification.Name("logout")
     static let messageReaded = Notification.Name("messageReaded")
+    static let fcmToken = Notification.Name("fcm_token")
 }

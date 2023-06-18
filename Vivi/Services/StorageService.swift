@@ -81,7 +81,11 @@ class StorageService {
             let group = DispatchGroup()
             var urls: [URL] = []
             
-            for item in result.items {
+            guard let items = result?.items else {
+                return
+            }
+            
+            for item in items {
                 group.enter()
                 item.downloadURL { url, error in
                     if let error = error {
@@ -110,7 +114,8 @@ class StorageService {
                 return
             }
         
-            let fileNames: [String] = result.items.compactMap { $0.name }
+            let fileNames: [String] = result?.items.compactMap { $0.name } ?? []
+            
             completion(.success(fileNames))
         }
     }

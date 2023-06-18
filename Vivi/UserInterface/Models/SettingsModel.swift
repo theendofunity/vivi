@@ -20,7 +20,5 @@ struct SettingsModel: FirestoreSavable {
     
     func representation() -> [String : Any] {
         return [:]
-    }
-    
-    
+    } 
 }
